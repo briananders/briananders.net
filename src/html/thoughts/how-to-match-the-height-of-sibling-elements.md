@@ -1,0 +1,208 @@
+---
+title: "How to match the height of sibling elements"
+description:
+priority: 0.8
+---
+
+
+  <style>
+    .example-container {
+      overflow: hidden;
+    }
+    .example-container + .example-container {
+      margin-top: 5vw;
+    }
+    .tall {
+      border-top: 5px solid #FFA700;
+    }
+    .column-1 {
+      background: rgba(0,0,0,0.2);
+    }
+    .column-2 {
+      background: rgba(0,0,0,0.3);
+    }
+    .column-3 {
+      background: rgba(0,0,0,0.4);
+    }
+    .column-1, .column-2, .column-3 {
+      padding-bottom: 99999px;
+      margin-bottom: -99999px;
+      float: left;
+    }
+    .example-1 .column-1, .example-1 .column-2 {
+      width: 50%;
+    }
+    .example-2 .column-1, .example-2 .column-2, .example-2 .column-3 {
+      width: 33.33333%;
+    }
+    ul {
+      margin: 0;
+      padding-top: 10vw;
+      padding-bottom: 10vw;
+      list-style: none;
+      padding-left: 0;
+      text-align: center;
+    }
+    code {
+      margin-top: 5vw;
+    }
+  </style>
+
+  <p>
+    This is a very common CSS problem. How do you get an element to match the height of its sibling element? There is one solution where you use a container element and a repeating background image to create a divider. I have another solution here that is all CSS.
+  </p>
+
+  <p>
+    The difficult part of matching siblings without setting a height is this: what if you have dynamic content and one elements content is longer than the others?
+  </p>
+
+  <p>
+    If you make the bottom padding on all of the sibling elements incredibly large with the same amount of negative margin on the bottom, they cancel out. But through some strange CSS logic, the siblings will match eachothers height.
+  </p>
+
+  <p>
+    Disregarding the styling for color and width, this is the code I'm using to match the elements' heights below.
+  </p>
+
+  <div class="example-container example-1">
+    <div class="column-1 tall">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <div class="column-2">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-container example-1">
+    <div class="column-1">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <div class="column-2 tall">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    It works with any number of columns. Here I have 3 columns. For the sites that have two side bars and a main column. Because the container element has `overflow: hidden` the columns extend 10000 pixels outside of their content, but the container shows the content and hides all of the padding.
+  </p>
+
+  <div class="example-container example-2">
+    <div class="column-1 tall">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <div class="column-2">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <div class="column-3">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-container example-2">
+    <div class="column-1">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <div class="column-2 tall">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <div class="column-3">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-container example-2">
+    <div class="column-1">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <div class="column-2">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+    <div class="column-3 tall">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+  </div>
+
+  <code>.example-container {
+  overflow: hidden;
+}
+.column-1, .column-2, .column-3 {
+  padding-bottom: 99999px;
+  margin-bottom: -99999px;
+  float: left;
+}
+
+&lt;div class="example-container"&gt;
+  &lt;div class="column-1 tall"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1&lt;/li&gt;
+      &lt;li&gt;2&lt;/li&gt;
+      &lt;li&gt;3&lt;/li&gt;
+      &lt;li&gt;4&lt;/li&gt;
+      &lt;li&gt;5&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column-2"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;1&lt;/li&gt;
+      &lt;li&gt;2&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+
+  <p>
+    If you use this though, you will have to check your browsers. In my limited testing, it works on all of the major browsers including Internet Explorer 8 and up.
+  </p>

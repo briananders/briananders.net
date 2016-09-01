@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{> meta }}
+</head>
+<body>
+  {{> header }}
+  <main>
+
+  	<div class="content">
+
+  		{{#if title}}
+  			<h1>{{ title }}</h1>
+  		{{/if}}
+
+  		{{{ contents }}}
+
+  	</div>
+
+  </main>
+  {{> footer }}
+  <script src="/js/main.js"></script>
+</body>
+</html>

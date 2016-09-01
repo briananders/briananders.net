@@ -1,0 +1,29 @@
+<form>
+  <select id="border-style">
+    <option value="no-border">No Border</option>
+    <option value="border-black">Border Black</option>
+    <option value="border-gray">Border Gray</option>
+    <option value="border-color" selected>Border Color</option>
+    <option value="epileptic">Epileptic</option>
+  </select>
+  <label for="alpha-border">
+    <input id="alpha-border" type="checkbox">Alpha Border
+  </label>
+  <select id="fill-style">
+    <option value="no-fill">No Fill</option>
+    <option value="fill-gray">Fill Gray</option>
+    <option value="fill-color" selected>Fill Color</option>
+    <option value="epileptic">Epileptic</option>
+  </select>
+  <label for="alpha-fill">
+    <input id="alpha-fill" type="checkbox">Alpha Fill
+  </label>
+
+  <button id="erase-button" type="button">Erase</button>
+  <button id="pause-button" type="button" class="paused">Pause</button>
+  <button id="clear-button" type="button">Clear</button>
+</form>
+
+<canvas id="my-canvas">
+  Your browser does not support the canvas tag!
+</canvas>

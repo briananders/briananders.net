@@ -1,0 +1,19 @@
+---
+title: "Last-FM"
+description:
+priority: 1.0
+---
+
+<section>
+  <div class="container">
+    <h2>Top Albums</h2>
+    {{album-scrobbles-section length=12 showDescription=true}}
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Top Artists</h2>
+    {{artist-scrobbles-section length=12 showDescription=true}}
+  </div>
+</section>

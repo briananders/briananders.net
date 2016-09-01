@@ -1,0 +1,16 @@
+#my-canvas {
+  width: 100%;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+#pause-button.paused {
+  color: white;
+  background-color: darkgray;
+}
+
+#clear-button {
+  color: white;
+  background-color: red;
+}
