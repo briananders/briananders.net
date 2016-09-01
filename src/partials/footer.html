@@ -1,6 +1,12 @@
 <footer>
   <div class="content">
-    <p>&copy; 2016 <a href="{{ contact }}">{{ author }}</a></p>
+    <p>
+      &copy; 2016 <a href="{{ contact }}" title="{{ author }}">{{ author }}</a>
+    </p>
+
+    <p>
+      <a href="https://github.com/briananders/metalsmith-briananders.net" title="Github repo for this site">Github repo for this site</a>
+    </p>
 
     <p class="siteinfo">{{#if devBuild}}Development{{else}}Production{{/if}} build, version {{ version }}, {{ template }} template</p>
   </div>
