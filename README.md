@@ -10,6 +10,6 @@ To build and launch the site using [Browsersync](https://www.browsersync.io/):
 
 To build the site for production and compress HTML files:
 
-	npm run production
+	npm run build
 
 The site is built in the `/build` folder.
