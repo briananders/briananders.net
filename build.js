@@ -39,6 +39,8 @@ var
   sass = require('metalsmith-sass'),
   browserify = require('metalsmith-browserify'),
   compress = require('metalsmith-gzip'),
+  watch = require('metalsmith-watch'),
+  path = require('metalsmith-path'),
 
   // custom plugins
   setdate = require(dir.lib + 'metalsmith-setdate'),
@@ -52,7 +54,7 @@ var
     desc: "Hey, I'm Brian Anders and this is my website. I am a UX Engineer at Nest, a Google company, and I like to tinker. Some of my interests include music, movies, and long walks on the beach...",
     author: 'Brian Anders',
     contact: 'https://twitter.com/brnandrs',
-    domain: devBuild ? 'http://127.0.0.1' : 'http://briananders.net', // set domain
+    domain: devBuild ? 'http://127.0.0.1/' : 'http://briananders.net/', // set domain
     rootpath: devBuild ? null : '/' // set absolute path (null for relative)
   },
 
@@ -98,6 +100,9 @@ var ms = new Metalsmith(dir.base)
       }
     }
   }))
+  .use(path({
+    baseDirectory : "/"
+  }))
   .use(markdown()) // convert markdown
   .use(permalinks({ // generate permalinks
     pattern: ':mainCollection/:title'
@@ -110,23 +115,32 @@ var ms = new Metalsmith(dir.base)
   .use(layouts(templateConfig)) // layout templating
   // first argument is the destination
   // other arguments get passed to browserify
-  .use(browserify('js/main.js', [
+  .use(browserify('js/anders.js', [
     dir.source + 'assets/js/main.js'
   ]))
   .use(assets({ // copy assets: CSS, images etc.
     source: dir.source + 'assets/',
-    destination: './'
+    destination: dir.source
   }))
   .use(sass({
     includePaths: [dir.source + 'assets/styles/'],
     sourceMap: true,
     outputDir: 'styles/'
   }))
-	;
+  ;
+
+if(devBuild) {
+  ms.use(
+    watch({
+      paths: {
+        "./src/**/*": true,
+      },
+      livereload: true,
+    })
+  );
+}
 
 if (htmlmin) ms.use(htmlmin()); // minify production HTML
-
-if (debug) ms.use(debug()); // output page debugging information
 
 if (browsersync) ms.use(browsersync({ // start test server
   server: dir.dest,

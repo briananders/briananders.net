@@ -3,22 +3,25 @@
 <head>
   {{> meta }}
 </head>
-<body>
+<body {{#if bodyClass}} class="{{bodyClass}}" {{/if}}>
   {{> header }}
   <main>
+    <header class="content">
+      {{#if title}}
+        <h1>{{ title }}</h1>
+      {{/if}}
 
-  	<div class="content">
+      {{#if description}}
+        <p>
+          {{ description }}
+        </p>
+      {{/if}}
+    </header>
 
-  		{{#if title}}
-  			<h1>{{ title }}</h1>
-  		{{/if}}
-
-  		{{{ contents }}}
-
-  	</div>
+		{{{ contents }}}
 
   </main>
   {{> footer }}
-  <script src="/js/main.js"></script>
+  <script src="/js/anders.js"></script>
 </body>
 </html>

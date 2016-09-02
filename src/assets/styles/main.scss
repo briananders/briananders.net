@@ -18,6 +18,7 @@ html {
   font-size: 62.5%;
   position: relative;
   font-family: "Times New Roman", Times, serif;
+  color: $black;
 
   ::selection {
     background: $off-white; /* Safari */
@@ -37,10 +38,15 @@ body {
 
 .content {
   position: relative;
-  max-width: 1048px;
+  max-width: 600px;
   margin: auto;
-  padding: 0 24px;
-  @include font-size(18);
+  padding: 0 20px;
+  @include font-size(15);
+
+  @include mq(768px) {
+    padding: 0 30px;
+    @include font-size(18);
+  }
 }
 
 * {
@@ -82,11 +88,10 @@ header + p {
 
 .main-header {
   width: 100%;
-  background: blue;
+  // box-shadow: 2px 2px 10px $off-white;
 }
 
 section {
-  // box-shadow: 2px 2px 10px $off-white;
-  margin-bottom: 40px;
-  padding: 20px;
+  padding: 40px 0;
+  max-width: 1280px;
 }
