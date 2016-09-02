@@ -119,8 +119,12 @@ var ms = new Metalsmith(dir.base)
     dir.source + 'assets/js/main.js'
   ]))
   .use(assets({ // copy assets: CSS, images etc.
-    source: dir.source + 'assets/',
-    destination: dir.source
+    source: dir.source + 'assets/images/',
+    destination: "./images/"
+  }))
+  .use(assets({ // copy assets: CSS, images etc.
+    source: dir.source + 'assets/styles/',
+    destination: "./styles/"
   }))
   .use(sass({
     includePaths: [dir.source + 'assets/styles/'],
