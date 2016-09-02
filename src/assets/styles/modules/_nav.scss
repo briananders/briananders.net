@@ -1,0 +1,17 @@
+nav.main {
+  border-top: 2px solid $border-color;
+  border-bottom: 2px solid $border-color;
+  padding: 10px 0;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 20px;
+
+    &.active,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

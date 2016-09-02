@@ -1,0 +1,27 @@
+main.thoughts.index {
+  .description {
+    text-align: center;
+  }
+
+  .thoughts-list {
+    text-align: center;
+
+    li {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: $black;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      // background-color: ;
+      @include transition(background-color 0.3s ease-in-out);
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+}

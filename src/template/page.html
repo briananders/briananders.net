@@ -3,16 +3,20 @@
 <head>
   {{> meta }}
 </head>
-<body {{#if bodyClass}} class="{{bodyClass}}" {{/if}}>
+<body>
   {{> header }}
-  <main>
+  <main {{#if pageClass}} class="{{pageClass}}" {{/if}}>
     <header class="content">
-      {{#if title}}
-        <h1>{{ title }}</h1>
-      {{/if}}
+      {{#unless altTitle}}
+        {{#if title}}
+          <h1>{{ title }}</h1>
+        {{/if}}
+      {{else}}
+        <h1>{{ altTitle }}</h1>
+      {{/unless}}
 
       {{#if description}}
-        <p>
+        <p class="description">
           {{ description }}
         </p>
       {{/if}}

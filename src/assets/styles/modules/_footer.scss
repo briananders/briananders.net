@@ -1,0 +1,13 @@
+footer {
+  margin-top: 40px;
+  text-align: center;
+
+  p {
+    text-align: center;
+
+    &:first-child {
+      border-top: 2px solid $border-color;
+      padding-top: 1em;
+    }
+  }
+}

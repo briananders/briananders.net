@@ -1,4 +1,4 @@
-body.thoughts.using-canvas {
+main.thoughts.using-canvas {
 
   canvas {
     width: 100vw;
@@ -8,12 +8,12 @@ body.thoughts.using-canvas {
   }
 
   #pause-button.paused {
-    color: white;
-    background-color: darkgray;
+    color: $white;
+    background-color: $black;
   }
 
   #clear-button {
-    color: white;
+    color: $white;
     background-color: red;
   }
 }

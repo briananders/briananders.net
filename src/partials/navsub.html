@@ -1,6 +1,6 @@
 {{#if navsub}}
 
-  <ul>
+  <ul {{#if class}} class="{{ class }}" {{/if}}>
 
   {{#each navsub}}
     <li>
@@ -13,6 +13,4 @@
   {{/each}}
 
   </ul>
-{{else}}
-  navsub: false
 {{/if}}

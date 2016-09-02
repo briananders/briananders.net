@@ -2,12 +2,22 @@
 title: "Thoughts"
 description: A set of articles published on this site.
 priority: 0.9
+pageClass: "thoughts index"
 ---
 
-<section>
-  <div class="content">
-    <h3>List of thoughts</h3>
-
-    {{> navsub }}
-  </div>
-</section>
+<div class="content">
+  <ul class="thoughts-list">
+    {{#each navsub}}
+      <li>
+        <a href="{{path}}">
+          <h3>{{title}}</h3>
+          {{#if description}}
+            <figcaption>
+              {{description}}
+            </figcaption>
+          {{/if}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

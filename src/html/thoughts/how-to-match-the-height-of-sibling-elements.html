@@ -1,51 +1,13 @@
 ---
-title: "How to match the height of sibling elements"
-description:
+title: "CSS Trick: How to match the height of sibling elements"
+description: "This is a very common CSS problem. How do you get an element to match the height of its sibling element? There is one solution where you use a container element and a repeating background image to create a divider. I have another solution here that is all CSS."
 priority: 0.8
+pageClass: "thoughts how-to-match"
 ---
 
-
+<div class="content">
   <style>
-    .example-container {
-      overflow: hidden;
-    }
-    .example-container + .example-container {
-      margin-top: 5vw;
-    }
-    .tall {
-      border-top: 5px solid #FFA700;
-    }
-    .column-1 {
-      background: rgba(0,0,0,0.2);
-    }
-    .column-2 {
-      background: rgba(0,0,0,0.3);
-    }
-    .column-3 {
-      background: rgba(0,0,0,0.4);
-    }
-    .column-1, .column-2, .column-3 {
-      padding-bottom: 99999px;
-      margin-bottom: -99999px;
-      float: left;
-    }
-    .example-1 .column-1, .example-1 .column-2 {
-      width: 50%;
-    }
-    .example-2 .column-1, .example-2 .column-2, .example-2 .column-3 {
-      width: 33.33333%;
-    }
-    ul {
-      margin: 0;
-      padding-top: 10vw;
-      padding-bottom: 10vw;
-      list-style: none;
-      padding-left: 0;
-      text-align: center;
-    }
-    code {
-      margin-top: 5vw;
-    }
+
   </style>
 
   <p>
@@ -206,3 +168,5 @@ priority: 0.8
   <p>
     If you use this though, you will have to check your browsers. In my limited testing, it works on all of the major browsers including Internet Explorer 8 and up.
   </p>
+
+</div>
