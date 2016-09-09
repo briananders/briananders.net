@@ -1,13 +1,14 @@
 nav.main {
-  border-top: 2px solid $border-color;
-  border-bottom: 2px solid $border-color;
-  padding: 10px 0;
+  display: table-cell;
+  padding-left: 40px;
+  width: 100%;
+  text-align: right;
 
   a {
     text-decoration: none;
     display: inline-block;
     white-space: nowrap;
-    margin-right: 20px;
+    margin-right: 40px;
 
     &.active,
     &:hover {

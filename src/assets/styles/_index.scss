@@ -1,6 +1,22 @@
 main.main.index {
   section header {
-    border-bottom: 2px solid #CCC;
-    margin-bottom: 20px;
+    // border-bottom: 2px solid #CCC;
+    // margin-bottom: 20px;
+  }
+
+  li.podcast,
+  li.movie {
+    width: 50%;
+    float: left;
+
+    &:nth-child(2n+1) {
+      clear: left;
+    }
+  }
+
+  a.see-more {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
   }
 }

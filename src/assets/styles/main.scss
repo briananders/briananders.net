@@ -18,7 +18,7 @@ html {
   min-height: 100%;
   font-size: 62.5%;
   position: relative;
-  font-family: "Times New Roman", Times, serif;
+  font-family: $serif;
   color: $black;
 
   ::selection {
@@ -37,11 +37,16 @@ body {
   line-height: 1.3;
 }
 
+main {
+  margin-top: 40px;
+}
+
 .content {
   position: relative;
   max-width: 600px;
   margin: auto;
   padding: 0 20px;
+  overflow: hidden;
   @include font-size(15);
 
   @include mq(768px) {
@@ -56,8 +61,16 @@ body {
 
 h1, h2, h3 {
   font-weight: 700;
-  font-family: 'Roboto', sans-serif;
+  font-family: $sans-serif;
   text-align: center;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 h1 {

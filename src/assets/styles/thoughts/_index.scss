@@ -8,7 +8,7 @@ main.thoughts.index {
 
     li {
       display: block;
-      margin-bottom: 20px;
+      margin: 20px auto;
     }
 
     a {
@@ -16,11 +16,13 @@ main.thoughts.index {
       overflow: hidden;
       display: block;
       text-decoration: none;
-      // background-color: ;
-      @include transition(background-color 0.3s ease-in-out);
+      border-radius: 5px;
+      box-shadow: 0 0 0px $off-white;
+      padding: 10px;
+      @include transition(box-shadow 0.2s ease-in-out);
 
       &:hover {
-        background-color: $white;
+        box-shadow: 0 0 15px $off-white;
       }
     }
   }

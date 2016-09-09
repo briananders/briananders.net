@@ -1,13 +1,9 @@
 footer {
-  margin-top: 40px;
+  margin-top: 80px;
   text-align: center;
+  color: $black;
 
   p {
     text-align: center;
-
-    &:first-child {
-      border-top: 2px solid $border-color;
-      padding-top: 1em;
-    }
   }
 }
