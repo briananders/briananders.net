@@ -1,22 +1,26 @@
 main.main.index {
-  section header {
-    // border-bottom: 2px solid #CCC;
-    // margin-bottom: 20px;
-  }
 
   li.podcast,
   li.movie {
     width: 50%;
     float: left;
+    margin-bottom: 30px;
 
     &:nth-child(2n+1) {
       clear: left;
     }
   }
 
+  .center {
+    text-align: center;
+  }
+
   a.see-more {
     text-align: center;
     display: inline-block;
-    width: 100%;
+    padding: 0 1em;
+    border: 1px solid;
+    line-height: 3;
+    text-decoration: none;
   }
 }

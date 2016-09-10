@@ -6,6 +6,8 @@ header.main-header {
   @include font-size(15);
   font-family: $sans-serif;
   color: $black;
+  max-width: 1000px;
+  margin: auto;
 
   .brian-anders {
     @include font-size(30);

@@ -10,7 +10,7 @@ Build production site with `npm run production`
 
 var
 // defaults
-  consoleLog = false, // set true for metalsmith file and meta content logging
+  // consoleLog = false, // set true for metalsmith file and meta content logging
   devBuild = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
   pkg = require('./package.json'),
 
@@ -39,22 +39,23 @@ var
   sass = require('metalsmith-sass'),
   browserify = require('metalsmith-browserify'),
   compress = require('metalsmith-gzip'),
-  watch = require('metalsmith-watch'),
+  // watch = require('metalsmith-watch'),
   path = require('metalsmith-path'),
+  copy = require('metalsmith-static'),
 
   // custom plugins
   setdate = require(dir.lib + 'metalsmith-setdate'),
   moremeta = require(dir.lib + 'metalsmith-moremeta'),
-  debug = consoleLog ? require(dir.lib + 'metalsmith-debug') : null,
+  // debug = consoleLog ? require(dir.lib + 'metalsmith-debug') : null,
 
   siteMeta = {
     devBuild: devBuild,
     version: pkg.version,
     name: 'Brian Anders, Engineer',
-    desc: "Hey, I'm Brian Anders and this is my website. I am a UX Engineer at Nest, a Google company, and I like to tinker. Some of my interests include music, movies, and long walks on the beach...",
+    desc: "Hi, I'm Brian. My story is pretty simple. I grew up in rural Iowa. Then I moved to California to work for Nest. That's pretty much it.",
     author: 'Brian Anders',
     contact: 'https://twitter.com/brnandrs',
-    domain: devBuild ? 'http://127.0.0.1/' : 'http://briananders.net/', // set domain
+    domain: 'http://briananders.net/', // set domain
     rootpath: devBuild ? null : '/' // set absolute path (null for relative)
   },
 
@@ -131,18 +132,22 @@ var ms = new Metalsmith(dir.base)
     sourceMap: true,
     outputDir: 'styles/'
   }))
+  .use(copy({
+    src: "public",
+    dest: "."
+  }))
   ;
 
-if(devBuild) {
-  ms.use(
-    watch({
-      paths: {
-        "./src/**/*": true,
-      },
-      livereload: true,
-    })
-  );
-}
+// if(devBuild) {
+//   ms.use(
+//     watch({
+//       paths: {
+//         "./src/**/*": true,
+//       },
+//       livereload: true,
+//     })
+//   );
+// }
 
 if (htmlmin) ms.use(htmlmin()); // minify production HTML
 
