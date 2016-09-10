@@ -119,10 +119,10 @@ var ms = new Metalsmith(dir.base)
   .use(browserify('js/anders.js', [
     dir.source + 'assets/js/main.js'
   ]))
-  .use(assets({ // copy assets: CSS, images etc.
-    source: dir.source + 'assets/images/',
-    destination: "./images/"
-  }))
+  // .use(assets({ // copy assets: CSS, images etc.
+  //   source: dir.source + 'assets/images/',
+  //   destination: "./images/"
+  // }))
   .use(assets({ // copy assets: CSS, images etc.
     source: dir.source + 'assets/styles/',
     destination: "./styles/"

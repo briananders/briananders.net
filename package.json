@@ -5,6 +5,7 @@
   "homepage": "http://briananders.net",
   "main": "build.js",
   "scripts": {
+    "clean": "rm -rf node_modules tmp dist && npm cache clean",
     "start": "node ./build.js",
     "build": "NODE_ENV=production node ./build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
