@@ -1,0 +1,26 @@
+{{#each albums as |album index|}}
+  {{#if (lt index length)}}
+    {{#if showDescription}}
+      <div class="album-tile">
+        <a target="_blank" href="{{album.url}}" class="album" title="{{album.name}}">
+          {{image-tag src=album.image alt=album.name }}
+        </a>
+        <ul>
+          <h3 class="name">
+            <a target="_blank"
+               href="{{album.url}}"
+               title="{{album.name}}">
+              {{album.name}}
+            </a>
+          </h3>
+          <li>By: <a href="{{album.artist.url}}" title="{{album.artist.name}}" target="_blank">{{album.artist.name}}</a></li>
+          <li>Total plays: {{album.playcount}}</li>
+        </ul>
+      </div>
+    {{else}}
+      <a target="_blank" href="{{album.url}}" class="album" title="{{album.name}}">
+        {{image-tag src=album.image alt=album.name }}
+      </a>
+    {{/if}}
+  {{/if}}
+{{/each}}

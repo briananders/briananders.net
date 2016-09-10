@@ -1,0 +1,25 @@
+{{#each artists as |artist index|}}
+  {{#if (lt index length)}}
+    {{#if showDescription}}
+      <div class="artist-tile">
+        <a target="_blank" href="{{artist.url}}" class="artist" title="{{artist.name}}">
+          {{image-tag src=artist.image alt=artist.name }}
+        </a>
+        <ul>
+          <h3 class="name">
+            <a target="_blank"
+               href="{{artist.url}}"
+               title="{{artist.name}}">
+              {{artist.name}}
+            </a>
+          </h3>
+          <li>Total plays: {{artist.playcount}}</li>
+        </ul>
+      </div>
+    {{else}}
+      <a target="_blank" href="{{artist.url}}" class="artist" title="{{artist.name}}">
+        {{image-tag src=artist.image alt=artist.name }}
+      </a>
+    {{/if}}
+  {{/if}}
+{{/each}}

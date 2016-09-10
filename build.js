@@ -137,7 +137,7 @@ var ms = new Metalsmith(dir.base)
     dest: "."
   }))
   .use(copy({
-    src: "ember-app/dist/assets",
+    src: "ember-app/dist",
     dest: "ember-app"
   }))
   ;

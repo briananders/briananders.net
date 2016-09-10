@@ -1,0 +1,436 @@
+@import "normalize";
+@import "base-styles";
+
+@import "index";
+@import "work";
+@import "blog";
+@import "mine-sweeper";
+@import "four-oh-four";
+@import "last-fm";
+
+
+
+
+.center {
+  text-align: center;
+}
+
+.clearfix {
+  overflow: auto;
+  clear: both;
+}
+
+.name-link {
+  cursor: pointer;
+}
+
+html {
+  min-height: 100%;
+  font-size: 62.5%;
+  position: relative;
+  font-family: "Times New Roman", Times, serif;
+  // background-color: $violet;
+  background-color: $grey;
+  color: $off-white;
+
+  ::selection {
+    background: $off-white; /* Safari */
+    color: $grey;
+    @include text-shadow(none);
+  }
+  ::-moz-selection {
+    background: $off-white; /* Firefox */
+    color: $grey;
+    @include text-shadow(none);
+  }
+}
+
+input, button, a, textarea, select {
+  cursor: pointer;
+}
+
+body {
+  font-size: 4.4vw;
+  min-height: 100%;
+}
+
+* {
+  @include box-sizing(border-box);
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: $off-white;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 12vw;
+  color: $white;
+}
+
+h2 {
+  font-size: 9vw;
+  margin-bottom: 5vw;
+}
+
+h3 {
+  font-size: 6vw;
+  margin-bottom: 5vw;
+}
+
+img {
+  opacity: 0;
+  max-width: 100%;
+  @include transform(scale(.5));
+  @include transition(opacity .5s ease, transform .5s ease);
+
+  &.loaded {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+}
+
+nav {
+  font-weight: 100;
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 20px;
+  line-height: 7vw;
+  font-family: 'Alegreya Sans SC', sans-serif;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    border-right: 0.4vw solid $off-white;
+    box-sizing: content-box;
+    float: left;
+    font-size: 7.3vw;
+    // color: #cd87f1;
+    opacity: 0.7;
+    @include transition(opacity 0.2s ease);
+
+    a:hover,
+    &:hover,
+    &.active,
+    &.active:hover,
+    &.active a,
+    &.active a:hover {
+      opacity: 1;
+    }
+
+    &:first-child {
+      a {
+        padding-left: 0;
+      }
+    }
+
+    &:last-child {
+      border: none;
+
+      a {
+        padding-right: 0;
+      }
+    }
+  }
+
+  a {
+    padding: 0 2.5vw;
+    line-height: 5vw;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 0.7;
+    @include transition(opacity 0.2s ease);
+  }
+
+  &.bottom-nav {
+    padding: 5vw 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $containerMaxWidth;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 3vw;
+  position: relative;
+  @include box-sizing(border-box);
+}
+
+a {
+  text-decoration: underline;
+  color: $off-white;
+  opacity: 1;
+  @include transition(opacity 0.3s ease);
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+p, blockquote, code {
+  margin: 3vw auto;
+}
+
+header {
+  border-bottom: 5px solid $violet;
+
+  h1 {
+    font-size: 16vw;
+  }
+}
+
+.content {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+  @include box-sizing(border-box);
+}
+
+p {
+  font-size: 4.4vw;
+  line-height: 1.5;
+  font-weight: 100;
+}
+
+.home {
+  cursor: pointer;
+  background-image: url('/assets/images/home.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  display: none;
+  height: 29px;
+  width: 35px;
+  opacity: 1;
+  @include transition(opacity .3s ease);
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.social-likes {
+  text-align: center;
+  padding: 20px 0 40px;
+
+  li {
+    line-height: 15px;
+    display: inline-block;
+  }
+}
+
+.links {
+  overflow: hidden;
+  text-align: center;
+
+  .link {
+    width: 20%;
+    float: left;
+    height: 60px;
+    @include transition(background-color 0.4s ease);
+
+    &.instagram {
+      background-color: rgb(124, 124, 124);
+
+      &:hover {
+        background-color: rgb(81, 127, 164);
+      }
+    }
+    &.twitter {
+      background-color: rgb(170, 170, 170);
+
+      &:hover {
+        background-color: rgb(51, 204, 255);
+      }
+    }
+    &.lastfm {
+      background-color: rgb(113, 113, 113);
+
+      &:hover {
+        background-color: rgb(224, 47, 47);
+      }
+    }
+    &.linkedin {
+      background-color: rgb(145, 145, 145);
+
+      &:hover {
+        background-color: rgb(50, 143, 241);
+      }
+    }
+    &.github {
+      background-color: rgb(152, 152, 152);
+
+      &:hover {
+        background-color: rgb(153, 60, 243);
+      }
+    }
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    line-height: normal;
+    display: inline-block;
+    @include box-sizing(border-box);
+  }
+  img {
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 5px auto;
+    position: relative;
+    @include transform(translateY(0px));
+    @include transition(transform .25s ease);
+  }
+  span {
+    font-size: 12px;
+    position: relative;
+    display: block;
+    margin-top: -20px;
+    padding-top: 7px;
+    opacity: 0;
+    @include transform(translateY(-26px));
+    @include transition(transform .25s ease, opacity .25s ease);
+  }
+}
+
+select {
+  font-size: 3vw;
+  height: 7vw;
+  border-radius: 0;
+}
+
+.foot {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 100;
+  float: left;
+  width: 100%;
+  padding: 10px;
+
+
+  a {
+    font-size: 12px;
+  }
+  span {
+    display: block;
+  }
+}
+
+section {
+  // background-color: $burnt-orange;
+  border-bottom: 5px solid $violet;
+}
+
+
+
+
+
+
+
+@include mq(500px) {
+
+  body {
+    @include font-size(22);
+  }
+
+  h1 {
+    font-size: 60px;
+  }
+
+  h2 {
+    font-size: 45px;
+    margin-bottom: 25px;
+  }
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+
+  nav {
+    line-height: 35px;
+
+    li {
+      border-right: 2px solid $off-white;
+      font-size: 36.5px;
+    }
+
+    a {
+      padding: 0 12.5px;
+      line-height: 25px;
+    }
+
+    &.bottom-nav {
+      padding: 25px 0;
+    }
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  p, blockquote, code {
+    margin: 15px auto;
+  }
+
+  header {
+    h1 {
+      font-size: 80px;
+    }
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  select {
+    font-size: 15px;
+    height: 35px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@include mq(1020px) {
+
+  header {
+    h1 {
+      float: left;
+    }
+
+    nav {
+      float: right;
+      margin-top: 52px;
+    }
+  }
+
+  .bottom-nav {
+    float: right;
+    width: auto;
+  }
+
+}
