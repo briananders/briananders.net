@@ -39,7 +39,7 @@ var
   sass = require('metalsmith-sass'),
   browserify = require('metalsmith-browserify'),
   compress = require('metalsmith-gzip'),
-  // watch = require('metalsmith-watch'),
+  watch = require('metalsmith-watch'),
   path = require('metalsmith-path'),
   copy = require('metalsmith-static'),
 
@@ -136,18 +136,21 @@ var ms = new Metalsmith(dir.base)
     src: "public",
     dest: "."
   }))
+  .use(copy({
+    src: "ember-app/dist",
+    dest: "ember-app"
+  }))
   ;
 
-// if(devBuild) {
-//   ms.use(
-//     watch({
-//       paths: {
-//         "./src/**/*": true,
-//       },
-//       livereload: true,
-//     })
-//   );
-// }
+if(devBuild) {
+  ms.use(
+    watch({
+      paths: {
+        "./public/**/*": true,
+      }
+    })
+  );
+}
 
 if (htmlmin) ms.use(htmlmin()); // minify production HTML
 

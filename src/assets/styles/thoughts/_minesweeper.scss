@@ -1,4 +1,4 @@
-.mine-sweeper {
+.minesweeper {
 
   .blog-container {
     > * {
@@ -205,7 +205,7 @@
     -ms-user-select: none;      /* IE 10+ */
     user-select: none;          /* Likely future */
 
-    // @include image-2x('/assets/images/blog/mine-sweeper/sprite.png', '/assets/images/blog/mine-sweeper/sprite.png');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     background-size: 920%;
     image-rendering: pixelated;
@@ -297,7 +297,7 @@
   .number {
     display: block;
     float: left;
-    // @include image-2x('/assets/images/blog/mine-sweeper/sprite.png', '/assets/images/blog/mine-sweeper/sprite.png');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     background-size: 1100%;
     image-rendering: pixelated;
@@ -343,7 +343,7 @@
     position: relative;
     top: -8.5px;
     display: inline-block;
-    // @include image-2x('/assets/images/blog/mine-sweeper/sprite.png', '/assets/images/blog/mine-sweeper/sprite.png');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     image-rendering: pixelated;
     padding: 0;
@@ -392,7 +392,7 @@
 
 @include mq(500px) {
 
-  .mine-sweeper {
+  .minesweeper {
 
     .header-first-row {
       margin-bottom: 25px;
