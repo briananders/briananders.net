@@ -4,19 +4,23 @@ altTitle: "My thoughts."
 description: "This area of my website is intended to act somewhat like a blog. But none of these are really blog posts or articles. They are more like a collection of thoughts."
 priority: 0.9
 pageClass: "thoughts index"
+css: ['index']
 ---
 
 <div class="content">
   <ul class="thoughts-list">
     {{#each navsub}}
-      <li>
-        <a href="{{path}}">
-          <h3>{{title}}</h3>
+      <li itemscope itemtype="http://schema.org/BlogPosting">
+        <a itemprop="url" href="{{path}}">
+          <h3 itemprop="name">{{title}}</h3>
           {{#if description}}
-            <figcaption>
+            <figcaption itemprop="description">
               {{description}}
             </figcaption>
           {{/if}}
+          <meta itemprop="author" content="{{author}}"/>
+          <meta itemprop="datePublished" content="{{date}}"/>
+          <meta itemprop="publisher" content="{{author}}"/>
         </a>
       </li>
     {{/each}}

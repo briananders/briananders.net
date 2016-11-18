@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'briananders-net',
     environment: environment,
-    baseURL: '/thoughts/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -21,15 +21,15 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    rootURL: '/',
     ENV.locationType = 'none';
 
     // keep test console output quieter

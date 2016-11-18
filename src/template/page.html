@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <head>
   {{> meta }}
 </head>
 <body>
+
+  <aside id="nav-aside">
+    <button type="button" id="menu-close">+</button>
+    {{> nav }}
+  </aside>
+
   {{> header }}
-  <main {{#if pageClass}} class="{{pageClass}}" {{/if}}>
+  <main {{#if pageClass}} class="{{pageClass}}" {{/if}} itemscope itemprop="mainContentOfPage">
     <header class="content">
       {{#unless altTitle}}
         {{#if title}}
-          <h1>{{ title }}</h1>
+          <h1 itemprop="name">{{ title }}</h1>
         {{/if}}
       {{else}}
-        <h1>{{ altTitle }}</h1>
+        <h1 itemprop="name">{{ altTitle }}</h1>
       {{/unless}}
 
       {{#if description}}
-        <p class="description">
+        <p class="description" itemprop="description">
           {{ description }}
         </p>
       {{/if}}
@@ -27,5 +33,9 @@
   </main>
   {{> footer }}
   <script src="/js/anders.js"></script>
+  {{#if ember}}
+    <script src="/ember-app/vendor.js"></script>
+    <script src="/ember-app/main.js"></script>
+  {{/if}}
 </body>
 </html>

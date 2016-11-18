@@ -15,10 +15,10 @@ module.exports = function(defaults) {
     app.options = merge(app.options, {
       outputPaths: {
         app: {
-          js: '/main.js'
+          js: '/assets/main.js'
         },
         vendor: {
-          js: '/vendor.js'
+          js: '/assets/vendor.js'
         }
       }
     });

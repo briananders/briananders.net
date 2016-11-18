@@ -1,11 +1,13 @@
 <footer>
   <div class="content">
     <p>
-      &copy; 2016 <a href="{{ contact }}" title="{{ author }}">{{ author }}</a>
+      &copy; 2016 <a itemprop="url" href="{{ contact }}" title="{{ author }}">
+        <span itemprop="author">{{ author }}</span>
+      </a>
     </p>
 
     <p>
-      <a href="https://github.com/briananders/metalsmith-briananders.net"
+      <a itemprop="url" href="https://github.com/briananders/metalsmith-briananders.net"
          title="Github repo for this site"
          target="blank">
         Github repo for this site

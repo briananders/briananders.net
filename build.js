@@ -46,7 +46,6 @@ var
   // custom plugins
   setdate = require(dir.lib + 'metalsmith-setdate'),
   moremeta = require(dir.lib + 'metalsmith-moremeta'),
-  // debug = consoleLog ? require(dir.lib + 'metalsmith-debug') : null,
 
   siteMeta = {
     devBuild: devBuild,
@@ -137,7 +136,7 @@ var ms = new Metalsmith(dir.base)
     dest: "."
   }))
   .use(copy({
-    src: "ember-app/dist",
+    src: "ember-app/dist/assets",
     dest: "ember-app"
   }))
   ;
@@ -147,6 +146,7 @@ if(devBuild) {
     watch({
       paths: {
         "./public/**/*": true,
+        "./ember-app/dist/assets/*": true
       }
     })
   );

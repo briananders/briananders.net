@@ -1,5 +1,5 @@
-<nav class="nav main">
+<nav class="nav main" role="menu">
   {{#each navmain}}
-    <a href="{{path}}"{{#if active}} class="active"{{/if}}>{{title}}</a>
+    <a itemprop="url" role="menuitem" href="{{path}}"{{#if active}} class="active"{{/if}}>{{title}}</a>
   {{/each}}
 </nav>

@@ -38,7 +38,7 @@ export default Ember.Component.extend({
         period: '1month' //overall|7day|1month|3month|6month|12month
       };
 
-      if(Ember.isEmpty(this.get('stateService.lastfm.albums.%@'.fmt(lfmOpts.period)))) {
+      if(Ember.isEmpty(this.get(`stateService.lastfm.albums.${lfmOpts.period}`))) {
 
         Ember.$.ajax({
           type: 'GET',
@@ -68,7 +68,7 @@ export default Ember.Component.extend({
             }.bind(this));
 
             this.set('albums', albums);
-            this.set('stateService.lastfm.albums.%@'.fmt(lfmOpts.period), albums);
+            this.set(`stateService.lastfm.albums.${lfmOpts.period}`, albums);
 
           }.bind(this),
           error: function() {
@@ -78,7 +78,7 @@ export default Ember.Component.extend({
         });
 
       } else {
-        this.set('albums', this.get('stateService.lastfm.albums.%@'.fmt(lfmOpts.period)));
+        this.set('albums', this.get(`stateService.lastfm.albums.${lfmOpts.period}`));
       }
 
     });

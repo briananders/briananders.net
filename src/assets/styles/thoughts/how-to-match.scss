@@ -1,0 +1,50 @@
+@import "lib/base-styles";
+
+
+main.thoughts.how-to-match {
+  @import "modules/code";
+
+  .example-container {
+    overflow: hidden;
+  }
+  .example-container,
+  code {
+    margin-bottom: 1em;
+  }
+  .tall {
+    border-top: 5px solid #FFA700;
+  }
+  .column-1 {
+    background: rgba(0,0,0,0.2);
+  }
+  .column-2 {
+    background: rgba(0,0,0,0.3);
+  }
+  .column-3 {
+    background: rgba(0,0,0,0.4);
+  }
+  .column-1,
+  .column-2,
+  .column-3 {
+    padding-bottom: 99999px;
+    margin-bottom: -99999px;
+    float: left;
+  }
+  .example-1 .column-1,
+  .example-1 .column-2 {
+    width: 50%;
+  }
+  .example-2 .column-1,
+  .example-2 .column-2,
+  .example-2 .column-3 {
+    width: 33.33333%;
+  }
+  ul {
+    margin: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+  }
+}

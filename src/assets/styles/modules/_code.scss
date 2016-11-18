@@ -1,8 +1,9 @@
 code {
-  white-space: pre;
+  white-space: pre-wrap;
   overflow-x: auto;
   font-family: monospace, serif;
   padding: 20px;
   display: block;
   background-color: rgba(0,0,0,0.1);
+  @include font-size(14);
 }

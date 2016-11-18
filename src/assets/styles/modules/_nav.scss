@@ -1,18 +1,69 @@
 nav.main {
-  display: table-cell;
-  padding-left: 40px;
   width: 100%;
-  text-align: right;
+  margin-top: 50px;
 
   a {
     text-decoration: none;
-    display: inline-block;
-    white-space: nowrap;
-    margin-right: 40px;
+    display: block;
+    padding-left: 20px;
+    line-height: 36px;
+    @include font-size(20);
 
     &.active,
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+[id="menu-open"] {
+  float: right;
+  position: absolute;
+  right: 20px;
+  padding-left: 32px;
+  background-size: auto 26px;
+  background-repeat: no-repeat;
+  border: none;
+  background-image: url('/images/icons/hamburger.png');
+  @include retina() {
+    background-image: url('/images/icons/hamburger_2x.png');
+  }
+}
+
+[id="menu-close"] {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+  @include transform(rotate(45deg));
+  border-radius: 100%;
+  @include font-size(40);
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+
+#nav-aside {
+  position: absolute;
+  width: 200px;
+  background: $white;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 0;
+  text-align: left;
+  overflow: hidden;
+}
+
+
+@include mq(640px) {
+  [id="menu-open"] {
+    position: static;
+    right: auto;
+    background-size: 44px auto;
+    padding-top: 36px;
+    padding-left: 13px;
+    background-position: center top;
   }
 }

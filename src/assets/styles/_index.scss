@@ -1,13 +1,25 @@
 main.main.index {
 
+  ul {
+    overflow: hidden;
+  }
+
+  .index-podcasts,
+  .index-movies {
+    margin-bottom: 40px;
+  }
+
+  .album-tile,
   li.podcast,
   li.movie {
-    width: 50%;
+    width: 49%;
     float: left;
     margin-bottom: 30px;
+    text-align: center;
 
     &:nth-child(2n+1) {
       clear: left;
+      margin-right: 2%;
     }
   }
 

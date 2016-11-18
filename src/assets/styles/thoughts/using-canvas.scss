@@ -1,0 +1,36 @@
+@import "lib/base-styles";
+
+
+main.thoughts.using-canvas {
+
+  canvas {
+    width: 100vw;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    height: calc(100vh - 50px);
+  }
+
+  #pause-button.paused {
+    color: $white;
+    background-color: $black;
+  }
+
+  #clear-button {
+    color: $white;
+    background-color: red;
+  }
+
+  form {
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 40px;
+
+    label {
+      white-space: nowrap;
+    }
+  }
+
+  button + button {
+    margin-left: 10px;
+  }
+}

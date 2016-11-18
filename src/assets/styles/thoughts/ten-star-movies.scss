@@ -1,0 +1,12 @@
+@import "lib/base-styles";
+
+
+.movie {
+  ul {
+    h4 {
+      font-weight: 700;
+      font-family: $sans-serif;
+      @include font-size(20);
+    }
+  }
+}

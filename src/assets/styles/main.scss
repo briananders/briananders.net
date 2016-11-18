@@ -3,8 +3,6 @@
 
 @import "index";
 @import "four-oh-four";
-@import "experience/all";
-@import "thoughts/all";
 
 @import "modules/header";
 @import "modules/footer";
@@ -20,44 +18,49 @@ html {
   position: relative;
   font-family: $serif;
   color: $black;
+  overflow-x: hidden;
 
   ::selection {
-    background: $off-white; /* Safari */
-    color: $grey;
+    background: $flint; /* Safari */
+    color: $coin;
     @include text-shadow(none);
   }
   ::-moz-selection {
-    background: $off-white; /* Firefox */
-    color: $grey;
+    background: $flint; /* Firefox */
+    color: $coin;
     @include text-shadow(none);
   }
 }
 
 body {
   line-height: 1.3;
+  @include font-size(13);
+  overflow-x: hidden;
+  width: 100%;
 
-  // &.variation-1 {
-  //   background-color: #00ff95;
-  // }
-  // &.variation-2 {
-  //   background-color: #00ffe7;
-  // }
-  // &.variation-3 {
-  //   background-color: #ff9494;
-  // }
-  // &.variation-4 {
-  //   background-color: #00c4ff;
-  // }
-  // &.variation-5 {
-  //   background-color: #fff700;
-  // }
-  // &.variation-6 {
-  //   background-color: #ffbc00;
-  // }
+  .main-header,
+  main {
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    @include transition(right 0.2s ease);
+    right: 0;
+  }
+
+  &.nav-active {
+    overflow: hidden;
+    height: 100vh;
+
+    .main-header,
+    main {
+      right: 200px;
+    }
+  }
 }
 
 main {
-  margin-top: 40px;
+  overflow: hidden;
+  margin: auto;
 }
 
 .content {
@@ -94,10 +97,10 @@ h1, h2, h3 {
 
 a,
 a:visited {
-  color: inherit;
+  color: $violet;
 
   &:hover {
-    color: blue;
+    color: inherit;
   }
 }
 
@@ -130,4 +133,44 @@ p {
 section {
   padding-top: 40px;
   max-width: 1280px;
+  margin: auto;
+}
+
+select {
+  border-radius: 4px;
+  background: $white;
+  border: 1px solid $coin;
+}
+
+label {
+  @include font-size(13);
+  line-height: 25px;
+  padding: 0 13px;
+  font-family: $sans-serif;
+}
+
+button, select {
+  font-family: $sans-serif;
+  border-radius: 4px;
+  background-color: $white;
+  border: 1px solid $coin;
+  @include font-size(13);
+  line-height: 25px;
+  padding: 0 13px;
+  @include transition(background-color .2s ease);
+}
+
+select {
+  @include appearance(menulist);
+
+}
+
+button {
+  &:hover {
+    background-color: $flint;
+  }
+}
+
+.error {
+  color: red;
 }

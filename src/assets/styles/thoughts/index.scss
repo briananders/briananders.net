@@ -1,0 +1,28 @@
+@import "lib/base-styles";
+
+
+main.thoughts.index {
+  .thoughts-list {
+    text-align: justify;
+
+    li {
+      display: block;
+      margin: 20px auto;
+    }
+
+    a {
+      color: $black;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      border-radius: 5px;
+      padding: 10px;
+      @include transition(border-color 0.2s ease-in-out);
+      border: 1px solid transparent;
+
+      &:hover {
+        border-color: $coin;
+      }
+    }
+  }
+}
