@@ -26,7 +26,6 @@ var
   Metalsmith = require('metalsmith'),
   markdown = require('metalsmith-markdown'),
   publish = require('metalsmith-publish'),
-  wordcount = require("metalsmith-word-count"),
   collections = require('metalsmith-collections'),
   permalinks = require('metalsmith-permalinks'),
   inplace = require('metalsmith-in-place'),
@@ -107,9 +106,6 @@ var ms = new Metalsmith(dir.base)
   .use(permalinks({ // generate permalinks
     pattern: ':mainCollection/:title'
   }))
-  .use(wordcount({
-    raw: true
-  })) // word count
   .use(moremeta()) // determine root paths and navigation
   .use(inplace(templateConfig)) // in-page templating
   .use(layouts(templateConfig)) // layout templating

@@ -162,13 +162,16 @@ button, select {
 
 select {
   @include appearance(menulist);
-
 }
 
 button {
   &:hover {
     background-color: $flint;
   }
+}
+
+a, button, input, select, textarea {
+  cursor: pointer;
 }
 
 .error {

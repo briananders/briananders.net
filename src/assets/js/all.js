@@ -12,14 +12,10 @@ module.exports = {
 
   navSetup: function() {
     var openButton = document.getElementById('menu-open');
-    var closeButton = document.getElementById('menu-close');
     var aside = document.getElementById('nav-aside');
 
     openButton.addEventListener('click', function() {
-      document.body.classList.add('nav-active');
-    });
-    closeButton.addEventListener('click', function() {
-      document.body.classList.remove('nav-active');
+      aside.classList.toggle('visible');
     });
   }
 }

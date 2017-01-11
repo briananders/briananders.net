@@ -1,11 +1,17 @@
 nav.main {
-  width: 100%;
-  margin-top: 50px;
+  background: $cloud;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: 20px;
+  top: -25px;
+  @include transition(opacity .2s ease);
 
   a {
     text-decoration: none;
     display: block;
-    padding-left: 20px;
+    padding: 0 20px;
     line-height: 36px;
     @include font-size(20);
 
@@ -13,6 +19,19 @@ nav.main {
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    border-width: 10px;
+    border-color: $cloud;
+    border-style: solid;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
   }
 }
 
@@ -30,36 +49,31 @@ nav.main {
   }
 }
 
-[id="menu-close"] {
-  float: right;
-  margin-top: 10px;
-  margin-right: 10px;
-  border: none;
-  @include transform(rotate(45deg));
-  border-radius: 100%;
-  @include font-size(40);
-  padding: 0;
-  width: 35px;
-  height: 35px;
-  overflow: hidden;
-}
-
 #nav-aside {
-  position: absolute;
-  width: 200px;
+  position: relative;
   background: $white;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  z-index: 0;
-  text-align: left;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 1000px;
+  margin: auto;
+
+  &.visible {
+    nav.main {
+      z-index: 100;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 
 @include mq(640px) {
+  nav.main {
+    right: 40px;
+    top: 0px;
+  }
+
   [id="menu-open"] {
-    position: static;
+    position: relative;
     right: auto;
     background-size: 44px auto;
     padding-top: 36px;

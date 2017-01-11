@@ -1,20 +1,21 @@
 @import "./nav";
 
 header.main-header {
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   @include font-size(15);
   font-family: $sans-serif;
   color: $black;
-  max-width: 1000px;
-  margin: auto;
-  padding-right: 100px;
 
   .brian-anders {
+    margin: auto;
     @include font-size(30);
     font-weight: 700;
     margin-bottom: 20px;
     display: block;
+    max-width: 1000px;
+    padding: 0 20px;
+    padding-right: 100px;
   }
 
   a {
@@ -43,6 +44,8 @@ header.main-header {
 
 @include mq(640px) {
   header.main-header {
-    padding: 20px 40px;
+    .brian-anders {
+      padding: 0 40px;
+    }
   }
 }
