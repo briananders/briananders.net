@@ -21,13 +21,13 @@ html {
   overflow-x: hidden;
 
   ::selection {
-    background: $flint; /* Safari */
-    color: $coin;
+    background: $black;
+    color: $cloud;
     @include text-shadow(none);
   }
   ::-moz-selection {
-    background: $flint; /* Firefox */
-    color: $coin;
+    background: $black;
+    color: $cloud;
     @include text-shadow(none);
   }
 }
@@ -61,6 +61,18 @@ body {
 main {
   overflow: hidden;
   margin: auto;
+  padding-top: 30px;
+
+  section,
+  header.content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin: auto;
+  }
+}
+
+section {
+  max-width: 1280px;
 }
 
 .content {
@@ -79,6 +91,7 @@ main {
 
 * {
   @include box-sizing(border-box);
+  border-radius: 3px;
 }
 
 h1, h2, h3 {
@@ -128,12 +141,6 @@ p {
   margin: auto;
   text-align: justify;
   margin-bottom: 1em;
-}
-
-section {
-  padding-top: 40px;
-  max-width: 1280px;
-  margin: auto;
 }
 
 select {

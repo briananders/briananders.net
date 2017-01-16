@@ -52,7 +52,7 @@ var
     name: 'Brian Anders, Engineer',
     desc: "Hi, I'm Brian. My story is pretty simple. I grew up in rural Iowa. Then I moved to California to work for Nest. That's pretty much it.",
     author: 'Brian Anders',
-    contact: 'https://twitter.com/brnandrs',
+    contact: 'http://www.last.fm/user/iBrianAnders',
     domain: 'http://briananders.net/', // set domain
     rootpath: devBuild ? null : '/' // set absolute path (null for relative)
   },
@@ -158,7 +158,8 @@ if (browsersync) ms.use(browsersync({ // start test server
 ms
   .use(sitemap({ // generate sitemap.xml
     hostname: siteMeta.domain + (siteMeta.rootpath || ''),
-    omitIndex: true
+    omitIndex: true,
+    'X-Robots-Tag': 'noindex'
   }))
   .use(rssfeed({ // generate RSS feed for articles
     collection: 'thoughts',

@@ -1,9 +1,20 @@
 footer {
-  margin-top: 80px;
+  padding: 30px 0;
   text-align: center;
-  color: $black;
+  background-color: $black;
+  color: $white;
+  margin-top: 30px;
 
   p {
     text-align: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a,
+  a:visited {
+    color: $white;
   }
 }

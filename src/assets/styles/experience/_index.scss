@@ -11,6 +11,9 @@ section {
     background-color: #2FC9EF;
     color: $white;
 
+    a {
+      color: $white;
+    }
     h2 {
       background-color: #2FC9EF;
       background-image: url('/images/work/nest.png');
@@ -47,6 +50,9 @@ section {
   &.anders-crane {
     background-color: #F5B547;
 
+    a:visited {
+      color: $black;
+    }
     h2 {
       background-color: #F5B547;
       background-image: url('/images/work/anders.png');
