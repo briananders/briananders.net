@@ -6,6 +6,8 @@ const dir = {
   build: `${__dirname}/build/`,
 };
 
+require('colors');
+
 const devBuild = (process.env.NODE_ENV || '').trim().toLowerCase() !== 'production';
 const production = !devBuild;
 
@@ -24,9 +26,8 @@ const ejs = require('ejs');
 const matter = require('gray-matter');
 const copy = require('copy');
 const express = require('express');
-const serve   = require('express-static');
+const serve = require('express-static');
 const EventEmitter = require('events');
-const colors = require('colors');
 const CleanCSS = require('clean-css');
 const UglifyJS = require('uglify-js');
 const htmlMinify = require('html-minifier');
@@ -41,50 +42,49 @@ const b = browserify({
   entries: [`${dir.src}js/main.js`],
   cache: {},
   packageCache: {},
-  plugin: [watchify]
+  plugin: [watchify],
 });
 
 
-
-///////////////////////////////// compile tasks /////////////////////////////////
+// /////////////////////////////// compile tasks /////////////////////////////////
 
 
 function bundleSCSS() {
   console.log(`${timestamp.stamp()}: bundleSCSS()`);
   const stylesGlob = glob.sync(`${dir.src}styles/**/[^_]*.scss`);
   let processed = 0;
-  stylesGlob.forEach(function(scssFilename, index, array) {
+  stylesGlob.forEach((scssFilename, index, array) => {
     const outFile = scssFilename.replace(dir.src, dir.package).replace(/\.scss$/, '.css');
 
     console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling SASS - ${outFile.split(/styles/)[1]}`);
 
     sass.render({
       file: scssFilename,
-      outFile: outFile,
+      outFile,
       includePaths: [`${dir.src}styles/`],
       sourceMap: true,
-    }, function(error, result) { // node-style callback from v3.0.0 onwards
-      if(error) throw error;
+    }, (error, result) => { // node-style callback from v3.0.0 onwards
+      if (error) throw error;
       // No errors during the compilation, write this result on the disk
 
-      mkdirp(path.dirname(outFile), function (error) {
-        if (error) throw error;
+      mkdirp(path.dirname(outFile), (err) => {
+        if (err) throw err;
         let cssOutput;
 
-        if(production) {
+        if (production) {
           cssOutput = new CleanCSS().minify(result.css).styles;
         } else {
           cssOutput = result.css;
         }
 
-        fs.writeFile(outFile, cssOutput, function(error) {
-          if(error) throw error;
+        fs.writeFile(outFile, cssOutput, (e) => {
+          if (e) throw e;
           console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
           processed++;
 
-          if(processed === array.length) {
+          if (processed === array.length) {
             console.log(`${timestamp.stamp()}: ${'STYLES DONE'.green.bold}`);
-            buildEvents.emit('styles-moved')
+            buildEvents.emit('styles-moved');
           }
         });
       });
@@ -93,38 +93,34 @@ function bundleSCSS() {
 }
 
 
-
-
 function bundleJS() {
   console.log(`${timestamp.stamp()}: bundleJS()`);
 
-  mkdirp(jsOutputPath, function(error) {
-    if(error) throw error;
-    b.transform("babelify", {presets: ["es2015", "react"]})
+  mkdirp(jsOutputPath, (error) => {
+    if (error) throw error;
+    b.transform('babelify', { presets: ['es2015', 'react'] })
      .bundle()
      .pipe(fs.createWriteStream(`${jsOutputPath}main.js`)
-       .on('finish', function() {
+       .on('finish', () => {
          console.log(`${timestamp.stamp()}: ${'JAVASCRIPT BROWSERIFIED'.green.bold}`);
-         buildEvents.emit('js-moved')
+         buildEvents.emit('js-moved');
        })
       );
     console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled JS`);
   });
 
-  copy(`${dir.src}ember-app/dist/assets/*.js`, `${jsOutputPath}ember-app`, function(err, files) {
+  copy(`${dir.src}ember-app/dist/assets/*.js`, `${jsOutputPath}ember-app`, (err) => {
     if (err) throw err;
     console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Moved Ember App`);
   });
 }
 
 
-
 function bundleEJS() {
   console.log(`${timestamp.stamp()}: bundleEJS()`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
   let processed = 0;
-  templateGlob.forEach(function(templatePath, index, array) {
-
+  templateGlob.forEach((templatePath, index, array) => {
     console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
 
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
@@ -141,39 +137,35 @@ function bundleEJS() {
       root: `${dir.src}templates/`,
     });
 
-    mkdirp(path.dirname(outputPath), function(error) {
-      if(error) throw error;
+    mkdirp(path.dirname(outputPath), (error) => {
+      if (error) throw error;
       fs.writeFile(outputPath, html);
       console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
       processed++;
 
-      if(processed === array.length) {
+      if (processed === array.length) {
         console.log(`${timestamp.stamp()}: ${'TEMPLATES DONE'.green.bold}`);
         buildEvents.emit('templates-moved');
       }
     });
-
   });
 }
 
 
-
 function moveImages() {
   // move images over
-  fs.copy(`${dir.src}images/`, `${dir.package}images/`, function(err, files) {
+  fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
     console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - moved images`);
     buildEvents.emit('images-moved');
   });
 
   // move humans and robots text files
-  copy(`${dir.src}*.txt`, `${dir.package}`, function(err, files) {
+  copy(`${dir.src}*.txt`, `${dir.package}`, (err) => {
     if (err) throw err;
     console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - moved .txt files`);
   });
 }
-
-
 
 
 function assetHashing() {
@@ -181,13 +173,9 @@ function assetHashing() {
 }
 
 
-
-
 function sitemap() {
   console.log(`${timestamp.stamp()}: sitemap()`);
 }
-
-
 
 
 function minifyJS() {
@@ -196,36 +184,26 @@ function minifyJS() {
   const jsGlob = glob.sync(`${dir.package}scripts/*.js`);
   let processed = 0;
 
-  jsGlob.forEach(function(jsFileName, index, array) {
-
-    fs.readFile(jsFileName, (err, data) => {
-      if (err) throw err;
+  jsGlob.forEach((jsFileName, index, array) => {
+    fs.readFile(jsFileName, (error, data) => {
+      if (error) throw error;
 
       const uglifiedJS = UglifyJS.minify(data.toString());
 
-      if(uglifiedJS.error) throw "uglifiedJS.error".red;
+      if (uglifiedJS.error) throw 'uglifiedJS.error'.red;
 
-      fs.writeFile(jsFileName, uglifiedJS.code, (err, data) => {
-        if(err) throw err;
+      fs.writeFile(jsFileName, uglifiedJS.code, (err) => {
+        if (err) throw err;
         processed++;
 
-        if(processed === array.length) {
+        if (processed === array.length) {
           console.log(`${timestamp.stamp()}: ${'minifyJS COMPLETE'.bold.green}`);
-          buildEvents.emit('js-minified')
+          buildEvents.emit('js-minified');
         }
       });
     });
   });
 }
-
-
-
-
-function minifyCSS() {
-  console.log(`${timestamp.stamp()}: minifyCSS()`);
-}
-
-
 
 
 function minifyHTML() {
@@ -234,12 +212,11 @@ function minifyHTML() {
   const htmlGlob = glob.sync(`${dir.package}**/*.html`);
   let processed = 0;
 
-  htmlGlob.forEach(function(htmlFileName, index, array) {
-
+  htmlGlob.forEach((htmlFileName, index, array) => {
     console.log(`${timestamp.stamp()}: minifyHTML - ${htmlFileName.split('/package/')[1]}`);
 
-    fs.readFile(htmlFileName, (err, data) => {
-      if (err) throw err;
+    fs.readFile(htmlFileName, (error, data) => {
+      if (error) throw error;
 
       const minifiedHtml = htmlMinify.minify(data.toString(), {
         caseSensitive: true,
@@ -255,13 +232,13 @@ function minifyHTML() {
         useShortDoctype: true,
       });
 
-      fs.writeFile(htmlFileName, minifiedHtml, (err, data) => {
-        if(err) throw err;
+      fs.writeFile(htmlFileName, minifiedHtml, (err) => {
+        if (err) throw err;
         processed++;
 
-        if(processed === array.length) {
+        if (processed === array.length) {
           console.log(`${timestamp.stamp()}: ${'minifyHTML COMPLETE'.bold.green}`);
-          buildEvents.emit('html-minified')
+          buildEvents.emit('html-minified');
         }
       });
     });
@@ -269,13 +246,9 @@ function minifyHTML() {
 }
 
 
-
-
 function compressImages() {
   console.log(`${timestamp.stamp()}: compressImages()`);
 }
-
-
 
 
 function gzip() {
@@ -283,60 +256,55 @@ function gzip() {
 }
 
 
+// /////////////////////////////////////// event listeners ////////////////////////////////////////
 
 
-///////////////////////////////////////// event listeners ////////////////////////////////////////
-
-
-if(devBuild) {
-
-  b.on('update', function(file) {
+if (devBuild) {
+  b.on('update', (file) => {
     console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
     bundleJS();
   });
 
 
   fs.watch(`${dir.src}styles/`, {
-    recursive: true
-  }, function(evt, file) {
+    recursive: true,
+  }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`);
     bundleSCSS();
   });
 
 
   fs.watch(`${dir.src}templates/`, {
-    recursive: true
-  }, function(evt, file) {
+    recursive: true,
+  }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Template: ${file}`);
     bundleEJS();
   });
 
 
   fs.watch(`${dir.src}partials/`, {
-    recursive: true
-  }, function(evt, file) {
+    recursive: true,
+  }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`);
     bundleEJS();
   });
 
 
   fs.watch(`${dir.src}layout/`, {
-    recursive: true
-  }, function(evt, file) {
+    recursive: true,
+  }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`);
     bundleEJS();
   });
 
 
   fs.watch(`${dir.src}images/`, {
-    recursive: true
-  }, function(evt, file) {
+    recursive: true,
+  }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: image: ${file}`);
     moveImages();
   });
-
 } else {
-
   buildEvents.on('js-moved', minifyJS);
   buildEvents.on('styles-moved', assetHashing);
   buildEvents.on('js-minified', assetHashing);
@@ -346,21 +314,19 @@ if(devBuild) {
   buildEvents.on('templates-moved', minifyHTML);
   buildEvents.on('', compressImages);
   buildEvents.on('', gzip);
-
 }
 
 
-/////////////////////////////////////////////// initializers ///////////////////////////////////////////////
+// ///////////////////////////////////////////// initializers ///////////////////////////////////////////////
 
 
-
-const clean = new Promise(function(resolve, reject) {
+const clean = new Promise((resolve, reject) => {
   console.log(`${timestamp.stamp()}: clean()`);
 
   const exec = require('child_process').exec;
-  const child = exec(`rm -rf ${dir.package}**`, function(err, out) {
-    if(err) {
-      console.log(err);
+  exec(`rm -rf ${dir.package}**`, (error) => {
+    if (error) {
+      console.log(error);
       reject();
     } else {
       resolve();
@@ -368,7 +334,7 @@ const clean = new Promise(function(resolve, reject) {
   });
 });
 
-clean.then(function() {
+clean.then(() => {
   console.log(`${timestamp.stamp()}: clean.then()`);
   bundleJS();
   bundleSCSS();
@@ -377,19 +343,13 @@ clean.then(function() {
 });
 
 
-
-
-if(devBuild) {
-
+if (devBuild) {
   app.use(serve(dir.package));
 
-  const server = app.listen(3000, function(){
+  const server = app.listen(3000, () => {
     console.log(`${timestamp.stamp()}: server is running at %s`, server.address().port);
   });
-
 }
-
-
 
 
 /*
