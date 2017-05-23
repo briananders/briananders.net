@@ -17,12 +17,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/briananders/metalsmith-briananders.net.git"
+    "url": "git+https://github.com/briananders/briananders.net.git"
   },
   "keywords": [
     "node.js",
     "javascript",
-    "metalsmith",
     "static",
     "website"
   ],

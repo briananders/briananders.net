@@ -1,5 +1,5 @@
-# metalsmith-briananders.net
-My personal site setup using metalsmith
+# briananders.net
+My personal site
 
 ## Build the static site
 To build and launch the site using [Browsersync](https://www.browsersync.io/):
