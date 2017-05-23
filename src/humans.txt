@@ -1,0 +1,11 @@
+humans.txt from http://humanstxt.org/
+It's a TXT file [at the root of your site] that contains information about the different people who have contributed to building the website.
+
+/* SITE */
+Site name: Brian Anders, Engineer
+Site URL: http://briananders.net
+Built with: node, sass, browserify, emberJS
+Served on: AWS S3
+
+Engineer: Brian Anders
+Location: USA

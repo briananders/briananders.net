@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<head>
+  <%- partial('meta', locals) %>
+</head>
+<body>
+
+  <%- partial('header', locals) %>
+
+  <main class="<%- locals.pageClass || '' %>">
+    <header class="content">
+      <% if (locals.altTitle !== undefined) { %>
+        <h1 itemprop="name">
+          <%- locals.altTitle %>
+        </h1>
+      <% } else if (locals.title !== undefined) { %>
+        <h1 itemprop="name">
+          <%- locals.title %>
+        </h1>
+      <% } %>
+
+      <% if (locals.description) { %>
+        <p class="description" itemprop="description">
+          <%- locals.description %>
+        </p>
+      <% } %>
+    </header>
+
+		<%- content %>
+
+  </main>
+
+  <%- partial('footer', locals) %>
+
+  <script src="/scripts/main.js"></script>
+  <% if (locals.ember) { %>
+    <script src="/scripts/ember-app/vendor.js"></script>
+    <script src="/scripts/ember-app/main.js"></script>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,81 @@
+@import "lib/base-styles";
+
+
+section {
+  padding-bottom: 0;
+
+  a {
+    color: inherit;
+  }
+
+  &.nest {
+    background-color: #2FC9EF;
+    color: $white;
+
+    a {
+      color: $white;
+    }
+    h2 {
+      background-color: #2FC9EF;
+      background-image: url('/images/work/nest.png');
+    }
+  }
+  &.principal {
+    background-color: #FFFFFF;
+
+    h2 {
+      background-color: #FFFFFF;
+      background-image: url('/images/work/principal.jpg');
+      @include retina() {
+        background-image: url('/images/work/principal_2x.jpg');
+      }
+    }
+  }
+  &.smith {
+    background-color: #EFEFEF;
+
+    h2 {
+      background-color: #EFEFEF;
+      background-image: url('/images/work/smith.png');
+      background-size: auto 70%;
+    }
+  }
+  &.graceland {
+    background-color: #FFFFFF;
+
+    h2 {
+      background-color: #FFFFFF;
+      background-image: url('/images/work/graceland.jpg');
+    }
+  }
+  &.anders-crane {
+    background-color: #F5B547;
+
+    a:visited {
+      color: $black;
+    }
+    h2 {
+      background-color: #F5B547;
+      background-image: url('/images/work/anders.png');
+    }
+  }
+
+  h2 {
+    width: 100%;
+    height: 0;
+    padding-top: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    position: relative;
+    color: transparent;
+
+    a {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
