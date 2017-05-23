@@ -48,6 +48,7 @@ const CleanCSS = require('clean-css');
 const UglifyJS = require('uglify-js');
 const htmlMinify = require('html-minifier');
 const XXHash = require('xxhash');
+const zlib = require('zlib');
 
 const app = express();
 const buildEvents = new EventEmitter();
@@ -421,10 +422,37 @@ function compressImages() {
 }
 
 
-function gzip() {
+function gzipFiles() {
   console.log(`${timestamp.stamp()}: gzip()`);
-  COMPLETE.GZIP = true;
-  buildEvents.emit('gzip-done');
+
+  const compress = zlib.createGzip();
+
+  const cssGlob = glob.sync(`${dir.package}**/*.css`);
+  const jsGlob = glob.sync(`${dir.package}**/*.js`);
+  const htmlGlob = glob.sync(`${dir.package}**/*.html`);
+  const overallGlob = [].concat(cssGlob, jsGlob, htmlGlob);
+
+  let processed = 0;
+  console.log(`overallGlob: ${overallGlob.length} \n\n ${overallGlob} \n`);
+
+  overallGlob.forEach((file) => {
+    const inp = fs.readFile(file, (error) => {
+      if (error) throw error;
+      zlib.gzip(file, (err, result) => {
+        if (err) throw err;
+        fs.writeFile(`${file}.gz`, result, (e) => {
+          if (e) throw e;
+          console.log(`${timestamp.stamp()}: gzip: ${file} ${'complete'.bold.green}`);
+          processed++;
+          if (processed >= overallGlob.length) {
+            console.log(`${timestamp.stamp()}: gzip: ${'DONE'.bold.green}`);
+            COMPLETE.GZIP = true;
+            buildEvents.emit('gzip-done');
+          }
+        });
+      });
+    });
+  });
 }
 
 
@@ -509,7 +537,7 @@ if (devBuild) {
   buildEvents.on('asset-hash-js-listed', finishHashing);
   buildEvents.on('asset-hash-css-listed', finishHashing);
   buildEvents.on('asset-hash-images-listed', finishHashing);
-  buildEvents.on('hashing-done', gzip);
+  buildEvents.on('hashing-done', gzipFiles);
 
 
   buildEvents.on('hashing-done', checkDone);
