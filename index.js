@@ -8,6 +8,22 @@ const dir = {
 
 require('colors');
 
+const COMPLETE = {
+  JS_IS_MINIFIED: false,
+  CSS_IS_MINIFIED: false,
+  HTML_IS_MINIFIED: false,
+  IMAGES_ARE_MOVED: false,
+  ASSET_HASH: {
+    IMAGES: false,
+    CSS: false,
+    JS: false,
+    DONE: false,
+  },
+  SITE_MAP: false,
+  IMAGE_COMPRESSION: false,
+  GZIP: false,
+};
+
 const devBuild = (process.env.NODE_ENV || '').trim().toLowerCase() !== 'production';
 const production = !devBuild;
 
@@ -31,6 +47,7 @@ const EventEmitter = require('events');
 const CleanCSS = require('clean-css');
 const UglifyJS = require('uglify-js');
 const htmlMinify = require('html-minifier');
+const XXHash = require('xxhash');
 
 const app = express();
 const buildEvents = new EventEmitter();
@@ -45,13 +62,15 @@ const b = browserify({
   plugin: [watchify],
 });
 
+const hashingFileNameList = {};
+
 
 // /////////////////////////////// compile tasks /////////////////////////////////
 
 
 function bundleSCSS() {
   console.log(`${timestamp.stamp()}: bundleSCSS()`);
-  const stylesGlob = glob.sync(`${dir.src}styles/**/[^_]*.scss`);
+  const stylesGlob = glob.sync(`${dir.src}**/**/[^_]*.scss`);
   let processed = 0;
   stylesGlob.forEach((scssFilename, index, array) => {
     const outFile = scssFilename.replace(dir.src, dir.package).replace(/\.scss$/, '.css');
@@ -84,6 +103,7 @@ function bundleSCSS() {
 
           if (processed === array.length) {
             console.log(`${timestamp.stamp()}: ${'STYLES DONE'.green.bold}`);
+            COMPLETE.CSS_IS_MINIFIED = true;
             buildEvents.emit('styles-moved');
           }
         });
@@ -157,6 +177,7 @@ function moveImages() {
   fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
     console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - moved images`);
+    COMPLETE.IMAGES_ARE_MOVED = true;
     buildEvents.emit('images-moved');
   });
 
@@ -169,19 +190,157 @@ function moveImages() {
 
 
 function assetHashing() {
+  if (!COMPLETE.JS_IS_MINIFIED ||
+      !COMPLETE.CSS_IS_MINIFIED ||
+      !COMPLETE.HTML_IS_MINIFIED ||
+      !COMPLETE.IMAGES_ARE_MOVED) {
+    return false;
+  }
   console.log(`${timestamp.stamp()}: assetHashing()`);
+  console.log(`COMPLETE.JS_IS_MINIFIED :${COMPLETE.JS_IS_MINIFIED}`);
+  console.log(`COMPLETE.CSS_IS_MINIFIED    :${COMPLETE.CSS_IS_MINIFIED}`);
+  console.log(`COMPLETE.HTML_IS_MINIFIED     :${COMPLETE.HTML_IS_MINIFIED}`);
+  console.log(`COMPLETE.IMAGES_ARE_MOVED     :${COMPLETE.IMAGES_ARE_MOVED}`);
+
+  const jsGlob = glob.sync(`${dir.package}**/*.js`);
+  const imagesGlob = glob.sync(`${dir.package}images/**/*.{png,svg,jpg}`);
+
+  let processedJs = 0;
+  jsGlob.forEach((file, index, array) => {
+    const fileContents = fs.readFileSync(file);
+    const hash = XXHash.hash(fileContents, 0xCAFEBABE);
+    const hashedFileName = `${file.substr(0, file.lastIndexOf('.'))}-${hash}${file.substr(file.lastIndexOf('.'))}`;
+    hashingFileNameList[file] = hashedFileName;
+    fs.rename(file, hashedFileName, (err) => {
+      if (err) throw err;
+      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      processedJs++;
+      if (processedJs >= array.length) {
+        COMPLETE.ASSET_HASH.JS = true;
+        console.log(`${timestamp.stamp()}: assetHashing(): COMPLETE.ASSET_HASH.JS: ${COMPLETE.ASSET_HASH.JS}`);
+        buildEvents.emit('asset-hash-js-listed');
+      }
+    });
+  });
+  let processedImages = 0;
+  imagesGlob.forEach((file, index, array) => {
+    const fileContents = fs.readFileSync(file);
+    const hash = XXHash.hash(fileContents, 0xCAFEBABE);
+    const hashedFileName = `${file.substr(0, file.lastIndexOf('.'))}-${hash}${file.substr(file.lastIndexOf('.'))}`;
+    hashingFileNameList[file] = hashedFileName;
+    fs.rename(file, hashedFileName, (err) => {
+      if (err) throw err;
+      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      processedImages++;
+      if (processedImages >= array.length) {
+        COMPLETE.ASSET_HASH.IMAGES = true;
+        console.log(`${timestamp.stamp()}: assetHashing(): COMPLETE.ASSET_HASH.IMAGES: ${COMPLETE.ASSET_HASH.IMAGES}`);
+        buildEvents.emit('asset-hash-images-listed');
+      }
+    });
+  });
 }
 
 
-function sitemap() {
-  console.log(`${timestamp.stamp()}: sitemap()`);
+function hashCSS() {
+  const cssGlob = glob.sync(`${dir.package}**/*.css`);
+  let processedCss = 0;
+  cssGlob.forEach((file, index, array) => {
+    const fileContents = fs.readFileSync(file);
+    const hash = XXHash.hash(fileContents, 0xCAFEBABE);
+    const hashedFileName = `${file.substr(0, file.lastIndexOf('.'))}-${hash}${file.substr(file.lastIndexOf('.'))}`;
+    hashingFileNameList[file] = hashedFileName;
+    fs.rename(file, hashedFileName, (err) => {
+      if (err) throw err;
+      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      processedCss++;
+      if (processedCss >= array.length) {
+        COMPLETE.ASSET_HASH.CSS = true;
+        console.log(`${timestamp.stamp()}: assetHashing(): COMPLETE.ASSET_HASH.CSS: ${COMPLETE.ASSET_HASH.CSS}`);
+        buildEvents.emit('asset-hash-css-listed');
+      }
+    });
+  });
+}
+
+
+function updateCSSwithImageHashes() {
+  const cssGlob = glob.sync(`${dir.package}**/*.css`);
+  let processedCss = 0;
+  cssGlob.forEach((file, index, array) => {
+    const fileBuffer = fs.readFileSync(file);
+    let fileContents = fileBuffer.toString();
+    let keysProcessed = 0;
+    (Object.keys(hashingFileNameList)).forEach((key, keyIndex, keyArray) => {
+      const fileName = key.split(dir.package)[1];
+      const fileNameHash = hashingFileNameList[key].split(dir.package)[1];
+      console.log(`${timestamp.stamp()}: finishHashing():: ${fileName}`);
+      if (~fileContents.indexOf(fileName)) {
+        fileContents = fileContents.split(fileName).join(fileNameHash);
+      }
+      keysProcessed++;
+      if (keysProcessed >= keyArray.length) {
+        fs.writeFile(file, fileContents, (err) => {
+          if (err) throw err;
+          console.log(`${timestamp.stamp()}: finishHashing()::: ${file}: ${'DONE'.bold.green}`);
+          processedCss++;
+          if (processedCss >= array.length) {
+            console.log(`${timestamp.stamp()}: assetHashing(): ${'CSS UPDATES ARE DONE'.bold.red}`);
+            buildEvents.emit('index-css-for-hashing');
+          }
+        });
+      }
+    });
+  });
+}
+
+
+function finishHashing() {
+  console.log(`${timestamp.stamp().red.bold}: finishHashing(): ${Object.keys(hashingFileNameList)}`);
+  console.log(`${timestamp.stamp().red.bold}: finishHashing(): COMPLETE.ASSET_HASH.IMAGES :${COMPLETE.ASSET_HASH.IMAGES}`);
+  console.log(`${timestamp.stamp().red.bold}: finishHashing(): COMPLETE.ASSET_HASH.CSS    :${COMPLETE.ASSET_HASH.CSS}`);
+  console.log(`${timestamp.stamp().red.bold}: finishHashing(): COMPLETE.ASSET_HASH.JS     :${COMPLETE.ASSET_HASH.JS}`);
+  if (!COMPLETE.ASSET_HASH.IMAGES ||
+      !COMPLETE.ASSET_HASH.CSS ||
+      !COMPLETE.ASSET_HASH.JS) {
+    return false;
+  }
+  console.log(`${timestamp.stamp()}: finishHashing(): ${Object.keys(hashingFileNameList)}`);
+  const htmlGlob = glob.sync(`${dir.package}**/*.html`);
+  let htmlFilesProcessed = 0;
+  htmlGlob.forEach((file, index, array) => {
+    const fileBuffer = fs.readFileSync(file);
+    let fileContents = fileBuffer.toString();
+    let keysProcessed = 0;
+    (Object.keys(hashingFileNameList)).forEach((key, keyIndex, keyArray) => {
+      const fileName = key.split(dir.package)[1];
+      const fileNameHash = hashingFileNameList[key].split(dir.package)[1];
+      console.log(`${timestamp.stamp()}: finishHashing():: ${fileName}`);
+      if (~fileContents.indexOf(fileName)) {
+        fileContents = fileContents.split(fileName).join(fileNameHash);
+      }
+      keysProcessed++;
+      if (keysProcessed >= keyArray.length) {
+        fs.writeFile(file, fileContents, (err) => {
+          if (err) throw err;
+          console.log(`${timestamp.stamp()}: finishHashing()::: ${file}: ${'DONE'.bold.green}`);
+          htmlFilesProcessed++;
+          if (htmlFilesProcessed >= array.length) {
+            console.log(`${timestamp.stamp().bold.green}: finishHashing(): ${'DONE'.bold.green}`);
+            COMPLETE.ASSET_HASH.DONE = true;
+            buildEvents.emit('hashing-done');
+          }
+        });
+      }
+    });
+  });
 }
 
 
 function minifyJS() {
   console.log(`${timestamp.stamp()}: minifyJS()`);
 
-  const jsGlob = glob.sync(`${dir.package}scripts/*.js`);
+  const jsGlob = glob.sync(`${dir.package}**/*.js`);
   let processed = 0;
 
   jsGlob.forEach((jsFileName, index, array) => {
@@ -198,6 +357,7 @@ function minifyJS() {
 
         if (processed === array.length) {
           console.log(`${timestamp.stamp()}: ${'minifyJS COMPLETE'.bold.green}`);
+          COMPLETE.JS_IS_MINIFIED = true;
           buildEvents.emit('js-minified');
         }
       });
@@ -238,6 +398,7 @@ function minifyHTML() {
 
         if (processed === array.length) {
           console.log(`${timestamp.stamp()}: ${'minifyHTML COMPLETE'.bold.green}`);
+          COMPLETE.HTML_IS_MINIFIED = true;
           buildEvents.emit('html-minified');
         }
       });
@@ -246,13 +407,43 @@ function minifyHTML() {
 }
 
 
+function sitemap() {
+  console.log(`${timestamp.stamp()}: sitemap()`);
+  COMPLETE.SITE_MAP = true;
+  buildEvents.emit('sitemap-done');
+}
+
+
 function compressImages() {
   console.log(`${timestamp.stamp()}: compressImages()`);
+  COMPLETE.IMAGE_COMPRESSION = true;
+  buildEvents.emit('image-compression-done');
 }
 
 
 function gzip() {
   console.log(`${timestamp.stamp()}: gzip()`);
+  COMPLETE.GZIP = true;
+  buildEvents.emit('gzip-done');
+}
+
+
+function checkDone() {
+  if (!COMPLETE.ASSET_HASH.DONE ||
+      !COMPLETE.SITE_MAP ||
+      !COMPLETE.IMAGE_COMPRESSION ||
+      !COMPLETE.GZIP) {
+    return false;
+  }
+
+  console.log(`COMPLETE.ASSET_HASH.DONE   : ${COMPLETE.ASSET_HASH.DONE}`);
+  console.log(`COMPLETE.SITE_MAP          : ${COMPLETE.SITE_MAP}`);
+  console.log(`COMPLETE.IMAGE_COMPRESSION : ${COMPLETE.IMAGE_COMPRESSION}`);
+  console.log(`COMPLETE.GZIP              : ${COMPLETE.GZIP}`);
+
+  require(`${dir.build}exit-message`)();
+
+  process.exit();
 }
 
 
@@ -310,10 +501,21 @@ if (devBuild) {
   buildEvents.on('js-minified', assetHashing);
   buildEvents.on('html-minified', assetHashing);
   buildEvents.on('images-moved', assetHashing);
-  buildEvents.on('', sitemap);
   buildEvents.on('templates-moved', minifyHTML);
-  buildEvents.on('', compressImages);
-  buildEvents.on('', gzip);
+  buildEvents.on('templates-moved', sitemap);
+  buildEvents.on('images-moved', compressImages);
+  buildEvents.on('asset-hash-images-listed', updateCSSwithImageHashes);
+  buildEvents.on('index-css-for-hashing', hashCSS);
+  buildEvents.on('asset-hash-js-listed', finishHashing);
+  buildEvents.on('asset-hash-css-listed', finishHashing);
+  buildEvents.on('asset-hash-images-listed', finishHashing);
+  buildEvents.on('hashing-done', gzip);
+
+
+  buildEvents.on('hashing-done', checkDone);
+  buildEvents.on('sitemap-done', checkDone);
+  buildEvents.on('image-compression-done', checkDone);
+  buildEvents.on('gzip-done', checkDone);
 }
 
 
