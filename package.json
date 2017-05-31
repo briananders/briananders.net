@@ -7,13 +7,12 @@
   "scripts": {
     "clean": "rm -rf node_modules tmp dist && npm cache clean",
     "preinstall": "npm cache clean",
-    "old-start": "node ./build.js",
     "build": "NODE_ENV=production node ./index.js",
-    "old-build": "NODE_ENV=production node ./build.js && imageoptim --directory ./build/images/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stage": "sh deploy_staging.sh",
     "deploy": "sh deploy.sh",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "preview-production": "node ./preview-production.js"
   },
   "repository": {
     "type": "git",

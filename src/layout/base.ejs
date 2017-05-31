@@ -7,7 +7,7 @@
 
   <%- partial('header', locals) %>
 
-  <main class="<%- locals.pageClass || '' %>">
+  <main class="<%- (locals.pageClasses !== undefined) ? locals.pageClasses.toString().split(',',' ') : '' %>">
     <header class="content">
       <% if (locals.altTitle !== undefined) { %>
         <h1 itemprop="name">
