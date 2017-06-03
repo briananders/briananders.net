@@ -7,10 +7,7 @@ module.exports = function gzipFiles(dir, completionFlags, buildEvents) {
 
   console.log(`${timestamp.stamp()}: gzip()`);
 
-  const cssGlob = glob.sync(`${dir.package}**/*.css`);
-  const jsGlob = glob.sync(`${dir.package}**/*.js`);
-  const htmlGlob = glob.sync(`${dir.package}**/*.html`);
-  const overallGlob = [].concat(cssGlob, jsGlob, htmlGlob);
+  const overallGlob = glob.sync(`${dir.package}**/*.+(html|xml|css|js)`);
 
   let processed = 0;
   console.log(`overallGlob: ${overallGlob.length} \n\n ${overallGlob} \n`);
