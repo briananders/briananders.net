@@ -1,5 +1,9 @@
 <nav class="nav main" role="menu">
   <a itemprop="url" role="menuitem" href="/">Home</a>
-  <a itemprop="url" role="menuitem" href="/experience/">Experience</a>
-  <a itemprop="url" role="menuitem" href="/thoughts/">Thoughts</a>
+  <% var basePages = getChildPages('');
+     for(var i = 0; i < basePages.length; i++) {
+       var page = basePages[i];
+  %>
+    <a itemprop="url" role="menuitem" href="/<%- page.url %>"><%- page.data.title %></a>
+  <% } %>
 </nav>

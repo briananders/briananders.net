@@ -36,6 +36,7 @@ const EventEmitter = require('events');
 const production = require(`${dir.build}production`);
 const app = express();
 const buildEvents = new EventEmitter();
+const exec = require('child_process').exec;
 
 const __browserify = browserify({
   entries: [`${dir.src}js/main.js`],
@@ -54,6 +55,7 @@ const pageMappingData = [];
 const bundleSCSS = require(`${dir.build}bundle-scss`);
 const bundleJS = require(`${dir.build}bundle-js`);
 const bundleEJS = require(`${dir.build}bundle-ejs`);
+const compilePageMappingData = require(`${dir.build}page-mapping-data`);
 const moveImages = require(`${dir.build}move-images`);
 const assetHashing = require(`${dir.build}asset-hashing`);
 const hashCSS = require(`${dir.build}hash-css`);
@@ -69,6 +71,9 @@ const checkDone = require(`${dir.build}check-done`);
 
 // /////////////////////////////////////// event listeners ////////////////////////////////////////
 
+
+buildEvents.on('page-mapping-data-compiled', bundleEJS.bind(this, dir, completionFlags, buildEvents, pageMappingData));
+buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, dir, completionFlags, buildEvents, pageMappingData));
 
 if (!production) {
   __browserify.on('update', (file) => {
@@ -89,7 +94,7 @@ if (!production) {
     recursive: true,
   }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Template: ${file}`);
-    bundleEJS(dir, completionFlags, buildEvents, pageMappingData);
+    compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
 
@@ -97,7 +102,7 @@ if (!production) {
     recursive: true,
   }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`);
-    bundleEJS(dir, completionFlags, buildEvents, pageMappingData);
+    compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
 
@@ -105,7 +110,7 @@ if (!production) {
     recursive: true,
   }, (evt, file) => {
     console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`);
-    bundleEJS(dir, completionFlags, buildEvents, pageMappingData);
+    compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
 
@@ -116,13 +121,12 @@ if (!production) {
     moveImages(dir, completionFlags, buildEvents);
   });
 } else {
+  buildEvents.on('templates-moved', minifyHTML.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('js-moved', minifyJS.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('styles-moved', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('js-minified', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('html-minified', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('images-moved', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('templates-moved', minifyHTML.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('templates-moved', sitemap.bind(this, dir, completionFlags, buildEvents, pageMappingData));
   buildEvents.on('images-moved', compressImages.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('asset-hash-images-listed', updateCSSwithImageHashes.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('index-css-for-hashing', hashCSS.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
@@ -130,10 +134,10 @@ if (!production) {
   buildEvents.on('asset-hash-css-listed', finishHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('asset-hash-images-listed', finishHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
   buildEvents.on('hashing-done', gzipFiles.bind(this, dir, completionFlags, buildEvents));
+  buildEvents.on('gzip-done', checkDone.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('hashing-done', checkDone.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('sitemap-done', checkDone.bind(this, dir, completionFlags, buildEvents));
   buildEvents.on('image-compression-done', checkDone.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('gzip-done', checkDone.bind(this, dir, completionFlags, buildEvents));
 }
 
 
@@ -143,7 +147,6 @@ if (!production) {
 const clean = new Promise((resolve, reject) => {
   console.log(`${timestamp.stamp()}: clean()`);
 
-  const exec = require('child_process').exec;
   exec(`rm -rf ${dir.package}**`, (error) => {
     if (error) {
       console.log(error);
@@ -156,9 +159,9 @@ const clean = new Promise((resolve, reject) => {
 
 clean.then(() => {
   console.log(`${timestamp.stamp()}: clean.then()`);
+  compilePageMappingData(dir, buildEvents, pageMappingData);
   bundleJS(dir, completionFlags, buildEvents, __browserify);
   bundleSCSS(dir, completionFlags, buildEvents);
-  bundleEJS(dir, completionFlags, buildEvents, pageMappingData);
   moveImages(dir, completionFlags, buildEvents);
 });
 

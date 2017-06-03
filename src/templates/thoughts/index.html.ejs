@@ -14,17 +14,21 @@ styles:
 
 <div class="content">
   <ul class="thoughts-list">
-
-      <li itemscope itemtype="http://schema.org/BlogPosting">
-        <a itemprop="url" href="path">
-          <h3 itemprop="name">title</h3>
-            <figcaption itemprop="description">
-              description
-            </figcaption>
-          <meta itemprop="author" content="Brian Anders"/>
-          <meta itemprop="datePublished" content="this.date"/>
-          <meta itemprop="publisher" content="Brian Anders"/>
-        </a>
-      </li>
+    <% var basePages = getChildPages('thoughts');
+        for(var i = 0; i < basePages.length; i++) {
+          var page = basePages[i];
+      %>
+    <li itemscope itemtype="http://schema.org/BlogPosting">
+      <a itemprop="url" href="<%- page.url %>">
+        <h3 itemprop="name"><%- page.data.title %></h3>
+          <figcaption itemprop="description">
+            <%- page.data.description %>
+          </figcaption>
+        <meta itemprop="author" content="Brian Anders"/>
+        <meta itemprop="datePublished" content="<%- page.data.date %>"/>
+        <meta itemprop="publisher" content="Brian Anders"/>
+      </a>
+    </li>
+    <% } %>
   </ul>
 </div>

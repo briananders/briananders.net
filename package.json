@@ -52,6 +52,7 @@
     "fs-extra": "^3.0.1",
     "gray-matter": "^2.1.1",
     "html-minifier": "^3.4.4",
+    "image-optimizer": "^0.4.0-pre2",
     "merge": "^1.2.0",
     "node-sass": "^4.5.2",
     "simple-fmt": "^0.1.0",
