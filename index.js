@@ -54,6 +54,7 @@ const pageMappingData = [];
 
 const bundleSCSS = require(`${dir.build}bundle-scss`);
 const bundleJS = require(`${dir.build}bundle-js`);
+const moveEmberJs = require(`${dir.build}move-ember-js`);
 const bundleEJS = require(`${dir.build}bundle-ejs`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
 const moveImages = require(`${dir.build}move-images`);
@@ -79,6 +80,14 @@ if (!production) {
   __browserify.on('update', (file) => {
     console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
     bundleJS(dir, completionFlags, buildEvents, __browserify);
+  });
+
+
+  fs.watch(`${dir.src}ember-app/dist/assets/`, {
+    recursive: true,
+  }, (evt, file) => {
+    console.log(`${timestamp.stamp()}: File modified: Ember: ${file}`);
+    moveEmberJs(dir, completionFlags, buildEvents);
   });
 
 
@@ -161,6 +170,7 @@ clean.then(() => {
   console.log(`${timestamp.stamp()}: clean.then()`);
   compilePageMappingData(dir, buildEvents, pageMappingData);
   bundleJS(dir, completionFlags, buildEvents, __browserify);
+  moveEmberJs(dir, completionFlags, buildEvents);
   bundleSCSS(dir, completionFlags, buildEvents);
   moveImages(dir, completionFlags, buildEvents);
 });

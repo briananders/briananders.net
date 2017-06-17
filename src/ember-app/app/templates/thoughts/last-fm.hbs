@@ -1,3 +1,12 @@
+<div class="content center">
+  <p>How far back do you want to see?</p>
+  <select onchange={{action (mut state.lastFmDuration) value="target.value"}}>
+    {{#each state.lastFmDurationOptions as |duration|}}
+      <option value={{duration.value}} selected={{eq state.lastFmDuration duration.value}}>{{duration.string}}</option>
+    {{/each}}
+  </select>
+</div>
+
 <div class="overflow-hidden">
   <h2>Top Albums</h2>
   {{album-scrobbles-section length=12 showDescription=true}}

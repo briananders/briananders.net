@@ -1,3 +1,5 @@
+/* globals window */
+
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -19,32 +21,23 @@ export default Ember.Component.extend({
 
 
   willInsertElement() {
-
-    if(window.isRetina && !Ember.isEmpty(this.get('src-2x'))) {
+    if (window.isRetina && !Ember.isEmpty(this.get('src-2x'))) {
       this.set('src', this.get('src-2x'));
-    } else if(!Ember.isEmpty(this.get('src-1x'))) {
+    } else if (!Ember.isEmpty(this.get('src-1x'))) {
       this.set('src', this.get('src-1x'));
     }
-
   },
 
 
   didInsertElement() {
-
-    Ember.run(this, function() {
-
-      this.$().on('load', function(){
-
-        Ember.run(this, function(){
+    Ember.run(this, function () {
+      this.$().on('load', () => {
+        Ember.run(this, function () {
           this.set('loaded', true);
         });
-
-      }.bind(this));
-
+      });
     });
-
   },
-
 
 
 });

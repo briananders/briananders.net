@@ -9,59 +9,28 @@ header.main-header {
   overflow: hidden;
   position: relative;
 
+  background-image: url('/images/icons/my-face.svg');
+  background-color: #1f1f1f;
+  background-size: auto 50vh;
+  background-position: center 6vh;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 
-  .faces {
+  .name {
+    @include font-size(30);
     position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-
-    background-image: url('/images/icons/my-face.svg');
-    background-color: #1f1f1f;
-    background-size: auto 50vh;
-    background-position: top center;
-    background-attachment: fixed;
-  }
-
-  .brian-anders {
-    margin: auto;
-    @include font-size(30);
-    font-weight: 700;
-    margin-bottom: 20px;
     display: block;
-    max-width: 1024px;
-    padding: 0 20px;
-    padding-right: 100px;
-    position: absolute;
-    top: 50%;
     width: 100%;
-    @include transform(translateY(-50%));
-  }
-
-  a {
-    text-decoration: none;
+    margin: auto;
     color: $white;
     font-weight: 200;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
 
-
-
-@include mq-max(440px) {
-  header.main-header {
-    .brian-anders {
-      @include font-size(20);
-    }
-  }
-}
 
 
 
@@ -69,21 +38,11 @@ header.main-header {
   header.main-header {
     height: 380px;
 
-    .brian-anders {
+    .name {
       @include font-size(50);
       padding: 0 40px;
       line-height: 61px;
       margin: auto;
-    }
-  }
-}
-
-
-
-@include mq(1024px) {
-  header.main-header {
-    .brian-anders {
-      left: calc(50% - 512px);
     }
   }
 }

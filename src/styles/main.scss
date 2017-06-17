@@ -34,27 +34,16 @@ html {
 
 body {
   line-height: 1.3;
-  @include font-size(13);
+  @include font-size(17);
   overflow-x: hidden;
   width: 100%;
 
-  .main-header,
   main {
     background-color: white;
     z-index: 1;
     position: relative;
     @include transition(right 0.2s ease);
     right: 0;
-  }
-
-  &.nav-active {
-    overflow: hidden;
-    height: 100vh;
-
-    .main-header,
-    main {
-      right: 200px;
-    }
   }
 }
 
@@ -63,8 +52,7 @@ main {
   margin: auto;
   padding-top: 30px;
 
-  section,
-  header.content {
+  section {
     padding-top: 40px;
     padding-bottom: 40px;
     margin: auto;
@@ -81,7 +69,6 @@ section {
   margin: auto;
   padding: 0 20px;
   overflow: hidden;
-  @include font-size(15);
 
   @include mq(768px) {
     padding: 0 30px;
@@ -91,7 +78,6 @@ section {
 
 * {
   @include box-sizing(border-box);
-  border-radius: 3px;
 }
 
 h1, h2, h3 {
@@ -102,7 +88,9 @@ h1, h2, h3 {
   a {
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       text-decoration: underline;
     }
   }
@@ -110,10 +98,25 @@ h1, h2, h3 {
 
 a,
 a:visited {
-  color: $violet;
+  color: $purple;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: inherit;
+
+    img {
+      @include filter(saturate(50%));
+    }
+  }
+
+  img {
+    @include filter(saturate(100%));
+    transition: filter 0.2s ease;
+    -webkit-transition: -webkit-filter 0.2s ease;
+    -moz-transition: -moz-filter 0.2s ease;
+    -o-transition: -o-filter 0.2s ease;
+    -ms-transition: -ms-filter 0.2s ease;
   }
 }
 
@@ -139,8 +142,33 @@ img {
 p {
   max-width: 600px;
   margin: auto;
-  text-align: justify;
   margin-bottom: 1em;
+
+  a {
+    position: relative;
+    text-decoration: none;
+    color: $purple;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      content: '';
+      height: 1px;
+      background: $purple;
+      left: 51%;
+      right: 51%;
+      @include transition(left .2s ease, right .2s ease);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      &:before {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
 }
 
 select {
@@ -172,7 +200,9 @@ select {
 }
 
 button {
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: $flint;
   }
 }
@@ -183,4 +213,25 @@ a, button, input, select, textarea {
 
 .error {
   color: red;
+  text-align: center;
+}
+
+cite {
+  float: right;
+
+  &:before {
+    display: inline;
+    content: '-';
+  }
+}
+
+blockquote {
+  padding: 10px 10px;
+  background-color: $cloud;
+  overflow: hidden;
+
+  &:after,
+  &:before {
+    content: '"';
+  }
 }

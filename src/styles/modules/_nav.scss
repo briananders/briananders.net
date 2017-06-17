@@ -1,89 +1,103 @@
-#nav-aside {
-  position: fixed;
-  right: 0;
-  top: 0;
-  overflow: visible;
-  width: 60px;
-  height: 55px;
-  z-index: 2;
-
-  &.visible {
-    nav.main {
-      z-index: 100;
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-}
-
 nav.main {
   background: $cloud;
-  z-index: 0;
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
   border-radius: 0;
-  right: 0px;
-  top: 100%;
-  padding: 7px 0;
+  margin: 0;
   @include transition(opacity .2s ease);
-  border-top: 1px solid $black;
+  z-index: 5;
+  position: relative;
+
+  .content {
+    overflow: visible;
+    background: $cloud;
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+    float: right;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+  }
+
+  .mobile-nav-links {
+    background: $cloud;
+    z-index: -1;
+    position: absolute;
+    top: -100%;
+    @include transition(top .5s ease);
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .mobile-active .mobile-nav-links {
+    top: 100%;
+  }
+
+
 
   a[role] {
     text-decoration: none;
-    display: block;
-    padding: 0 20px;
-    line-height: 36px;
+    display: inline-block;
     color: $black;
-    @include font-size(20);
+    @include font-size(16);
+    vertical-align: middle;
+    font-family: $sans-serif;
+    margin-left: 10px;
+    line-height: 60px;
+    font-weight: 300;
+    position: relative;
 
-    &.active,
-    &:hover {
-      text-decoration: underline;
+    &.brand {
+      @include font-size(32);
+      margin: 0;
     }
   }
-}
 
-[id="menu-open"] {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  position: absolute;
-  right: 0;
-  top: 0px;
-  padding: 25px 0 0;
-  background-color: $cloud;
-  background-size: auto 26px;
-  background-repeat: no-repeat;
-  background-position: center top 3px;
-  border: none;
-  background-image: url('/images/icons/hamburger.png');
-  @include retina() {
-    background-image: url('/images/icons/hamburger_2x.png');
-  }
-}
-
-
-
-@include mq(640px) {
-  #nav-aside {
-    width: 100px;
-    height: 65px;
-  }
-
-  [id="menu-open"] {
+  a,
+  button {
     position: relative;
-    right: auto;
-    background-size: 44px auto;
-    padding-top: 36px;
-    background-position: center top;
+    outline: none;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      height: 5px;
+      background: $purple;
+      content: "";
+      left: 51%;
+      right: 51%;
+      @include transition(left .2s ease-out, right .2s ease-out);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      &:before {
+        left: 0;
+        right: 0;
+      }
+    }
   }
-}
 
 
 
-@include mq(1024px) {
-  #nav-aside {
-    right: calc(50% - 512px);
+
+  @include mq(500px) {
+
+    .content {
+      border-bottom: none;
+    }
+    .desktop-nav {
+      display: inline-block;
+      float: right;
+    }
+    .mobile-nav,
+    .mobile-nav-links {
+      display: none;
+    }
   }
 }

@@ -8,16 +8,6 @@
   <%- partial('header', locals) %>
   <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
     <header class="content">
-      <% if (locals.altTitle !== undefined) { %>
-        <h1 itemprop="name">
-          <%- locals.altTitle %>
-        </h1>
-      <% } else if (locals.title !== undefined) { %>
-        <h1 itemprop="name">
-          <%- locals.title %>
-        </h1>
-      <% } %>
-
       <% if (locals.description) { %>
         <p class="description" itemprop="description">
           <%- locals.description %>

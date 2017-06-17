@@ -1,12 +1,10 @@
+<%- partial('nav', locals) %>
 <header class="main-header">
-  <div class="faces"></div>
-  <div class="brian-anders">
-    <a itemprop="url" href="/">
-      <span itemprop="name"><%- locals.name %></span>
-    </a>
-  </div>
+  <h1 itemprop="title" class="name content">
+    <% if (locals.altTitle !== undefined) { %>
+      <%- locals.altTitle %>
+    <% } else if (locals.title !== undefined) { %>
+      <%- locals.title %>
+    <% } %>
+  </h1>
 </header>
-<aside id="nav-aside">
-  <button type="button" id="menu-open">menu</button>
-  <%- partial('nav', locals) %>
-</aside>

@@ -1,21 +1,26 @@
+/* globals document */
+
 const fmt = require('simple-fmt');
 
 module.exports = {
-  init: function() {
-    console.debug("all.js");
+
+  init() {
+    console.debug('all.js');
 
     const variation = Math.floor(Math.random() * 7);
     document.body.classList.add(fmt('variation-{0}', variation));
 
-    this.navSetup();
+    this.setupNavEvents();
   },
 
-  navSetup: function() {
-    const openButton = document.getElementById('menu-open');
-    const aside = document.getElementById('nav-aside');
-
-    openButton.addEventListener('click', function() {
-      aside.classList.toggle('visible');
+  setupNavEvents() {
+    document.querySelector('#activate-menu').addEventListener('click', function () {
+      if (this.parentElement.classList.contains('mobile-active')) {
+        this.parentElement.classList.remove('mobile-active');
+      } else {
+        this.parentElement.classList.add('mobile-active');
+      }
     });
-  }
-}
+  },
+
+};

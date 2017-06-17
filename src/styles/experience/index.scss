@@ -6,6 +6,7 @@ section {
 
   a {
     color: inherit;
+    font-weight: 600;
   }
 
   &.nest {
@@ -51,9 +52,9 @@ section {
   &.anders-crane {
     background-color: #F5B547;
 
-    a:visited {
-      color: $black;
-    }
+    // a:visited {
+    //   color: $black;
+    // }
     h2 {
       background-color: #F5B547;
       background-image: url('/images/work/anders.png');
@@ -76,6 +77,7 @@ section {
       right: 0;
       top: 0;
       bottom: 0;
+      color: transparent;
     }
   }
 }

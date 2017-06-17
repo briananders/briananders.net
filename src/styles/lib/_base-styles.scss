@@ -135,3 +135,12 @@ $containerMaxWidth:          1280px; // set this to the maximum width you want .
     @content;
   }
 }
+
+@mixin filter($effect) {
+  filter: $effect;
+  // Browser Specific
+  -webkit-filter: $effect;
+  -moz-filter: $effect;
+  -o-filter: $effect;
+  -ms-filter: $effect;
+}

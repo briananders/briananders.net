@@ -3,7 +3,6 @@
 
 main.thoughts.index {
   .thoughts-list {
-    text-align: justify;
 
     li {
       display: block;
@@ -15,13 +14,17 @@ main.thoughts.index {
       overflow: hidden;
       display: block;
       text-decoration: none;
-      border-radius: 5px;
-      padding: 10px;
-      @include transition(border-color 0.2s ease-in-out);
-      border: 1px solid transparent;
+      position: relative;
+      padding-bottom: 5px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
+      border-bottom-width: 5px;
+      @include transition(border-bottom-color 0.2s ease);
 
-      &:hover {
-        border-color: $coin;
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom-color: $purple;
       }
     }
   }

@@ -1,19 +1,21 @@
 <footer>
-  <div class="content">
-    <p>
+  <ul class="content">
+    <li>
       &copy; 2016 <a itemprop="url" href="<%- locals.contact %>" title="<%- locals.author %>">
         <span itemprop="author"><%- locals.author %></span>
       </a>
-    </p>
+    </li>
 
-    <p>
+    <li>
       <a itemprop="url" href="https://github.com/briananders/briananders.net"
          title="Github repo for this site"
          target="blank">
         Github repo for this site
       </a>
-    </p>
+    </li>
 
-    <p class="siteinfo"><%- (devBuild) ? 'Development' : 'Production' %> build, version <%- locals.version %></p>
-  </div>
+    <li class="siteinfo">
+      <%- (devBuild) ? 'Development' : 'Production' %> build, version <%- locals.version %>
+    </li>
+  </ul>
 </footer>
