@@ -11,8 +11,8 @@ header.main-header {
 
   background-image: url('/images/icons/my-face.svg');
   background-color: #1f1f1f;
-  background-size: auto 50vh;
-  background-position: center 6vh;
+  background-size: auto 45vh;
+  background-position: center top 60px;
   background-attachment: fixed;
   background-repeat: no-repeat;
 
@@ -37,6 +37,8 @@ header.main-header {
 @include mq(640px) {
   header.main-header {
     height: 380px;
+    background-size: auto 320px;
+    background-position: center top 60px;
 
     .name {
       @include font-size(50);

@@ -6,7 +6,7 @@ module.exports = (dir) => {
     devBuild: !production,
     version: pkg.version,
     name: 'Brian Anders',
-    description: "Hi, I'm Brian. My story is pretty simple. I grew up in rural Iowa. Then I moved to California to work for Nest. That's pretty much it.",
+    description: "Hi, I'm Brian. Iowa is my home. Graceland University is my alma mater. Now, I live in California and work for Nest. That's pretty much it.",
     author: 'Brian Anders',
     contact: 'http://www.last.fm/user/iBrianAnders',
     domain: 'http://briananders.net/', // set domain

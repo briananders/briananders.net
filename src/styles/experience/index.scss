@@ -81,3 +81,53 @@ section {
     }
   }
 }
+
+
+
+
+
+
+
+section.resources {
+  ul {
+    text-align: center;
+  }
+  li {
+    margin: auto;
+    display: inline-block;
+    background: $cloud;
+    margin-bottom: 4px;
+
+    a,
+    a:visited {
+      display: inline-block;
+      padding: 10px;
+      position: relative;
+      text-decoration: none;
+      color: $green;
+      @include transition(color .2s ease-out);
+
+      &:before {
+        position: absolute;
+        bottom: 0;
+        height: 5px;
+        background: $green;
+        content: "";
+        left: 51%;
+        right: 51%;
+        @include transition(left .2s ease-out, right .2s ease-out);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $black;
+
+        &:before {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}

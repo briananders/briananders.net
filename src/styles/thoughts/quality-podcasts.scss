@@ -1,3 +1,11 @@
 @import "lib/base-styles";
 
 
+header {
+  img {
+    max-width: 410px;
+    margin: auto;
+    display: block;
+    margin-bottom: 20px;
+  }
+}

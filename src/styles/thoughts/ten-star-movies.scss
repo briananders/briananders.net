@@ -1,12 +1,42 @@
 @import "lib/base-styles";
 
 
+article {
+  letter-spacing: 10px;
+  text-align: center;
+}
 .movie {
-  ul {
-    h4 {
-      font-weight: 700;
-      font-family: $sans-serif;
-      @include font-size(20);
-    }
+  vertical-align: top;
+  letter-spacing: 0;
+  width: 100%;
+  max-width: 240px;
+  display: inline-block;
+  padding-bottom: 20px;
+
+  h6 {
+    @include font-size(15);
+    font-family: $sans-serif;
+    font-weight: 400;
+  }
+}
+
+
+@include mq(400px) {
+  .movie {
+    width: calc(50% - 11px);
+  }
+}
+
+
+@include mq(500px) {
+  .movie {
+    width: calc(33% - 11px);
+  }
+}
+
+
+@include mq(800px) {
+  .movie {
+    width: calc(25% - 11px);
   }
 }

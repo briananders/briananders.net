@@ -33,9 +33,6 @@ styles:
       Since then, I have worked on a wide variety of projects on the web team. From the <a href="https://nest.com/#works">Compatibility widget</a> that takes a user's home thermostat wiring information and discerns their system's compatibility with our learning thermostat, to the overall <a href="https://nest.com/support/">support website</a>. I have worked on the team long enough that there probably isn't a page that lacks my fingerprints (however small it may be).
     </p>
     <p>
-      Some of the technologies that I work with from day-to-day include (in no order): EmberJs, NodeJs, SASS, Browserify, Sublime Text, Visual Studio Code, Git, I18n, JSON, Javascript, jQuery, Ruby, EJS,HTML, Yaml, Adobe PhotoShop, Adobe Illustrator, and most Atlassian products. This is a random list of things that occurred to me just now, so it is by no means complete.
-    </p>
-    <p>
       I really enjoy my work here at Nest, and I am always looking to tackle the next big task, to improve the user experience on <a href="https://nest.com">nest.com</a>.
     </p>
   </div>
@@ -126,3 +123,106 @@ styles:
   </div>
 </section>
 
+
+
+
+
+<section class="resources">
+  <div class="content">
+    <h3>Technologies that I use</h3>
+    <ul class="default">
+      <%
+      const languages = [
+        {
+          name: "Browserify",
+          url: "http://browserify.org/",
+        },{
+          name: "Git",
+          url: "https://git-scm.com/",
+        },{
+          name: "I18n",
+          url: "https://en.wikipedia.org/wiki/Internationalization_and_localization",
+        },{
+          name: "jQuery",
+          url: "https://jquery.com/",
+        },{
+          name: "Ruby",
+          url: "https://www.ruby-lang.org/",
+        },{
+          name: "EJS",
+          url: "http://ejs.co/",
+        },{
+          name: "HTML",
+          url: "https://en.wikipedia.org/wiki/HTML",
+        },{
+          name: "CSS",
+          url: "https://en.wikipedia.org/wiki/Cascading_Style_Sheets",
+        },{
+          name: "JavaScript",
+          url: "https://www.javascript.com/",
+        },{
+          name: "SASS",
+          url: "http://sass-lang.com/",
+        },{
+          name: "EmberJS",
+          url: "https://www.emberjs.com/",
+        },{
+          name: "Node",
+          url: "https://nodejs.org/en/",
+        },{
+          name: "Yaml",
+          url: "http://yaml.org/",
+        },{
+          name: "JSON",
+          url: "http://www.json.org/",
+        }
+      ];
+
+      for(let i = 0; i < languages.length; i++) {
+        const language = languages[i];
+      %>
+        <li>
+          <a href="<%- language.url %>"><%- language.name %></a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</section>
+
+
+
+
+<section class="resources">
+  <div class="content">
+    <h3>Helpful Resources</h3>
+    <p>
+      Here are some resources that I have found to be useful in my web development.
+    </p>
+    <ul class="default">
+      <%
+      const resources = [
+        {
+          url: "https://google.com/",
+          name: "Google",
+        }, {
+          url: "https://css-tricks.com/",
+          name: "CSS-Tricks",
+        }, {
+          url: "https://stackoverflow.com/",
+          name: "Stack Overflow",
+        }, {
+          url: "https://developer.mozilla.org/",
+          name: "Mozilla Developer Network (MDN)",
+        }
+      ];
+
+      for(let i = 0; i < resources.length; i++) {
+        const resource = resources[i];
+      %>
+        <li>
+          <a href="<%- resource.url %>"><%- resource.name %></a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</section>
