@@ -2,7 +2,7 @@
 
 header.main-header {
   width: 100%;
-  @include font-size(15);
+  @include font-size(16);
   font-family: $sans-serif;
   color: $black;
   height: 50vh;
@@ -12,8 +12,7 @@ header.main-header {
   background-image: url('/images/icons/my-face.svg');
   background-color: #1f1f1f;
   background-size: auto 45vh;
-  background-position: center top 60px;
-  background-attachment: fixed;
+  background-position: center top;
   background-repeat: no-repeat;
 
   .name {
@@ -26,7 +25,7 @@ header.main-header {
     width: 100%;
     margin: auto;
     color: $white;
-    font-weight: 200;
+    font-weight: lighter;
   }
 }
 
@@ -38,10 +37,9 @@ header.main-header {
   header.main-header {
     height: 380px;
     background-size: auto 320px;
-    background-position: center top 60px;
 
     .name {
-      @include font-size(50);
+      @include font-size(48);
       padding: 0 40px;
       line-height: 61px;
       margin: auto;

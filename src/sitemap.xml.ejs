@@ -5,13 +5,15 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><%
+    const date = new Date();
+    const backupDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     for(let i = 0; i < locals.pages.length; i++) {
       const page = locals.pages[i];
       if(page.data.robots !== false) {
   %>
   <url>
     <loc><%- locals.siteData.domain %><%- page.url %></loc>
-    <lastmod><%- page.data.date %></lastmod>
+    <lastmod><%- (page.data.date) ? page.data.date : backupDate %></lastmod>
     <priority><%- page.data.priority %></priority>
     <changefreq>yearly</changefreq>
   </url><%

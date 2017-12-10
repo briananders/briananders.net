@@ -1,7 +1,8 @@
 <footer>
   <ul class="content">
     <li>
-      &copy; 2016 <a itemprop="url" href="<%- locals.contact %>" title="<%- locals.author %>">
+      <% const date = new Date(); %>
+      &copy; <%- date.getFullYear() %> <a itemprop="url" href="<%- locals.contact %>" title="<%- locals.author %>">
         <span itemprop="author"><%- locals.author %></span>
       </a>
     </li>

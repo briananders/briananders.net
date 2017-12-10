@@ -5,4 +5,4 @@ echo "Moving Files to S3 staging"
 aws s3 sync package/ s3://staging.briananders.net
 echo "Done"
 
-# /bin/zsh deploy.sh
+# /bin/zsh deploy_staging.sh
