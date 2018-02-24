@@ -9,11 +9,11 @@
     "it": false,
     "before": false,
     "after": false,
-    "afterEach": false
+    "afterEach": false,
+    "document": true,
+    "window": true
   },
   "rules": {
-    "func-names": 0,
-    "no-var": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-dynamic-require": 0,
     "import/newline-after-import": 0,
@@ -25,12 +25,23 @@
     "strict": 0,
     "consistent-return": 0,
     "no-underscore-dangle": 0,
+    "no-multi-spaces": 1,
+    "no-param-reassign": 0,
+    "prefer-destructuring": [1, {
+      "array": false,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }],
     "comma-dangle": [2, {
       "objects": "always-multiline",
       "function": "ignore"
     }],
-    "no-confusing-arrow": ["warn", {
-      "allowParens": true
-    }],
+    "no-confusing-arrow": [
+      "warn",
+      {
+        "allowParens": true
+      }
+    ]
   }
 }

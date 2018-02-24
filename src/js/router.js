@@ -1,8 +1,12 @@
 
 module.exports = {
 
-  init: function(routes) {
+  init(routes) {
     const cleanArray = require('clean-array');
+
+    function typeOfObject(thing) {
+      return Object.prototype.toString.call(thing);
+    }
 
     function init(module) {
       if (module !== undefined && module.init !== undefined) {
@@ -11,19 +15,15 @@ module.exports = {
     }
 
     function checkForStar(routeObject) {
-      if (typeOfObject(routeObject["*"]) === "[object Object]") {
-        init(routeObject["*"]);
+      if (typeOfObject(routeObject['*']) === '[object Object]') {
+        init(routeObject['*']);
       }
     }
 
     function checkForIndex(routeObject) {
-      if (typeOfObject(routeObject["/"]) === "[object Object]") {
-        init(routeObject["/"]);
+      if (typeOfObject(routeObject['/']) === '[object Object]') {
+        init(routeObject['/']);
       }
-    }
-
-    function typeOfObject(thing) {
-      return Object.prototype.toString.call(thing);
     }
 
     function getRoute(arr) {
@@ -43,21 +43,21 @@ module.exports = {
     const splitPath = cleanArray(path.split('/'));
 
 
-    //always run ALL
-    init(routes["*"]);
+    // always run ALL
+    init(routes['*']);
 
-    //then check if there's just a straight match
+    // then check if there's just a straight match
     if (routes[path]) {
       init(routes[path]);
     }
 
-    //then run through the path-as-an-object model
+    // then run through the path-as-an-object model
     for (let pathIndex = 1; pathIndex <= splitPath.length; pathIndex++) {
       const currentPathArray = splitPath.slice(0, pathIndex);
       const routeObject = getRoute(currentPathArray);
       const typeOfModule = typeOfObject(routeObject);
 
-      if (typeOfModule === "[object Object]") {
+      if (typeOfModule === '[object Object]') {
         checkForStar(routeObject);
 
         if (pathIndex === splitPath.length) {
@@ -67,7 +67,6 @@ module.exports = {
         init(routeObject);
       }
     }
+  },
 
-  }
-
-}
+};

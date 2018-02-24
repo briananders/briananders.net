@@ -1,5 +1,5 @@
 module.exports = {
-  init: function() {
-    console.debug("last-fm.js");
-  }
-}
+  init() {
+    console.debug('last-fm.js');
+  },
+};

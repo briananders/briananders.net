@@ -1,4 +1,6 @@
-"use strict";
+'use strict';
 
 const routes = require('./routes');
-const router = require('./router').init(routes);
+const router = require('./router');
+
+router.init(routes);

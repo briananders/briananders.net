@@ -28,8 +28,6 @@ const completionFlags = {
 
 const timestamp = require(`${dir.build}timestamp`);
 const fs = require('fs-extra');
-const browserify = require('browserify');
-const watchify = require('watchify');
 const express = require('express');
 const serve = require('express-static');
 const EventEmitter = require('events');
@@ -38,12 +36,6 @@ const app = express();
 const buildEvents = new EventEmitter();
 const exec = require('child_process').exec;
 
-const __browserify = browserify({
-  entries: [`${dir.src}js/main.js`],
-  cache: {},
-  packageCache: {},
-  plugin: [watchify],
-});
 
 const hashingFileNameList = {};
 const pageMappingData = [];
@@ -77,11 +69,13 @@ buildEvents.on('page-mapping-data-compiled', bundleEJS.bind(this, dir, completio
 buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, dir, completionFlags, buildEvents, pageMappingData));
 
 if (!production) {
-  __browserify.on('update', (file) => {
-    console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
-    bundleJS(dir, completionFlags, buildEvents, __browserify);
-  });
 
+  fs.watch(`${dir.src}js/`, {
+    recursive: true,
+  }, (evt, file) => {
+    console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
+    bundleJS(dir, completionFlags, buildEvents);
+  });
 
   fs.watch(`${dir.src}ember-app/dist/assets/`, {
     recursive: true,
@@ -169,7 +163,7 @@ const clean = new Promise((resolve, reject) => {
 clean.then(() => {
   console.log(`${timestamp.stamp()}: clean.then()`);
   compilePageMappingData(dir, buildEvents, pageMappingData);
-  bundleJS(dir, completionFlags, buildEvents, __browserify);
+  bundleJS(dir, completionFlags, buildEvents);
   moveEmberJs(dir, completionFlags, buildEvents);
   bundleSCSS(dir, completionFlags, buildEvents);
   moveImages(dir, completionFlags, buildEvents);

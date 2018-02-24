@@ -1,5 +1,5 @@
 module.exports = {
-  init: function() {
-    console.debug("movies.js");
-  }
-}
+  init() {
+    console.debug('movies.js');
+  },
+};

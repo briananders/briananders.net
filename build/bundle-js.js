@@ -1,21 +1,56 @@
-const fs = require('fs-extra');
-const mkdirp = require('mkdirp');
+// const fs = require('fs-extra');
+// const mkdirp = require('mkdirp');
 
-module.exports = function bundleJS(dir, completionFlags, buildEvents, browserify) {
+const browserify = require('browserify');
+const watchify = require('watchify');
+const babelify = require('babelify');
+const buffer = require('vinyl-buffer');
+const gulp = require('gulp');
+const rename = require('gulp-rename');
+const source = require('vinyl-source-stream');
+
+
+module.exports = function bundleJS(dir, completionFlags, buildEvents) {
   const timestamp = require(`${dir.build}timestamp`);
 
-  console.log(`${timestamp.stamp()}: bundleJS()`);
+  const config = {
+    js: {
+      src: `${dir.src}js/main.js`,  // Entry point
+      outputDir: dir.jsOutputPath,  // Directory to save bundle to
+      outputFile: 'main.js',        // Name to use for bundle
+    },
+  };
 
-  mkdirp(dir.jsOutputPath, (error) => {
-    if (error) throw error;
-    browserify.transform('babelify', { presets: ['es2015', 'react'] })
-    .bundle()
-    .pipe(fs.createWriteStream(`${dir.jsOutputPath}main.js`)
-      .on('finish', () => {
+  console.log(`${timestamp.stamp()}: bundleJS()`);
+  // console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
+
+  // This method makes it easy to use common bundling options in different tasks
+  function bundle(bundler) {
+    // Add options to add to "base" bundler passed as parameter
+    bundler
+      .transform('babelify', { presets: ['es2015', 'react'] })
+      .bundle()                               // Start bundle
+      .on('error', (error) => { throw error; })
+      .pipe(source(config.js.src))            // Entry point
+      .pipe(buffer())                         // Convert to gulp pipeline
+      .pipe(rename(config.js.outputFile))     // Rename output from 'main.js' to 'bundle.js'
+      .pipe(gulp.dest(config.js.outputDir))  // Save 'bundle' to build/
+      .on('end', () => {
         console.log(`${timestamp.stamp()}: ${'JAVASCRIPT BROWSERIFIED'.green.bold}`);
+        console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled JS`);
         buildEvents.emit('js-moved');
-      })
-    );
-    console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled JS`);
-  });
+      });
+  }
+
+  const opts = {
+    entries: [config.js.src],
+    debug: true,
+    plugin: [watchify],
+    cache: {}, // required for watchify
+    packageCache: {}, // required for watchify
+  };
+
+  const bundler = browserify(opts);  // Pass browserify the entry point
+
+  bundle(bundler);  // Chain other options -- sourcemaps, rename, etc.
 };

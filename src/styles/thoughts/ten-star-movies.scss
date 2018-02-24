@@ -16,7 +16,7 @@ article {
   h6 {
     @include font-size(16);
     font-family: $sans-serif;
-    font-weight: normal;
+    font-weight: 700;
   }
 }
 
