@@ -5,6 +5,8 @@ function init() {
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const playInput = document.getElementById('play');
+  const randomStartInput = document.getElementById('random-start');
+  const arrowInputs = document.querySelectorAll('#up-and-down button');
   const canvasContext = canvas.getContext('2d');
 
   let rule;
@@ -13,6 +15,7 @@ function init() {
   let cellWidth;
   let maxHeight;
   let play = false;
+  let randomStart = false;
 
   const FILL_STYLE = 'darkgrey';
   const WIDTH = 255;
@@ -118,7 +121,11 @@ function init() {
     ruleString = ruleString.substr(ruleString.length - 8); // must be 8 characters long
     ruleString = reverse(ruleString);
     world.push(new Array(WIDTH).fill(0));
-    world[0][Math.floor(WIDTH / 2)] = 1;
+    if (randomStart) {
+      world[0] = world[0].map(() => (Math.random() > 0.4) ? 0 : 1);
+    } else {
+      world[0][Math.floor(WIDTH / 2)] = 1;
+    }
     date = Date.now();
     run(-1, date, 0);
   }
@@ -130,6 +137,16 @@ function init() {
     window.addEventListener('onorientationchange', reset);
     playInput.addEventListener('change', () => {
       play = playInput.checked;
+    });
+    randomStartInput.addEventListener('change', () => {
+      randomStart = randomStartInput.checked;
+      reset();
+    });
+    arrowInputs.forEach((arrow) => {
+      arrow.addEventListener('click', () => {
+        ruleInput.value = rule + Number(arrow.value);
+        reset();
+      });
     });
   }
 
