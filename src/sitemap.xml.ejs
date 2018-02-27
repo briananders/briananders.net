@@ -5,15 +5,15 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><%
-    const date = new Date();
-    const backupDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     for(let i = 0; i < locals.pages.length; i++) {
       const page = locals.pages[i];
+      const date = page.data.date || new Date();
+      const dateOutput = `${date.getFullYear()}-${('00' + (date.getMonth() + 1)).slice(-2)}-${('00' + date.getDate()).slice(-2)}`;
       if(page.data.robots !== false) {
   %>
   <url>
     <loc><%- locals.siteData.domain %><%- page.url %></loc>
-    <lastmod><%- (page.data.date) ? page.data.date : backupDate %></lastmod>
+    <lastmod><%- dateOutput %></lastmod>
     <priority><%- page.data.priority %></priority>
     <changefreq>yearly</changefreq>
   </url><%

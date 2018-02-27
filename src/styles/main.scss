@@ -238,3 +238,20 @@ blockquote {
     content: '"';
   }
 }
+
+.center {
+  text-align: center;
+}
+
+list {
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+list, item {
+  display: block;
+}
+
+item {
+  margin-top: 1em;
+}

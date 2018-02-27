@@ -4,9 +4,11 @@ function init() {
 
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
+  const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
+  const heightInput = document.getElementById('height');
+  const heightArrows = document.querySelectorAll('#height-up-and-down button');
   const playInput = document.getElementById('play');
   const randomStartInput = document.getElementById('random-start');
-  const arrowInputs = document.querySelectorAll('#up-and-down button');
   const canvasContext = canvas.getContext('2d');
 
   let rule;
@@ -109,6 +111,7 @@ function init() {
 
 
   function reset() {
+    canvas.style.height = `${Number(heightInput.value) / 2.55}vw`;
     const rect = canvas.getClientRects()[0];
     cellWidth = window.innerWidth / WIDTH;
     canvas.width = rect.width;
@@ -133,6 +136,7 @@ function init() {
 
   function addEventListeners() {
     ruleInput.addEventListener('change', reset);
+    heightInput.addEventListener('change', reset);
     window.addEventListener('resize', reset);
     window.addEventListener('onorientationchange', reset);
     playInput.addEventListener('change', () => {
@@ -142,9 +146,20 @@ function init() {
       randomStart = randomStartInput.checked;
       reset();
     });
-    arrowInputs.forEach((arrow) => {
+    ruleArrows.forEach((arrow) => {
       arrow.addEventListener('click', () => {
         ruleInput.value = rule + Number(arrow.value);
+        reset();
+      });
+    });
+    heightArrows.forEach((arrow) => {
+      arrow.addEventListener('click', () => {
+        heightInput.value = Number(heightInput.value) + Number(arrow.value);
+        if (Number(heightInput.value) > 255) {
+          heightInput.value = 255;
+        } else if (Number(heightInput.value) < 1) {
+          heightInput.value = 1;
+        }
         reset();
       });
     });

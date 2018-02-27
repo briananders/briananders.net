@@ -1,0 +1,22 @@
+@import "lib/base-styles";
+
+#up-and-down {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+}
+
+answer, answer-array {
+  display: block;
+  text-align: center;
+  margin-top: 1em;
+  @include font-size(20);
+
+  @include mq(768px) {
+    @include font-size(20);
+  }
+}
+
+input[type=number] {
+  @include font-size(18);
+}

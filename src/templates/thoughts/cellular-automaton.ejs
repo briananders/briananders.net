@@ -1,6 +1,7 @@
 ---
 title: "Elementary Cellular Automaton"
 description: "If you've ever heard of The Game of Life, you may already have an idea of what this is. If not, now worries, it's not that crazy of a concept."
+date: 2018-02-23
 priority: 0.8
 pageClasses:
   - 'thoughts'
@@ -81,9 +82,18 @@ styles:
   <p class="center">
     Rule number from 0 to 255:
     <input id="rule" value="90" type="number" min="0" max="255" step="1"/>
-    <span id="up-and-down">
+    <span id="rule-up-and-down">
       <button value="1">&#x25B2;</button>
       <button value="-1">&#x25BC;</button>
+    </span>
+  </p>
+
+  <p class="center">
+    Height:
+    <input id="height" value="255" type="number" min="1" max="255" step="10"/>
+    <span id="height-up-and-down">
+      <button value="10">&#x25B2;</button>
+      <button value="-10">&#x25BC;</button>
     </span>
   </p>
 

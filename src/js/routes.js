@@ -13,5 +13,6 @@ module.exports = {
     'ten-star-movies': require('./thoughts/ten-star-movies'),
     'using-canvas-to-make-patterns-with-circles': require('./thoughts/using-canvas'),
     'cellular-automaton': require('./thoughts/cellular-automaton'),
+    'unique-stars': require('./thoughts/unique-stars'),
   },
 };
