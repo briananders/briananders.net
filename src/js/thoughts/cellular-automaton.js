@@ -19,7 +19,7 @@ function init() {
   let play = false;
   let randomStart = false;
 
-  const FILL_STYLE = 'darkgrey';
+  const FILL_STYLE = '#a9a9a9';
   const WIDTH = 255;
   const FPS = 1000 / 30;
 
@@ -92,7 +92,7 @@ function init() {
 
     if (then + FPS < Date.now() && (play || then === 0)) {
       drawRange(++count, count + maxHeight);
-      then += FPS;
+      then = Date.now();
     }
 
     window.requestAnimationFrame(() => {
@@ -111,12 +111,13 @@ function init() {
 
 
   function reset() {
-    canvas.style.height = `${Number(heightInput.value) / 2.55}vw`;
     const rect = canvas.getClientRects()[0];
-    cellWidth = window.innerWidth / WIDTH;
+    const newHeight = (Number(heightInput.value) / 255) * rect.width;
+    canvas.style.height = newHeight;
+    cellWidth = rect.width / WIDTH;
     canvas.width = rect.width;
-    canvas.height = rect.height;
-    maxHeight = rect.height / cellWidth;
+    canvas.height = newHeight;
+    maxHeight = newHeight / cellWidth;
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
     world = [];
     rule = Number(ruleInput.value);
