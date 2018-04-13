@@ -3,14 +3,29 @@
 
 main.thoughts.index {
   .thoughts-list {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
 
     li {
       display: block;
       margin: 20px auto;
-      max-width: 600px;
+      max-width: 640px;
+      padding: 0 20px;
+
+      @include mq(768px) {
+        @include columns(6);
+      }
     }
 
-    a {
+    figcaption {
+      @include font-size(20);
+    }
+
+    a,
+    a:visited {
       color: $black;
       overflow: hidden;
       display: block;

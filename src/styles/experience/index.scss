@@ -3,8 +3,10 @@
 
 section {
   padding-bottom: 0;
+  max-width: 1000px;
 
-  a {
+  a,
+  a:visited {
     color: inherit;
     font-weight: 700;
   }
@@ -13,7 +15,8 @@ section {
     background-color: #2FC9EF;
     color: $white;
 
-    p a {
+    p a,
+    p a:visited {
       color: $white;
     }
     h2 {
@@ -71,7 +74,8 @@ section {
     position: relative;
     color: transparent;
 
-    a {
+    a,
+    a:visited {
       position: absolute;
       left: 0;
       right: 0;
@@ -91,20 +95,23 @@ section {
 section.resources {
   ul {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
   li {
-    margin: auto;
-    display: inline-block;
+    display: block;
     background: $cloud;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    margin-right: 8px;
 
     a,
     a:visited {
       display: inline-block;
-      padding: 10px;
+      padding: 6px 15px;
       position: relative;
       text-decoration: none;
-      color: $green;
       @include transition(color .2s ease-out);
 
       &:before {

@@ -13,12 +13,31 @@
 }
 
 
+.albums,
+.artists {
+  overflow: visible;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .album-tile,
 .artist-tile {
-  margin-bottom: 3vw;
+  display: block;
+  float: left;
+  width: 100%;
+  max-width: 320px;
+  margin: 15px;
 
-  a {
+  .album,
+  .artist {
+    float: none;
+    width: 100%;
+  }
+
+  a,
+  a:visited {
     text-decoration: none;
   }
 
@@ -27,8 +46,11 @@
   }
 
   ul {
-    padding: 3vw;
+    padding: 15px;
     text-align: center;
+    float: none;
+    width: 100%;
+    padding: 10px;
   }
 
   li,
@@ -36,125 +58,4 @@
     line-height: 1.5;
     margin: 0;
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-@include mq(340px) {
-
-  .albums,
-  .artists {
-    overflow: visible;
-  }
-
-  .album-tile,
-  .artist-tile {
-    display: block;
-    float: left;
-    width: 48.5%;
-    max-width: 320px;
-    margin-bottom: 3%;
-    margin-right: 3%;
-
-    .album,
-    .artist {
-      float: none;
-      width: 100%;
-    }
-    ul {
-      float: none;
-      width: 100%;
-      padding: 10px;
-    }
-
-    &:nth-child(2n) {
-      clear: none;
-      margin-right: 0;
-    }
-  }
-
-}
-
-
-
-
-
-
-
-
-
-@include mq(670px) {
-
-  .album-tile,
-  .artist-tile {
-    width: 32.333333333%;
-
-    &:nth-child(2n) {
-      clear: none;
-      margin-right: 1.5%;
-    }
-
-    &:nth-child(3n) {
-      clear: none;
-      margin-right: 0;
-    }
-    &:nth-child(3n+1) {
-      clear: left;
-      margin-right: 1.5%;
-    }
-    &:nth-child(3n+2) {
-      clear: none;
-      margin-right: 1.5%;
-    }
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-@include mq(1005px) {
-
-  .album-tile,
-  .artist-tile {
-    width: 23.875%;
-
-    &:nth-child(3n) {
-      clear: none;
-      margin-right: 1.5%;
-    }
-
-    &:nth-child(4n) {
-      clear: none;
-      margin-right: 0;
-    }
-    &:nth-child(4n+1) {
-      clear: left;
-      margin-right: 1.5%;
-    }
-    &:nth-child(4n+2) {
-      clear: none;
-      margin-right: 1.5%;
-    }
-    &:nth-child(4n+3) {
-      clear: none;
-      margin-right: 1.5%;
-    }
-
-  }
-
 }

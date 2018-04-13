@@ -4,16 +4,12 @@
       <div class="artist-tile">
         <a itemprop="url" target="_blank" href="{{artist.url}}" class="artist" title="{{artist.name}}">
           {{image-tag src=artist.image alt=artist.name }}
-        </a>
-        <ul>
-          <h3 class="name">
-            <a itemprop="url" target="_blank"
-               href="{{artist.url}}"
-               title="{{artist.name}}">
+          <ul>
+            <h3 class="name">
               {{artist.name}}
-            </a>
-          </h3>
-        </ul>
+            </h3>
+          </ul>
+        </a>
       </div>
     {{else}}
       <a itemprop="url" target="_blank" href="{{artist.url}}" class="artist" title="{{artist.name}}">

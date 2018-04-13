@@ -12,8 +12,7 @@
     "build": "./node_modules/.bin/ember build --environment=production",
     "start": "ulimit -c unlimited && ./node_modules/.bin/ember build --watch",
     "test": "ember test",
-    "postinstall": "bower install",
-    "preinstall": "npm cache clean && bower cache clean"
+    "postinstall": "bower install"
   },
   "repository": "",
   "engines": {

@@ -4,17 +4,15 @@
       <div class="album-tile">
         <a itemprop="url" target="_blank" href="{{album.url}}" class="album" title="{{album.name}}">
           {{image-tag src=album.image alt=album.name }}
-        </a>
-        <ul>
-          <h3 class="name">
-            <a itemprop="url" target="_blank"
-               href="{{album.url}}"
-               title="{{album.name}}">
+          <ul>
+            <h3 class="name">
               {{album.name}}
-            </a>
-          </h3>
-          <li>By: <a itemprop="url" href="{{album.artist.url}}" title="{{album.artist.name}}" target="_blank">{{album.artist.name}}</a></li>
-        </ul>
+            </h3>
+            <li>
+              <a itemprop="url" href="{{album.artist.url}}" target="_blank">{{album.artist.name}}</a>
+            </li>
+          </ul>
+        </a>
       </div>
     {{else}}
       <a itemprop="url" target="_blank" href="{{album.url}}" class="album" title="{{album.name}}">

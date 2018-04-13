@@ -19,6 +19,7 @@ html {
   font-family: $serif;
   color: $black;
   overflow-x: hidden;
+  background-color: $white;
 
   ::selection {
     background: $black;
@@ -39,7 +40,6 @@ body {
   width: 100%;
 
   main {
-    background-color: white;
     z-index: 1;
     position: relative;
     @include transition(right 0.2s ease);
@@ -85,7 +85,8 @@ h1, h2, h3 {
   font-family: $sans-serif;
   text-align: center;
 
-  a {
+  a,
+  a:visited {
     text-decoration: none;
 
     &:hover,
@@ -145,7 +146,8 @@ p {
   margin-bottom: 1em;
   @include font-size(20);
 
-  a {
+  a,
+  a:visited {
     position: relative;
     text-decoration: none;
     color: $purple;
