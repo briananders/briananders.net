@@ -6,14 +6,14 @@ main.thoughts.how-to-match {
 
   .example-container {
     overflow: hidden;
-    @include font-size(20);
+    @include font-size(5);
   }
   .example-container,
   code {
-    margin-bottom: 1em;
+    margin-bottom: $s6;
   }
   .tall {
-    border-top: 5px solid #FFA700;
+    border-top: $base-unit solid #FFA700;
   }
   .column-1 {
     background: rgba(0,0,0,0.2);
@@ -42,8 +42,8 @@ main.thoughts.how-to-match {
   }
   ul {
     margin: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: $s6;
+    padding-bottom: $s6;
     list-style: none;
     padding-left: 0;
     text-align: center;

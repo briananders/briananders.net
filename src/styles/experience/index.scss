@@ -93,6 +93,8 @@ section {
 
 
 section.resources {
+  margin-top: $s10;
+
   ul {
     text-align: center;
     display: flex;
@@ -103,13 +105,13 @@ section.resources {
   li {
     display: block;
     background: $cloud;
-    margin-bottom: 8px;
-    margin-right: 8px;
+    margin-bottom: $s2;
+    margin-right: $s2;
 
     a,
     a:visited {
       display: inline-block;
-      padding: 6px 15px;
+      padding: $s2 $s4;
       position: relative;
       text-decoration: none;
       @include transition(color .2s ease-out);
@@ -117,7 +119,7 @@ section.resources {
       &:before {
         position: absolute;
         bottom: 0;
-        height: 5px;
+        height: $s1;
         background: $green;
         content: "";
         left: 51%;

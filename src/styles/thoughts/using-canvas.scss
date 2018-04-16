@@ -21,16 +21,22 @@ main.thoughts.using-canvas {
   }
 
   form {
-    margin-bottom: 20px;
-    text-align: center;
-    line-height: 40px;
+    margin-bottom: $s5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
     label {
       white-space: nowrap;
     }
+
+    > * {
+      margin-bottom: $s2;
+    }
   }
 
   button + button {
-    margin-left: 10px;
+    margin-left: $s2;
   }
 }

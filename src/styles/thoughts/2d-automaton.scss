@@ -2,7 +2,7 @@
 @import "../modules/code";
 
 blockquote {
-  margin-bottom: 1em;
+  margin-bottom: $s6;
 }
 
 canvas {
@@ -16,12 +16,12 @@ canvas {
 }
 
 input[type=number] {
-  @include font-size(18);
+  @include font-size(4);
 }
 
 input[type=checkbox] {
-  height: 16px;
-  width: 16px;
+  height: $s4;
+  width: $s4;
 }
 
 #rule-up-and-down,
@@ -32,5 +32,5 @@ input[type=checkbox] {
 }
 
 #random-start {
-  margin-right: 3em;
+  margin-right: $s8;
 }

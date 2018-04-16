@@ -2,30 +2,36 @@
 
 header.main-header {
   width: 100%;
-  @include font-size(16);
+  @include font-size();
+  margin-bottom: $s7;
   font-family: $sans-serif;
   color: $black;
-  height: 50vh;
   overflow: hidden;
   position: relative;
-
-  background-image: url('/images/icons/my-face.svg');
   background-color: #1f1f1f;
-  background-size: auto 45vh;
-  background-position: center top;
-  background-repeat: no-repeat;
 
   .name {
-    @include font-size(30);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    @include font-size(10);
     display: block;
     width: 100%;
     margin: auto;
     color: $white;
     font-weight: 100;
+  }
+
+  &.with-head {
+    height: 50vh;
+    background-image: url('/images/icons/my-face.svg');
+    background-size: auto 45vh;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    .name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 }
 
@@ -33,16 +39,18 @@ header.main-header {
 
 
 
-@include mq(640px) {
+@include mq($tablet) {
   header.main-header {
-    height: 380px;
-    background-size: auto 320px;
-
     .name {
-      @include font-size(48);
-      padding: 0 40px;
-      line-height: 61px;
+      @include font-size(12);
+      padding: 0 $s10;
+      line-height: 61px; // override
       margin: auto;
+    }
+
+    &.with-head {
+      height: 380px;
+      background-size: auto 320px;
     }
   }
 }

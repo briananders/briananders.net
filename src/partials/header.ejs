@@ -1,5 +1,5 @@
 <%- partial('nav', locals) %>
-<header class="main-header">
+<header class="main-header <%- locals.withHead ? 'with-head' : '' %>">
   <h1 itemprop="title" class="name content">
     <% if (locals.altTitle !== undefined) { %>
       <%- locals.altTitle %>

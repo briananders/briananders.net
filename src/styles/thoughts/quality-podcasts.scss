@@ -6,6 +6,10 @@ header {
     max-width: 410px;
     margin: auto;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: $s5;
   }
+}
+
+section {
+  padding-top: $s12;
 }

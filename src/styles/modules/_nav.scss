@@ -10,6 +10,9 @@ nav.main {
     overflow: visible;
     background: $cloud;
     border-bottom: 1px solid #1f1f1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .desktop-nav {
@@ -17,10 +20,9 @@ nav.main {
   }
   .mobile-nav {
     display: block;
-    float: right;
-    height: 60px;
     background-color: transparent;
     border: none;
+    padding: 0;
   }
 
   .mobile-nav-links {
@@ -31,7 +33,11 @@ nav.main {
     @include transition(top .5s ease);
     left: 0;
     right: 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $s10;
+
   }
   .mobile-active .mobile-nav-links {
     top: 100%;
@@ -43,17 +49,22 @@ nav.main {
     text-decoration: none;
     display: inline-block;
     color: $black;
-    @include font-size(16);
-    vertical-align: middle;
+    @include font-size();
     font-family: $sans-serif;
-    margin-left: 10px;
-    line-height: 60px;
     font-weight: 300;
     position: relative;
 
+    + a[role] {
+      margin-left: $s4;
+    }
     &.brand {
-      @include font-size(30);
+      @include font-size(10);
       margin: 0;
+
+      &:before {
+        bottom: 0;
+        height: 2px;
+      }
     }
   }
 
@@ -64,8 +75,8 @@ nav.main {
 
     &:before {
       position: absolute;
-      bottom: 0;
-      height: 5px;
+      bottom: -4px;
+      height: 1px;
       background: $purple;
       content: "";
       left: 51%;
@@ -92,7 +103,9 @@ nav.main {
       border-bottom: none;
     }
     .desktop-nav {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       float: right;
     }
     .mobile-nav,

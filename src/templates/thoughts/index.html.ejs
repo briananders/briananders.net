@@ -14,22 +14,27 @@ styles:
 ---
 
 <section>
-  <ul class="thoughts-list">
-    <% var basePages = getChildPages('thoughts');
-        for(var i = 0; i < basePages.length; i++) {
-          var page = basePages[i];
-      %>
+  <ul id="thoughts-list">
+    <%
+      const basePages = getChildPages('thoughts');
+      const newestPages = basePages.sort((pageA, pageB) => {
+        const dateA = new Date(pageA.data.date);
+        const dateB = new Date(pageB.data.date);
+        return (dateA < dateB) ? 1 : -1;
+      });
+      newestPages.forEach(({ url, data: { date, description, title }}) => {
+    %>
     <li itemscope itemtype="http://schema.org/BlogPosting">
-      <a itemprop="url" href="/<%- page.url %>">
-        <h3 itemprop="name"><%- page.data.title %></h3>
+      <a itemprop="url" href="/<%- url %>">
+        <h3 itemprop="name"><%- title %></h3>
           <figcaption itemprop="description">
-            <%- page.data.description %>
+            <%- description %>
           </figcaption>
         <meta itemprop="author" content="Brian Anders"/>
-        <meta itemprop="datePublished" content="<%- page.data.date %>"/>
+        <meta itemprop="datePublished" content="<%- date %>"/>
         <meta itemprop="publisher" content="Brian Anders"/>
       </a>
     </li>
-    <% } %>
+    <% }); %>
   </ul>
 </section>

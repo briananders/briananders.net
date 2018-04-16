@@ -7,9 +7,13 @@
   }
 }
 
+blockquote {
+  margin-bottom: $s6;
+}
+
 .overflow-hidden {
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: $s10;
 }
 
 
@@ -28,7 +32,7 @@
   float: left;
   width: 100%;
   max-width: 320px;
-  margin: 15px;
+  margin: $s4;
 
   .album,
   .artist {
@@ -46,16 +50,15 @@
   }
 
   ul {
-    padding: 15px;
+    padding: $s4;
     text-align: center;
     float: none;
     width: 100%;
-    padding: 10px;
+    padding: $s2;
   }
 
   li,
   h3 {
-    line-height: 1.5;
     margin: 0;
   }
 }

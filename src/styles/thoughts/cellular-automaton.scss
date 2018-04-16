@@ -1,7 +1,7 @@
 @import "lib/base-styles";
 
 blockquote {
-  margin-bottom: 1em;
+  margin-bottom: $s6;
 }
 
 canvas {
@@ -13,12 +13,12 @@ canvas {
 }
 
 input[type=number] {
-  @include font-size(18);
+  @include font-size(4);
 }
 
 input[type=checkbox] {
-  height: 16px;
-  width: 16px;
+  height: $s4;
+  width: $s4;
 }
 
 #rule-up-and-down,
@@ -29,12 +29,12 @@ input[type=checkbox] {
 }
 
 #random-start {
-  margin-right: 3em;
+  margin-right: $s8;
 }
 
 list {
-  padding-left: 1em;
-  margin-bottom: 1em;
+  padding-left: $s6;
+  margin-bottom: $s6;
 }
 
 list, item {
@@ -42,5 +42,5 @@ list, item {
 }
 
 item {
-  margin-top: 1em;
+  margin-top: $s6;
 }

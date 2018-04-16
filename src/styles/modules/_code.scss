@@ -2,10 +2,10 @@ code {
   white-space: pre-wrap;
   overflow-x: auto;
   font-family: monospace, serif;
-  padding: 20px;
+  padding: $s5;
   display: block;
   background-color: rgba(0,0,0,0.1);
-  @include font-size(16);
+  @include font-size();
   max-width: 600px;
   margin: auto;
 }

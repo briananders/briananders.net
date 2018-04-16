@@ -1,33 +1,39 @@
-#ember-app {
-  overflow: hidden;
-}
-
 main.index {
+  @import "modules/thoughts-list";
+
+  #ember-app {
+    overflow: hidden;
+  }
 
   ul {
     overflow: hidden;
   }
 
-  .album-tile,
-  li.podcast,
-  li.movie {
-    width: 49%;
-    float: left;
-    margin-bottom: 30px;
-    text-align: center;
+  .albums {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
 
-    &:nth-child(2n+1) {
-      clear: left;
-      margin-right: 2%;
-    }
+  .album-tile {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: $s8;
+    text-align: center;
+    margin: 0 $s2 $s8;
   }
 
   a.see-more {
     text-align: center;
     display: inline-block;
-    padding: 0 1em;
+    padding: 0 $s6;
     border: 1px solid;
-    line-height: 3;
     text-decoration: none;
+    line-height: 60px; // override
+  }
+
+  section.thoughts {
+    margin-top: $s16;
   }
 }

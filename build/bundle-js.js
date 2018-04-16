@@ -28,7 +28,7 @@ module.exports = function bundleJS(dir, completionFlags, buildEvents) {
   function bundle(bundler) {
     // Add options to add to "base" bundler passed as parameter
     bundler
-      .transform(babelify, { presets: ['es2015', 'react'] })
+      .transform(babelify, { presets: ['env', 'react'] })
       .bundle()                               // Start bundle
       .on('error', (error) => { throw error; })
       .pipe(source(config.js.src))            // Entry point

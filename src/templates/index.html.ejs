@@ -3,6 +3,7 @@ title: "Home"
 altTitle: "Hi, I'm Brian."
 description: "Welcome to my home on the web."
 priority: 1.0
+withHead: true
 pageClasses:
   - 'main'
   - 'index'
@@ -14,16 +15,13 @@ styles:
 
 
 
-<section>
+<section class="intro">
   <div class="content">
     <header>
       <h2>Who am I?</h2>
     </header>
     <p>
-      Gosh, what a tough question. I don't have any idea. Here are a few descriptors that I like.
-    </p>
-    <p>
-      Musician, Front End Engineer, Brother, Husband, Son, Iowan, Californian, Curiousity enthusiast.
+      I am an Engineer at <a href="https://nest.com">Nest</a>/<a href="https://google.com">Google</a>. I have spent the past few years building and improving <a href="https://nest.com">nest.com</a>. Outside of work, I listen to music, play some instruments, do some camping, and more or less try to enjoy the life I lead.
     </p>
   </div>
 </section>
@@ -34,7 +32,7 @@ styles:
     <header>
       <h2>What I've been listening to.</h2>
       <p>
-        Music is a core part of my life. I am constantly looking for my next favorite album. I'm one of those nuts that listens to the same thing over and over until I get sick of it. I use Last.fm to keep track of my listening habits. Here are some of the albums that I have been listening to recently.
+        Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here are some of the albums that I have been listening to recently.
       </p>
     </header>
     <div id="ember-app">
@@ -45,6 +43,44 @@ styles:
         See more
       </a>
     </div>
+  </div>
+</section>
+
+
+<section class="thoughts">
+  <div class="content">
+    <header>
+      <h2>I have thoughts. Here are some recent ones.</h2>
+    </header>
+  </div>
+  <ul id="thoughts-list">
+    <%
+      const basePages = getChildPages('thoughts');
+      const newestPages = basePages.sort((pageA, pageB) => {
+        const dateA = new Date(pageA.data.date);
+        const dateB = new Date(pageB.data.date);
+        return (dateA < dateB) ? 1 : -1;
+      });
+      newestPages.slice(0,4).forEach(({ url, data: { date, description, title }}) => {
+    %>
+    <li itemscope itemtype="http://schema.org/BlogPosting">
+      <a itemprop="url" href="/<%- url %>">
+        <h3 itemprop="name"><%- title %></h3>
+          <figcaption itemprop="description">
+            <%- description %>
+          </figcaption>
+        <meta itemprop="author" content="Brian Anders"/>
+        <meta itemprop="datePublished" content="<%- date %>"/>
+        <meta itemprop="publisher" content="Brian Anders"/>
+      </a>
+    </li>
+    <% }); %>
+  </ul>
+  <div class="content center">
+    <a itemprop="url" href="/thoughts/"
+        class="see-more">
+      See more
+    </a>
   </div>
 </section>
 

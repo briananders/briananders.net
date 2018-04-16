@@ -1,0 +1,42 @@
+#thoughts-list {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+
+  li {
+    display: block;
+    margin: $s5 auto;
+    max-width: 640px;
+    padding: 0 $s5;
+
+    @include mq($tablet) {
+      @include columns(6);
+    }
+  }
+
+  figcaption {
+    @include font-size(5);
+  }
+
+  a,
+  a:visited {
+    color: $black;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    border-bottom-width: 5px;
+    @include transition(border-bottom-color 0.2s ease);
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-bottom-color: $purple;
+    }
+  }
+}

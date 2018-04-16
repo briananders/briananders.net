@@ -9,14 +9,10 @@
 answer, answer-array {
   display: block;
   text-align: center;
-  margin-top: 1em;
-  @include font-size(20);
-
-  @include mq(768px) {
-    @include font-size(20);
-  }
+  margin-top: $s6;
+  @include font-size(5);
 }
 
 input[type=number] {
-  @include font-size(18);
+  @include font-size(4);
 }
