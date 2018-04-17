@@ -3,7 +3,7 @@
 header.main-header {
   width: 100%;
   @include font-size();
-  margin-bottom: $s7;
+  margin-bottom: $spacer;
   font-family: $sans-serif;
   color: $black;
   overflow: hidden;

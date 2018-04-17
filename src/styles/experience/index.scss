@@ -55,9 +55,6 @@ section {
   &.anders-crane {
     background-color: #F5B547;
 
-    // a:visited {
-    //   color: $black;
-    // }
     h2 {
       background-color: #F5B547;
       background-image: url('/images/work/anders.png');
@@ -81,7 +78,11 @@ section {
       right: 0;
       top: 0;
       bottom: 0;
-      color: transparent;
+      color: transparent !important;
+
+      &::before {
+        height: 0;
+      }
     }
   }
 }
@@ -93,8 +94,6 @@ section {
 
 
 section.resources {
-  margin-top: $s10;
-
   ul {
     text-align: center;
     display: flex;
@@ -104,39 +103,16 @@ section.resources {
   }
   li {
     display: block;
-    background: $cloud;
+    background-color: $cloud;
     margin-bottom: $s2;
     margin-right: $s2;
+  }
 
-    a,
-    a:visited {
-      display: inline-block;
-      padding: $s2 $s4;
-      position: relative;
-      text-decoration: none;
-      @include transition(color .2s ease-out);
-
-      &:before {
-        position: absolute;
-        bottom: 0;
-        height: $s1;
-        background: $green;
-        content: "";
-        left: 51%;
-        right: 51%;
-        @include transition(left .2s ease-out, right .2s ease-out);
-      }
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: $black;
-
-        &:before {
-          left: 0;
-          right: 0;
-        }
-      }
-    }
+  a {
+    padding: $s2 $s4;
+    border-radius: $border-radius;
+    font-family: $sans-serif;
+    font-weight: 300;
+    @include font-size(4);
   }
 }

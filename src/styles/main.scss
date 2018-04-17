@@ -22,12 +22,12 @@ html {
   background-color: $white;
 
   ::selection {
-    background: $black;
+    background-color: $black;
     color: $cloud;
     @include text-shadow(none);
   }
   ::-moz-selection {
-    background: $black;
+    background-color: $black;
     color: $cloud;
     @include text-shadow(none);
   }
@@ -45,7 +45,7 @@ body {
   main {
     z-index: 1;
     position: relative;
-    @include transition(right 0.2s ease);
+    @include transition(right $time ease);
     right: 0;
   }
 }
@@ -53,17 +53,13 @@ body {
 main {
   overflow: hidden;
   margin: auto;
-  padding-top: $s8
-
-  section {
-    padding-top: $s10;
-    padding-bottom: $s10;
-  }
 }
 
 section {
   max-width: 1280px;
   margin: auto;
+  padding-top: $spacer;
+  padding-bottom: $spacer;
 }
 
 .content {
@@ -104,42 +100,96 @@ h1, h2, h3 {
 a,
 a:visited {
   color: $purple;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  @include transition(color $time ease-out);
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    background-color: $purple;
+    content: "";
+    left: 51%;
+    right: 51%;
+    @include transition(left $time ease-out, right $time ease-out);
+  }
 
   &:hover,
   &:focus,
   &:active {
-    color: inherit;
+    color: $black;
+
+    &::before {
+      left: 0;
+      right: 0;
+    }
 
     img {
       @include filter(hue-rotate(180deg));
-      @include transform(scale(1.05));
+      @include transform(scale(.98));
     }
   }
 
   img {
     @include filter(hue-rotate(0deg));
     @include transform(scale(1));
-    transition: filter 0.2s ease, transform 0.2s ease;
-    -webkit-transition: -webkit-filter 0.2s ease, -webkit-transform 0.2s ease;
-    -moz-transition: -moz-filter 0.2s ease, -moz-transform 0.2s ease;
-    -o-transition: -o-filter 0.2s ease, -o-transform 0.2s ease;
-    -ms-transition: -ms-filter 0.2s ease, -ms-transform 0.2s ease;
+            transition:         filter $time ease,         transform $time ease;
+         -o-transition:      -o-filter $time ease,      -o-transform $time ease;
+        -ms-transition:     -ms-filter $time ease,     -ms-transform $time ease;
+       -moz-transition:    -moz-filter $time ease,    -moz-transform $time ease;
+    -webkit-transition: -webkit-filter $time ease, -webkit-transform $time ease;
+  }
+
+}
+
+header.content {
+  padding-bottom: $spacer;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+a.button,
+a:visited.button,
+button.button {
+  text-align: center;
+  display: inline-block;
+  padding: $s2 $s6;
+  color: $white;
+  background-color: $purple;
+  border-radius: $border-radius;
+  text-decoration: none;
+  font-family: $sans-serif;
+  @include transition(background-color $time ease);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+    background-color: $black;
+  }
+
+  &::before {
+    height: 0;
   }
 }
 
 h1 {
   @include font-size(12);
-  margin-bottom: $s3;
+  margin-bottom: $s6;
 }
 
 h2 {
   @include font-size(8);
-  margin-bottom: $s3;
+  margin-bottom: $s4;
 }
 
 h3 {
   @include font-size(6);
-  margin-bottom: $s3;
+  margin-bottom: $s2;
 }
 
 img {
@@ -151,39 +201,18 @@ p {
   margin: auto;
   margin-bottom: $s6;
   @include font-size(5);
-
-  a,
-  a:visited {
-    position: relative;
-    text-decoration: none;
-    color: $purple;
-
-    &:before {
-      position: absolute;
-      bottom: 0;
-      content: '';
-      height: 1px;
-      background: $purple;
-      left: 51%;
-      right: 51%;
-      @include transition(left .2s ease, right .2s ease);
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      &:before {
-        left: 0;
-        right: 0;
-      }
-    }
-  }
 }
 
 select {
-  border-radius: $base-unit;
-  background: $white;
+  @include appearance(menulist);
+  border-radius: $border-radius;
+  background-color: $white;
   border: 1px solid $coin;
+}
+
+date {
+  text-align: right;
+  display: block;
 }
 
 label {
@@ -194,17 +223,13 @@ label {
 
 button, select {
   font-family: $sans-serif;
-  border-radius: $s1;
+  border-radius: $border-radius;
   background-color: $white;
   border: 1px solid $coin;
   @include font-size(4);
   line-height: 25px; // override
   padding: 0 $s3;
-  @include transition(background-color .2s ease);
-}
-
-select {
-  @include appearance(menulist);
+  @include transition(background-color $time ease);
 }
 
 button {
@@ -228,7 +253,7 @@ a, button, input, select, textarea {
 cite {
   float: right;
 
-  &:before {
+  &::before {
     display: inline;
     content: '-';
   }
@@ -240,10 +265,11 @@ blockquote {
   overflow: hidden;
   max-width: 500px;
   margin: auto;
+  margin-bottom: $s6;
   @include font-size(5);
 
-  &:after,
-  &:before {
+  &::after,
+  &::before {
     content: '"';
   }
 

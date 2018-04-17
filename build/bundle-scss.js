@@ -23,11 +23,17 @@ module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
       includePaths: [`${dir.src}styles/`],
       sourceMap: true,
     }, (error, result) => { // node-style callback from v3.0.0 onwards
-      if (error) throw error;
+      if (error) {
+        if (production) throw error;
+        else console.error(error);
+      }
       // No errors during the compilation, write this result on the disk
 
       mkdirp(path.dirname(outFile), (err) => {
-        if (err) throw err;
+        if (err) {
+          if (production) throw err;
+          else console.error(err);
+        }
         let cssOutput;
 
         if (production) {

@@ -1,10 +1,6 @@
 @import "lib/base-styles";
 @import "../modules/code";
 
-blockquote {
-  margin-bottom: $s6;
-}
-
 canvas {
   width: 100vw;
   max-width: 100vh;
@@ -12,7 +8,7 @@ canvas {
   max-height: 100vw;
   margin: auto;
   display: block;
-  background: lightgrey;
+  background-color: $cloud;
 }
 
 input[type=number] {
@@ -32,5 +28,5 @@ input[type=checkbox] {
 }
 
 #random-start {
-  margin-right: $s8;
+  margin-right: $s6;
 }

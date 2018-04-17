@@ -1,14 +1,14 @@
 nav.main {
-  background: $cloud;
+  background-color: $cloud;
   border-radius: 0;
   margin: 0;
-  @include transition(opacity .2s ease);
+  @include transition(opacity $time ease);
   z-index: 5;
   position: relative;
 
   .content {
     overflow: visible;
-    background: $cloud;
+    background-color: $cloud;
     border-bottom: 1px solid #1f1f1f;
     display: flex;
     justify-content: space-between;
@@ -26,7 +26,7 @@ nav.main {
   }
 
   .mobile-nav-links {
-    background: $cloud;
+    background-color: $cloud;
     z-index: -1;
     position: absolute;
     top: -100%;
@@ -61,7 +61,7 @@ nav.main {
       @include font-size(10);
       margin: 0;
 
-      &:before {
+      &::before {
         bottom: 0;
         height: 2px;
       }
@@ -70,28 +70,7 @@ nav.main {
 
   a,
   button {
-    position: relative;
     outline: none;
-
-    &:before {
-      position: absolute;
-      bottom: -4px;
-      height: 1px;
-      background: $purple;
-      content: "";
-      left: 51%;
-      right: 51%;
-      @include transition(left .2s ease-out, right .2s ease-out);
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      &:before {
-        left: 0;
-        right: 0;
-      }
-    }
   }
 
 

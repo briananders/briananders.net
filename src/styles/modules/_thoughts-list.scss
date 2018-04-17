@@ -7,7 +7,7 @@
 
   li {
     display: block;
-    margin: $s5 auto;
+    margin: 0 auto $s10;
     max-width: 640px;
     padding: 0 $s5;
 
@@ -27,16 +27,6 @@
     display: block;
     text-decoration: none;
     position: relative;
-    padding-bottom: 5px;
-    border-bottom-style: solid;
-    border-bottom-color: transparent;
-    border-bottom-width: 5px;
-    @include transition(border-bottom-color 0.2s ease);
-
-    &:hover,
-    &:focus,
-    &:active {
-      border-bottom-color: $purple;
-    }
+    padding-bottom: $s2;
   }
 }

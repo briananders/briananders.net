@@ -36,5 +36,25 @@ module.exports = (dir, pageMappingData) => {
         return false;
       });
     },
+
+    formattedDate(dateString) {
+      const monthName = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
+      const date = new Date(dateString);
+      const month = monthName[date.getMonth()];
+      return `${month} ${date.getFullYear()}`;
+    },
   };
 };

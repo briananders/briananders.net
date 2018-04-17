@@ -12,7 +12,10 @@ article {
   width: 100%;
   max-width: 240px;
   display: block;
-  padding-bottom: $s5;
+
+  h3 {
+    margin-bottom: $s2;
+  }
 
   h6 {
     @include font-size();
@@ -22,5 +25,7 @@ article {
 
   a {
     text-decoration: none;
+    padding-bottom: $s4;
+    margin-bottom: $s4;
   }
 }

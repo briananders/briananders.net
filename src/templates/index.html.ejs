@@ -39,7 +39,7 @@ styles:
     </div>
     <div class="center">
       <a itemprop="url" href="/thoughts/last-fm/"
-         class="see-more">
+         class="button">
         See more
       </a>
     </div>
@@ -66,11 +66,13 @@ styles:
     <li itemscope itemtype="http://schema.org/BlogPosting">
       <a itemprop="url" href="/<%- url %>">
         <h3 itemprop="name"><%- title %></h3>
-          <figcaption itemprop="description">
-            <%- description %>
-          </figcaption>
+        <figcaption itemprop="description">
+          <%- description %>
+        </figcaption>
+        <date itemprop="datePublished" content="<%- date %>">
+          <%- formattedDate(date) %>
+        </date>
         <meta itemprop="author" content="Brian Anders"/>
-        <meta itemprop="datePublished" content="<%- date %>"/>
         <meta itemprop="publisher" content="Brian Anders"/>
       </a>
     </li>
@@ -78,7 +80,7 @@ styles:
   </ul>
   <div class="content center">
     <a itemprop="url" href="/thoughts/"
-        class="see-more">
+        class="button">
       See more
     </a>
   </div>
