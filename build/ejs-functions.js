@@ -10,51 +10,49 @@ function squeakyClean(arr) {
   return arr;
 }
 
-module.exports = (dir, pageMappingData) => {
-  return {
-    partial(path, data) {
-      const newPath = `${dir.src}partials/${path}.ejs`;
+module.exports = (dir, pageMappingData) => ({
+  partial(path, data) {
+    const newPath = `${dir.src}partials/${path}.ejs`;
 
-      return ejs.render(fs.readFileSync(newPath).toString(), data, {
-        compileDebug: true,
-      });
-    },
+    return ejs.render(fs.readFileSync(newPath).toString(), data, {
+      compileDebug: true,
+    });
+  },
 
-    getChildPages(parentPath) {
-      return pageMappingData.filter((page) => {
-        const splitUrl = page.url.split('/');
-        squeakyClean(splitUrl);
-        const iOf = splitUrl.indexOf(parentPath);
-        const len = splitUrl.length - 1;
-        if (parentPath === '') {
-          return len === 0 && !page.url.includes('.html');
-        } else if (iOf === -1) {
-          return false;
-        } else if (len - iOf === 1) {
-          return true;
-        }
+  getChildPages(parentPath) {
+    return pageMappingData.filter((page) => {
+      const splitUrl = page.url.split('/');
+      squeakyClean(splitUrl);
+      const iOf = splitUrl.indexOf(parentPath);
+      const len = splitUrl.length - 1;
+      if (parentPath === '') {
+        return len === 0 && !page.url.includes('.html');
+      } else if (iOf === -1) {
         return false;
-      });
-    },
+      } else if (len - iOf === 1) {
+        return true;
+      }
+      return false;
+    });
+  },
 
-    formattedDate(dateString) {
-      const monthName = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ];
-      const date = new Date(dateString);
-      const month = monthName[date.getMonth()];
-      return `${month} ${date.getFullYear()}`;
-    },
-  };
-};
+  formattedDate(dateString) {
+    const monthName = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    const date = new Date(dateString);
+    const month = monthName[date.getMonth()];
+    return `${month} ${date.getFullYear()}`;
+  },
+});

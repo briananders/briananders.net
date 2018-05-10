@@ -4,6 +4,7 @@ const glob = require('glob');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const CleanCSS = require('clean-css');
+const notifier = require('node-notifier');
 
 module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
   const timestamp = require(`${dir.build}timestamp`);
@@ -25,35 +26,43 @@ module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
     }, (error, result) => { // node-style callback from v3.0.0 onwards
       if (error) {
         if (production) throw error;
-        else console.error(error);
-      }
-      // No errors during the compilation, write this result on the disk
-
-      mkdirp(path.dirname(outFile), (err) => {
-        if (err) {
-          if (production) throw err;
-          else console.error(err);
-        }
-        let cssOutput;
-
-        if (production) {
-          cssOutput = new CleanCSS().minify(result.css).styles;
-        } else {
-          cssOutput = result.css;
-        }
-
-        fs.writeFile(outFile, cssOutput, (e) => {
-          if (e) throw e;
-          console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
+        else {
+          console.error(error.formatted.red);
+          notifier.notify({
+            title: 'SASS Error',
+            message: error.formatted,
+          });
           processed++;
+        }
+      } else {
+        // No errors during the compilation, write this result on the disk
 
-          if (processed === array.length) {
-            console.log(`${timestamp.stamp()}: ${'STYLES DONE'.green.bold}`);
-            completionFlags.CSS_IS_MINIFIED = true;
-            buildEvents.emit('styles-moved');
+        mkdirp(path.dirname(outFile), (err) => {
+          if (err) {
+            if (production) throw err;
+            console.error(err);
           }
+          let cssOutput;
+
+          if (production) {
+            cssOutput = new CleanCSS().minify(result.css).styles;
+          } else {
+            cssOutput = result.css;
+          }
+
+          fs.writeFile(outFile, cssOutput, (e) => {
+            if (e) throw e;
+            console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
+            processed++;
+
+            if (processed === array.length) {
+              console.log(`${timestamp.stamp()}: ${'STYLES DONE'.green.bold}`);
+              completionFlags.CSS_IS_MINIFIED = true;
+              buildEvents.emit('styles-moved');
+            }
+          });
         });
-      });
+      }
     });
   });
 };

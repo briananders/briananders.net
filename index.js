@@ -73,14 +73,14 @@ if (!production) {
   fs.watch(`${dir.src}js/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
     bundleJS(dir, completionFlags, buildEvents);
   });
 
   fs.watch(`${dir.src}ember-app/dist/assets/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Ember: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: Ember: ${file}`.yellow);
     moveEmberJs(dir, completionFlags, buildEvents);
   });
 
@@ -88,7 +88,7 @@ if (!production) {
   fs.watch(`${dir.src}styles/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
     bundleSCSS(dir, completionFlags, buildEvents);
   });
 
@@ -96,7 +96,7 @@ if (!production) {
   fs.watch(`${dir.src}templates/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Template: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
     compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
@@ -104,7 +104,7 @@ if (!production) {
   fs.watch(`${dir.src}partials/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
     compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
@@ -112,7 +112,7 @@ if (!production) {
   fs.watch(`${dir.src}layout/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
     compilePageMappingData(dir, buildEvents, pageMappingData);
   });
 
@@ -120,7 +120,7 @@ if (!production) {
   fs.watch(`${dir.src}images/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: image: ${file}`);
+    console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
     moveImages(dir, completionFlags, buildEvents);
   });
 } else {

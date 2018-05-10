@@ -1,6 +1,4 @@
-// const fs = require('fs-extra');
-// const mkdirp = require('mkdirp');
-
+const notifier = require('node-notifier');
 const browserify = require('browserify');
 const watchify = require('watchify');
 const babelify = require('babelify');
@@ -12,6 +10,7 @@ const source = require('vinyl-source-stream');
 
 module.exports = function bundleJS(dir, completionFlags, buildEvents) {
   const timestamp = require(`${dir.build}timestamp`);
+  const production = require(`${dir.build}production`);
 
   const config = {
     js: {
@@ -30,7 +29,16 @@ module.exports = function bundleJS(dir, completionFlags, buildEvents) {
     bundler
       .transform(babelify, { presets: ['env', 'react'] })
       .bundle()                               // Start bundle
-      .on('error', (error) => { throw error; })
+      .on('error', (error) => {
+        if (production) throw error;
+        else {
+          console.error(error.message.red);
+          notifier.notify({
+            title: 'JavaScript Error',
+            message: error.message,
+          });
+        }
+      })
       .pipe(source(config.js.src))            // Entry point
       .pipe(buffer())                         // Convert to gulp pipeline
       .pipe(rename(config.js.outputFile))     // Rename output from 'main.js' to 'bundle.js'
