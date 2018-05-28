@@ -1,28 +1,21 @@
 main.index {
   @import "modules/thoughts-list";
 
-  #ember-app {
-    overflow: hidden;
-  }
-
-  ul {
-    overflow: hidden;
-  }
-
-  .albums {
+  .last-fm-module {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
   }
 
-  .album-tile {
+  .item {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
     text-align: center;
     margin: 0 $s2 $s4;
 
-    li.name {
+    .name {
+      display: block;
       @include font-size(6);
       font-family: $sans-serif;
       font-weight: 700;

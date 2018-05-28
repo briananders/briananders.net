@@ -29,8 +29,28 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
     const templateData = merge({}, ejsFunctions, siteData, frontMatter.data);
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
 
+    if (!production && !templateData.layout) {
+      const errorMessage = `You are missing a template definition in ${templatePath}`;
+      console.error(errorMessage.red);
+      notifier.notify({
+        title: 'Template undefined',
+        message: errorMessage
+      });
+      processed++;
+      return;
+    }
+
     fs.readFile(`${dir.src}layout/${templateData.layout}.ejs`, (error, data) => {
-      if (error) throw error;
+      if (error && production) throw error;
+      else if (error) {
+        console.error(error.message.red);
+        notifier.notify({
+          title: 'Template Error',
+          message: error.message,
+        });
+        processed++;
+        return;
+      }
 
       const fileData = data.toString();
       let html;
@@ -43,7 +63,6 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
           title: 'Template Error',
           message: e.message,
         });
-        debugger;
         html = `
           <html>
             <head></head>

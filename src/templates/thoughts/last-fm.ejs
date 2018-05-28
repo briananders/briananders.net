@@ -3,7 +3,6 @@ title: "Last-FM Scrobbles"
 description: "Music is a core part of my being. I am constantly looking for my next favorite album. I'm one of those nuts that listens to the same thing over and over until I get sick of it. I use Last.fm to keep track of my listening habits. Here are some of the albums that I have been listening to recently. Check 'em out."
 date: 2017-09-07
 priority: 0.8
-ember: true
 layout: base
 styles:
   - 'main'
@@ -18,4 +17,26 @@ styles:
   </cite>
 </blockquote>
 
-<section id="ember-app" class=""></section>
+<form class="content center">
+  <p>How far back do you want to see?</p>
+  <select name='period'>
+    <option value='7day'>1 week</option>
+    <option value='1month' selected>1 month</option>
+    <option value='3month'>3 months</option>
+    <option value='6month'>6 months</option>
+    <option value='12month'>1 year</option>
+    <option value='overall'>Forever</option>
+  </select>
+</form>
+
+
+
+<div class="overflow-hidden">
+  <h2>Top Albums</h2>
+  <div class='last-fm-module' data-type="albums"></div>
+</div>
+
+<div class="overflow-hidden">
+  <h2>Top Artists</h2>
+  <div class='last-fm-module' data-type="artists"></div>
+</div>

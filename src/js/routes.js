@@ -8,12 +8,13 @@ module.exports = {
   thoughts: {
     '*': require('./thoughts/all'),
     '/': require('./thoughts/index'),
+    '2d-automaton': require('./thoughts/2d-automaton'),
+    'cellular-automaton': require('./thoughts/cellular-automaton'),
     'last-fm': require('./thoughts/last-fm'),
     'mine-sweeper': require('./thoughts/mine-sweeper'),
+    'raining-paint': require('./thoughts/raining-paint'),
     'ten-star-movies': require('./thoughts/ten-star-movies'),
-    'using-canvas-to-make-patterns-with-circles': require('./thoughts/using-canvas'),
-    'cellular-automaton': require('./thoughts/cellular-automaton'),
-    '2d-automaton': require('./thoughts/2d-automaton'),
     'unique-stars': require('./thoughts/unique-stars'),
+    'using-canvas-to-make-patterns-with-circles': require('./thoughts/using-canvas'),
   },
 };

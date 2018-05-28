@@ -33,9 +33,12 @@
     }, {
       "enforceForRenamedProperties": false
     }],
-    "comma-dangle": [2, {
+    "comma-dangle": ["error", {
+      "arrays": "never",
       "objects": "always-multiline",
-      "function": "ignore"
+      "imports": "never",
+      "exports": "never",
+      "functions": "ignore"
     }],
     "no-confusing-arrow": [
       "warn",

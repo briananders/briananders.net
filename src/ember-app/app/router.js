@@ -9,7 +9,6 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('thoughts', function() {
     this.route('minesweeper');
-    this.route('last-fm');
   });
 });
 

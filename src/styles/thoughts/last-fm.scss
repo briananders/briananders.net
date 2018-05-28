@@ -16,9 +16,7 @@ blockquote {
   margin-top: $s10;
 }
 
-
-.albums,
-.artists {
+.last-fm-module {
   overflow: visible;
   display: flex;
   flex-wrap: wrap;
@@ -26,25 +24,22 @@ blockquote {
   align-items: flex-start;
 }
 
-.album-tile,
-.artist-tile {
+.item {
   display: block;
   float: left;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   margin: $s4;
 
-  .album,
-  .artist {
-    float: none;
-    width: 100%;
-  }
-
-  li.name {
+  .name {
+    display: block;
     @include font-size(6);
     font-family: $sans-serif;
     font-weight: 700;
     color: $black;
+    text-align: center;
+    width: 100%;
+    padding: $s2;
   }
 
   a,
@@ -56,15 +51,6 @@ blockquote {
     width: 100%;
   }
 
-  ul {
-    padding: $s4;
-    text-align: center;
-    float: none;
-    width: 100%;
-    padding: $s2;
-  }
-
-  li,
   h3 {
     margin: 0;
   }

@@ -162,6 +162,7 @@ const clean = new Promise((resolve, reject) => {
 
 clean.then(() => {
   console.log(`${timestamp.stamp()}: clean.then()`);
+  fs.mkdirp(dir.package);
   compilePageMappingData(dir, buildEvents, pageMappingData);
   bundleJS(dir, completionFlags, buildEvents);
   moveEmberJs(dir, completionFlags, buildEvents);

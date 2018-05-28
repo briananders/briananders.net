@@ -66,7 +66,7 @@ module.exports = {
         y = 1;
       }
       const radius = Math.floor(Math.random() * 50);
-      window.console.debug(`radius: ${radius}`);
+      console.debug(`radius: ${radius}`);
 
       // color
       const fill = new ColorObject();
@@ -301,7 +301,7 @@ module.exports = {
       pauseButton = document.getElementById('pause-button');
       clearButton = document.getElementById('clear-button');
       eraseButton = document.getElementById('erase-button');
-      canvas = document.getElementById('my-canvas');
+      canvas = document.getElementById('canvas');
 
       canvasContext = canvas.getContext('2d');
 
