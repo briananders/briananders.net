@@ -1,6 +1,4 @@
 function init() {
-  console.log('unique-stars init');
-
   const nInput = document.getElementById('n');
   const answerTag = document.querySelector('answer');
   const answerArrayTag = document.querySelector('answer-array');

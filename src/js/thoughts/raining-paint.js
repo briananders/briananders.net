@@ -1,6 +1,5 @@
 module.exports = {
   init() {
-    console.log('thoughts/raining-paint');
     const canvas = document.getElementById('canvas');
     const canvasContext = canvas.getContext('2d');
     const colorCheckbox = document.querySelector('input[name=color]');
@@ -43,15 +42,6 @@ module.exports = {
         canvasContext.fill();
         canvasContext.closePath();
       };
-
-      // console.info({
-      //   worldColor,
-      //   color: this.color,
-      //   radius: this.radius,
-      //   speed: this.speed,
-      //   x: this.x,
-      //   y: this.y,
-      // });
     }
 
     function toggleColor() {

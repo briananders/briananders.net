@@ -11,7 +11,8 @@
     "after": false,
     "afterEach": false,
     "document": true,
-    "window": true
+    "window": true,
+    "browser": true,
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,

@@ -1,7 +1,5 @@
 
 function init() {
-  console.debug('thoughts/cellular-automaton.js');
-
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -86,7 +84,6 @@ function init() {
     let then = runDate || 0;
 
     if (checkDate !== date) {
-      console.log('reset');
       return;
     }
 

@@ -11,7 +11,7 @@ module.exports = {
     '2d-automaton': require('./thoughts/2d-automaton'),
     'cellular-automaton': require('./thoughts/cellular-automaton'),
     'last-fm': require('./thoughts/last-fm'),
-    'mine-sweeper': require('./thoughts/mine-sweeper'),
+    'minesweeper': require('./thoughts/minesweeper/index'),
     'raining-paint': require('./thoughts/raining-paint'),
     'ten-star-movies': require('./thoughts/ten-star-movies'),
     'unique-stars': require('./thoughts/unique-stars'),

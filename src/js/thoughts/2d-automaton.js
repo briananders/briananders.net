@@ -1,7 +1,5 @@
 
 function init() {
-  console.debug('thoughts/2d-automaton.js');
-
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -96,7 +94,6 @@ function init() {
 
   function run(checkDate, then) {
     if (checkDate !== date) {
-      console.log('reset');
       return;
     }
 

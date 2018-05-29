@@ -16,14 +16,29 @@
     width: 100%;
     margin: auto;
 
-    &.beginner {
+    &[data-difficulty=beginner] {
       max-width: 400px;
+
+      .mine-sweeper-tile {
+        width: 100 / 8 * 1%;
+        padding-top: 100 / 8 * 1%;
+      }
     }
-    &.intermediate {
+    &[data-difficulty=intermediate] {
       max-width: 800px;
+
+      .mine-sweeper-tile {
+        width: 100 / 16 * 1%;
+        padding-top: 100 / 16 * 1%;
+      }
     }
-    &.expert {
+    &[data-difficulty=expert] {
       max-width: 1200px;
+
+      .mine-sweeper-tile {
+        width: 100 / 24 * 1%;
+        padding-top: 100 / 24 * 1%;
+      }
     }
   }
 
@@ -33,19 +48,19 @@
 
     @include transition(width 0.5s ease, max-width 0.5s ease);
 
-    &.beginner {
+    &[data-difficulty=beginner] {
       max-width: 400px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    &.intermediate {
+    &[data-difficulty=intermediate] {
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    &.expert {
+    &[data-difficulty=expert] {
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
@@ -89,118 +104,10 @@
     box-sizing: border-box;
   }
 
-  .column-count-eight {
-    width: 100px / 8px * 1%;
-    padding-top: 100px / 8px * 1%;
-  }
-  .column-count-nine {
-    width: 100px / 9px * 1%;
-    padding-top: 100px / 9px * 1%;
-  }
-  .column-count-ten {
-    width: 100px / 10px * 1%;
-    padding-top: 100px / 10px * 1%;
-  }
-  .column-count-eleven {
-    width: 100px / 11px * 1%;
-    padding-top: 100px / 11px * 1%;
-  }
-  .column-count-twelve {
-    width: 100px / 12px * 1%;
-    padding-top: 100px / 12px * 1%;
-  }
-  .column-count-thirteen {
-    width: 100px / 13px * 1%;
-    padding-top: 100px / 13px * 1%;
-  }
-  .column-count-fourteen {
-    width: 100px / 14px * 1%;
-    padding-top: 100px / 14px * 1%;
-  }
-  .column-count-fifteen {
-    width: 100px / 15px * 1%;
-    padding-top: 100px / 15px * 1%;
-  }
-  .column-count-sixteen {
-    width: 100px / 16px * 1%;
-    padding-top: 100px / 16px * 1%;
-  }
-  .column-count-seventeen {
-    width: 100px / 17px * 1%;
-    padding-top: 100px / 17px * 1%;
-  }
-  .column-count-eighteen {
-    width: 100px / 18px * 1%;
-    padding-top: 100px / 18px * 1%;
-  }
-  .column-count-nineteen {
-    width: 100px / 19px * 1%;
-    padding-top: 100px / 19px * 1%;
-  }
-  .column-count-twenty {
-    width: 100px / 20px * 1%;
-    padding-top: 100px / 20px * 1%;
-  }
-  .column-count-twenty-one {
-    width: 100px / 21px * 1%;
-    padding-top: 100px / 21px * 1%;
-  }
-  .column-count-twenty-two {
-    width: 100px / 22px * 1%;
-    padding-top: 100px / 22px * 1%;
-  }
-  .column-count-twenty-three {
-    width: 100px / 23px * 1%;
-    padding-top: 100px / 23px * 1%;
-  }
-  .column-count-twenty-four {
-    width: 100px / 24px * 1%;
-    padding-top: 100px / 24px * 1%;
-  }
-  .column-count-twenty-five {
-    width: 100px / 25px * 1%;
-    padding-top: 100px / 25px * 1%;
-  }
-
-  .row {
-    height: 0;
-
-    &.column-count-eight,
-    &.column-count-nine,
-    &.column-count-ten,
-    &.column-count-eleven,
-    &.column-count-twelve,
-    &.column-count-thirteen,
-    &.column-count-fourteen,
-    &.column-count-fifteen,
-    &.column-count-sixteen,
-    &.column-count-seventeen,
-    &.column-count-eighteen,
-    &.column-count-nineteen,
-    &.column-count-twenty,
-    &.column-count-twenty-one,
-    &.column-count-twenty-two,
-    &.column-count-twenty-three,
-    &.column-count-twenty-four,
-    &.column-count-twenty-five {
-      width: auto;
-    }
-
-    ul {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-
   .mine-sweeper-tile {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    display: block;
+    float: left;
+    height: 0;
     box-sizing: border-box;
 
     -webkit-user-select: none;  /* Chrome all / Safari all */
@@ -257,37 +164,11 @@
     background-position-y: 0%;
     background-position-x: 0;
 
-    &.one {
-      background-position-y: 0%;
-      background-position-x: 12.5%;
-    }
-    &.two {
-      background-position-y: 0%;
-      background-position-x: 25%;
-    }
-    &.three {
-      background-position-y: 0%;
-      background-position-x: 37.5%;
-    }
-    &.four {
-      background-position-y: 0%;
-      background-position-x: 50%;
-    }
-    &.five {
-      background-position-y: 0%;
-      background-position-x: 62.5%;
-    }
-    &.six {
-      background-position-y: 0%;
-      background-position-x: 75%;
-    }
-    &.seven {
-      background-position-y: 0%;
-      background-position-x: 87.5%;
-    }
-    &.eight {
-      background-position-y: 0%;
-      background-position-x: 100%;
+    @for $i from 1 through 8 {
+      &[data-value="#{$i}"] {
+        background-position-y: 0%;
+        background-position-x: percentage($i / 8);
+      }
     }
   }
 
@@ -308,35 +189,10 @@
     height: 69px;
     background-position-y: 55.5%;
 
-    &.number-0 {
-      background-position-x: 892px/90px * 0%;
-    }
-    &.number-1 {
-      background-position-x: 892px/90px * 1%;
-    }
-    &.number-2 {
-      background-position-x: 892px/90px * 2%;
-    }
-    &.number-3 {
-      background-position-x: 892px/90px * 3%;
-    }
-    &.number-4 {
-      background-position-x: 892px/90px * 4%;
-    }
-    &.number-5 {
-      background-position-x: 892px/90px * 5%;
-    }
-    &.number-6 {
-      background-position-x: 892px/90px * 6%;
-    }
-    &.number-7 {
-      background-position-x: 892px/90px * 7%;
-    }
-    &.number-8 {
-      background-position-x: 892px/90px * 8%;
-    }
-    &.number-9 {
-      background-position-x: 892px/90px * 9%;
+    @for $i from 0 through 9 {
+      &[data-number="#{$i}"] {
+        background-position-x: 892px / 90px * $i * 1%;
+      }
     }
   }
 

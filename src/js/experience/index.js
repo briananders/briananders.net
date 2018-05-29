@@ -1,5 +1,5 @@
 module.exports = {
-  init: function() {
-    console.debug("experience/index.js");
-  }
-}
+  init() {
+    console.debug('experience/index.js');
+  },
+};

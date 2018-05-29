@@ -2,7 +2,6 @@ const itemApi = require('./_modules/last-fm/item-api');
 
 module.exports = {
   init() {
-    console.debug('index.js');
     itemApi.init({
       count: 4,
       description: false,

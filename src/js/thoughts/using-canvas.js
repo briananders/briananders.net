@@ -1,15 +1,5 @@
 module.exports = {
   init() {
-    console.debug('canvas.js');
-
-
-    // //////////////////////////////////////////////////////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-    // //////////////////////////// PRIVATE VARIABLES ///////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-
-
     let canvasContext;
     let canvas;
     let circles = [];
@@ -21,14 +11,6 @@ module.exports = {
     let eraseButton;
     let paused = true;
     let pauseButton;
-
-
-    // //////////////////////////////////////////////////////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-    // ///////////////////////////////// CLASSES ////////////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-    // //////////////////////////////////////////////////////////////////////////////
-
 
     function ColorObject() {
       function randomColor() {
@@ -42,16 +24,10 @@ module.exports = {
       const average = Math.floor((red + green + blue) / 3);
 
       this.alpha = alpha;
-      this.rgb = function () {
-        return `rgba(${red},${green},${blue},${this.alpha})`;
-      };
-      this.gray = function () {
-        return `rgba(${average},${average},${average},${this.alpha})`;
-      };
-      this.random = function () {
-        return `rgba(${randomColor()},${randomColor()},${randomColor()},${this.alpha})`;
-      };
-      this.resetAlpha = function () {
+      this.rgb = () => `rgba(${red},${green},${blue},${this.alpha})`;
+      this.gray = () => `rgba(${average},${average},${average},${this.alpha})`;
+      this.random = () => `rgba(${randomColor()},${randomColor()},${randomColor()},${this.alpha})`;
+      this.resetAlpha = () => {
         this.alpha = alpha;
       };
     }
@@ -66,7 +42,6 @@ module.exports = {
         y = 1;
       }
       const radius = Math.floor(Math.random() * 50);
-      console.debug(`radius: ${radius}`);
 
       // color
       const fill = new ColorObject();
@@ -78,7 +53,7 @@ module.exports = {
       let yVelocity = (Math.random() - 0.5) * speed;
 
 
-      this.draw = function () {
+      this.draw = () => {
         canvasContext.beginPath();
         canvasContext.arc(x, y, radius, 0, 2 * Math.PI, false);
 
@@ -125,7 +100,7 @@ module.exports = {
       };
 
 
-      this.update = function () {
+      this.update = () => {
         if ((y + yVelocity) < radius) {
           yVelocity = Math.abs(yVelocity);
         } else if ((y + yVelocity) > (canvas.height - radius)) {
@@ -144,7 +119,7 @@ module.exports = {
       };
 
 
-      this.updateAlphaBorder = function () {
+      this.updateAlphaBorder = () => {
         if (alphaBorder.checked) {
           border.resetAlpha();
         } else {
@@ -153,7 +128,7 @@ module.exports = {
       };
 
 
-      this.updateAlphaFill = function () {
+      this.updateAlphaFill = () => {
         if (alphaFill.checked) {
           fill.resetAlpha();
         } else {
