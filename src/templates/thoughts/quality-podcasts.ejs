@@ -43,16 +43,6 @@ styles:
         wiki: "https://en.wikipedia.org/wiki/Reply_All_(podcast)",
         description: "Reply All is a podcast in the <a href='https://gimletmedia.com/'>Gimlet Media</a> family of podcasts. Hosted by PJ Vogt and Alex Goldman, Reply All takes a look at all things technology. In actuality, they just cover all things... Technology optional. I enjoy listening to them cover a wide variety of topics. They recently had an excellent episode called 'What Kind of Idiot Gets Phished?' that covers just how tricky phishing schemes can be. The short takes on it are 1) check, and double check the FROM field on an email, and 2) two-factor auth can be beaten.</p><p>This podcast is pretty young, having only been on-the-air since November 2014. At the writing of this, they're at episode 99.",
       }, {
-        name: "Crimetown",
-        imgUrl: "/images/thoughts/quality-podcasts/crimetown.png",
-        url: "https://gimletmedia.com/crimetown/",
-        wiki: "https://en.wikipedia.org/wiki/Gimlet_Media#Crimetown",
-      }, {
-        name: "Startup",
-        imgUrl: "/images/thoughts/quality-podcasts/startup.png",
-        url: "https://gimletmedia.com/startup/",
-        wiki: "https://en.wikipedia.org/wiki/StartUp_(podcast)",
-      }, {
         name: "Radio Lab",
         imgUrl: "/images/thoughts/quality-podcasts/radio-lab.png",
         url: "http://www.radiolab.org/",
@@ -70,21 +60,30 @@ styles:
         wiki: "https://en.wikipedia.org/wiki/Freakonomics_Radio",
         description: "A show where they 'explore the hidden side of everything', Freakonomics is a fun and interesting radio show that will take a look at anything. But really, it's a look at anything through the lense of behavioral economics. Inspired by the book of the same name, economist Steven Levitt and journalist Stephen Dubner, expand upon their book (now books) through the flexible format of audio. In the show, they have interviews with people of all backgrounds. These shows are often a bit longer, but the extra time is well worth it. One episode that I recommend is about sunk costs and opportunity costs through a lense that we can all understand. 'The Upside of Quitting' confronts the idea that 'winners never quit', and question the accuracy of that concept.",
       }, {
+        name: "Revisionist History",
+        imgUrl: "/images/thoughts/quality-podcasts/revisionist-history.jpg",
+        url: "http://http://revisionisthistory.com/",
+        wiki: "https://en.wikipedia.org/wiki/Revisionist_History_(podcast)",
+      }, {
         name: "99% Invisible",
         imgUrl: "/images/thoughts/quality-podcasts/99-invisible.png",
         url: "http://99percentinvisible.org/",
         wiki: "https://en.wikipedia.org/wiki/99%25_Invisible",
       }, {
-        name: "This Developer's Life",
-        imgUrl: "/images/thoughts/quality-podcasts/this-developer-s-life.jpg",
-        url: "http://thisdeveloperslife.com/",
+        name: "Startup",
+        imgUrl: "/images/thoughts/quality-podcasts/startup.png",
+        url: "https://gimletmedia.com/startup/",
+        wiki: "https://en.wikipedia.org/wiki/StartUp_(podcast)",
+      }, {
+        name: "Crimetown",
+        imgUrl: "/images/thoughts/quality-podcasts/crimetown.png",
+        url: "https://gimletmedia.com/crimetown/",
+        wiki: "https://en.wikipedia.org/wiki/Gimlet_Media#Crimetown",
       }
     ];
 
-    for(let i = 0; i < podcasts.length; i++) {
-      var podcast = podcasts[i];
+    podcasts.forEach(podcast => {
   %>
-
     <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase() %>">
       <header>
         <img src="<%- podcast.imgUrl %>" />
@@ -112,5 +111,5 @@ styles:
         <% } %>
       </p>
     </section>
-  <% } %>
+  <% }); %>
 </article>

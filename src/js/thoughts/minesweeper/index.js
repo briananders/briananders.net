@@ -110,8 +110,10 @@ function MineSquare([row, column], element) {
 
   const rightClicked = (e) => {
     if (e) e.preventDefault();
-    this.hasFlag = !this.hasFlag;
-    document.body.dispatchEvent(events.reRender);
+    if (!this.isRevealed) {
+      this.hasFlag = !this.hasFlag;
+      document.body.dispatchEvent(events.reRender);
+    }
   };
 
   const revealPrivate = () => {
