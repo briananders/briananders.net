@@ -47,6 +47,10 @@
   box-sizing: $arg;
 }
 
+@mixin box {
+  @include box-sizing(border-box);
+}
+
 @mixin box-shadow($args...) {
   -webkit-box-shadow: $args;
   -moz-box-shadow:    $args;

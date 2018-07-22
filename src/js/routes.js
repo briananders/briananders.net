@@ -12,6 +12,7 @@ module.exports = {
     'cellular-automaton': require('./thoughts/cellular-automaton'),
     'last-fm': require('./thoughts/last-fm'),
     'minesweeper': require('./thoughts/minesweeper/index'),
+    'paint': require('./thoughts/paint'),
     'raining-paint': require('./thoughts/raining-paint'),
     'ten-star-movies': require('./thoughts/ten-star-movies'),
     'unique-stars': require('./thoughts/unique-stars'),
