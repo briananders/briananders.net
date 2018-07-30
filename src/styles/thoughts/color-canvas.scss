@@ -1,0 +1,14 @@
+@import "lib/base-styles";
+
+canvas {
+  width: 100vw;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  height: calc(100vh - 50px);
+  background-color: white;
+}
+
+input {
+  width: 100vw;
+  height: 50px;
+}

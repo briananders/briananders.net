@@ -13,21 +13,25 @@ styles:
   Your browser does not support the canvas tag!
 </canvas>
 
-<div class="color-pallette">
-  <main-color class="color" data-color="black"></main-color>
-  <color-sample class="color" data-color="black"></color-sample>
-  <color-sample class="color" data-color="white"></color-sample>
-  <color-sample class="color" data-color="grey"></color-sample>
-  <color-sample class="color" data-color="red"></color-sample>
-  <color-sample class="color" data-color="orange"></color-sample>
-  <color-sample class="color" data-color="yellow"></color-sample>
-  <color-sample class="color" data-color="blue"></color-sample>
-  <color-sample class="color" data-color="green"></color-sample>
-  <color-sample class="color" data-color="indigo"></color-sample>
-  <color-sample class="color" data-color="violet"></color-sample>
-</div>
+<div class="content">
+  <div class="color-pallette">
+    <main-color class="color"></main-color>
+    <%# colors filled by js %>
+  </div>
 
-<div class="stroke-size-pallette">
-  <main-stroke></main-stroke>
-  <input id='stroke-slider' type="range" min="1" max="20" value="5" step="1">
+  <div class="stroke-size-pallette">
+    <main-stroke>
+      <span>1px</span>
+    </main-stroke>
+    <input id='stroke-slider' type="range" min="1" max="200" value="5" step="1">
+  </div>
+
+  <div class='shape-pallette'>
+    <label>
+      <input type=radio name=shape value=circle checked=checked /> Circle
+    </label>
+    <label>
+      <input type=radio name=shape value=square /> Square
+    </label>
+  </div>
 </div>
