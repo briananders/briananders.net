@@ -2,85 +2,67 @@ module.exports = {
   init() {
     const canvas = document.getElementById('canvas');
     const canvasContext = canvas.getContext('2d');
-    const blueSlider = document.getElementById('blue-slider');
-    const blueValue = document.getElementById('blue-value');
-    let squareWidth;
-    let squareHeight;
-    let b = 0;
-    let isSliding = false;
-
-    function decToHex(dec) {
-      const numbers = '0123456789abcdef';
-      let remainder = dec;
-      let hex = '';
-
-      for (let i = 1; i >= 0; i--) {
-        const a = remainder / (16 ** i);
-        remainder %= 16 ** i;
-        hex += numbers.charAt(a);
-      }
-
-      return hex;
-    }
+    const steps = 32; // squares per color spectrum
+    const squareMax = 256;
 
     function setCanvasDimensions() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-
-      squareWidth = canvas.width / 255;
-      squareHeight = canvas.height / 255;
+      canvas.width = steps ** 2;
+      canvas.height = steps;
     }
 
-    function draw(r, g) {
+    function draw(r, g, b) { // 0-256 for each
       canvasContext.beginPath();
-      canvasContext.rect(r * squareWidth, g * squareHeight, squareWidth, squareHeight, false);
-      // canvasContext.fillStyle = `#${decToHex(r)}${decToHex(g)}${decToHex(b)}`;
+      canvasContext.rect(
+        (((r * (steps ** 1)) + (g * (steps ** 0))) / squareMax) * steps,
+        (b / squareMax) * steps,
+        1,
+        1,
+        false
+      );
       canvasContext.fillStyle = `rgb(${r},${g},${b})`;
       canvasContext.fill();
       canvasContext.closePath();
     }
 
-    function drawSpectrum() {
-      console.log('drawSpectrum');
-      for (let r = 0; r < 256; r++) {
-        for (let g = 0; g < 256; g++) {
-          draw(r, g, b);
-        }
+    function drawSpectrum(r, g, b) {
+      draw(r, g, b);
+
+      b += (squareMax / steps);
+
+      if (b > squareMax) {
+        g += (squareMax / steps);
+        b = 0;
       }
-    }
 
-    function updateBlue() {
-      b = Number(blueSlider.value);
-      blueValue.innerHTML = b;
-      drawSpectrum();
-    }
-
-    function updateSlider() {
-      if (isSliding) {
-        updateBlue();
-
-        window.requestAnimationFrame(updateSlider, 100);
+      if (g > squareMax) {
+        r += (squareMax / steps);
+        g = 0;
       }
-    }
 
-    function slideOn() {
-      isSliding = true;
-      updateSlider();
-    }
-
-    function slideOff() {
-      isSliding = false;
+      if (!(r >= squareMax && g >= squareMax && b >= squareMax)) {
+        window.setTimeout(() => {
+          drawSpectrum(r, g, b);
+        }, 0);
+      } else {
+        console.log(r, g, b);
+      }
     }
 
     function addEventListeners() {
-      blueSlider.addEventListener('mousedown', slideOn, false);
-      blueSlider.addEventListener('mouseup', slideOff, false);
+      document.addEventListener('draw', (evt) => {
+        draw(...evt.detail);
+      });
     }
 
     setCanvasDimensions();
     addEventListeners();
-    updateBlue();
-    drawSpectrum();
+    // updateBlue();
+    drawSpectrum(0, 0, 0);
+    console.info({
+      steps,
+      canvasWidth: canvas.width,
+      canvasHeight: canvas.height,
+    });
   },
 };
 
