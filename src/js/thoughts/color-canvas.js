@@ -1,68 +1,86 @@
 module.exports = {
   init() {
-    const canvas = document.getElementById('canvas');
-    const canvasContext = canvas.getContext('2d');
-    const steps = 32; // squares per color spectrum
+    const steps = 64; // squares per color spectrum
     const squareMax = 256;
+    const contentElement = document.getElementById('canvas-holder');
+    const blueSlider = document.getElementById('blue-slider');
+    let canSlide = false;
 
-    function setCanvasDimensions() {
-      canvas.width = steps ** 2;
+    blueSlider.setAttribute('step', squareMax / steps);
+    blueSlider.setAttribute('max', squareMax);
+
+    function setCanvasDimensions(canvas) {
+      canvas.width = steps;
       canvas.height = steps;
     }
 
-    function draw(r, g, b) { // 0-256 for each
-      canvasContext.beginPath();
-      canvasContext.rect(
-        (((r * (steps ** 1)) + (g * (steps ** 0))) / squareMax) * steps,
-        (b / squareMax) * steps,
+    function draw(context, r, g, b) { // 0-256 for each
+      context.beginPath();
+      context.rect(
+        (r / squareMax) * steps,
+        (g / squareMax) * steps,
         1,
         1,
         false
       );
-      canvasContext.fillStyle = `rgb(${r},${g},${b})`;
-      canvasContext.fill();
-      canvasContext.closePath();
+      context.fillStyle = `rgb(${r},${g},${b})`;
+      context.fill();
+      context.closePath();
     }
 
-    function drawSpectrum(r, g, b) {
-      draw(r, g, b);
+    function drawSpectrum(context, r, g, b) {
+      draw(context, r, g, b);
 
-      b += (squareMax / steps);
-
-      if (b > squareMax) {
-        g += (squareMax / steps);
-        b = 0;
-      }
+      g += (squareMax / steps);
 
       if (g > squareMax) {
         r += (squareMax / steps);
         g = 0;
       }
 
-      if (!(r >= squareMax && g >= squareMax && b >= squareMax)) {
-        window.setTimeout(() => {
-          drawSpectrum(r, g, b);
-        }, 0);
+      if (!(r >= squareMax && g >= squareMax)) {
+        drawSpectrum(context, r, g, b);
       } else {
-        console.log(r, g, b);
+        console.log(`${b} Done`);
       }
     }
 
-    function addEventListeners() {
-      document.addEventListener('draw', (evt) => {
-        draw(...evt.detail);
-      });
+    function newCanvas(blue) {
+      const canvas = document.createElement('canvas');
+      canvas.dataset.blue = blue;
+      const canvasContext = canvas.getContext('2d');
+      contentElement.appendChild(canvas);
+
+      setCanvasDimensions(canvas);
+      drawSpectrum(canvasContext, 0, 0, blue);
     }
 
-    setCanvasDimensions();
-    addEventListeners();
-    // updateBlue();
-    drawSpectrum(0, 0, 0);
-    console.info({
-      steps,
-      canvasWidth: canvas.width,
-      canvasHeight: canvas.height,
+    function iterator(blue) {
+      console.log(`iterator ${blue}`);
+      newCanvas(blue);
+
+      if (blue < squareMax) {
+        window.setTimeout(() => {
+          iterator(blue + (squareMax / steps));
+        }, 10);
+      }
+    }
+
+    function updateSlider() {
+      contentElement.dataset.blue = blueSlider.value;
+      if (canSlide) window.requestAnimationFrame(updateSlider);
+    }
+
+    blueSlider.addEventListener('mousedown', () => {
+      canSlide = true;
+      updateSlider();
     });
+    blueSlider.addEventListener('mouseup', () => {
+      canSlide = false;
+    });
+
+    iterator(0);
+    contentElement.dataset.blue = 0;
   },
 };
 
