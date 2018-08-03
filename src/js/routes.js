@@ -13,6 +13,7 @@ module.exports = {
     'last-fm': require('./thoughts/last-fm'),
     'minesweeper': require('./thoughts/minesweeper/index'),
     'paint': require('./thoughts/paint'),
+    'earth-rotating-sprite-animation': require('./thoughts/earth-rotating-sprite-animation'),
     'color-canvas': require('./thoughts/color-canvas'),
     'raining-paint': require('./thoughts/raining-paint'),
     'ten-star-movies': require('./thoughts/ten-star-movies'),

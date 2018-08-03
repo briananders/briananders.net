@@ -4,6 +4,7 @@ module.exports = {
 
   init() {
     this.setupNavEvents();
+    this.testForTouch();
   },
 
   setupNavEvents() {
@@ -16,6 +17,14 @@ module.exports = {
         mainNavContent.classList.add('mobile-active');
       }
     });
+  },
+
+  testForTouch() {
+    if ('ontouchstart' in document.documentElement) {
+      document.documentElement.classList.add('touch-events');
+    } else {
+      document.documentElement.classList.add('no-touch-events');
+    }
   },
 
 };

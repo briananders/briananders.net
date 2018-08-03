@@ -1,0 +1,57 @@
+@import "lib/base-styles";
+
+// 1024 × 341
+$sprite-width: 1024px;
+$sprite-height: 341px;
+$x-max: 12;
+$y-max: 4;
+$frame-width: $sprite-width / $x-max;
+$frame-height: $sprite-height / $y-max;
+
+#frame-container {
+  width: round($frame-width);
+  height: round($frame-height);
+  background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite.jpg');
+  margin: auto;
+  border-radius: 100%;
+
+  @for $frame from 0 to ($y-max * $x-max) {
+    &[data-number="#{$frame}"] {
+      $x-position: 1 - round(($frame % $x-max) * $frame-width);
+      $y-position: 1 - round(floor($frame / $x-max) * $frame-height);
+      background-position: #{$x-position} #{$y-position};
+    }
+  }
+}
+
+#frame-slider {
+  margin: $s10 auto 0;
+  display: block;
+  width: 90%;
+  max-width: 240px;
+
+  html.no-touch-events & {
+    display: none;
+  }
+}
+
+
+ul {
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 24px;
+}
+
+code, var {
+  font-family: courier;
+  display: inline-block;
+  border: 1px solid #adacac;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  background-color: #f5f4f4;
+}
+
+code {
+  max-width: 100%;
+  overflow: auto;
+}

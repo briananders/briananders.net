@@ -110,12 +110,6 @@ module.exports = {
       document.body.appendChild(styleElement);
     }
 
-    function drawCanvas() {
-      canvasContext.save();
-
-      canvasContext.restore();
-    }
-
     function drawLine(x1, y1, x2, y2) {
       canvasContext.beginPath();
       canvasContext.strokeStyle = currentColor.code;
@@ -180,21 +174,6 @@ module.exports = {
     }
 
 
-    function slideOn() {
-      isSliding = true;
-      updateSlider();
-    }
-
-    function slideOff() {
-      isSliding = false;
-    }
-
-
-    function clear() {
-      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-
     function updateColor() {
       mainColor.dataset.color = currentColor.name;
     }
@@ -203,6 +182,26 @@ module.exports = {
     function updateStroke() {
       mainStroke.dataset.stroke = diameter;
       mainStroke.querySelector('span').innerHTML = `${diameter}px`;
+    }
+
+
+    function updateSlider() {
+      if (isSliding) {
+        diameter = strokeSlider.value;
+        updateStroke();
+
+        window.requestAnimationFrame(updateSlider, 100);
+      }
+    }
+
+
+    function slideOn() {
+      isSliding = true;
+      updateSlider();
+    }
+
+    function slideOff() {
+      isSliding = false;
     }
 
 
@@ -219,16 +218,6 @@ module.exports = {
           updateColor();
         }, false);
       });
-    }
-
-
-    function updateSlider() {
-      if (isSliding) {
-        diameter = strokeSlider.value;
-        updateStroke();
-
-        window.requestAnimationFrame(updateSlider, 100);
-      }
     }
 
 

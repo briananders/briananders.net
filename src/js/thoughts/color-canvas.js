@@ -4,70 +4,54 @@ module.exports = {
     const squareMax = 256;
     const contentElement = document.getElementById('canvas-holder');
     const blueSlider = document.getElementById('blue-slider');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
     let canSlide = false;
+    let blue;
+    contentElement.appendChild(canvas);
 
     blueSlider.setAttribute('step', squareMax / steps);
     blueSlider.setAttribute('max', squareMax);
 
-    function setCanvasDimensions(canvas) {
+    function setCanvasDimensions() {
       canvas.width = steps;
       canvas.height = steps;
     }
 
-    function draw(context, r, g, b) { // 0-256 for each
-      context.beginPath();
-      context.rect(
+    function draw(r, g, b) { // 0-256 for each
+      context.fillStyle = `rgb(${r},${g},${b})`;
+      context.fillRect(
         (r / squareMax) * steps,
         (g / squareMax) * steps,
         1,
         1,
         false
       );
-      context.fillStyle = `rgb(${r},${g},${b})`;
-      context.fill();
-      context.closePath();
     }
 
-    function drawSpectrum(context, r, g, b) {
-      draw(context, r, g, b);
+    function drawLoop(r, g, b) {
+      draw(r, g, b);
 
-      g += (squareMax / steps);
+      g += Math.floor(squareMax / steps);
 
-      if (g > squareMax) {
-        r += (squareMax / steps);
+      if (g >= squareMax) {
+        r += Math.floor(squareMax / steps);
         g = 0;
       }
 
-      if (!(r >= squareMax && g >= squareMax)) {
-        drawSpectrum(context, r, g, b);
+      if (r < squareMax) {
+        drawLoop(r, g, b);
       } else {
         console.log(`${b} Done`);
       }
     }
 
-    function newCanvas(blue) {
-      const canvas = document.createElement('canvas');
-      canvas.dataset.blue = blue;
-      const canvasContext = canvas.getContext('2d');
-      contentElement.appendChild(canvas);
-
-      setCanvasDimensions(canvas);
-      drawSpectrum(canvasContext, 0, 0, blue);
-    }
-
-    function iterator(blue) {
-      console.log(`iterator ${blue}`);
-      newCanvas(blue);
-
-      if (blue < squareMax) {
-        window.setTimeout(() => {
-          iterator(blue + (squareMax / steps));
-        }, 10);
-      }
-    }
-
     function updateSlider() {
-      contentElement.dataset.blue = blueSlider.value;
+      const newBlue = Number(blueSlider.value);
+      if (newBlue !== blue) {
+        blue = newBlue;
+        drawLoop(0, 0, blue);
+      }
       if (canSlide) window.requestAnimationFrame(updateSlider);
     }
 
@@ -79,8 +63,8 @@ module.exports = {
       canSlide = false;
     });
 
-    iterator(0);
-    contentElement.dataset.blue = 0;
+    setCanvasDimensions();
+    updateSlider();
   },
 };
 
