@@ -36,7 +36,7 @@ module.exports = {
       canSlide = false;
     });
 
-    document.documentElement.addEventListener('touchmove', (event) => {
+    document.documentElement.addEventListener('mousemove', (event) => {
       number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
       frameContainer.dataset.number = number;
     });
