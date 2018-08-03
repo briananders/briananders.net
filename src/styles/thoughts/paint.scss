@@ -1,26 +1,5 @@
 @import "lib/base-styles";
 
-$colors: (
-  white: white,
-  black: black,
-  grey: grey,
-  red: red,
-  orange: orange,
-  yellow: yellow,
-  green: green,
-  blue: blue,
-  indigo: indigo,
-  violet: violet,
-);
-
-@mixin set-color-classes {
-  @each $color, $code in $colors {
-    &[data-color=#{$color}] {
-      background-color: $code;
-    }
-  }
-}
-
 canvas {
   width: 100vw;
   border: 1px solid gray;
@@ -29,15 +8,23 @@ canvas {
   background-color: white;
 }
 
+.shape-pallette {
+  display: none;
+}
+
+.stroke-size-pallette,
+.shape-pallette,
 .color-pallette {
+  margin-left: 30px;
+  margin-right: 30px;
+  max-width: 430px;
+  margin-top: 10px;
   position: relative;
   padding-left: 50px;
-  margin-left: 30px;
   height: 50px;
 
-  main-color {
-    @include set-color-classes;
-
+  main-color,
+  main-stroke {
     box-shadow: inset 0 0 1px;
     width: 50px;
     height: 50px;
@@ -46,6 +33,9 @@ canvas {
     left: 0;
     border: 2px solid white;
   }
+}
+
+.color-pallette {
   color-sample {
     display: block;
     width: 25px;
@@ -55,19 +45,10 @@ canvas {
     border: 2px solid white;
     box-shadow: inset 0 0 1px;
     cursor: pointer;
-
-    @include set-color-classes;
   }
 }
 
 main-stroke {
-  width: 50px;
-  height: 50px;
-  display: block;
-  position: relative;
-  box-shadow: inset 0 0 1px;
-  float: left;
-
   &::after {
     content: '';
     display: block;
@@ -76,14 +57,18 @@ main-stroke {
     @include transform(translate(-50%, -50%));
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: calc(50% - 8px);
+    height: 15px;
+    width: 15px;
   }
 
-  @for $i from 1 to 50 {
-    &[data-stroke="#{$i}"]::after {
-      width: #{$i + 2}px;
-      height: #{$i + 2}px;
-    }
+  span {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
   }
 }
 
@@ -91,4 +76,5 @@ main-stroke {
   float: left;
   height: 50px;
   margin: 0 15px;
+  width: calc(100% - 37px);
 }

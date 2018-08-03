@@ -1,14 +1,10 @@
 /* globals document */
 
-const fmt = require('simple-fmt');
-
 module.exports = {
 
   init() {
-    const variation = Math.floor(Math.random() * 7);
-    document.body.classList.add(fmt('variation-{0}', variation));
-
     this.setupNavEvents();
+    this.testForTouch();
   },
 
   setupNavEvents() {
@@ -21,6 +17,14 @@ module.exports = {
         mainNavContent.classList.add('mobile-active');
       }
     });
+  },
+
+  testForTouch() {
+    if ('ontouchstart' in document.documentElement) {
+      document.documentElement.classList.add('touch-events');
+    } else {
+      document.documentElement.classList.add('no-touch-events');
+    }
   },
 
 };
