@@ -41,8 +41,6 @@ module.exports = {
 
       if (r < squareMax) {
         drawLoop(r, g, b);
-      } else {
-        console.log(`${b} Done`);
       }
     }
 
@@ -55,13 +53,19 @@ module.exports = {
       if (canSlide) window.requestAnimationFrame(updateSlider);
     }
 
-    blueSlider.addEventListener('mousedown', () => {
+    function slideOn() {
       canSlide = true;
       updateSlider();
-    });
-    blueSlider.addEventListener('mouseup', () => {
+    }
+
+    function slideOff() {
       canSlide = false;
-    });
+    }
+
+    blueSlider.addEventListener('mousedown', slideOn);
+    blueSlider.addEventListener('touchstart', slideOn);
+    blueSlider.addEventListener('mouseup', slideOff);
+    blueSlider.addEventListener('touchend', slideOff);
 
     setCanvasDimensions();
     updateSlider();

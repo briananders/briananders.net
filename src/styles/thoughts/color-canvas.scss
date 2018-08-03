@@ -5,6 +5,7 @@ $squareSize: 512;
 #canvas-holder {
   width: 100%;
   height: $squareSize + px;
+  max-height: 90vw;
   position: relative;
 
   @for $i from 0 through $squareSize {
@@ -25,10 +26,13 @@ canvas {
   background-color: white;
   z-index: 0;
   @include transform(translate(-50%, -50%));
+  max-width: 90vw;
+  max-height: 90vw;
 }
 
 input {
-  width: $squareSize + px;
-  margin: auto;
+  max-width: $squareSize + px;
+  margin: $s10 auto 0;
   display: block;
+  width: 90%;
 }
