@@ -8,7 +8,7 @@ module.exports = (dir) => {
     name: 'Brian Anders',
     description: "Hi, I'm Brian. Iowa is my home. Graceland University is my alma mater. Now, I live in California and work for Nest. That's pretty much it.",
     author: 'Brian Anders',
-    contact: 'http://www.last.fm/user/iBrianAnders',
-    domain: 'http://briananders.net/', // set domain
+    contact: 'https://www.last.fm/user/iBrianAnders',
+    domain: 'https://briananders.net/', // set domain
   };
 };

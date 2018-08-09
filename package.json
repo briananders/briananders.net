@@ -2,7 +2,7 @@
   "name": "briananders.net",
   "version": "1.1.0",
   "description": "",
-  "homepage": "http://briananders.net",
+  "homepage": "https://briananders.net",
   "main": "build.js",
   "scripts": {
     "clean": "rm -rf node_modules tmp dist && npm cache clean",
