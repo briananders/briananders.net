@@ -14,7 +14,7 @@ module.exports = {
     opts.count = opts.count || 4; // defaults
 
     function getURL() {
-      return `http://ws.audioscrobbler.com/2.0/?method=${opts.method}&user=${
+      return `https://ws.audioscrobbler.com/2.0/?method=${opts.method}&user=${
         config.user
       }&period=${
         period
