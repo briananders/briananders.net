@@ -1,6 +1,6 @@
 module.exports = {
   init() {
-    const steps = 64; // squares per color spectrum
+    const steps = 256; // squares per color spectrum
     const squareMax = 256;
     const contentElement = document.getElementById('canvas-holder');
     const blueSlider = document.getElementById('blue-slider');
@@ -29,18 +29,17 @@ module.exports = {
       );
     }
 
-    function drawLoop(r, g, b) {
-      draw(r, g, b);
+    function drawLoop(b) {
+      let r = 0;
+      let g = 0;
 
-      g += Math.floor(squareMax / steps);
-
-      if (g >= squareMax) {
-        r += Math.floor(squareMax / steps);
-        g = 0;
-      }
-
-      if (r < squareMax) {
-        drawLoop(r, g, b);
+      while (g <= squareMax) {
+        r = 0;
+        while (r <= squareMax) {
+          draw(r, g, b);
+          r += Math.floor(squareMax / steps);
+        }
+        g += Math.floor(squareMax / steps);
       }
     }
 
@@ -48,7 +47,7 @@ module.exports = {
       const newBlue = Number(blueSlider.value);
       if (newBlue !== blue) {
         blue = newBlue;
-        drawLoop(0, 0, blue);
+        drawLoop(blue);
       }
       if (canSlide) window.requestAnimationFrame(updateSlider);
     }
