@@ -3,17 +3,29 @@
 module.exports = {
 
   init() {
-    this.setupNavEvents();
+    const analytics = require('./_modules/analytics');
+
+    this.setupNavEvents(analytics);
     this.testForTouch();
+
+    analytics.watchElements();
   },
 
-  setupNavEvents() {
+  setupNavEvents(analytics) {
     const menuButton = document.querySelector('#activate-menu');
     const mainNavContent = document.querySelector('nav.main .content');
     menuButton.addEventListener('click', () => {
       if (mainNavContent.classList.contains('mobile-active')) {
+        analytics.pushEvent({
+          category: 'nav',
+          action: 'menu close',
+        });
         mainNavContent.classList.remove('mobile-active');
       } else {
+        analytics.pushEvent({
+          category: 'nav',
+          action: 'menu open',
+        });
         mainNavContent.classList.add('mobile-active');
       }
     });
