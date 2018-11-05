@@ -11,6 +11,10 @@ main.home {
     padding-top: 0;
   }
 
+  .content header p {
+    margin-bottom: $s6;
+  }
+
   .last-fm-module {
     display: flex;
     flex-wrap: wrap;
