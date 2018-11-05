@@ -25,7 +25,7 @@
   width: ($onecol * $count) + ($gutter * ($count - 1));
 }
 
-@mixin font-size($multiplier: 4) {
+@mixin font-size($multiplier: 3) {
   $font-size: $multiplier * $base-unit;
   font-size: $font-size;
   line-height: 1.5 * $font-size;

@@ -4,13 +4,12 @@ const { isProduction } = require('./environment');
 
 const pushEvent = ({ category, action, label } = {}) => {
   const eventObject = {
-    hitType: 'event',
     eventCategory: category,
     eventAction: action,
     eventLabel: label,
   };
   if (isProduction) {
-    ga('send', eventObject);
+    ga('send', 'event', eventObject);
   } else {
     console.info(eventObject);
   }

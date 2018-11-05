@@ -18,7 +18,7 @@ module.exports = function minifyHTML(dir, completionFlags, buildEvents) {
 
       const minifiedHtml = htmlMinify.minify(data.toString(), {
         caseSensitive: true,
-        collapseWhitespace: true,
+        collapseWhitespace: false,
         conservativeCollapse: true,
         html5: true,
         keepClosingSlash: true,

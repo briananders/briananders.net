@@ -1,5 +1,15 @@
-main.index {
+@import 'lib/_base-styles';
+
+main.home {
   @import "modules/thoughts-list";
+
+  header.content {
+    display: none;
+  }
+
+  .intro {
+    padding-top: 0;
+  }
 
   .last-fm-module {
     display: flex;
@@ -16,7 +26,7 @@ main.index {
 
     .name {
       display: block;
-      @include font-size(6);
+      @include font-size(4);
       font-family: $sans-serif;
       font-weight: 700;
       color: $black;

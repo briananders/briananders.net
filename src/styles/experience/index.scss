@@ -2,59 +2,32 @@
 
 
 section {
-  padding-bottom: 0;
-  max-width: 1000px;
-
-  a,
-  a:visited {
-    color: inherit;
-    font-weight: 700;
-  }
 
   &.nest {
-    background-color: #2FC9EF;
-    color: $white;
-
-    p a,
-    p a:visited {
-      color: $white;
-    }
     h2 {
       background-color: #2FC9EF;
       background-image: url('/images/work/nest.png');
     }
   }
   &.principal {
-    background-color: #FFFFFF;
-
     h2 {
       background-color: #FFFFFF;
-      background-image: url('/images/work/principal.jpg');
-      @include retina() {
-        background-image: url('/images/work/principal_2x.jpg');
-      }
+      background-image: url('/images/work/principal_2x.jpg');
     }
   }
   &.smith {
-    background-color: #EFEFEF;
-
     h2 {
-      background-color: #EFEFEF;
       background-image: url('/images/work/smith.png');
       background-size: auto 70%;
     }
   }
   &.graceland {
-    background-color: #FFFFFF;
-
     h2 {
       background-color: #FFFFFF;
       background-image: url('/images/work/graceland.jpg');
     }
   }
   &.anders-crane {
-    background-color: #F5B547;
-
     h2 {
       background-color: #F5B547;
       background-image: url('/images/work/anders.png');
@@ -107,12 +80,11 @@ section.resources {
     margin-bottom: $s2;
     margin-right: $s2;
   }
-
   a {
     padding: $s2 $s4;
     border-radius: $border-radius;
     font-family: $sans-serif;
-    font-weight: 300;
-    @include font-size(4);
+    font-weight: bold;
+    @include font-size(3);
   }
 }

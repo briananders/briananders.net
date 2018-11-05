@@ -33,7 +33,7 @@ blockquote {
 
   .name {
     display: block;
-    @include font-size(6);
+    @include font-size(4);
     font-family: $sans-serif;
     font-weight: 700;
     color: $black;

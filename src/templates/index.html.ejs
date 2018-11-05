@@ -1,15 +1,16 @@
 ---
 title: "Home"
 altTitle: "Hi, I'm Brian."
-description: "Welcome to my home on the web."
+description: "Brian Anders is a Senior UX Engineer at Google"
 priority: 1.0
 withHead: true
 pageClasses:
   - 'main'
-  - 'index'
+  - 'home'
 layout: base
 styles:
   - 'main'
+  - 'homepage'
 ---
 
 
@@ -17,30 +18,16 @@ styles:
 <section class="intro">
   <div class="content">
     <header>
-      <h2>Who am I?</h2>
+      <h2>
+        <%- noWidows("Who am I?"); %>
+      </h2>
     </header>
     <p>
-      I am an Engineer at <a href="https://nest.com">Nest</a>/<a href="https://google.com">Google</a>. I have spent the past few years building and improving <a href="https://nest.com">nest.com</a>. Outside of work, I listen to music, play some instruments, do some camping, and more or less try to enjoy the life I lead.
+      I am an Senior UX Engineer at <a href="https://nest.com">Nest</a>/<a href="https://google.com">Google</a>. Since 2013, I have been on the <a href="https://nest.com">nest.com</a> team; building and improving the web experience for Nest customers.
     </p>
-  </div>
-</section>
-
-
-<section class="index-music">
-  <div class="content">
-    <header>
-      <h2>What I've been listening to.</h2>
-      <p>
-        Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here are some of the albums that I have been listening to recently.
-      </p>
-    </header>
-    <div class='last-fm-module' data-type="albums"></div>
-    <div class="center">
-      <a itemprop="url" href="/thoughts/last-fm/"
-         class="button">
-        See more
-      </a>
-    </div>
+    <p>
+      Outside of work, I listen to music, play some instruments, do some camping, and more or less try to enjoy the life I lead.
+    </p>
   </div>
 </section>
 
@@ -48,10 +35,12 @@ styles:
 <section class="thoughts">
   <div class="content">
     <header>
-      <h2>I have thoughts. Here are some recent ones.</h2>
+      <h2>
+        <%- noWidows("I have thoughts. Here are some recent ones."); %>
+      </h2>
     </header>
   </div>
-  <ul id="thoughts-list">
+  <ul id="thoughts-list" class="content">
     <%
       const basePages = getChildPages('thoughts');
       const newestPages = basePages.sort((pageA, pageB) => {
@@ -63,9 +52,9 @@ styles:
     %>
     <li itemscope itemtype="http://schema.org/BlogPosting">
       <a itemprop="url" href="/<%- url %>">
-        <h3 itemprop="name"><%- title %></h3>
+        <h3 itemprop="name"><%- noWidows(title) %></h3>
         <figcaption itemprop="description">
-          <%- description %>
+          <%- noWidows(description) %>
         </figcaption>
         <date itemprop="datePublished" content="<%- date %>">
           <%- formattedDate(date) %>
@@ -81,6 +70,27 @@ styles:
         class="button">
       See more
     </a>
+  </div>
+</section>
+
+
+<section class="index-music">
+  <div class="content">
+    <header>
+      <h2>
+        <%- noWidows("What I've been listening to."); %>
+      </h2>
+      <p>
+        <%- noWidows("Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here are some of the albums that I have been listening to recently."); %>
+      </p>
+    </header>
+    <div class='last-fm-module' data-type="albums"></div>
+    <div class="center">
+      <a itemprop="url" href="/thoughts/last-fm/"
+         class="button">
+        See more
+      </a>
+    </div>
   </div>
 </section>
 

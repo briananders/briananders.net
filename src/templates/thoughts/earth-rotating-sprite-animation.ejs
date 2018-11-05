@@ -61,9 +61,7 @@ styles:
         <var>$frame-height = $sprite-height / $y-max</var>
       </li>
     </ul>
-    <code>
-<pre>
-#frame-container {
+    <%- code(`#frame-container {
   width: round($frame-width);
   height: round($frame-height);
   background-image: url(/path/to/sprite.jpg);
@@ -75,9 +73,7 @@ styles:
       background-position: #{$x-position} #{$y-position};
     }
   }
-}
-</pre>
-    </code>
+}`); %>
   </div>
 </section>
 
@@ -90,16 +86,12 @@ styles:
     <p>
       There's almost nothing going on here. Set an event listener on the html element for mousemove. In the caught event, find the horizontal movement using <var>movementX</var>. Add that to the existing frame number and add a large multiple of <var>numberOfFrames</var> to account for negative numbers (you don't want a negative frame number). Then, find the modulus of that number to get a final frame number between zero and the maximum number of frames. Finally, set that number to the container's data attribute, and let the CSS do the rendering work.
     </p>
-    <code>
-<pre>
-const frameContainer = document.getElementById('frame-container');
+    <%- code(`const frameContainer = document.getElementById('frame-container');
 const numberOfFrames = 48;
 let number = 0;
 document.documentElement.addEventListener('mousemove', (event) => {
   number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
   frameContainer.dataset.number = number;
-});
-</pre>
-    </code>
+});`); %>
   </div>
 </section>

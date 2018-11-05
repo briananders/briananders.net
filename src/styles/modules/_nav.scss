@@ -58,7 +58,7 @@ nav.main {
       margin-left: $s4;
     }
     &.brand {
-      @include font-size(10);
+      @include font-size(7);
       margin: 0;
 
       &::before {
@@ -76,7 +76,7 @@ nav.main {
 
 
 
-  @include mq(500px) {
+  @include mq(600px) {
 
     .content {
       border-bottom: none;

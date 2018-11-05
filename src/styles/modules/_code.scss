@@ -1,5 +1,5 @@
 code {
-  white-space: pre-wrap;
+  white-space: pre;
   overflow-x: auto;
   font-family: monospace, serif;
   padding: $s5;
@@ -7,5 +7,17 @@ code {
   background-color: rgba(0,0,0,0.1);
   @include font-size();
   max-width: 600px;
-  margin: auto;
+  margin: auto auto $s6;
+  margin-bottom: $s6;
+  max-width: 100%;
+  overflow: auto;
+}
+
+var {
+  font-family: courier;
+  display: inline-block;
+  border: 1px solid #adacac;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  background-color: #f5f4f4;
 }

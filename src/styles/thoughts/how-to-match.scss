@@ -6,7 +6,7 @@ main.thoughts.how-to-match {
 
   .example-container {
     overflow: hidden;
-    @include font-size(5);
+    @include font-size(3);
   }
   .example-container,
   code {

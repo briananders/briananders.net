@@ -10,7 +10,7 @@ answer, answer-array {
   display: block;
   text-align: center;
   margin-top: $s6;
-  @include font-size(5);
+  @include font-size(3);
 }
 
 answer-array {
@@ -24,7 +24,7 @@ answer-array {
 }
 
 input[type=number] {
-  @include font-size(4);
+  @include font-size(3);
 }
 
 canvas#star {

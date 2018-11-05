@@ -67,7 +67,7 @@ styles:
   </div>
 
   <p>
-    It works with any number of columns. Here I have 3 columns. For the sites that have two side bars and a main column. Because the container element has `overflow: hidden` the columns extend 10000 pixels outside of their content, but the container shows the content and hides all of the padding.
+    It works with any number of columns. Here I have 3 columns. For the sites that have two side bars and a main column. Because the container element has <var>overflow: hidden</var> the columns extend 10000 pixels outside of their content, but the container shows the content and hides all of the padding.
   </p>
 
   <div class="example-container example-2">
@@ -142,7 +142,7 @@ styles:
     </div>
   </div>
 
-  <code>.example-container {
+  <%- code(`.example-container {
   overflow: hidden;
 }
 .column-1, .column-2, .column-3 {
@@ -151,23 +151,23 @@ styles:
   float: left;
 }
 
-&lt;div class="example-container"&gt;
-  &lt;div class="column-1 tall"&gt;
-    &lt;ul&gt;
-      &lt;li&gt;1&lt;/li&gt;
-      &lt;li&gt;2&lt;/li&gt;
-      &lt;li&gt;3&lt;/li&gt;
-      &lt;li&gt;4&lt;/li&gt;
-      &lt;li&gt;5&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-  &lt;div class="column-2"&gt;
-    &lt;ul&gt;
-      &lt;li&gt;1&lt;/li&gt;
-      &lt;li&gt;2&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code>
+<div class="example-container"></div>
+  <div class="column-1 tall">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+  <div class="column-2">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+    </ul>
+  </div>
+</div>`); %>
 
   <p>
     If you use this though, you will have to check your browsers. In my limited testing, it works on all of the major browsers including Internet Explorer 8 and up.

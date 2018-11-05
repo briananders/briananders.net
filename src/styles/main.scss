@@ -1,7 +1,6 @@
 @import "./lib/normalize";
 @import "./lib/base-styles";
 
-@import "./index";
 @import "./four-oh-four";
 
 @import "./modules/header";
@@ -39,7 +38,7 @@ body {
   width: 100%;
 
   @include mq($tablet) {
-    @include font-size(5);
+    @include font-size(3);
   }
 
   main {
@@ -68,11 +67,11 @@ section {
   margin: auto;
   padding: 0 $s5;
   overflow: hidden;
-  @include font-size(5);
+  @include font-size(3);
 
   @include mq($tablet) {
     padding: 0 $s8;
-    @include font-size(5);
+    @include font-size(3);
   }
 }
 
@@ -145,7 +144,7 @@ a:visited {
 }
 
 header.content {
-  padding-bottom: $spacer;
+  padding-bottom: $s6;
 
   p {
     margin-bottom: 0;
@@ -163,6 +162,7 @@ button.button {
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
+  font-weight: bold;
   @include transition(background-color $time ease);
 
   &:hover,
@@ -178,17 +178,17 @@ button.button {
 }
 
 h1 {
-  @include font-size(12);
+  @include font-size(5);
   margin-bottom: $s6;
 }
 
 h2 {
-  @include font-size(8);
+  @include font-size(5);
   margin-bottom: $s4;
 }
 
 h3 {
-  @include font-size(6);
+  @include font-size(4);
   margin-bottom: $s2;
 }
 
@@ -196,11 +196,16 @@ img {
   max-width: 100%;
 }
 
-p {
+p,
+.p {
   max-width: 600px;
   margin: auto;
   margin-bottom: $s6;
-  @include font-size(5);
+  @include font-size(3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 select {
@@ -213,10 +218,11 @@ select {
 date {
   text-align: right;
   display: block;
+  font-weight: bold;
 }
 
 label {
-  @include font-size(4);
+  @include font-size(3);
   padding: 0 $s3;
   font-family: $sans-serif;
 }
@@ -226,7 +232,7 @@ button, select {
   border-radius: $border-radius;
   background-color: $white;
   border: 1px solid $coin;
-  @include font-size(4);
+  @include font-size(3);
   line-height: 25px; // override
   padding: 0 $s3;
   @include transition(background-color $time ease);
@@ -266,7 +272,7 @@ blockquote {
   max-width: 500px;
   margin: auto;
   margin-bottom: $s6;
-  @include font-size(5);
+  @include font-size(3);
 
   &::after,
   &::before {
@@ -281,6 +287,10 @@ blockquote {
 
 .center {
   text-align: center;
+}
+
+strong {
+  font-weight: bold;
 }
 
 list {

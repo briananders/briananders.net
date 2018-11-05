@@ -84,7 +84,7 @@ styles:
 
     podcasts.forEach(podcast => {
   %>
-    <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase() %>">
+    <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>">
       <header>
         <img src="<%- podcast.imgUrl %>" />
         <h2><%- podcast.name %></h2>

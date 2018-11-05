@@ -1,10 +1,10 @@
-<%- partial('nav', locals) %>
-<header class="main-header <%- locals.withHead ? 'with-head' : '' %>">
+<%- partial('nav', locals); %>
+<header class="main-header <%- locals.withHead ? 'with-head' : 'without-head' %>">
   <h1 itemprop="title" class="name content">
     <% if (locals.altTitle !== undefined) { %>
-      <%- locals.altTitle %>
+      <%- noWidows(locals.altTitle); %>
     <% } else if (locals.title !== undefined) { %>
-      <%- locals.title %>
+      <%- noWidows(locals.title); %>
     <% } %>
   </h1>
 </header>

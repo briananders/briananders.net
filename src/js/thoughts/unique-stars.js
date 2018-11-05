@@ -118,10 +118,25 @@ function init() {
       }
     }
 
-    const starTags = answers.map(step => `<a href='#${step}/${n}'>${step}</a>`);
+    const starOptions = answers.map(step => `<option value='${step}'>${step}</option>`);
 
     answerTag.innerHTML = `${answers.length} unique star${answers.length === 1 ? '' : 's'}`;
-    answerArrayTag.innerHTML = `[${starTags.join(' ')}]`;
+    if(starOptions.length) {
+      answerArrayTag.innerHTML = `<select data-n="${n}">${starOptions.join('')}<select>`;
+
+      const select = answerArrayTag.querySelector('select');
+      select.addEventListener('change', () => {
+        const step = select.value;
+        const length = select.dataset.n;
+
+        currentConfig = [Number(length), Number(step)];
+
+        drawStar(...currentConfig);
+        scrollTo(canvas);
+      });
+    } else {
+      answerArrayTag.innerHTML = '';
+    }
 
     if (answers.length) {
       currentConfig = [n, answers[0]];
@@ -129,19 +144,6 @@ function init() {
     } else {
       clearCanvas();
     }
-
-    answerArrayTag.querySelectorAll('a').forEach((starTag) => {
-      starTag.addEventListener('click', () => {
-        const config = starTag.href.split('#')[1];
-
-        const [step, length] = config.split('/');
-
-        currentConfig = [Number(length), Number(step)];
-
-        drawStar(...currentConfig);
-        scrollTo(canvas);
-      });
-    });
   }
 
   function addEventListeners() {

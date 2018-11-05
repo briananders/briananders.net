@@ -1,6 +1,6 @@
 module.exports = {
   '*': require('./all'),
-  '/': require('./index'),
+  '/': require('./homepage'),
   404: require('./four-oh-four'),
   experience: {
     '/': require('./experience/index'),

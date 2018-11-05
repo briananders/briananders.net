@@ -383,7 +383,7 @@ styles:
     const movie = movies[i];
 %>
 
-  <div id="<%- movie.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase() %>" class="movie">
+  <div id="<%- movie.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>" class="movie">
     <a itemprop="url" href="<%- movie.imdb.url %>"
         target="blank">
       <img src="<%- movie.imgSrc %>" />

@@ -14,7 +14,7 @@ styles:
 ---
 
 <section>
-  <ul id="thoughts-list">
+  <ul id="thoughts-list" class="content">
     <%
       const basePages = getChildPages('thoughts');
       const newestPages = basePages.sort((pageA, pageB) => {
@@ -26,9 +26,9 @@ styles:
     %>
     <li itemscope itemtype="http://schema.org/BlogPosting">
       <a itemprop="url" href="/<%- url %>">
-        <h3 itemprop="name"><%- title %></h3>
+        <h3 itemprop="name"><%- noWidows(title) %></h3>
         <figcaption itemprop="description">
-          <%- description %>
+          <%- noWidows(description) %>
         </figcaption>
         <date itemprop="datePublished" content="<%- date %>">
           <%- formattedDate(date) %>

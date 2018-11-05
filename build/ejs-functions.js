@@ -55,4 +55,12 @@ module.exports = (dir, pageMappingData) => ({
     const month = monthName[date.getMonth()];
     return `${month} ${date.getFullYear()}`;
   },
+
+  noWidows(str) {
+    return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
+  },
+
+  code(block) {
+    return `<code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
+  },
 });

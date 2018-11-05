@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <head>
-  <%- partial('meta', locals) %>
+  <%- partial('meta', locals); %>
   <script>
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       var string = msg.toLowerCase();
@@ -13,22 +13,24 @@
         'Error object: ' + JSON.stringify(error)
       ].join(' - ');
 
-      ga('send', {
-        hitType: 'event',
+      ga('send', 'event', {
         eventCategory: 'javascript error',
-        eventAction: message,
+        eventAction: message
       });
     };
   </script>
 </head>
 <body>
+  <%# Google Tag Manager (noscript); %>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KZW4HX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <%# End Google Tag Manager (noscript); %>
 
-  <%- partial('header', locals) %>
+  <%- partial('header', locals); %>
   <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
     <header class="content">
       <% if (locals.description) { %>
         <p class="description" itemprop="description">
-          <%- locals.description %>
+          <%- noWidows(locals.description); %>
         </p>
       <% } %>
     </header>
@@ -37,7 +39,7 @@
 
   </main>
 
-  <%- partial('footer', locals) %>
+  <%- partial('footer', locals); %>
 
   <script src="/scripts/main.js" async></script>
 </body>
