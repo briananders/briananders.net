@@ -10,6 +10,7 @@ answer, answer-array {
   display: block;
   text-align: center;
   margin-top: $s6;
+  margin-bottom: $s6;
   @include font-size(3);
 }
 
