@@ -13,6 +13,8 @@
     "document": true,
     "window": true,
     "browser": true,
+    "dataLayer": true,
+    "window": false
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,

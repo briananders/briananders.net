@@ -9,7 +9,7 @@ const pushEvent = ({ category, action, label } = {}) => {
     eventLabel: label,
   };
   if (isProduction) {
-    ga('send', 'event', eventObject);
+    ga.getAll()[0].send('event', eventObject);
   } else {
     console.info(eventObject);
   }
