@@ -4,12 +4,13 @@ const { isProduction } = require('./environment');
 
 const pushEvent = ({ category, action, label } = {}) => {
   const eventObject = {
-    eventCategory: category,
-    eventAction: action,
-    eventLabel: label,
+    event: 'gaEvent',
+    gaCategory: category,
+    gaAction: action,
+    gaLabel: label,
   };
   if (isProduction) {
-    ga.getAll()[0].send('event', eventObject);
+    dataLayer.push(eventObject);
   } else {
     console.info(eventObject);
   }

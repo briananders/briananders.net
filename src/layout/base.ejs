@@ -13,9 +13,10 @@
         'Error object: ' + JSON.stringify(error)
       ].join(' - ');
 
-      ga('send', 'event', {
-        eventCategory: 'javascript error',
-        eventAction: message
+      dataLayer.push({
+        event: 'gaEvent',
+        gaCategory: 'javascript error',
+        gaAction: message,
       });
     };
   </script>
