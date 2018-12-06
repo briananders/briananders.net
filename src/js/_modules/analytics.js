@@ -1,5 +1,3 @@
-/* globals ga */
-
 const { isProduction } = require('./environment');
 
 const pushEvent = ({ category, action, label } = {}) => {
@@ -9,9 +7,8 @@ const pushEvent = ({ category, action, label } = {}) => {
     gaAction: action,
     gaLabel: label,
   };
-  if (isProduction) {
-    dataLayer.push(eventObject);
-  } else {
+  dataLayer.push(eventObject);
+  if (!isProduction) {
     console.info(eventObject);
   }
 };
