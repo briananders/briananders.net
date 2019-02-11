@@ -1,3 +1,38 @@
-#sound-slider {
+@import "lib/base-styles";
 
+.sound-slider {
+  text-align: center;
+  width: 100%;
+  display: block;
+  position: relative;
+  padding: $s4 0;
+
+  + .sound-slider {
+    border-top: 1px solid;
+  }
+
+  input[type=range] {
+    width: 92%;
+    margin: 0;
+  }
+  input[type=number] {
+    width: 50px;
+  }
+
+  button[value=remove] {
+    position: absolute;
+    top: $s4;
+    right: $s4;
+  }
+
+  button[value=play] {
+    span.pause {
+      display: none;
+    }
+  }
+  button[value=pause] {
+    span.play {
+      display: none;
+    }
+  }
 }

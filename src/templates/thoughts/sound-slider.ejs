@@ -9,4 +9,21 @@ styles:
   - 'thoughts/sound-slider'
 ---
 
-<div id="sound-slider"></div>
+<script>
+  window.soundSlider = `<div class="sound-slider">
+    <button value="play" class="play-pause">⏯<span class='play'>Play</span><span class='pause'>Pause</span></button>
+    <input class="hertz-slider" type="range" min="0" max="20000" value="20" step="0.01" />
+    <input class="hertz-input" type='number' min="0" max="20000" value="20" step="0.01"/>
+    <button value="remove">&times;</button>
+  </div>`;
+</script>
+
+<div class="content">
+  <p>
+    Human Hearing is between 20 Hz and 20,000 Hz.
+  </p>
+</div>
+
+<div class="content" id="slider-holder">
+  <button value="add">+</button>
+</div>

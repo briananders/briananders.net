@@ -16,6 +16,7 @@ module.exports = {
     'minesweeper': require('./thoughts/minesweeper/index'),
     'paint': require('./thoughts/paint'),
     'raining-paint': require('./thoughts/raining-paint'),
+    'sound-slider': require('./thoughts/sound-slider'),
     'ten-star-movies': require('./thoughts/ten-star-movies'),
     'unique-stars': require('./thoughts/unique-stars'),
     'using-canvas-to-make-patterns-with-circles': require('./thoughts/using-canvas'),
