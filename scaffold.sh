@@ -12,14 +12,14 @@ fi
 ##### Constants
 
 TEMPLATE_NAME=$1
-STYLES_LOCATION="src/styles/$TEMPLATE_NAME.css"
+STYLES_LOCATION="src/styles/$TEMPLATE_NAME.scss"
 SCRIPTS_LOCATION="src/js/$TEMPLATE_NAME.js"
 EJS_LOCATION="src/templates/$TEMPLATE_NAME.ejs"
 
 ##### Functions
 
 
-make_css_file()
+make_scss_file()
 {
 echo "
 .$TEMPLATE_NAME {
@@ -33,7 +33,11 @@ echo "created $STYLES_LOCATION"
 make_js_file()
 {
 echo "
-var element = document.querySelector('.$TEMPLATE_NAME');
+module.exports = {
+  init() {
+
+  },
+};
 " >> $SCRIPTS_LOCATION
 echo "created $SCRIPTS_LOCATION"
 }
@@ -41,8 +45,7 @@ echo "created $SCRIPTS_LOCATION"
 
 
 make_ejs_file() {
-echo "
----
+echo "---
 title: ''
 description: ''
 date:
@@ -61,7 +64,7 @@ echo "created $EJS_LOCATION"
 ##### Main
 
 make_js_file &
-make_css_file &
+make_scss_file &
 make_ejs_file &
 wait
 

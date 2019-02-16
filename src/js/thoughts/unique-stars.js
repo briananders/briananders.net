@@ -121,7 +121,7 @@ function init() {
     const starOptions = answers.map(step => `<option value='${step}'>${step}</option>`);
 
     answerTag.innerHTML = `${answers.length} unique star${answers.length === 1 ? '' : 's'}`;
-    if(starOptions.length) {
+    if (starOptions.length) {
       answerArrayTag.innerHTML = `<select data-n="${n}">${starOptions.join('')}<select>`;
 
       const select = answerArrayTag.querySelector('select');

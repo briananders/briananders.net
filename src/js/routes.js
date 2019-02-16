@@ -10,6 +10,7 @@ module.exports = {
     '/': require('./thoughts/index'),
     '2d-automaton': require('./thoughts/2d-automaton'),
     'cellular-automaton': require('./thoughts/cellular-automaton'),
+    'lissajous-curve': require('./thoughts/lissajous-curve'),
     'last-fm': require('./thoughts/last-fm'),
     'minesweeper': require('./thoughts/minesweeper/index'),
     'paint': require('./thoughts/paint'),
