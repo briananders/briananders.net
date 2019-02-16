@@ -4,8 +4,8 @@ module.exports = {
 
     function setupCanvas(query) {
       const canvas = document.querySelector(query);
-      canvas.width = 10000;
-      canvas.height = 10000;
+      canvas.width = 1000;
+      canvas.height = 1000;
       const context = canvas.getContext('2d');
       return [canvas, context];
     }
@@ -19,17 +19,17 @@ module.exports = {
 
     const [mainCanvas, mainContext] = setupCanvas('#lissajous-curve');
 
-    let aCircumferencePosition = 270; // circumference out of 360
-    let bCircumferencePosition = 270; // circumference out of 360
+    let aCircumferencePosition = 27; // circumference out of 360
+    let bCircumferencePosition = 27; // circumference out of 360
 
     let aStep = Number(aStepElement.value);
     let bStep = Number(bStepElement.value);
 
-    const padding = 500;
-    const circleDiameter = 4000;
+    const padding = 50;
+    const circleDiameter = 400;
     const circleRadius = circleDiameter / 2;
 
-    const pointDiameter = 50;
+    const pointDiameter = 5;
     const pointRadius = pointDiameter / 2;
 
     let axCache = null;
@@ -53,8 +53,8 @@ module.exports = {
     }
 
     function reset() {
-      mainContext.clearRect(5250, 5250, 4500, 4500);
-      mainContext.clearRect(250, 250, 4500, 4500);
+      mainContext.clearRect(525, 525, 450, 450);
+      mainContext.clearRect(25, 25, 450, 450);
 
       axCache = null;
       ayCache = null;
@@ -64,8 +64,8 @@ module.exports = {
       aCache = [];
       bCache = [];
 
-      aCircumferencePosition = 270;
-      bCircumferencePosition = 270;
+      aCircumferencePosition = 27;
+      bCircumferencePosition = 27;
 
       aStep = Number(aStepElement.value);
       bStep = Number(bStepElement.value);
@@ -96,7 +96,7 @@ module.exports = {
       mainContext.beginPath();
       // mainContext.strokeStyle = currentColor.code;
       mainContext.stroke();
-      mainContext.lineWidth = 10;
+      mainContext.lineWidth = 1;
       mainContext.moveTo(x1, y1);
       mainContext.lineTo(x2, y2);
       mainContext.stroke();
@@ -114,31 +114,31 @@ module.exports = {
       const [ax, ay] = getCirclePoints(aCircumferencePosition, circleRadius);
       const [bx, by] = getCirclePoints(bCircumferencePosition, circleRadius);
 
-      const [axOffset, ayOffset] = getWithOffset(ax, ay, 5000 + padding, padding);
-      const [bxOffset, byOffset] = getWithOffset(bx, by, padding, 5000 + padding);
-      const [newAXOffset, newBYOffset] = getWithOffset(ax, by, 5000 + padding, 5000 + padding);
+      const [axOffset, ayOffset] = getWithOffset(ax, ay, 500 + padding, padding);
+      const [bxOffset, byOffset] = getWithOffset(bx, by, padding, 500 + padding);
+      const [newAXOffset, newBYOffset] = getWithOffset(ax, by, 500 + padding, 500 + padding);
       const [newBXOffset, newAYOffset] = getWithOffset(bx, ay, padding, padding);
 
-      axLine.style.left = `${axOffset / 100}%`;
-      axLine.style.top = `${ayOffset / 100}%`;
-      axLine.style.height = `${(byOffset - ayOffset) / 100}%`;
+      axLine.style.left = `${axOffset / 10}%`;
+      axLine.style.top = `${ayOffset / 10}%`;
+      axLine.style.height = `${(byOffset - ayOffset) / 10}%`;
 
-      bxLine.style.left = `${bxOffset / 100}%`;
-      bxLine.style.top = `${ayOffset / 100}%`;
-      bxLine.style.height = `${(byOffset - ayOffset) / 100}%`;
+      bxLine.style.left = `${bxOffset / 10}%`;
+      bxLine.style.top = `${ayOffset / 10}%`;
+      bxLine.style.height = `${(byOffset - ayOffset) / 10}%`;
 
-      byLine.style.top = `${byOffset / 100}%`;
-      byLine.style.left = `${bxOffset / 100}%`;
-      byLine.style.width = `${(axOffset - bxOffset) / 100}%`;
+      byLine.style.top = `${byOffset / 10}%`;
+      byLine.style.left = `${bxOffset / 10}%`;
+      byLine.style.width = `${(axOffset - bxOffset) / 10}%`;
 
-      ayLine.style.top = `${ayOffset / 100}%`;
-      ayLine.style.left = `${bxOffset / 100}%`;
-      ayLine.style.width = `${(axOffset - bxOffset) / 100}%`;
+      ayLine.style.top = `${ayOffset / 10}%`;
+      ayLine.style.left = `${bxOffset / 10}%`;
+      ayLine.style.width = `${(axOffset - bxOffset) / 10}%`;
 
-      mainContext.clearRect(5250, 250, 4500, 4500);
-      // mainContext.fillRect(5250, 250, 4500, 4500);
-      mainContext.clearRect(250, 5250, 4500, 4500);
-      // mainContext.fillRect(250, 5250, 4500, 4500);
+      mainContext.clearRect(525, 25, 450, 450);
+      // mainContext.fillRect(525, 25, 450, 450);
+      mainContext.clearRect(25, 525, 450, 450);
+      // mainContext.fillRect(25, 525, 450, 450);
 
       mainContext.fillRect(
         axOffset - pointRadius,
