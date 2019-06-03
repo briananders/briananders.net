@@ -51,19 +51,22 @@ body {
 
 main {
   overflow: hidden;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 section {
   max-width: 1280px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $spacer;
 }
 
 .content {
   position: relative;
   max-width: 1000px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 $s5;
   overflow: hidden;
   @include font-size(3);
@@ -198,7 +201,8 @@ img {
 p,
 .p {
   max-width: 600px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
 
@@ -269,7 +273,8 @@ blockquote {
   background-color: $cloud;
   overflow: hidden;
   max-width: 500px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
 
