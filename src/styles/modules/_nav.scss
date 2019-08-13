@@ -1,15 +1,25 @@
 nav.main {
-  background-color: $cloud;
+  background-color: $primary-color-dark;
   border-radius: 0;
   margin: 0;
-  @include transition(opacity $time ease);
+  transition-property: opacity;
   z-index: 5;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid $divider-color;
+
+  a,
+  a:visited,
+  button {
+    outline: none;
+    background-color: transparent !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .content {
     overflow: visible;
-    background-color: $cloud;
-    border-bottom: 1px solid #1f1f1f1f;
+    background-color: $primary-color-dark;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,21 +33,45 @@ nav.main {
     background-color: transparent;
     border: none;
     padding: 0;
+    color: $primary-color-text;
+    font-weight: $regular;
+
+    &:hover,
+    &:focus {
+      color: $primary-color-text;
+    }
+
+    &::before {
+      background-color: $primary-color-text;
+    }
   }
 
   .mobile-nav-links {
-    background-color: $cloud;
+    background-color: $primary-color-light;
     z-index: -1;
     position: absolute;
     top: -100%;
-    @include transition(top .5s ease);
+    transition-property: top;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: $s10;
+    border-bottom: 1px solid $divider-color;
 
+    a[role] {
+      color: $primary-text-color;
+
+      &::before {
+        background-color: $accent-color;
+      }
+
+      &:hover,
+      &:focus {
+        color: $primary-text-color;
+      }
+    }
   }
   .mobile-active .mobile-nav-links {
     top: 100%;
@@ -48,10 +82,10 @@ nav.main {
   a[role] {
     text-decoration: none;
     display: inline-block;
-    color: $black;
+    color: $primary-color-text;
     @include font-size();
     font-family: $sans-serif;
-    font-weight: 300;
+    font-weight: $regular;
     position: relative;
 
     + a[role] {
@@ -66,11 +100,15 @@ nav.main {
         height: 2px;
       }
     }
-  }
 
-  a,
-  button {
-    outline: none;
+    &::before {
+      background-color: $primary-color-text;
+    }
+
+    &:hover,
+    &:focus {
+      color: $primary-color-text;
+    }
   }
 
 

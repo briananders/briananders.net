@@ -7,16 +7,13 @@
 
 // MEDIA QUERY MIXINS
 @mixin mq($query) {
-  @media screen and (min-width: $query) {
-    @content;
-  }
-  html.nr {
+  @media (min-width: $query) {
     @content;
   }
 }
 
 @mixin mq-max($query) {
-  @media screen and (max-width: $query - 1) {
+  @media (max-width: $query - 1) {
     @content;
   }
 }
@@ -29,92 +26,6 @@
   $font-size: $multiplier * $base-unit;
   font-size: $font-size;
   line-height: 1.5 * $font-size;
-}
-
-@mixin column-count($value:1) {
-   -webkit-column-count: $value;
-   -moz-column-count:    $value;
-   column-count:         $value;
-}
-
-@mixin column-gap($value:0px) {
-   -webkit-column-gap:   $value;
-   -moz-column-gap:      $value;
-   column-gap:           $value;
-}
-
-@mixin box-sizing($arg) {
-  box-sizing: $arg;
-}
-
-@mixin box {
-  @include box-sizing(border-box);
-}
-
-@mixin box-shadow($args...) {
-  -webkit-box-shadow: $args;
-  -moz-box-shadow:    $args;
-  box-shadow:         $args;
-}
-
-@mixin text-shadow($args...) {
-  -webkit-text-shadow: $args;
-  -moz-text-shadow:    $args;
-  text-shadow:         $args;
-}
-
-@mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
-}
-
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie); //IE8
-}
-
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes $animation-name {
-    @content;
-  }
-  @-moz-keyframes $animation-name {
-    @content;
-  }
-  @-ms-keyframes $animation-name {
-    @content;
-  }
-  @-o-keyframes $animation-name {
-    @content;
-  }
-  @keyframes $animation-name {
-    @content;
-  }
-}
-
-@mixin animation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
-  animation: #{$str};
-}
-
-@mixin transform($transforms) {
-       -o-transform: $transforms;
-      -ms-transform: $transforms;
-     -moz-transform: $transforms;
-  -webkit-transform: $transforms;
-          transform: $transforms;
-}
-
-@mixin appearance ($value) {
-  -webkit-appearance: $value;
-     -moz-appearance: $value;
-          appearance: $value;
 }
 
 %clearfix {
@@ -136,13 +47,4 @@
          (min-resolution: 1.3dppx) {
     @content;
   }
-}
-
-@mixin filter($effect) {
-  filter: $effect;
-  // Browser Specific
-  -webkit-filter: $effect;
-  -moz-filter: $effect;
-  -o-filter: $effect;
-  -ms-filter: $effect;
 }

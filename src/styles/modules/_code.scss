@@ -1,23 +1,48 @@
 code {
   white-space: pre;
-  overflow-x: auto;
+  overflow: hidden;
   font-family: monospace, serif;
   padding: $s5;
   display: block;
-  background-color: rgba(0,0,0,0.1);
+  background-color: $primary-color-light;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.code-container {
   @include font-size();
   max-width: 600px;
   margin: auto auto $s6;
   margin-bottom: $s6;
   max-width: 100%;
-  overflow: auto;
+  overflow: hidden;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: $s9;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to left, transparent, #{$primary-color-light});
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(to right, transparent, #{$primary-color-light});
+  }
 }
 
 var {
   font-family: courier;
   display: inline-block;
-  border: 1px solid #adacac;
+  border: 1px solid $divider-color;
   border-radius: 4px;
   padding: 0 0.5rem;
-  background-color: #f5f4f4;
+  background-color: $primary-color-light;
 }

@@ -8,21 +8,20 @@ main.thoughts.how-to-match {
     overflow: hidden;
     @include font-size(3);
   }
-  .example-container,
-  code {
+  .example-container{
     margin-bottom: $s6;
   }
   .tall {
-    border-top: $base-unit solid #FFA700;
+    border-top: $base-unit solid $accent-color;
   }
   .column-1 {
-    background-color: rgba( $black, 0.2 );
+    background-color: $primary-color;
   }
   .column-2 {
-    background-color: rgba( $black, 0.3 );
+    background-color: $primary-color-dark;
   }
   .column-3 {
-    background-color: rgba( $black, 0.4 );
+    background-color: $primary-color;
   }
   .column-1,
   .column-2,
@@ -30,6 +29,7 @@ main.thoughts.how-to-match {
     padding-bottom: 99999px;
     margin-bottom: -99999px;
     float: left;
+    color: $primary-color-text;
   }
   .example-1 .column-1,
   .example-1 .column-2 {

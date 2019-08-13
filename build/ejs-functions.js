@@ -60,7 +60,11 @@ module.exports = (dir, pageMappingData) => ({
     return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
   },
 
-  code(block) {
-    return `<code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`;
+  code(block, locals = { class: '', style: '' }) {
+    return `
+      <div class="code-container ${locals.class}" style="${locals.style}">
+        <code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
+      </div>
+    `;
   },
 });

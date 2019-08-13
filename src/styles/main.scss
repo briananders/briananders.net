@@ -16,20 +16,22 @@ html {
   font-size: 62.5%;
   position: relative;
   font-family: $serif;
-  color: $black;
+  color: $primary-text-color;
   overflow-x: hidden;
   background-color: $white;
 
   ::selection {
-    background-color: $black;
-    color: $cloud;
-    @include text-shadow(none);
+    background-color: $primary-text-color;
+    color: $primary-color-light;
+    text-shadow: none;
   }
   ::-moz-selection {
-    background-color: $black;
-    color: $cloud;
-    @include text-shadow(none);
+    background-color: $primary-text-color;
+    color: $primary-color-light;
+    text-shadow: none;
   }
+
+  outline-color: $accent-color;
 }
 
 body {
@@ -44,7 +46,7 @@ body {
   main {
     z-index: 1;
     position: relative;
-    @include transition(right $time ease);
+    transition-property: right;
     right: 0;
   }
 }
@@ -77,12 +79,16 @@ section {
   }
 }
 
-* {
-  @include box-sizing(border-box);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition-duration: $transition-speed;
+  transition-timing-function: ease;
 }
 
 h1, h2, h3 {
-  font-weight: 700;
+  font-weight: $bold;
   font-family: $sans-serif;
   text-align: center;
 
@@ -99,28 +105,31 @@ h1, h2, h3 {
 }
 
 a,
-a:visited {
-  color: $purple;
+a:visited,
+.link {
+  color: $primary-color-text;
+  background-color: $primary-color;
+  padding: 0 $s1;
   display: inline-block;
   position: relative;
   text-decoration: none;
-  @include transition(color $time ease-out);
+  transition-property: color;
 
   &::before {
     position: absolute;
     bottom: 0;
     height: 1px;
-    background-color: $purple;
+    background-color: $primary-color;
     content: "";
     left: 51%;
     right: 51%;
-    @include transition(left $time ease-out, right $time ease-out);
+    transition-property: left, right;
   }
 
   &:hover,
   &:focus,
   &:active {
-    color: $black;
+    background-color: $primary-color-dark;
 
     &::before {
       left: 0;
@@ -128,19 +137,15 @@ a:visited {
     }
 
     img {
-      @include filter(hue-rotate(180deg));
-      @include transform(scale(.98));
+      filter: hue-rotate(180deg);
+      transform: scale(.98);
     }
   }
 
   img {
-    @include filter(hue-rotate(0deg));
-    @include transform(scale(1));
-            transition:         filter $time ease,         transform $time ease;
-         -o-transition:      -o-filter $time ease,      -o-transform $time ease;
-        -ms-transition:     -ms-filter $time ease,     -ms-transform $time ease;
-       -moz-transition:    -moz-filter $time ease,    -moz-transform $time ease;
-    -webkit-transition: -webkit-filter $time ease, -webkit-transform $time ease;
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+    transition-property: filter, transform;
   }
 
 }
@@ -159,19 +164,18 @@ button.button {
   text-align: center;
   display: inline-block;
   padding: $s2 $s6;
-  color: $white;
-  background-color: $purple;
+  color: $primary-color-text;
+  background-color: $primary-color;
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
-  font-weight: bold;
-  @include transition(background-color $time ease);
+  font-weight: $bold;
+  transition-property: background-color;
 
   &:hover,
   &:focus,
   &:active {
-    color: $white;
-    background-color: $black;
+    background-color: $primary-color-dark;
   }
 
   &::before {
@@ -212,16 +216,16 @@ p,
 }
 
 select {
-  @include appearance(menulist);
+  appearance: menulist;
   border-radius: $border-radius;
-  background-color: $white;
-  border: 1px solid $coin;
+  background-color: $google-grey-50;
+  border: 1px solid $divider-color;
 }
 
 date {
   text-align: right;
   display: block;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 label {
@@ -233,25 +237,36 @@ label {
 button, select {
   font-family: $sans-serif;
   border-radius: $border-radius;
-  background-color: $white;
-  border: 1px solid $coin;
+  color: $primary-text-color;
+  border: 1px solid $divider-color;
   @include font-size(3);
   line-height: 25px; // override
   padding: 0 $s3;
-  @include transition(background-color $time ease);
 }
 
 button {
+  color: $primary-color-text;
+  background-color: $primary-color;
+
   &:hover,
-  &:focus,
-  &:active {
-    background-color: $flint;
+  &:active,
+  &:focus {
+    background-color: $primary-color-dark;
   }
 }
 
 a, button, input, select, textarea {
   cursor: pointer;
   text-decoration: none;
+  outline-color: $accent-color;
+}
+
+input[type=number],
+input[type=text] {
+  border: none;
+  box-shadow: inset 0 0 0 1px;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .error {
@@ -270,7 +285,7 @@ cite {
 
 blockquote {
   padding: $s2 $s2;
-  background-color: $cloud;
+  background-color: $primary-color-light;
   overflow: hidden;
   max-width: 500px;
   margin-left: auto;
@@ -291,10 +306,11 @@ blockquote {
 
 .center {
   text-align: center;
+  justify-content: center;
 }
 
 strong {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 list {

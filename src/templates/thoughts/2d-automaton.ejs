@@ -30,11 +30,10 @@ styles:
   </p>
 
   <p>
-    <code class="center"
->&squ;&#9632;&squ;   &squ;&#9632;&squ;   &#9632;&#9632;&#9632;   &#9632;&#9632;&#9632;
+    <%- code(`&squ;&#9632;&squ;   &squ;&#9632;&squ;   &#9632;&#9632;&#9632;   &#9632;&#9632;&#9632;
 &#9632;&squ;&#9632;   &#9632;&#9632;&#9632;   &#9632;&squ;&#9632;   &#9632;&#9632;&#9632;
 &squ;&#9632;&squ;   &squ;&#9632;&squ;   &#9632;&#9632;&#9632;   &#9632;&#9632;&#9632;
-&nbsp;4&nbsp;   &nbsp;5&nbsp;   &nbsp;8&nbsp;   &nbsp;9&nbsp;</code>
+&nbsp;4&nbsp;   &nbsp;5&nbsp;   &nbsp;8&nbsp;   &nbsp;9&nbsp;`, { class: 'center', style: 'line-height: 0.7;' }) %>
   </p>
 
   <p>
@@ -45,19 +44,19 @@ styles:
     I have found that rules converted to binary numbers ending in 10110 make for very cool patterns. The arrows will jump you to then next rule that when converted to binary ends in 10110.
   </p>
 
-  <p class="center">
-    Rule number from 0 to 65,535:
+  <form class="center p">
+    <span>Rule number from 0 to 65,535:</span>
     <input id="rule" value="10678" type="number" min="0" max="65535" step="2"/>
     <span id="rule-up-and-down">
-      <button value="1">&#x25B2;</button>
-      <button value="-1">&#x25BC;</button>
+      <button type="button" value="1">&#x25B2;</button>
+      <button type="button" value="-1">&#x25BC;</button>
     </span>
-  </p>
+  </form>
 
-  <p class="center">
-    Random Start: <input id="random-start" type="checkbox" />
-    Scroll?: <input id="play" type="checkbox" />
-  </p>
+  <form class="center p">
+    <label>Random Start: <input id="random-start" type="checkbox" /></label>
+    <label>Scroll?: <input id="play" type="checkbox" /></label>
+  </form>
 </div>
 
 <canvas id="canvas">

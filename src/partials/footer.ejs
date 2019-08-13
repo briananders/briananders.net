@@ -2,20 +2,21 @@
   <ul class="content">
     <li>
       <% const date = new Date(); %>
-      &copy; <%- date.getFullYear(); %> <a itemprop="url" href="<%- locals.contact %>">
-        <span itemprop="author"><%- locals.author %></span>
-      </a>
+      &copy; <%- date.getFullYear(); %>
     </li>
 
     <li>
       <a itemprop="url" href="https://github.com/briananders/briananders.net"
          target="blank">
-        Github repo for this site
+        Github
       </a>
     </li>
 
-    <li class="siteinfo">
-      <%- (devBuild) ? 'Development' : 'Production' %> build, version <%- locals.version %>
+    <li>
+      <a itemprop="url" href="https://www.last.fm/user/iBrianAnders"
+         target="blank">
+        Last.fm
+      </a>
     </li>
   </ul>
 </footer>

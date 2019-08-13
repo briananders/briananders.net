@@ -1,7 +1,7 @@
 ---
 title: "Experience"
 altTitle: "I'm experienced."
-description: "A Senior UX Engineer at Nest/Google, an Alphabet company, since 2013."
+description: "Senior UX Engineer at Google, since 2014, when Google acquired Nest Labs."
 date: 2017-09-03
 priority: 0.9
 layout: base
@@ -10,7 +10,23 @@ styles:
   - 'experience/index'
 ---
 
-
+<section class="google-store" itemtype="https://schema.org/Organization">
+  <div class="content">
+    <meta itemprop="employee" content="Brian Anders"/>
+    <meta itemprop="department" content="Google Store"/>
+    <meta itemprop="parentOrganization" content="Alphabet, inc"/>
+    <h2 itemprop="name" class="p">
+      <a itemprop="url" href="https://store.google.com"
+        target="_blank">
+        Google Store
+      </a>
+    </h2>
+    <p><strong>October 2018 - Present</strong></p>
+    <p>
+      The <a href="https://nest.com">nest.com</a> team was moved into the Google Store organization in 2018 as we prepared for the merging of Nest Labs into the then Google Hardware organization under Google, Inc. Since then, I have been working on improving the customer experience across the whole <a href="https://store.google.com">Google Store</a>.
+    </p>
+  </div>
+</section>
 
 
 
@@ -25,7 +41,7 @@ styles:
         Nest
       </a>
     </h2>
-    <p><strong>May 2013 - Present</strong></p>
+    <p><strong>May 2013 - October 2018</strong></p>
     <p>
       After graduating in May 2013, I drove out to California and began an internship at <a itemprop="url" href="https://nest.com" target="_blank">Nest Labs</a>, a medium-sized startup in Palo Alto. I guess I made a good impression because they hired me.
     <p>
@@ -178,7 +194,7 @@ styles:
         const language = languages[i];
       %>
         <li>
-          <a href="<%- language.url %>"><%- language.name %></a>
+          <a class="button" href="<%- language.url %>"><%- language.name %></a>
         </li>
       <% } %>
     </ul>
@@ -216,7 +232,7 @@ styles:
         const resource = resources[i];
       %>
         <li>
-          <a href="<%- resource.url %>"><%- resource.name %></a>
+          <a class="button" href="<%- resource.url %>"><%- resource.name %></a>
         </li>
       <% } %>
     </ul>

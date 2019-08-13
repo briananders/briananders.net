@@ -1,9 +1,23 @@
 footer {
   padding: $s6 0;
   text-align: center;
-  background-color: $cloud;
-  color: $black;
+  background-color: $primary-color;
+  color: $primary-color-text;
   margin-top: $spacer;
+
+  a,
+  a:visited {
+    color: $primary-color-text;
+
+    &:hover,
+    &:focus {
+      color: $primary-color-text;
+    }
+
+    &::before {
+      background-color: $primary-color-text;
+    }
+  }
 
   li {
     @include font-size();

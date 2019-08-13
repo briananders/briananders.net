@@ -86,28 +86,28 @@ styles:
     </list>
   </p>
 
-  <p class="center">
-    Rule number from 0 to 255:
+  <form class="center p">
+    <span>Rule number from 0 to 255:</span>
     <input id="rule" value="90" type="number" min="0" max="255" step="1"/>
     <span id="rule-up-and-down">
-      <button value="1">&#x25B2;</button>
-      <button value="-1">&#x25BC;</button>
+      <button type="button" value="1">&#x25B2;</button>
+      <button type="button" value="-1">&#x25BC;</button>
     </span>
-  </p>
+  </form>
 
-  <p class="center">
-    Height:
+  <form class="center p">
+    <span>Height:</span>
     <input id="height" value="128" type="number" min="1" max="255" step="10"/>
     <span id="height-up-and-down">
-      <button value="10">&#x25B2;</button>
-      <button value="-10">&#x25BC;</button>
+      <button type="button" value="10">&#x25B2;</button>
+      <button type="button" value="-10">&#x25BC;</button>
     </span>
-  </p>
+  </form>
 
-  <p class="center">
-    Random Start: <input id="random-start" type="checkbox" />
-    Scroll?: <input id="play" type="checkbox" />
-  </p>
+  <form class="center p">
+    <label>Random Start: <input id="random-start" type="checkbox" /></label>
+    <label>Scroll?: <input id="play" type="checkbox" /></label>
+  </form>
 </div>
 
 <canvas id="canvas">

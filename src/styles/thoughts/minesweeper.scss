@@ -12,7 +12,7 @@
 
   .table {
     font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
+    font-weight: $bold;
     width: 100%;
     margin: auto;
 
@@ -45,8 +45,7 @@
   .blog-date,
   .header-first-row,
   .header-second-row {
-
-    @include transition(width 0.5s ease, max-width 0.5s ease);
+    transition-property: width, max-width;
 
     &[data-difficulty=beginner] {
       max-width: 400px;
@@ -109,6 +108,7 @@
     float: left;
     height: 0;
     box-sizing: border-box;
+    transition: none;
 
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
@@ -150,7 +150,7 @@
     left: 50%;
     top: 50%;
     font-size: 5vw;
-    @include transform(translate(-50%, -50%));
+    transform: translate(-50%, -50%);
   }
 
   .column {
@@ -179,6 +179,7 @@
   }
 
   .number {
+    transition: none;
     display: block;
     float: left;
     background-image: url('/images/thoughts/minesweeper/sprite.png');
@@ -197,6 +198,7 @@
   }
 
   .face-button {
+    transition: none;
     width: 52px;
     height: 52px;
     position: relative;

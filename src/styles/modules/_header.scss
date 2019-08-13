@@ -5,32 +5,28 @@ header.main-header {
   @include font-size();
   margin-bottom: $spacer;
   font-family: $sans-serif;
-  color: $black;
+  color: $primary-color-text;
   overflow: hidden;
   position: relative;
-  background-color: #1f1f1f;
+  background-color: $primary-color;
+  margin-top: 64px;
 
   .name {
     @include font-size(7);
     display: block;
     width: 100%;
     margin: auto;
-    color: $white;
+    color: $primary-color-text;
   }
 
   &.with-head {
     height: 50vh;
     background-image: url('/images/icons/my-face.svg');
-    background-size: auto 45vh;
-    background-position: center top;
+    background-size: auto 100%;
+    background-position: center bottom;
     background-repeat: no-repeat;
-
-    .name {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
+    overflow: visible;
+    filter: saturate(0.7);
   }
 
   &.without-head {
@@ -53,7 +49,6 @@ header.main-header {
 
     &.with-head {
       height: 380px;
-      background-size: auto 320px;
     }
   }
 }
