@@ -1,6 +1,7 @@
 
 module.exports = {
   init() {
+    const darkMode = require('../_modules/dark-mode');
 
     function setupCanvas(query) {
       const canvas = document.querySelector(query);
@@ -39,6 +40,8 @@ module.exports = {
 
     let aCache = [];
     let bCache = [];
+
+    const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
 
     function moneyRound(num) {
       return Math.ceil(num * 100) / 100;
@@ -94,11 +97,14 @@ module.exports = {
 
     function drawLine(x1, y1, x2, y2) {
       mainContext.beginPath();
-      // mainContext.strokeStyle = currentColor.code;
+      mainContext.fillStyle = FILL_STYLE;
+      mainContext.strokeStyle = FILL_STYLE;
       mainContext.stroke();
       mainContext.lineWidth = 1;
       mainContext.moveTo(x1, y1);
       mainContext.lineTo(x2, y2);
+      mainContext.fillStyle = FILL_STYLE;
+      mainContext.strokeStyle = FILL_STYLE;
       mainContext.stroke();
     }
 

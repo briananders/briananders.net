@@ -75,14 +75,14 @@
 
 <% const fontApi = 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,500|Source+Serif+Pro'; %>
 
-<link href='<%- fontApi %>' rel='stylesheet' type='text/css' media="none" onload="if(media!='all')media='all'">
+<link href='<%- fontApi %>' rel='stylesheet' type='text/css' media="all">
 <% locals.styles.forEach(function(path){ %>
-  <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
+  <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css" media="all">
 <% }); %>
 
 <noscript>
   <link href='<%- fontApi %>' rel='stylesheet' type='text/css'>
   <% locals.styles.forEach(function(path){ %>
-    <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css">
+    <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css" media="all">
   <% }); %>
 </noscript>

@@ -16,22 +16,26 @@ html {
   font-size: 62.5%;
   position: relative;
   font-family: $serif;
+  background-color: $white;
   color: $primary-text-color;
   overflow-x: hidden;
-  background-color: $white;
 
-  ::selection {
+  @include dark-mode {
     background-color: $primary-text-color;
-    color: $primary-color-light;
-    text-shadow: none;
+    color: $primary-color-text;
   }
+
+  ::selection,
   ::-moz-selection {
     background-color: $primary-text-color;
-    color: $primary-color-light;
+    color: $primary-color-text;
     text-shadow: none;
-  }
 
-  outline-color: $accent-color;
+    @include dark-mode {
+      background-color: $white;
+      color: $primary-text-color;
+    }
+  }
 }
 
 body {
@@ -62,6 +66,10 @@ section {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: $spacer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .content {
@@ -83,8 +91,6 @@ section {
 *::before,
 *::after {
   box-sizing: border-box;
-  transition-duration: $transition-speed;
-  transition-timing-function: ease;
 }
 
 h1, h2, h3 {
@@ -107,23 +113,31 @@ h1, h2, h3 {
 a,
 a:visited,
 .link {
-  color: $primary-color-text;
-  background-color: $primary-color;
   padding: 0 $s1;
   display: inline-block;
   position: relative;
   text-decoration: none;
-  transition-property: color;
+  transition-property: color, background-color;
+  color: $primary-color-text;
+  background-color: $primary-color;
+
+  @include dark-mode {
+    background-color: $primary-color-dark;
+  }
 
   &::before {
     position: absolute;
     bottom: 0;
     height: 1px;
-    background-color: $primary-color;
     content: "";
     left: 51%;
     right: 51%;
     transition-property: left, right;
+    background-color: $primary-color;
+
+    @include dark-mode {
+      background-color: $primary-color-dark;
+    }
   }
 
   &:hover,
@@ -131,9 +145,15 @@ a:visited,
   &:active {
     background-color: $primary-color-dark;
 
+    @include dark-mode {
+      background-color: $primary-color;
+    }
+
     &::before {
       left: 0;
       right: 0;
+      transition-duration: $transition-speed;
+      transition-timing-function: ease;
     }
 
     img {
@@ -164,18 +184,26 @@ button.button {
   text-align: center;
   display: inline-block;
   padding: $s2 $s6;
-  color: $primary-color-text;
-  background-color: $primary-color;
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
+  color: $primary-color-text;
+  background-color: $primary-color;
+
+  @include dark-mode {
+    background-color: $primary-color-dark;
+  }
 
   &:hover,
   &:focus,
   &:active {
     background-color: $primary-color-dark;
+
+    @include dark-mode {
+      background-color: $primary-color;
+    }
   }
 
   &::before {
@@ -259,6 +287,8 @@ a, button, input, select, textarea {
   cursor: pointer;
   text-decoration: none;
   outline-color: $accent-color;
+  transition-duration: $transition-speed;
+  transition-timing-function: ease;
 }
 
 input[type=number],
@@ -284,14 +314,20 @@ cite {
 }
 
 blockquote {
-  padding: $s2 $s2;
-  background-color: $primary-color-light;
+  padding: $s5 $s5;
   overflow: hidden;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
+  background-color: $primary-color-light;
+  color: $primary-text-color;
+
+  @include dark-mode {
+    background-color: $primary-color-dark;
+    color: $primary-color-text;
+  }
 
   &::after,
   &::before {

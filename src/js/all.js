@@ -7,6 +7,8 @@ module.exports = {
 
     this.setupNavEvents(analytics);
     this.testForTouch();
+    this.navScrollWatcher();
+    this.setMainMinHeight();
 
     analytics.watchElements();
   },
@@ -31,12 +33,46 @@ module.exports = {
     });
   },
 
+  navScrollWatcher() {
+    const mainNav = document.querySelector('nav.main');
+
+    const checkScrollDepth = () => {
+      if (window.scrollY <= 0) {
+        mainNav.classList.remove('shadow');
+      } else {
+        mainNav.classList.add('shadow');
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollDepth);
+    checkScrollDepth();
+  },
+
   testForTouch() {
     if ('ontouchstart' in document.documentElement) {
       document.documentElement.classList.add('touch-events');
     } else {
       document.documentElement.classList.add('no-touch-events');
     }
+  },
+
+  setMainMinHeight() {
+    const mainElement = document.querySelector('main');
+    const footerElement = document.querySelector('footer');
+
+    const calculateMinHeight = () => {
+      const docHeight = document.documentElement.clientHeight;
+      const { bottom } = footerElement.getBoundingClientRect();
+      const { height } = mainElement.getBoundingClientRect();
+
+      const heightDelta = docHeight - bottom;
+
+      mainElement.style.minHeight = `${height + heightDelta}px`;
+    };
+
+    calculateMinHeight();
+    window.addEventListener('resize', calculateMinHeight);
+    window.addEventListener('orientationchange', calculateMinHeight);
   },
 
 };

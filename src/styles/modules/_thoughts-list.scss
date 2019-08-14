@@ -21,24 +21,21 @@
     margin-bottom: $s2;
   }
 
-  figcaption, date {
-    color: $secondary-text-color;
-  }
-
   a,
   a:visited {
-    color: $primary-text-color;
     overflow: hidden;
     display: block;
     text-decoration: none;
     position: relative;
     padding-bottom: $s2;
+    color: $primary-text-color;
     background-color: transparent;
 
-    &:hover,
-    &:focus {
-      figcaption, date {
-        color: $primary-text-color;
+    @include dark-mode {
+      color: $primary-color-text;
+
+      &:before {
+        background-color: $primary-color-text;
       }
     }
   }

@@ -23,6 +23,11 @@ section {
     position: relative;
     padding-right: 100px + $s3;
     background-color: transparent;
+    color: $primary-text-color;
+
+    @include dark-mode {
+      color: $primary-color-text;
+    }
 
     &::before,
     &::after {
@@ -32,12 +37,13 @@ section {
     &:focus,
     &:hover {
       bar {
-        background-color: $accent-color;
+        background-color: $primary-color-dark;
       }
 
-      .name,
-      .scrobbles {
-        color: $primary-text-color;
+      color: $primary-color-dark;
+
+      @include dark-mode {
+        color: $primary-color-light;
       }
     }
 
@@ -46,13 +52,11 @@ section {
       @include font-size(3);
       font-family: $sans-serif;
       font-weight: $bold;
-      color: $primary-text-color;
     }
 
     .scrobbles {
       display: block;
       font-family: $serif;
-      color: $secondary-text-color;
     }
 
     bar {
@@ -61,6 +65,8 @@ section {
       background-color: $primary-color;
       margin-top: $s1;
       transition-property: background-color;
+      transition-duration: $transition-speed;
+      transition-timing-function: ease;
     }
 
     a,

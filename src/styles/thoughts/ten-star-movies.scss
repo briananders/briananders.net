@@ -15,14 +15,26 @@ a.movie {
   display: block;
   padding-bottom: $s4;
   margin-bottom: $s4;
+  transition-property: color;
   background-color: transparent;
   color: $primary-text-color;
-  transition-property: color;
+
+  @include dark-mode {
+    color: $primary-color-text;
+
+    &::before {
+      background-color: $primary-color-text;
+    }
+  }
 
   &:hover,
   &:focus {
     background-color: transparent;
     color: $primary-color-dark;
+
+    @include dark-mode {
+      color: $primary-color-text;
+    }
   }
 
   h3 {

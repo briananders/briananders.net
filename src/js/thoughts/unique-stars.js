@@ -1,5 +1,6 @@
 function init() {
   const scrollTo = require('../_modules/scroll-to');
+  const darkMode = require('../_modules/dark-mode');
 
   const nInput = document.getElementById('n');
   const answerTag = document.querySelector('answer');
@@ -11,6 +12,8 @@ function init() {
   canvas.height = 1000;
   let currentConfig;
 
+  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
+
   function degreesToRadians(deg = 0) {
     return (deg * (2 * Math.PI)) / 360;
   }
@@ -21,6 +24,14 @@ function init() {
 
   function clearCanvas() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function scrollValue() {
+    return window.pageYOffset + canvas.getBoundingClientRect().top - 80;
+  }
+
+  function scroll() {
+    scrollTo(scrollValue(), { easing: 'easeInOutQuint', duration: 350 });
   }
 
   function getStarPoints(n) {
@@ -73,6 +84,8 @@ function init() {
       const [xa, ya] = points[a];
       const [xb, yb] = points[b];
       canvasContext.beginPath();
+      canvasContext.fillStyle = FILL_STYLE;
+      canvasContext.strokeStyle = FILL_STYLE;
       canvasContext.moveTo(xa, ya);
       canvasContext.lineTo(xb, yb);
       canvasContext.stroke();
@@ -132,7 +145,8 @@ function init() {
         currentConfig = [Number(length), Number(step)];
 
         drawStar(...currentConfig);
-        scrollTo(canvas);
+
+        scroll();
       });
     } else {
       answerArrayTag.innerHTML = '';
@@ -173,7 +187,8 @@ function init() {
       setTimeout(() => {
         currentConfig = [Number(length), Number(step)];
         drawStar(...currentConfig);
-        scrollTo(canvas);
+
+        scrollTo(scrollValue());
       }, 10);
     }
   }

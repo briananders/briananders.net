@@ -1,9 +1,13 @@
 footer {
   padding: $s6 0;
   text-align: center;
-  background-color: $primary-color;
-  color: $primary-color-text;
   margin-top: $spacer;
+  color: $primary-color-text;
+  background-color: $primary-color;
+
+  @include dark-mode {
+    background-color: $primary-color-dark;
+  }
 
   a,
   a:visited {
@@ -15,7 +19,7 @@ footer {
     }
 
     &::before {
-      background-color: $primary-color-text;
+      content: unset;
     }
   }
 

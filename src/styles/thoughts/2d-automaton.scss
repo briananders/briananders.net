@@ -8,12 +8,32 @@ canvas {
   max-height: 100vw;
   margin: auto;
   display: block;
-  background-color: $primary-color-light;
+  border: 1px solid;
+}
+
+table {
+  text-align: center;
+  margin: auto;
+}
+
+td {
+  padding: $s4 $s4 0;
+  @include font-size(5);
+  line-height: .7;
+
+  @include mq-max(500px) {
+    padding: $s2 $s2 0;
+    @include font-size(4);
+    line-height: .7;
+  }
+
+  span {
+    line-height: 2;
+  }
 }
 
 input[type=checkbox] {
-  height: $s4;
-  width: $s4;
+  margin-left: $s1;
 }
 
 #rule-up-and-down,

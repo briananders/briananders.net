@@ -28,6 +28,12 @@
   line-height: 1.5 * $font-size;
 }
 
+@mixin dark-mode() {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
 %clearfix {
   *zoom: 1;
   &::before, &::after {
