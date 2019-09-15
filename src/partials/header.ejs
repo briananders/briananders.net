@@ -1,3 +1,6 @@
+<div id="skip-nav" tabindex="-1" data-state=inactive>
+  <button>Skip navigation</button>
+</div>
 <%- partial('nav', locals); %>
 <header class="main-header <%- locals.withHead ? 'with-head' : 'without-head' %> <%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
   <% if(!locals.withHead) { %>

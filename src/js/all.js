@@ -13,6 +13,7 @@ module.exports = {
     this.testForTouch();
     this.navScrollWatcher();
     this.setMainMinHeight();
+    this.setUpSkipNav();
 
     analytics.watchElements();
   },
@@ -34,6 +35,25 @@ module.exports = {
         });
         mainNavContent.classList.add('mobile-active');
       }
+    });
+  },
+
+  setUpSkipNav() {
+    const skipNavContainer = document.getElementById('skip-nav');
+    const skipNavButton = skipNavContainer.querySelector('button');
+    const nonNavContainerSelectors = ['main', 'footer'];
+    const interactableElements = ['a', 'input', 'button', 'textarea'];
+    const querySelectors = nonNavContainerSelectors.map(container => interactableElements.map(input => `${container} ${input}`));
+
+    skipNavButton.addEventListener('focus', () => {
+      skipNavContainer.dataset.state = 'active';
+    });
+    skipNavButton.addEventListener('blur', () => {
+      skipNavContainer.dataset.state = 'inactive';
+    });
+    skipNavButton.addEventListener('click', () => {
+      const firstInput = document.querySelector(querySelectors.join(', '));
+      firstInput.focus();
     });
   },
 

@@ -1,0 +1,18 @@
+#skip-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 10000000;
+  background: white;
+  padding: 10px;
+  margin: auto;
+
+  &[data-state=inactive] {
+    top: -100%;
+  }
+
+  &[data-state=active] {
+    top: 0;
+  }
+}
