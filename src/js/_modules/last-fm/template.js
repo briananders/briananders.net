@@ -6,7 +6,7 @@ module.exports = `
         class="item"
         title="{{name}}, {{playcount}} scrobbles">
       {{#if imageSrc}}
-        <img src={{imageSrc}} />
+        <img src={{imageSrc}} alt={{name}} />
       {{/if}}
       <span class="name">
         {{name}}
