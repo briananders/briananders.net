@@ -12,7 +12,7 @@ nav.main {
   }
 
   &.shadow,
-  .mobile-nav-links {
+  .mobile-nav-tray {
     box-shadow: 0 0 $s2 $primary-text-color;
   }
 
@@ -27,12 +27,9 @@ nav.main {
 
   .content {
     overflow: visible;
+    align-items: baseline;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     min-height: $s11;
     background-color: var(--primary-color, #{$primary-color});
 
@@ -41,10 +38,10 @@ nav.main {
     }
   }
 
-  .desktop-nav {
+  .desktop-nav-links {
     display: none;
   }
-  .mobile-nav {
+  .menu {
     display: block;
     background-color: transparent;
     border: none;
@@ -62,7 +59,7 @@ nav.main {
     }
   }
 
-  .mobile-nav-links {
+  .mobile-nav-tray {
     z-index: -1;
     position: absolute;
     top: -100%;
@@ -81,7 +78,7 @@ nav.main {
       background-color: var(--primary-color-dark, #{$primary-color-dark});
     }
   }
-  .mobile-active .mobile-nav-links {
+  .mobile-active .mobile-nav-tray {
     top: 100%;
   }
 
@@ -131,14 +128,14 @@ nav.main {
     .content {
       border-bottom: none;
     }
-    .desktop-nav {
+    .desktop-nav-links {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       float: right;
     }
-    .mobile-nav,
-    .mobile-nav-links {
+    .menu,
+    .mobile-nav-tray {
       display: none;
     }
   }

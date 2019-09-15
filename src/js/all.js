@@ -21,6 +21,7 @@ module.exports = {
   setupNavEvents(analytics) {
     const menuButton = document.querySelector('#activate-menu');
     const mainNavContent = document.querySelector('nav.main .content');
+    const mobileNavTray = mainNavContent.querySelector('.mobile-nav-tray');
     menuButton.addEventListener('click', () => {
       if (mainNavContent.classList.contains('mobile-active')) {
         analytics.pushEvent({
@@ -28,12 +29,18 @@ module.exports = {
           action: 'menu close',
         });
         mainNavContent.classList.remove('mobile-active');
+        setTimeout(() => {
+          mobileNavTray.style.display = 'none';
+        }, 250);
       } else {
         analytics.pushEvent({
           category: 'nav',
           action: 'menu open',
         });
-        mainNavContent.classList.add('mobile-active');
+        mobileNavTray.style.display = '';
+        setTimeout(() => {
+          mainNavContent.classList.add('mobile-active');
+        }, 250);
       }
     });
   },
@@ -42,7 +49,7 @@ module.exports = {
     const skipNavContainer = document.getElementById('skip-nav');
     const skipNavButton = skipNavContainer.querySelector('button');
     const nonNavContainerSelectors = ['main', 'footer'];
-    const interactableElements = ['a', 'input', 'button', 'textarea'];
+    const interactableElements = ['a', 'input', 'button', 'textarea', 'select'];
     const querySelectors = nonNavContainerSelectors.map(container => interactableElements.map(input => `${container} ${input}`));
 
     skipNavButton.addEventListener('focus', () => {

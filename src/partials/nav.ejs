@@ -1,21 +1,23 @@
 <nav class="nav main" role="menu">
   <div class="content">
     <a class="brand" itemprop="url" role="menuitem" href="/"><%- locals.name %></a>
-    <div class="desktop-nav">
+    <div class="desktop-nav-links">
       <a itemprop="url" role="menuitem" href="/">Home</a>
-      <% var basePages = getChildPages('');
+      <%
+        var basePages = getChildPages('');
         for(var i = 0; i < basePages.length; i++) {
           var page = basePages[i];
       %>
         <a itemprop="url" role="menuitem" href="/<%- page.url %>"><%- page.data.title %></a>
       <% } %>
     </div>
-    <button id="activate-menu" class="mobile-nav link">
+    <button id="activate-menu" class="menu link">
       Menu
     </button>
-    <div class="mobile-nav-links">
+    <div class="mobile-nav-tray" style="display:none;">
       <a itemprop="url" role="menuitem" href="/">Home</a>
-      <% var basePages = getChildPages('');
+      <%
+        var basePages = getChildPages('');
         for(var i = 0; i < basePages.length; i++) {
           var page = basePages[i];
       %>

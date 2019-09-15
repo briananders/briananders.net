@@ -178,6 +178,14 @@ header.content {
   }
 }
 
+a,
+input,
+button,
+textarea,
+select {
+  outline-color: var(--accent-color, #{$accent-color});
+}
+
 a.button,
 a:visited.button,
 button.button {
