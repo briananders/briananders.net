@@ -9,10 +9,10 @@ header.main-header {
   overflow: hidden;
   position: relative;
   margin-top: $s11;
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   .name {

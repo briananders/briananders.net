@@ -3,10 +3,10 @@ footer {
   text-align: center;
   margin-top: $spacer;
   color: $primary-color-text;
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   a,

@@ -6,7 +6,7 @@ code {
   display: block;
   overflow-x: auto;
   width: 100%;
-  background-color: $primary-color-light;
+  background-color: var(--primary-color-light, #{$primary-color-light});
   color: $primary-text-color;
 }
 
@@ -31,11 +31,11 @@ code {
 
   &::before {
     left: 0;
-    background: linear-gradient(to left, transparent, #{$primary-color-light});
+    background: linear-gradient(to left, transparent, var(--primary-color-light, #{$primary-color-light}));
   }
   &::after {
     right: 0;
-    background: linear-gradient(to right, transparent, #{$primary-color-light});
+    background: linear-gradient(to right, transparent, var(--primary-color-light, #{$primary-color-light}));
   }
 }
 
@@ -45,6 +45,6 @@ var {
   border: 1px solid $divider-color;
   border-radius: 4px;
   padding: 0 0.5rem;
-  background-color: $primary-color-light;
+  background-color: var(--primary-color-light, #{$primary-color-light});
   color: $primary-text-color;
 }

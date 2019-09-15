@@ -30,7 +30,7 @@ a.movie {
   &:hover,
   &:focus {
     background-color: transparent;
-    color: $primary-color-dark;
+    color: var(--primary-color-dark, #{$primary-color-dark});
 
     @include dark-mode {
       color: $primary-color-text;

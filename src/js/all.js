@@ -1,6 +1,10 @@
 /* globals document */
 
+const queryParameters = require('./_modules/queryParameters');
+
 module.exports = {
+
+  parameters: queryParameters(),
 
   init() {
     const analytics = require('./_modules/analytics');
