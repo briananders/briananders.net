@@ -65,5 +65,9 @@
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.0",
     "xxhash": "^0.2.4"
+  },
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.10.3"
   }
 }
