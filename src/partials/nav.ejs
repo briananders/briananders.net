@@ -11,10 +11,10 @@
         <a itemprop="url" role="menuitem" href="/<%- page.url %>"><%- page.data.title %></a>
       <% } %>
     </div>
-    <button id="activate-menu" class="menu link">
+    <button id="activate-menu" class="menu link" aria-expanded="false">
       Menu
     </button>
-    <div class="mobile-nav-tray" style="display:none;">
+    <div class="mobile-nav-tray" aria-hidden="true">
       <a itemprop="url" role="menuitem" href="/">Home</a>
       <%
         var basePages = getChildPages('');

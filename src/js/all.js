@@ -28,19 +28,21 @@ module.exports = {
           category: 'nav',
           action: 'menu close',
         });
+        menuButton.setAttribute('aria-expanded', 'false');
         mainNavContent.classList.remove('mobile-active');
         setTimeout(() => {
-          mobileNavTray.style.display = 'none';
+          mobileNavTray.setAttribute('aria-hidden', 'true');
         }, 250);
       } else {
         analytics.pushEvent({
           category: 'nav',
           action: 'menu open',
         });
-        mobileNavTray.style.display = '';
+        menuButton.setAttribute('aria-expanded', 'true');
+        mobileNavTray.setAttribute('aria-hidden', 'false');
         setTimeout(() => {
           mainNavContent.classList.add('mobile-active');
-        }, 250);
+        }, 1);
       }
     });
   },

@@ -91,6 +91,7 @@ section {
 *::before,
 *::after {
   box-sizing: border-box;
+  outline: none;
 }
 
 h1, h2, h3 {
@@ -199,9 +200,11 @@ button.button {
   transition-property: background-color;
   color: $primary-color-text;
   background-color: var(--primary-color, #{$primary-color});
+  border: 2px solid var(--primary-color, #{$primary-color});
 
   @include dark-mode {
-    background-color: var(--primary-color-dark, #{$primary-color-dark});
+    background-color: transparent;
+    border-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &:hover,
@@ -209,14 +212,19 @@ button.button {
   &:active {
     background-color: var(--primary-color-dark, #{$primary-color-dark});
 
-    @include dark-mode {
-      background-color: var(--primary-color, #{$primary-color});
-    }
+    // @include dark-mode {
+    //   background-color: var(--primary-color-dark, #{$primary-color-dark});
+    // }
   }
 
   &::before {
     height: 0;
   }
+}
+
+[aria-hidden="true"] {
+  display: none;
+  visibility: hidden;
 }
 
 h1 {
@@ -333,7 +341,8 @@ blockquote {
   color: $primary-text-color;
 
   @include dark-mode {
-    background-color: var(--primary-color-dark, #{$primary-color-dark});
+    background-color: transparent;
+    border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
     color: $primary-color-text;
   }
 

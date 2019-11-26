@@ -2,6 +2,7 @@ module.exports = `
   {{#each items}}
     <a itemprop="url"
         target="_blank"
+        rel="noopener"
         href="{{url}}"
         class="item"
         title="{{name}}, {{playcount}} scrobbles">

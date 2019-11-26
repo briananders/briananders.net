@@ -21,13 +21,12 @@ nav.main {
   button {
     outline: none;
     background-color: transparent !important;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
   }
 
   .content {
     overflow: visible;
-    align-items: baseline;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     min-height: $s11;
@@ -44,18 +43,19 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    border: none;
-    padding: 0;
     color: $primary-color-text;
     font-weight: $regular;
+    padding: 4px 8px;
+    box-shadow: 0 0 0 1px $google-white;
 
     &:hover,
     &:focus {
       color: $primary-color-text;
+      box-shadow: 0 0 0 2px $google-white;
     }
 
     &::before {
-      background-color: $primary-color-text;
+      content: unset;
     }
   }
 
