@@ -25,16 +25,17 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
       filename: templatePath,
       root: `${dir.src}templates/`,
     };
-    const frontMatter = matter.read(templatePath);
-    const templateData = merge({}, ejsFunctions, siteData, frontMatter.data);
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
+    const pagePath = outputPath.replace(dir.package, '').replace('index.html', '');
+    const frontMatter = matter.read(templatePath);
+    const templateData = merge({}, ejsFunctions, siteData, frontMatter.data, { path: pagePath });
 
     if (!production && !templateData.layout) {
       const errorMessage = `You are missing a template definition in ${templatePath}`;
       console.error(errorMessage.red);
       notifier.notify({
         title: 'Template undefined',
-        message: errorMessage
+        message: errorMessage,
       });
       processed++;
       return;
@@ -70,15 +71,15 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
               <h1>There was an error.</h1>
               <div style="color: red; font-family: monospace;">
                 ${
-                  e.message
-                  .replace(/&/g, "&amp;")
-                  .replace(/</g, "&lt;")
-                  .replace(/>/g, "&gt;")
-                  .replace(/"/g, "&quot;")
-                  .replace(/'/g, "&#039;")
-                  .replace(/\n/g, '<br>')
-                  .replace(/\s\s/g, '&nbsp;&nbsp;')
-                }
+  e.message
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+    .replace(/\n/g, '<br>')
+    .replace(/\s\s/g, '&nbsp;&nbsp;')
+}
               </div>
             </body>
           </html>`;
