@@ -1,5 +1,5 @@
 nav.main {
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
   border-radius: 0;
   margin: 0;
   transition-property: opacity;
@@ -8,11 +8,11 @@ nav.main {
   width: 100%;
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &.shadow,
-  .mobile-nav-links {
+  .mobile-nav-tray {
     box-shadow: 0 0 $s2 $primary-text-color;
   }
 
@@ -21,48 +21,45 @@ nav.main {
   button {
     outline: none;
     background-color: transparent !important;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
   }
 
   .content {
     overflow: visible;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     min-height: $s11;
-    background-color: $primary-color;
+    background-color: var(--primary-color, #{$primary-color});
 
     @include dark-mode {
-      background-color: $primary-color-dark;
+      background-color: var(--primary-color-dark, #{$primary-color-dark});
     }
   }
 
-  .desktop-nav {
+  .desktop-nav-links {
     display: none;
   }
-  .mobile-nav {
+  .menu {
     display: block;
     background-color: transparent;
-    border: none;
-    padding: 0;
     color: $primary-color-text;
     font-weight: $regular;
+    padding: 4px 8px;
+    box-shadow: 0 0 0 1px $google-white;
 
     &:hover,
     &:focus {
       color: $primary-color-text;
+      box-shadow: 0 0 0 2px $google-white;
     }
 
     &::before {
-      background-color: $primary-color-text;
+      content: unset;
     }
   }
 
-  .mobile-nav-links {
+  .mobile-nav-tray {
     z-index: -1;
     position: absolute;
     top: -100%;
@@ -75,13 +72,13 @@ nav.main {
     height: $s10;
     transition-duration: $transition-speed;
     transition-timing-function: ease;
-    background-color: $primary-color;
+    background-color: var(--primary-color, #{$primary-color});
 
     @include dark-mode {
-      background-color: $primary-color-dark;
+      background-color: var(--primary-color-dark, #{$primary-color-dark});
     }
   }
-  .mobile-active .mobile-nav-links {
+  .mobile-active .mobile-nav-tray {
     top: 100%;
   }
 
@@ -131,14 +128,14 @@ nav.main {
     .content {
       border-bottom: none;
     }
-    .desktop-nav {
+    .desktop-nav-links {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       float: right;
     }
-    .mobile-nav,
-    .mobile-nav-links {
+    .menu,
+    .mobile-nav-tray {
       display: none;
     }
   }

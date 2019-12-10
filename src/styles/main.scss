@@ -16,7 +16,7 @@ html {
   font-size: 62.5%;
   position: relative;
   font-family: $serif;
-  background-color: $white;
+  background-color: $google-white;
   color: $primary-text-color;
   overflow-x: hidden;
 
@@ -32,7 +32,7 @@ html {
     text-shadow: none;
 
     @include dark-mode {
-      background-color: $white;
+      background-color: $google-white;
       color: $primary-text-color;
     }
   }
@@ -91,6 +91,7 @@ section {
 *::before,
 *::after {
   box-sizing: border-box;
+  outline: none;
 }
 
 h1, h2, h3 {
@@ -119,10 +120,10 @@ a:visited,
   text-decoration: none;
   transition-property: color, background-color;
   color: $primary-color-text;
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &::before {
@@ -133,20 +134,20 @@ a:visited,
     left: 51%;
     right: 51%;
     transition-property: left, right;
-    background-color: $primary-color;
+    background-color: var(--primary-color, #{$primary-color});
 
     @include dark-mode {
-      background-color: $primary-color-dark;
+      background-color: var(--primary-color-dark, #{$primary-color-dark});
     }
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
 
     @include dark-mode {
-      background-color: $primary-color;
+      background-color: var(--primary-color, #{$primary-color});
     }
 
     &::before {
@@ -178,6 +179,14 @@ header.content {
   }
 }
 
+a,
+input,
+button,
+textarea,
+select {
+  outline-color: var(--accent-color, #{$accent-color});
+}
+
 a.button,
 a:visited.button,
 button.button {
@@ -190,25 +199,32 @@ button.button {
   font-weight: $bold;
   transition-property: background-color;
   color: $primary-color-text;
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
+  border: 2px solid var(--primary-color, #{$primary-color});
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: transparent;
+    border-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
 
-    @include dark-mode {
-      background-color: $primary-color;
-    }
+    // @include dark-mode {
+    //   background-color: var(--primary-color-dark, #{$primary-color-dark});
+    // }
   }
 
   &::before {
     height: 0;
   }
+}
+
+[aria-hidden="true"] {
+  display: none;
+  visibility: hidden;
 }
 
 h1 {
@@ -274,19 +290,19 @@ button, select {
 
 button {
   color: $primary-color-text;
-  background-color: $primary-color;
+  background-color: var(--primary-color, #{$primary-color});
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $primary-color-dark;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 }
 
 a, button, input, select, textarea {
   cursor: pointer;
   text-decoration: none;
-  outline-color: $accent-color;
+  outline-color: var(--accent-color, #{$accent-color});
   transition-duration: $transition-speed;
   transition-timing-function: ease;
 }
@@ -321,11 +337,12 @@ blockquote {
   margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
-  background-color: $primary-color-light;
+  background-color: var(--primary-color-light, #{$primary-color-light});
   color: $primary-text-color;
 
   @include dark-mode {
-    background-color: $primary-color-dark;
+    background-color: transparent;
+    border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
     color: $primary-color-text;
   }
 
@@ -361,3 +378,11 @@ list, item {
 item {
   margin-top: $s6;
 }
+
+@each $name, $pallette in $pallettes {
+  @each $key, $value in $pallette {
+    html.#{$name} {
+      --#{$key}: #{$value};
+    }
+  }
+};

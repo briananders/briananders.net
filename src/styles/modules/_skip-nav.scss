@@ -1,0 +1,32 @@
+#skip-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 10000000;
+  padding: $s2;
+  margin: auto;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+
+  background-color: $google-white;
+  color: $primary-text-color;
+
+  @include dark-mode {
+    background-color: $primary-text-color;
+    color: $primary-color-text;
+  }
+
+  &[data-state=inactive] {
+    top: -100%;
+  }
+
+  &[data-state=active] {
+    top: 0;
+  }
+
+  button {
+    padding: $s1 $s2;
+    border: none;
+  }
+}

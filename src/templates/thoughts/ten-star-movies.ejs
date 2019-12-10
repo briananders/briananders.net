@@ -387,8 +387,9 @@ styles:
      class="movie"
      itemprop="url"
      href="<%- movie.imdb.url %>"
-     target="blank">
-    <img src="<%- movie.imgSrc %>" />
+     target="blank"
+     rel="noopener">
+    <img src="<%- movie.imgSrc %>" alt="<%- movie.name %>"/>
     <h3><%- movie.name %></h3>
     <h6>(<%- movie.imdb.year %>)</h6>
   </a>

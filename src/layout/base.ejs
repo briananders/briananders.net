@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <head>
+  <script>
+    function setSitePallette() {
+      var pallettes = [
+        'red',
+        'pink',
+        'purple',
+        'deep-purple',
+        'indigo',
+        'blue',
+        'light-blue',
+        'cyan',
+        'teal',
+        'green',
+        'light-green',
+        'orange',
+        'deep-orange',
+        'brown',
+        'grey',
+        'blue-grey',
+      ];
+      var palletteIndex = Math.floor(Math.random() * pallettes.length);
+      var pallette = pallettes[palletteIndex];
+      var palletteRegex = new RegExp('pallette=([a-zA-Z\-]+)&?');
+      var queryString = location.search.substr(1);
+
+      if (palletteRegex.test(queryString)) {
+        pallette = queryString.match(palletteRegex)[1];
+      }
+
+      document.documentElement.classList.add(pallette);
+    }
+    setSitePallette();
+  </script>
   <%- partial('meta', locals); %>
   <script>
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -26,6 +59,40 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KZW4HX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <%# End Google Tag Manager (noscript); %>
 
+  <% if (false) { %>
+    <div style="position:fixed;bottom:0;z-index:10000;background:white;">
+    <script>
+      function updateHtmlColor(color) {
+        document.documentElement.className = color;
+      }
+    </script>
+    <%
+      [
+        'red',
+        'pink',
+        'purple',
+        'deep-purple',
+        'indigo',
+        'blue',
+        'light-blue',
+        'cyan',
+        'teal',
+        'green',
+        'light-green',
+        'orange',
+        'deep-orange',
+        'brown',
+        'grey',
+        'blue-grey',
+      ].forEach(color => {
+      %>
+        <button type="button" onclick="javascript:updateHtmlColor('<%- color %>');"><%- color %></button>
+      <%
+        });
+      %>
+    </div>
+  <% } %>
+
   <%- partial('header', locals); %>
 
   <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
@@ -43,6 +110,6 @@
 
   <%- partial('footer', locals); %>
 
-  <script src="/scripts/main.js" async></script>
+  <script src="/scripts/main.js" async defer></script>
 </body>
 </html>

@@ -6,8 +6,12 @@ code {
   display: block;
   overflow-x: auto;
   width: 100%;
-  background-color: $primary-color-light;
+  border: 2px solid var(--primary-color, #{$primary-color});
   color: $primary-text-color;
+
+  @include dark-mode {
+    color: $primary-color-text;
+  }
 }
 
 .code-container {
@@ -23,19 +27,26 @@ code {
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    bottom: 0;
-    height: 100%;
+    top: 2px;
+    bottom: 2px;
     width: $s9;
   }
 
   &::before {
-    left: 0;
-    background: linear-gradient(to left, transparent, #{$primary-color-light});
+    left: 2px;
+    background: linear-gradient(to left, transparent, $google-white);
+
+    @include dark-mode {
+      background: linear-gradient(to left, transparent, $primary-text-color);
+    }
   }
   &::after {
-    right: 0;
-    background: linear-gradient(to right, transparent, #{$primary-color-light});
+    right: 2px;
+    background: linear-gradient(to right, transparent, $google-white);
+
+    @include dark-mode {
+      background: linear-gradient(to right, transparent, $primary-text-color);
+    }
   }
 }
 
@@ -45,6 +56,11 @@ var {
   border: 1px solid $divider-color;
   border-radius: 4px;
   padding: 0 0.5rem;
-  background-color: $primary-color-light;
+  background-color: var(--primary-color-light, #{$primary-color-light});
   color: $primary-text-color;
+
+  @include dark-mode {
+    background-color: transparent;
+    color: $primary-color-text;
+  }
 }
