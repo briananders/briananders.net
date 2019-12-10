@@ -1,7 +1,9 @@
 const ejs = require('ejs');
 const fs = require('fs-extra');
 
-module.exports = function sitemap(dir, completionFlags, buildEvents, pageMappingData) {
+module.exports = function sitemap({ dir, completionFlags, buildEvents, pageMappingData }) {
+  completionFlags.SITE_MAP = false;
+
   const timestamp = require(`${dir.build}timestamp`);
   const siteData = require(`${dir.build}site-data`)(dir);
 

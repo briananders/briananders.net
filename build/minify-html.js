@@ -2,7 +2,9 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const htmlMinify = require('html-minifier');
 
-module.exports = function minifyHTML(dir, completionFlags, buildEvents) {
+module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug }) {
+  completionFlags.HTML_IS_MINIFIED = false;
+
   const timestamp = require(`${dir.build}timestamp`);
 
   console.log(`${timestamp.stamp()}: minifyHTML()`);
@@ -11,7 +13,7 @@ module.exports = function minifyHTML(dir, completionFlags, buildEvents) {
   let processed = 0;
 
   htmlGlob.forEach((htmlFileName, index, array) => {
-    console.log(`${timestamp.stamp()}: minifyHTML - ${htmlFileName.split('/package/')[1]}`);
+    if (debug) console.log(`${timestamp.stamp()}: minifyHTML - ${htmlFileName.split('/package/')[1]}`);
 
     fs.readFile(htmlFileName, (error, data) => {
       if (error) throw error;

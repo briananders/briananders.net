@@ -7,7 +7,7 @@ const ejs = require('ejs');
 const matter = require('gray-matter');
 const notifier = require('node-notifier');
 
-module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappingData) {
+module.exports = function bundleEJS({ dir, buildEvents, pageMappingData, debug }) {
   const siteData = require(`${dir.build}site-data`)(dir);
   const timestamp = require(`${dir.build}timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
@@ -18,7 +18,7 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
 
   let processed = 0;
   templateGlob.forEach((templatePath, index, array) => {
-    console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
+    if (debug) console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
     const ejsFunctions = require(`${dir.build}ejs-functions`)(dir, pageMappingData);
     const ejsOptions = {
       compileDebug: true,
@@ -91,7 +91,7 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
         fs.writeFile(outputPath, html, (e) => {
           if (e) throw e;
 
-          console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
+          if (debug) console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
           processed++;
 
           if (processed >= array.length) {

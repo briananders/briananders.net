@@ -11,6 +11,7 @@
     "stage": "sh deploy_staging.sh",
     "deploy": "sh deploy.sh",
     "start": "node ./index.js",
+    "debug": "node ./index.js --verbose",
     "preview-production": "node ./preview-production.js"
   },
   "repository": {
