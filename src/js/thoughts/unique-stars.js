@@ -1,3 +1,5 @@
+const log = require('../_modules/log');
+
 function init() {
   const scrollTo = require('../_modules/scroll-to');
   const darkMode = require('../_modules/dark-mode');
@@ -76,7 +78,7 @@ function init() {
   }
 
   function drawStar(n, step) {
-    console.log(`drawStar(${n}, ${step})`);
+    log(`drawStar(${n}, ${step})`);
     const points = getOrderedPoints(n, step);
     let i = 1;
 

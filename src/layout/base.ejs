@@ -55,42 +55,10 @@
   </script>
 </head>
 <body>
-  <%# Google Tag Manager (noscript); %>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KZW4HX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <%# End Google Tag Manager (noscript); %>
-
-  <% if (false) { %>
-    <div style="position:fixed;bottom:0;z-index:10000;background:white;">
-    <script>
-      function updateHtmlColor(color) {
-        document.documentElement.className = color;
-      }
-    </script>
-    <%
-      [
-        'red',
-        'pink',
-        'purple',
-        'deep-purple',
-        'indigo',
-        'blue',
-        'light-blue',
-        'cyan',
-        'teal',
-        'green',
-        'light-green',
-        'orange',
-        'deep-orange',
-        'brown',
-        'grey',
-        'blue-grey',
-      ].forEach(color => {
-      %>
-        <button type="button" onclick="javascript:updateHtmlColor('<%- color %>');"><%- color %></button>
-      <%
-        });
-      %>
-    </div>
+  <% if(!locals.devBuild) { %>
+    <%# Google Tag Manager (noscript); %>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KZW4HX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <%# End Google Tag Manager (noscript); %>
   <% } %>
 
   <%- partial('header', locals); %>
