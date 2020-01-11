@@ -2,7 +2,10 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-module.exports = function assetHashing(dir, completionFlags, buildEvents, hashingFileNameList) {
+module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+  completionFlags.ASSET_HASH.IMAGES = false;
+  completionFlags.ASSET_HASH.JS = false;
+
   const timestamp = require(`${dir.build}timestamp`);
 
   if (!completionFlags.JS_IS_MINIFIED ||
@@ -12,10 +15,10 @@ module.exports = function assetHashing(dir, completionFlags, buildEvents, hashin
     return false;
   }
   console.log(`${timestamp.stamp()}: assetHashing()`);
-  console.log(`completionFlags.JS_IS_MINIFIED :${completionFlags.JS_IS_MINIFIED}`);
-  console.log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
-  console.log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
-  console.log(`completionFlags.IMAGES_ARE_MOVED     :${completionFlags.IMAGES_ARE_MOVED}`);
+  if (debug) console.log(`completionFlags.JS_IS_MINIFIED :${completionFlags.JS_IS_MINIFIED}`);
+  if (debug) console.log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
+  if (debug) console.log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
+  if (debug) console.log(`completionFlags.IMAGES_ARE_MOVED     :${completionFlags.IMAGES_ARE_MOVED}`);
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
   const imagesGlob = glob.sync(`${dir.package}images/**/*.{png,svg,jpg}`);
@@ -28,11 +31,11 @@ module.exports = function assetHashing(dir, completionFlags, buildEvents, hashin
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
       processedJs++;
       if (processedJs >= array.length) {
         completionFlags.ASSET_HASH.JS = true;
-        console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
+        if (debug) console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
         buildEvents.emit('asset-hash-js-listed');
       }
     });
@@ -45,7 +48,7 @@ module.exports = function assetHashing(dir, completionFlags, buildEvents, hashin
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
       processedImages++;
       if (processedImages >= array.length) {
         completionFlags.ASSET_HASH.IMAGES = true;

@@ -1,7 +1,7 @@
 const glob = require('glob');
 const matter = require('gray-matter');
 
-module.exports = (dir, buildEvents, pageMappingData) => {
+module.exports = ({ dir, buildEvents, pageMappingData }) => {
   const timestamp = require(`${dir.build}timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
 
