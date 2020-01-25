@@ -11,6 +11,7 @@
     "stage": "sh deploy_staging.sh",
     "deploy": "sh deploy.sh",
     "start": "node ./index.js",
+    "debug": "node ./index.js --verbose",
     "preview-production": "node ./preview-production.js"
   },
   "repository": {
@@ -52,7 +53,7 @@
     "fs-extra": "^7.0.1",
     "gray-matter": "^4.0.1",
     "gulp": "^3.9.1",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.3.0",
     "html-minifier": "^3.5.15",
     "image-optimizer": "^0.4.0-pre2",
     "jquery": "^3.3.1",
@@ -65,5 +66,9 @@
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.0",
     "xxhash": "^0.2.4"
+  },
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.10.3"
   }
 }

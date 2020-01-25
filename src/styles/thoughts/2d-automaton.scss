@@ -8,25 +8,55 @@ canvas {
   max-height: 100vw;
   margin: auto;
   display: block;
-  background-color: $cloud;
+  border: 1px solid;
 }
 
-input[type=number] {
-  @include font-size(3);
+table {
+  text-align: center;
+  margin: auto;
+}
+
+td {
+  padding: $s4 $s4 0;
+  @include font-size(5);
+  line-height: .7;
+
+  @include mq-max(500px) {
+    padding: $s2 $s2 0;
+    @include font-size(4);
+    line-height: .7;
+  }
+
+  span {
+    line-height: 2;
+  }
 }
 
 input[type=checkbox] {
-  height: $s4;
-  width: $s4;
+  margin-left: $s1;
 }
 
 #rule-up-and-down,
 #height-up-and-down {
   display: inline-block;
-  position: relative;
-  top: -3px;
 }
 
-#random-start {
-  margin-right: $s6;
+form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &.p:last-child {
+    margin-bottom: $s6;
+  }
+
+  > * {
+    padding: 0 $s1;
+  }
+
+  span,
+  label {
+    display: inline-flex;
+    align-items: center;
+  }
 }

@@ -1,4 +1,4 @@
-module.exports = function checkDone(dir, completionFlags, buildEvents) {
+module.exports = function checkDone({ dir, completionFlags }) {
   const timestamp = require(`${dir.build}timestamp`);
 
   if (!completionFlags.ASSET_HASH.DONE ||

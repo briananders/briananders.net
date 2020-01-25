@@ -11,12 +11,12 @@ main.thoughts.using-canvas {
   }
 
   #pause-button.paused {
-    color: $white;
-    background-color: $black;
+    color: $primary-color-text;
+    background-color: $primary-text-color;
   }
 
   #clear-button {
-    color: $white;
+    color: $primary-color-text;
     background-color: red;
   }
 
@@ -24,19 +24,25 @@ main.thoughts.using-canvas {
     margin-bottom: $s6;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 
     label {
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      padding: unset;
+    }
+
+    input[type=checkbox] {
+      margin-right: $s1;
     }
 
     > * {
       margin-bottom: $s2;
     }
-  }
-
-  button + button {
-    margin-left: $s2;
   }
 }

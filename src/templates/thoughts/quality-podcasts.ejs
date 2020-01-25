@@ -86,7 +86,7 @@ styles:
   %>
     <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>">
       <header>
-        <img src="<%- podcast.imgUrl %>" />
+        <img src="<%- podcast.imgUrl %>" alt="<%- podcast.name %>"/>
         <h2><%- podcast.name %></h2>
       </header>
       <p>
@@ -99,13 +99,15 @@ styles:
       <p>
         Learn more
         <a itemprop="url" href="<%- podcast.url %>"
-          target="blank">
+          target="blank"
+          rel="noopener">
           at their website
         </a>
         <% if (podcast.wiki) { %>
         and
         <a itemprop="url" href="<%- podcast.wiki %>"
-          target="blank">
+          target="blank"
+          rel="noopener">
           on wikipedia
         </a>
         <% } %>

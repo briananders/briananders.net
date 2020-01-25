@@ -54,7 +54,7 @@ main-stroke {
     display: block;
     background-color: black;
     border-radius: 100%;
-    @include transform(translate(-50%, -50%));
+    transform: translate(-50%, -50%);
     position: absolute;
     left: 50%;
     top: calc(50% - 8px);

@@ -7,7 +7,7 @@ const ejs = require('ejs');
 const matter = require('gray-matter');
 const notifier = require('node-notifier');
 
-module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappingData) {
+module.exports = function bundleEJS({ dir, buildEvents, pageMappingData, debug }) {
   const siteData = require(`${dir.build}site-data`)(dir);
   const timestamp = require(`${dir.build}timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
@@ -18,23 +18,24 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
 
   let processed = 0;
   templateGlob.forEach((templatePath, index, array) => {
-    console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
+    if (debug) console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
     const ejsFunctions = require(`${dir.build}ejs-functions`)(dir, pageMappingData);
     const ejsOptions = {
       compileDebug: true,
       filename: templatePath,
       root: `${dir.src}templates/`,
     };
-    const frontMatter = matter.read(templatePath);
-    const templateData = merge({}, ejsFunctions, siteData, frontMatter.data);
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
+    const pagePath = outputPath.replace(dir.package, '').replace('index.html', '');
+    const frontMatter = matter.read(templatePath);
+    const templateData = merge({}, ejsFunctions, siteData, frontMatter.data, { path: pagePath });
 
     if (!production && !templateData.layout) {
       const errorMessage = `You are missing a template definition in ${templatePath}`;
       console.error(errorMessage.red);
       notifier.notify({
         title: 'Template undefined',
-        message: errorMessage
+        message: errorMessage,
       });
       processed++;
       return;
@@ -70,15 +71,15 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
               <h1>There was an error.</h1>
               <div style="color: red; font-family: monospace;">
                 ${
-                  e.message
-                  .replace(/&/g, "&amp;")
-                  .replace(/</g, "&lt;")
-                  .replace(/>/g, "&gt;")
-                  .replace(/"/g, "&quot;")
-                  .replace(/'/g, "&#039;")
-                  .replace(/\n/g, '<br>')
-                  .replace(/\s\s/g, '&nbsp;&nbsp;')
-                }
+  e.message
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+    .replace(/\n/g, '<br>')
+    .replace(/\s\s/g, '&nbsp;&nbsp;')
+}
               </div>
             </body>
           </html>`;
@@ -90,7 +91,7 @@ module.exports = function bundleEJS(dir, completionFlags, buildEvents, pageMappi
         fs.writeFile(outputPath, html, (e) => {
           if (e) throw e;
 
-          console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
+          if (debug) console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
           processed++;
 
           if (processed >= array.length) {

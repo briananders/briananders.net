@@ -2,7 +2,9 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-module.exports = function hashCSS(dir, completionFlags, buildEvents, hashingFileNameList) {
+module.exports = function hashCSS({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+  completionFlags.ASSET_HASH.CSS = false;
+
   const timestamp = require(`${dir.build}timestamp`);
 
   const cssGlob = glob.sync(`${dir.package}**/*.css`);
@@ -14,7 +16,7 @@ module.exports = function hashCSS(dir, completionFlags, buildEvents, hashingFile
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
       processedCss++;
       if (processedCss >= array.length) {
         completionFlags.ASSET_HASH.CSS = true;

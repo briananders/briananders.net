@@ -9,10 +9,14 @@
     display: block;
     margin: 0 auto $s10;
     max-width: 640px;
-    padding: 0 $s4;
 
     @include mq($tablet) {
       @include columns(6);
+      padding: 0 $s4;
+
+      &:nth-child(even) {
+        margin-left: $gutter;
+      }
     }
   }
 
@@ -23,11 +27,20 @@
 
   a,
   a:visited {
-    color: $black;
     overflow: hidden;
     display: block;
     text-decoration: none;
     position: relative;
-    padding-bottom: $s2;
+    padding: 0 0 $s2;
+    color: $primary-text-color;
+    background-color: transparent;
+
+    @include dark-mode {
+      color: $primary-color-text;
+
+      &:before {
+        background-color: $primary-color-text;
+      }
+    }
   }
 }

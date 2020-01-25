@@ -8,10 +8,34 @@ article {
   align-items: flex-start;
   text-align: center;
 }
-.movie {
+
+a.movie {
   width: 100%;
   max-width: 240px;
   display: block;
+  padding-bottom: $s4;
+  margin-bottom: $s4;
+  transition-property: color;
+  background-color: transparent;
+  color: $primary-text-color;
+
+  @include dark-mode {
+    color: $primary-color-text;
+
+    &::before {
+      background-color: $primary-color-text;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: var(--primary-color-dark, #{$primary-color-dark});
+
+    @include dark-mode {
+      color: $primary-color-text;
+    }
+  }
 
   h3 {
     margin-bottom: $s2;
@@ -20,12 +44,6 @@ article {
   h6 {
     @include font-size();
     font-family: $sans-serif;
-    font-weight: 700;
-  }
-
-  a {
-    text-decoration: none;
-    padding-bottom: $s4;
-    margin-bottom: $s4;
+    font-weight: $bold;
   }
 }

@@ -9,14 +9,16 @@ styles:
   - 'thoughts/earth-rotating-sprite-animation'
 ---
 
-<div class="content">
-  <p>
-    The setup is pretty basic. I have an event listener on the html element for mousemove. Using that event I can see how far you moved your mouse (<var>event.movementX</var>). I add that number to an existing counter. Sprinkle on some math (below) and you have the current frame. Easy peasy.
-  </p>
-  <p>
-    The sprite that I'm using has 4 rows and 12 columns. So I had to add in the math for wrapping around from position <var>0, 11</var> to <var>1, 0</var>. That's why I use <var>$sprite-height</var> and <var>$frame-height</var> below.
-  </p>
-</div>
+<section>
+  <div class="content">
+    <p>
+      The setup is pretty basic. I have an event listener on the html element for mousemove. Using that event I can see how far you moved your mouse (<var>event.movementX</var>). I add that number to an existing counter. Sprinkle on some math (below) and you have the current frame. Easy peasy.
+    </p>
+    <p>
+      The sprite that I'm using has 4 rows and 12 columns. So I had to add in the math for wrapping around from position <var>0, 11</var> to <var>1, 0</var>. That's why I use <var>$sprite-height</var> and <var>$frame-height</var> below.
+    </p>
+  </div>
+</section>
 
 
 <section>
