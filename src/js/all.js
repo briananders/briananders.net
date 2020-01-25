@@ -1,6 +1,7 @@
 /* globals document */
 
 const queryParameters = require('./_modules/queryParameters');
+const lazyLoader = require('./_modules/lazy-loader');
 
 module.exports = {
 
@@ -15,6 +16,7 @@ module.exports = {
     this.setMainMinHeight();
     this.setUpSkipNav();
 
+    lazyLoader.init();
     analytics.watchElements();
   },
 

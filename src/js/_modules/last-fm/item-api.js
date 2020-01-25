@@ -1,6 +1,8 @@
 const handlebars = require('handlebars');
 const $ = require('jquery');
 
+const lazyLoader = require('../lazy-loader');
+
 const config = require('./config');
 const template = require('./template');
 
@@ -58,6 +60,7 @@ module.exports = {
           success(data) {
             cache[url] = serialize(data);
             render();
+            lazyLoader.init('.last-fm-module');
           },
         });
       }
