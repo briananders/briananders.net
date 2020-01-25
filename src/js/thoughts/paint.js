@@ -1,4 +1,5 @@
 const handlebars = require('handlebars');
+const log = require('../_modules/log');
 
 module.exports = {
 
@@ -236,7 +237,7 @@ module.exports = {
 
       shapePallette.querySelectorAll('input').forEach((element) => {
         element.addEventListener('change', (evt) => {
-          console.log(evt.target.value, evt.target.checked);
+          log(evt.target.value, evt.target.checked);
           if (evt.target.checked) {
             shape = evt.target.value;
           }

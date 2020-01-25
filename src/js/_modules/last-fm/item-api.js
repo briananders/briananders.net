@@ -37,11 +37,12 @@ module.exports = {
 
     function serialize(data) {
       const items = opts.customSerialize(data);
+      const maxPlayCount = Math.max(...items.map(item => Number(item.playcount)));
       items.forEach((item) => {
-        item.imageSrc = item.image[item.image.length - 1]['#text'] || '';
+        const playCount = Number(item.playcount);
+        item.percent = playCount / maxPlayCount * 100;
       });
-      const filterItem = items.filter(item => item.imageSrc !== '');
-      const shortenedItem = filterItem.filter((item, index) => index < opts.count);
+      const shortenedItem = items.filter((item, index) => index < opts.count);
       return shortenedItem;
     }
 

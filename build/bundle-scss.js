@@ -6,7 +6,9 @@ const mkdirp = require('mkdirp');
 const CleanCSS = require('clean-css');
 const notifier = require('node-notifier');
 
-module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
+module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug }) {
+  completionFlags.CSS_IS_MINIFIED = false;
+
   const timestamp = require(`${dir.build}timestamp`);
   const production = require(`${dir.build}production`);
 
@@ -16,7 +18,7 @@ module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
   stylesGlob.forEach((scssFilename, index, array) => {
     const outFile = scssFilename.replace(dir.src, dir.package).replace(/\.scss$/, '.css');
 
-    console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling SASS - ${outFile.split(/styles/)[1]}`);
+    if (debug) console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling SASS - ${outFile.split(/styles/)[1]}`);
 
     sass.render({
       file: scssFilename,
@@ -52,7 +54,7 @@ module.exports = function bundleSCSS(dir, completionFlags, buildEvents) {
 
           fs.writeFile(outFile, cssOutput, (e) => {
             if (e) throw e;
-            console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
+            if (debug) console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
             processed++;
 
             if (processed === array.length) {

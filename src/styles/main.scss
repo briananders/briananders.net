@@ -16,19 +16,25 @@ html {
   font-size: 62.5%;
   position: relative;
   font-family: $serif;
-  color: $black;
+  background-color: $google-white;
+  color: $primary-text-color;
   overflow-x: hidden;
-  background-color: $white;
 
-  ::selection {
-    background-color: $black;
-    color: $cloud;
-    @include text-shadow(none);
+  @include dark-mode {
+    background-color: $primary-text-color;
+    color: $primary-color-text;
   }
+
+  ::selection,
   ::-moz-selection {
-    background-color: $black;
-    color: $cloud;
-    @include text-shadow(none);
+    background-color: $primary-text-color;
+    color: $primary-color-text;
+    text-shadow: none;
+
+    @include dark-mode {
+      background-color: $google-white;
+      color: $primary-text-color;
+    }
   }
 }
 
@@ -44,27 +50,33 @@ body {
   main {
     z-index: 1;
     position: relative;
-    @include transition(right $time ease);
+    transition-property: right;
     right: 0;
   }
 }
 
 main {
   overflow: hidden;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 section {
   max-width: 1280px;
-  margin: auto;
-  padding-top: $spacer;
-  padding-bottom: $spacer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: $spacer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .content {
   position: relative;
   max-width: 1000px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 $s5;
   overflow: hidden;
   @include font-size(3);
@@ -75,12 +87,15 @@ section {
   }
 }
 
-* {
-  @include box-sizing(border-box);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
 }
 
 h1, h2, h3 {
-  font-weight: 700;
+  font-weight: $bold;
   font-family: $sans-serif;
   text-align: center;
 
@@ -97,48 +112,61 @@ h1, h2, h3 {
 }
 
 a,
-a:visited {
-  color: $purple;
+a:visited,
+.link {
+  padding: 0 $s1;
   display: inline-block;
   position: relative;
   text-decoration: none;
-  @include transition(color $time ease-out);
+  transition-property: color, background-color;
+  color: $primary-color-text;
+  background-color: var(--primary-color, #{$primary-color});
+
+  @include dark-mode {
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
+  }
 
   &::before {
     position: absolute;
     bottom: 0;
     height: 1px;
-    background-color: $purple;
     content: "";
     left: 51%;
     right: 51%;
-    @include transition(left $time ease-out, right $time ease-out);
+    transition-property: left, right;
+    background-color: var(--primary-color, #{$primary-color});
+
+    @include dark-mode {
+      background-color: var(--primary-color-dark, #{$primary-color-dark});
+    }
   }
 
   &:hover,
   &:focus,
   &:active {
-    color: $black;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
+
+    @include dark-mode {
+      background-color: var(--primary-color, #{$primary-color});
+    }
 
     &::before {
       left: 0;
       right: 0;
+      transition-duration: $transition-speed;
+      transition-timing-function: ease;
     }
 
     img {
-      @include filter(hue-rotate(180deg));
-      @include transform(scale(.98));
+      filter: hue-rotate(180deg);
+      transform: scale(.98);
     }
   }
 
   img {
-    @include filter(hue-rotate(0deg));
-    @include transform(scale(1));
-            transition:         filter $time ease,         transform $time ease;
-         -o-transition:      -o-filter $time ease,      -o-transform $time ease;
-        -ms-transition:     -ms-filter $time ease,     -ms-transform $time ease;
-       -moz-transition:    -moz-filter $time ease,    -moz-transform $time ease;
-    -webkit-transition: -webkit-filter $time ease, -webkit-transform $time ease;
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+    transition-property: filter, transform;
   }
 
 }
@@ -151,30 +179,52 @@ header.content {
   }
 }
 
+a,
+input,
+button,
+textarea,
+select {
+  outline-color: var(--accent-color, #{$accent-color});
+}
+
 a.button,
 a:visited.button,
 button.button {
   text-align: center;
   display: inline-block;
   padding: $s2 $s6;
-  color: $white;
-  background-color: $purple;
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
-  font-weight: bold;
-  @include transition(background-color $time ease);
+  font-weight: $bold;
+  transition-property: background-color;
+  color: $primary-color-text;
+  background-color: var(--primary-color, #{$primary-color});
+  border: 2px solid var(--primary-color, #{$primary-color});
+
+  @include dark-mode {
+    background-color: transparent;
+    border-color: var(--primary-color-dark, #{$primary-color-dark});
+  }
 
   &:hover,
   &:focus,
   &:active {
-    color: $white;
-    background-color: $black;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
+
+    // @include dark-mode {
+    //   background-color: var(--primary-color-dark, #{$primary-color-dark});
+    // }
   }
 
   &::before {
     height: 0;
   }
+}
+
+[aria-hidden="true"] {
+  display: none;
+  visibility: hidden;
 }
 
 h1 {
@@ -199,7 +249,8 @@ img {
 p,
 .p {
   max-width: 600px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
 
@@ -209,16 +260,16 @@ p,
 }
 
 select {
-  @include appearance(menulist);
+  appearance: menulist;
   border-radius: $border-radius;
-  background-color: $white;
-  border: 1px solid $coin;
+  background-color: $google-grey-50;
+  border: 1px solid $divider-color;
 }
 
 date {
   text-align: right;
   display: block;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 label {
@@ -230,25 +281,38 @@ label {
 button, select {
   font-family: $sans-serif;
   border-radius: $border-radius;
-  background-color: $white;
-  border: 1px solid $coin;
+  color: $primary-text-color;
+  border: 1px solid $divider-color;
   @include font-size(3);
   line-height: 25px; // override
   padding: 0 $s3;
-  @include transition(background-color $time ease);
 }
 
 button {
+  color: $primary-color-text;
+  background-color: var(--primary-color, #{$primary-color});
+
   &:hover,
-  &:focus,
-  &:active {
-    background-color: $flint;
+  &:active,
+  &:focus {
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 }
 
 a, button, input, select, textarea {
   cursor: pointer;
   text-decoration: none;
+  outline-color: var(--accent-color, #{$accent-color});
+  transition-duration: $transition-speed;
+  transition-timing-function: ease;
+}
+
+input[type=number],
+input[type=text] {
+  border: none;
+  box-shadow: inset 0 0 0 1px;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .error {
@@ -266,13 +330,21 @@ cite {
 }
 
 blockquote {
-  padding: $s2 $s2;
-  background-color: $cloud;
+  padding: $s5 $s5;
   overflow: hidden;
   max-width: 500px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $s6;
   @include font-size(3);
+  background-color: var(--primary-color-light, #{$primary-color-light});
+  color: $primary-text-color;
+
+  @include dark-mode {
+    background-color: transparent;
+    border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
+    color: $primary-color-text;
+  }
 
   &::after,
   &::before {
@@ -287,10 +359,11 @@ blockquote {
 
 .center {
   text-align: center;
+  justify-content: center;
 }
 
 strong {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 list {
@@ -305,3 +378,11 @@ list, item {
 item {
   margin-top: $s6;
 }
+
+@each $name, $pallette in $pallettes {
+  @each $key, $value in $pallette {
+    html.#{$name} {
+      --#{$key}: #{$value};
+    }
+  }
+};

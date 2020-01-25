@@ -1,5 +1,6 @@
 
 function init() {
+  const darkMode = require('../_modules/dark-mode');
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -20,12 +21,11 @@ function init() {
   const MIN = 0;
   const MAX = 65535;
 
-  const FILL_STYLE = '#a9a9a9';
+  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
   const WIDTH = 256;
   const FPS = 1000 / 15;
 
   let date;
-  canvasContext.fillStyle = FILL_STYLE;
 
 
   function resetPlane() {
@@ -79,11 +79,14 @@ function init() {
         calculate(rIndex, cIndex);
 
         if (col) {
+          canvasContext.fillStyle = FILL_STYLE;
+          canvasContext.strokeStyle = FILL_STYLE;
           canvasContext.fillRect(
             cellWidth * rIndex,
             cellWidth * cIndex,
             cellWidth,
-            cellWidth);
+            cellWidth
+          );
         }
       });
     });

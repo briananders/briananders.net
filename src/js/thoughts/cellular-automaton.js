@@ -1,5 +1,7 @@
 
 function init() {
+  const darkMode = require('../_modules/dark-mode');
+
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -17,12 +19,11 @@ function init() {
   let play = false;
   let randomStart = false;
 
-  const FILL_STYLE = '#a9a9a9';
+  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
   const WIDTH = 255;
   const FPS = 1000 / 30;
 
   let date;
-  canvasContext.fillStyle = FILL_STYLE;
 
 
   function addRow(y) {
@@ -45,11 +46,14 @@ function init() {
     const row = getRow(rowNumber);
     row.forEach((val, index) => {
       if (val) {
+        canvasContext.fillStyle = FILL_STYLE;
+        canvasContext.strokeStyle = FILL_STYLE;
         canvasContext.fillRect(
           cellWidth * index,
           cellWidth * (rowNumber - offset),
           cellWidth,
-          cellWidth);
+          cellWidth
+        );
       }
     });
   }

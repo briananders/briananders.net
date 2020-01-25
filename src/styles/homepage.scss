@@ -9,31 +9,16 @@ main.home {
 
   .intro {
     padding-top: 0;
+    margin-top: 0;
   }
 
   .content header p {
     margin-bottom: $s6;
   }
 
+  @import "thoughts/last-fm";
+
   .last-fm-module {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .item {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-    margin: 0 $s2 $s4;
-
-    .name {
-      display: block;
-      @include font-size(4);
-      font-family: $sans-serif;
-      font-weight: 700;
-      color: $black;
-    }
+    margin-bottom: 48px;
   }
 }

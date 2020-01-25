@@ -26,6 +26,8 @@ const completionFlags = {
   GZIP: false,
 };
 
+const debug = process.argv.includes('--verbose');
+
 const timestamp = require(`${dir.build}timestamp`);
 const fs = require('fs-extra');
 const express = require('express');
@@ -39,6 +41,15 @@ const exec = require('child_process').exec;
 
 const hashingFileNameList = {};
 const pageMappingData = [];
+
+const configs = {
+  buildEvents, 
+  completionFlags, 
+  debug,
+  dir, 
+  hashingFileNameList,
+  pageMappingData,
+}
 
 
 // /////////////////////////////// compile tasks /////////////////////////////////
@@ -64,75 +75,75 @@ const checkDone = require(`${dir.build}check-done`);
 // /////////////////////////////////////// event listeners ////////////////////////////////////////
 
 
-buildEvents.on('page-mapping-data-compiled', bundleEJS.bind(this, dir, completionFlags, buildEvents, pageMappingData));
-buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, dir, completionFlags, buildEvents, pageMappingData));
+buildEvents.on('page-mapping-data-compiled', bundleEJS.bind(this, configs));
+buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, configs));
 
 if (!production) {
 
   fs.watch(`${dir.src}js/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
-    bundleJS(dir, completionFlags, buildEvents);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
+    bundleJS(configs);
   });
 
 
   fs.watch(`${dir.src}styles/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
-    bundleSCSS(dir, completionFlags, buildEvents);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
+    bundleSCSS(configs);
   });
 
 
   fs.watch(`${dir.src}templates/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
-    compilePageMappingData(dir, buildEvents, pageMappingData);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
+    compilePageMappingData(configs);
   });
 
 
   fs.watch(`${dir.src}partials/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
-    compilePageMappingData(dir, buildEvents, pageMappingData);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
+    compilePageMappingData(configs);
   });
 
 
   fs.watch(`${dir.src}layout/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
-    compilePageMappingData(dir, buildEvents, pageMappingData);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
+    compilePageMappingData(configs);
   });
 
 
   fs.watch(`${dir.src}images/`, {
     recursive: true,
   }, (evt, file) => {
-    console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
-    moveImages(dir, completionFlags, buildEvents);
+    if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
+    moveImages(configs);
   });
 } else {
-  buildEvents.on('templates-moved', minifyHTML.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('js-moved', minifyJS.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('styles-moved', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('js-minified', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('html-minified', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('images-moved', assetHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('images-moved', compressImages.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('asset-hash-images-listed', updateCSSwithImageHashes.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('index-css-for-hashing', hashCSS.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('asset-hash-js-listed', finishHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('asset-hash-css-listed', finishHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('asset-hash-images-listed', finishHashing.bind(this, dir, completionFlags, buildEvents, hashingFileNameList));
-  buildEvents.on('hashing-done', gzipFiles.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('gzip-done', checkDone.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('hashing-done', checkDone.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('sitemap-done', checkDone.bind(this, dir, completionFlags, buildEvents));
-  buildEvents.on('image-compression-done', checkDone.bind(this, dir, completionFlags, buildEvents));
+  buildEvents.on('templates-moved', minifyHTML.bind(this, configs));
+  buildEvents.on('js-moved', minifyJS.bind(this, configs));
+  buildEvents.on('styles-moved', assetHashing.bind(this, configs));
+  buildEvents.on('js-minified', assetHashing.bind(this, configs));
+  buildEvents.on('html-minified', assetHashing.bind(this, configs));
+  buildEvents.on('images-moved', assetHashing.bind(this, configs));
+  buildEvents.on('images-moved', compressImages.bind(this, configs));
+  buildEvents.on('asset-hash-images-listed', updateCSSwithImageHashes.bind(this, configs));
+  buildEvents.on('index-css-for-hashing', hashCSS.bind(this, configs));
+  buildEvents.on('asset-hash-js-listed', finishHashing.bind(this, configs));
+  buildEvents.on('asset-hash-css-listed', finishHashing.bind(this, configs));
+  buildEvents.on('asset-hash-images-listed', finishHashing.bind(this, configs));
+  buildEvents.on('hashing-done', gzipFiles.bind(this, configs));
+  buildEvents.on('gzip-done', checkDone.bind(this, configs));
+  buildEvents.on('hashing-done', checkDone.bind(this, configs));
+  buildEvents.on('sitemap-done', checkDone.bind(this, configs));
+  buildEvents.on('image-compression-done', checkDone.bind(this, configs));
 }
 
 
@@ -153,12 +164,12 @@ const clean = new Promise((resolve, reject) => {
 });
 
 clean.then(() => {
-  console.log(`${timestamp.stamp()}: clean.then()`);
+  if (debug) console.log(`${timestamp.stamp()}: clean.then()`);
   fs.mkdirp(dir.package);
-  compilePageMappingData(dir, buildEvents, pageMappingData);
-  bundleJS(dir, completionFlags, buildEvents);
-  bundleSCSS(dir, completionFlags, buildEvents);
-  moveImages(dir, completionFlags, buildEvents);
+  compilePageMappingData(configs);
+  bundleJS(configs);
+  bundleSCSS(configs);
+  moveImages(configs);
 });
 
 

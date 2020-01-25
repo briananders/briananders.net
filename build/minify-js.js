@@ -2,7 +2,9 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const UglifyJS = require('uglify-js');
 
-module.exports = function minifyJS(dir, completionFlags, buildEvents) {
+module.exports = function minifyJS({ dir, completionFlags, buildEvents }) {
+  completionFlags.JS_IS_MINIFIED = false;
+
   const timestamp = require(`${dir.build}timestamp`);
 
   console.log(`${timestamp.stamp()}: minifyJS()`);

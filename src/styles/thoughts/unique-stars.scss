@@ -2,8 +2,6 @@
 
 #up-and-down {
   display: inline-block;
-  position: relative;
-  top: -3px;
 }
 
 answer, answer-array {
@@ -24,10 +22,6 @@ answer-array {
   }
 }
 
-input[type=number] {
-  @include font-size(3);
-}
-
 canvas#star {
   width: 90vh;
   max-width: 90vw;
@@ -39,4 +33,22 @@ canvas#star {
   margin: auto;
   display: block;
   transform: rotate(-90deg);
+}
+
+
+
+form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > * {
+    padding: 0 $s1;
+  }
+
+  span,
+  label {
+    display: inline-flex;
+    align-items: center;
+  }
 }

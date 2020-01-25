@@ -8,7 +8,7 @@ const rename = require('gulp-rename');
 const source = require('vinyl-source-stream');
 
 
-module.exports = function bundleJS(dir, completionFlags, buildEvents) {
+module.exports = function bundleJS({ dir, buildEvents }) {
   const timestamp = require(`${dir.build}timestamp`);
   const production = require(`${dir.build}production`);
 
@@ -27,7 +27,7 @@ module.exports = function bundleJS(dir, completionFlags, buildEvents) {
   function bundle(bundler) {
     // Add options to add to "base" bundler passed as parameter
     bundler
-      .transform(babelify, { presets: ['env', 'react'] })
+      .transform(babelify, { presets: ['@babel/preset-env', '@babel/preset-react'] })
       .bundle()                               // Start bundle
       .on('error', (error) => {
         if (production) throw error;
