@@ -26,7 +26,7 @@ header.main-header {
 
   &.with-head {
     height: 50vh;
-    background-image: url('/images/icons/my-face.svg');
+    --background-image: url('/images/icons/my-face.svg');
     background-size: auto 100%;
     background-position: center bottom;
     background-repeat: no-repeat;
