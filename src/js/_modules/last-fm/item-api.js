@@ -1,5 +1,6 @@
 const handlebars = require('handlebars');
-const $ = require('jquery');
+
+const lazyLoader = require('../lazy-loader');
 
 const config = require('./config');
 const template = require('./template');
@@ -28,16 +29,18 @@ module.exports = {
     function render() {
       const url = getURL();
       const data = cache[url];
-      const handlebarsData = Object.assign({}, opts, { items: data });
+      const handlebarsData = { ...opts, items: data };
 
       const compiledHandlebars = handlebars.compile(template);
       const outputHTML = compiledHandlebars(handlebarsData);
       containerElement.innerHTML = outputHTML;
+
+      lazyLoader.init('.last-fm-module');
     }
 
     function serialize(data) {
       const items = opts.customSerialize(data);
-      const maxPlayCount = Math.max(...items.map(item => Number(item.playcount)));
+      const maxPlayCount = Math.max(...items.map((item) => Number(item.playcount)));
       items.forEach((item) => {
         const playCount = Number(item.playcount);
         item.percent = playCount / maxPlayCount * 100;
@@ -46,20 +49,35 @@ module.exports = {
       return shortenedItem;
     }
 
+    function xhrRequest() {
+
+    }
+
     function getData() {
       const url = getURL();
       if (cache[url]) {
         render();
       } else {
-        $.ajax({
-          type: 'GET',
-          url,
-          dataType: 'json',
-          success(data) {
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = () => {
+          if (request.status >= 200 && request.status < 400) {
+            // Success!
+            const data = JSON.parse(request.response);
             cache[url] = serialize(data);
             render();
-          },
-        });
+          } else {
+            // We reached our target server, but it returned an error
+            console.error(`${url} returned ${request.status}`);
+          }
+        };
+
+        request.onerror = () => {
+          // There was a connection error of some sort
+        };
+
+        request.send();
       }
     }
 

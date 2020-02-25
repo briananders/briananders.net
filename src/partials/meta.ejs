@@ -75,16 +75,16 @@
   </script>
 <% } %>
 
-<% const fontApi = 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,500|Source+Serif+Pro'; %>
+<% const fontApi = 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,500|Source+Serif+Pro&display=swap'; %>
 
-<link href='<%- fontApi %>' rel='stylesheet' type='text/css' media="all">
-<% locals.styles.forEach(function(path){ %>
-  <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css" media="all">
+<link rel="preload" media="all" href="<%- fontApi %>" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
+<% locals.styles.forEach((path) => { %>
+  <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
 <% }); %>
 
 <noscript>
-  <link href='<%- fontApi %>' rel='stylesheet' type='text/css'>
-  <% locals.styles.forEach(function(path){ %>
-    <link href="/styles/<%- path %>.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" media="all" href="<%- fontApi %>">
+  <% locals.styles.forEach((path) => { %>
+    <link rel="stylesheet" media="all" href="/styles/<%- path %>.css">
   <% }); %>
 </noscript>
