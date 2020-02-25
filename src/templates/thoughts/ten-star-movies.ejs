@@ -389,7 +389,7 @@ styles:
      href="<%- movie.imdb.url %>"
      target="blank"
      rel="noopener">
-    <img src="<%- movie.imgSrc %>" alt="<%- movie.name %>"/>
+    <img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="<%- movie.imgSrc %>" alt="<%- movie.name %>"/>
     <h3><%- movie.name %></h3>
     <h6>(<%- movie.imdb.year %>)</h6>
   </a>

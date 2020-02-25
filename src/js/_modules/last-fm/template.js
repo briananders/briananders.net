@@ -7,7 +7,7 @@ module.exports = `
         class="item"
         title="{{name}}, {{playcount}} scrobbles">
       {{#if imageSrc}}
-        <img src={{imageSrc}} alt={{name}} />
+        <img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src={{imageSrc}} alt={{name}} />
       {{/if}}
       <span class="name">
         {{name}}
