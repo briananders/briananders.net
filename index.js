@@ -126,6 +126,14 @@ if (!production) {
     if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
     moveImages(configs);
   });
+
+
+  fs.watch(`${dir.build}`, {
+    recursive: true,
+  }, (evt, file) => {
+    console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
+    process.exit();
+  });
 } else {
   buildEvents.on('templates-moved', minifyHTML.bind(this, configs));
   buildEvents.on('js-moved', minifyJS.bind(this, configs));

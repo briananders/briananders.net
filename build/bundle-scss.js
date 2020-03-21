@@ -24,7 +24,7 @@ module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug 
       file: scssFilename,
       outFile,
       includePaths: [`${dir.src}styles/`],
-      sourceMap: true,
+      sourceMap: false,
     }, (error, result) => { // node-style callback from v3.0.0 onwards
       if (error) {
         if (production) throw error;

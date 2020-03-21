@@ -27,6 +27,25 @@ styles:
     <p>
       Outside of work, I listen to music, play some instruments, do some camping, and more or less try to enjoy the life I lead.
     </p>
+    <p>
+      You can find me on the internet in some other places.
+      <% const contactLinks = [
+          { copy: 'Twitter', url: locals.twitter, },
+          { copy: 'Last.fm', url: locals.lastfm, },
+          { copy: 'Github', url: locals.github, },
+          { copy: 'LinkedIn', url: locals.linkedin, },
+        ].map(item => {
+          return `
+          <a href="${item.url}"
+            itemprop="url"
+            target="blank"
+            rel="noopener">
+            ${item.copy}
+          </a>`;
+        });
+      %>
+      <%- contactLinks.join(', ') %>.
+    </p>
   </div>
 </section>
 
@@ -94,3 +113,30 @@ styles:
 </section>
 
 
+<section>
+  <div class="content">
+    <header>
+      <h2>
+        <%- noWidows("What I've been screaming into the abyss."); %>
+      </h2>
+      <p class="center">
+        ==> <a href="<%- locals.twitter %>?ref_src=twsrc%5Etfw"
+          itemprop="url"
+          target="blank"
+          rel="noopener">
+          @<%- locals.twitterHandle %>
+        </a> <==
+      </p>
+    </header>
+    <p>
+      <a class="twitter-timeline"
+        href="<%- locals.twitter %>?ref_src=twsrc%5Etfw"
+        itemprop="url"
+        target="blank"
+        rel="noopener">
+        Tweets by @<%- locals.twitterHandle %>
+      </a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+  </div>
+</section>

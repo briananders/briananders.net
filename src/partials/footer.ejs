@@ -4,21 +4,23 @@
       <% const date = new Date(); %>
       &copy; <%- date.getFullYear(); %>
     </li>
-
     <li>
-      <a itemprop="url" href="https://github.com/briananders/briananders.net"
-         target="blank"
-         rel="noopener">
-        Github
-      </a>
-    </li>
-
-    <li>
-      <a itemprop="url" href="https://www.last.fm/user/iBrianAnders"
-         target="blank"
-         rel="noopener">
-        Last.fm
-      </a>
+      <% const contactLinks = [
+          { copy: 'Twitter', url: locals.twitter, },
+          { copy: 'Last.fm', url: locals.lastfm, },
+          { copy: 'Github', url: locals.github, },
+          { copy: 'LinkedIn', url: locals.linkedin, },
+        ].map(item => {
+          return `
+          <a href="${item.url}"
+            itemprop="url"
+            target="blank"
+            rel="noopener">
+            ${item.copy}
+          </a>`;
+        });
+      %>
+      <%- contactLinks.join(' - ') %>
     </li>
   </ul>
 </footer>
