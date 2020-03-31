@@ -11,10 +11,13 @@ const dir = {
 
 const production = require(`${dir.build}production`);
 
-const s3 = new AWS.S3({
+const awsCreds = {
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
+};
+
+const s3 = new AWS.S3(awsCreds);
+const cloudfront = new AWS.CloudFront(awsCreds);
 
 const bucketName = (production) ? 'www.briananders.net' : 'staging.briananders.net';
 
@@ -110,6 +113,28 @@ const uploadFiles = () => {
   return Promise.all(packageGlob.map(uploadFile));
 };
 
+const invalidateCloudFront = () => {
+  console.log('Invalidate Cache');
+
+  const params = {
+    DistributionId: process.env.CLOUDFRONT_ID,
+    InvalidationBatch: { /* required */
+      CallerReference: Date.now().toString(), /* required */
+      Paths: { /* required */
+        Quantity: '1', /* required */
+        Items: [
+          '/*'
+        ],
+      },
+    },
+  };
+
+  cloudfront.createInvalidation(params, (err, data) => {
+    if (err) console.log(err, err.stack); // an error occurred
+    else console.log(data); // successful response
+  });
+};
+
 getS3Objects().then((data) => {
   const fileList = data.Contents.map(({ Key }) => ({
     Key,
@@ -120,7 +145,11 @@ getS3Objects().then((data) => {
   console.log('Files Deleted');
   return uploadFiles();
 }).then((values) => {
-  debugger;
   console.log('Upload Complete');
-  console.log(values);
+
+  if (production) {
+    invalidateCloudFront();
+  }
 });
+
+// invalidateCloudFront();
