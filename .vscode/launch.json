@@ -9,6 +9,12 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js --verbose"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Uploader",
+      "program": "${workspaceRoot}/s3-uploader.js"
     }
   ]
 }
