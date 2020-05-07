@@ -58,31 +58,7 @@ styles:
       </h2>
     </header>
   </div>
-  <ul id="thoughts-list" class="content">
-    <%
-      const basePages = getChildPages('thoughts');
-      const newestPages = basePages.sort((pageA, pageB) => {
-        const dateA = new Date(pageA.data.date);
-        const dateB = new Date(pageB.data.date);
-        return (dateA < dateB) ? 1 : -1;
-      });
-      newestPages.slice(0,4).forEach(({ url, data: { date, description, title }}) => {
-    %>
-    <li itemscope itemtype="http://schema.org/BlogPosting">
-      <a itemprop="url" href="/<%- url %>">
-        <h3 itemprop="name"><%- noWidows(title) %></h3>
-        <figcaption itemprop="description">
-          <%- noWidows(description) %>
-        </figcaption>
-        <date itemprop="datePublished" content="<%- date %>">
-          <%- formattedDate(date) %>
-        </date>
-        <meta itemprop="author" content="Brian Anders"/>
-        <meta itemprop="publisher" content="Brian Anders"/>
-      </a>
-    </li>
-    <% }); %>
-  </ul>
+  <%- partial('thoughts-list', Object.assign(locals, { thoughtCount: 6 })) %>
   <div class="content center">
     <a itemprop="url" href="/thoughts/"
         class="button">
@@ -131,12 +107,22 @@ styles:
     <p>
       <a class="twitter-timeline"
         href="<%- locals.twitter %>?ref_src=twsrc%5Etfw"
+        data-height="800"
         itemprop="url"
         target="blank"
+        data-theme="light"
         rel="noopener">
         Tweets by @<%- locals.twitterHandle %>
       </a>
     </p>
   </div>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    (function() {
+      const timelineElement = document.querySelector('.twitter-timeline[data-theme]');
+      if(matchMedia('(prefers-color-scheme: dark)').matches) {
+        timelineElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </section>
