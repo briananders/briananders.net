@@ -1,0 +1,33 @@
+@import "./phone-shared";
+
+phone {
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 128vw;
+}
+main {
+  width: 100vw;
+  padding-bottom: 4vw;
+  height: 100vw;
+}
+dock {
+  padding-bottom: 4vw;
+  width: 100vw;
+  height: 28vw;
+}
+app {
+  border-radius: 20%;
+  position: relative;
+  width: 20vw;
+  height: 20vw;
+  float: left;
+  margin-left: 4vw;
+  margin-top: 4vw;
+}
+name {
+  bottom: -4.25vw;
+  transform: translateY(-50%);
+  font-size: 2vw;
+  line-height: 2.5vw;
+}

@@ -1,0 +1,39 @@
+---
+title: ""
+description: ""
+date: 2020-05-06
+priority: 0
+layout: blank
+styles:
+  - 'example/flex-iphone'
+---
+
+<phone>
+  <main>
+    <app><name>name</name></app>
+    <app><name>long name</name></app>
+    <app><name>very long name</name></app>
+    <app><name>very very long name</name></app>
+    <app><name>very very very long name</name></app>
+    <app><name>name</name></app>
+    <app><name>name</name></app>
+    <app><name>name</name></app>
+    <app><name>name</name></app>
+    <app><name>name</name></app>
+  </main>
+  <dock>
+    <app><name>name</name><close>⨯</close></app>
+    <app><name>name</name><close>⨯</close></app>
+    <app><name>name</name><close>⨯</close></app>
+    <app><name>name</name><close>⨯</close></app>
+  </dock>
+</phone>
+
+<script>
+  const closeButtons = document.querySelectorAll('close');
+  closeButtons.forEach((closeButton) => {
+    closeButton.addEventListener('click', (evt) => {
+      evt.target.parentElement.outerHTML = "";
+    });
+  });
+</script>
