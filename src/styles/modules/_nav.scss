@@ -84,7 +84,7 @@ nav.main {
 
 
 
-  a[role] {
+  a {
     text-decoration: none;
     display: inline-block;
     color: $primary-color-text;
@@ -93,7 +93,7 @@ nav.main {
     font-weight: $regular;
     position: relative;
 
-    + a[role] {
+    + a {
       margin-left: $s4;
     }
     &.brand {
