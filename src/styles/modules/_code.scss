@@ -1,3 +1,8 @@
+@import "highlight.js/scss/a11y-light";
+@include dark-mode {
+  @import "highlight.js/scss/a11y-dark";
+}
+
 code {
   white-space: pre;
   overflow: hidden;
