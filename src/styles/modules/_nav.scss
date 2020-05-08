@@ -24,7 +24,7 @@ nav.main {
     padding: 0;
   }
 
-  .content {
+  .content, .container {
     overflow: visible;
     align-items: center;
     display: flex;
@@ -125,7 +125,7 @@ nav.main {
 
   @include mq(600px) {
 
-    .content {
+    .content, .container {
       border-bottom: none;
     }
     .desktop-nav-links {

@@ -72,7 +72,7 @@ section {
   }
 }
 
-.content {
+.content, .container {
   position: relative;
   max-width: 1000px;
   margin-left: auto;
@@ -175,7 +175,7 @@ a:visited,
 
 }
 
-header.content {
+header.content, header.container {
   padding-bottom: $s6;
 
   p {
@@ -252,6 +252,7 @@ img {
 
 p,
 .p {
+  width: 100%;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
