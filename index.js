@@ -8,6 +8,7 @@ const dir = {
   package: `${__dirname}/package/`,
   build: `${__dirname}/build/`,
   jsOutputPath: `${__dirname}/package/scripts/`,
+  nodeModules: `${__dirname}/node_modules/`,
 };
 
 const completionFlags = {

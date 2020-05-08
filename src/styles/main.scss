@@ -87,6 +87,10 @@ section {
   }
 }
 
+i {
+  font-style: italic;
+}
+
 *,
 *::before,
 *::after {
@@ -357,25 +361,35 @@ blockquote {
   }
 }
 
+.block {
+  display: block;
+}
+
 .center {
   text-align: center;
   justify-content: center;
+}
+
+img.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 strong {
   font-weight: $bold;
 }
 
-list {
+list, [role=list] {
+  overflow: hidden;
   padding-left: $s6;
   margin-bottom: $s6;
 }
 
-list, item {
+list, [role=list], item, [role=listitem] {
   display: block;
 }
 
-item {
+item, [role=listitem] {
   margin-top: $s6;
 }
 

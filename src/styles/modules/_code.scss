@@ -1,13 +1,19 @@
+@import "highlight.js/scss/a11y-light";
+@include dark-mode {
+  @import "highlight.js/scss/a11y-dark";
+}
+
 code {
   white-space: pre;
   overflow: hidden;
   font-family: monospace, serif;
   padding: $s5;
-  display: block;
+  display: inline-block;
   overflow-x: auto;
-  width: 100%;
+  max-width: 100%;
   border: 2px solid var(--primary-color, #{$primary-color});
   color: $primary-text-color;
+  text-align: left;
 
   @include dark-mode {
     color: $primary-color-text;
@@ -22,6 +28,7 @@ code {
   max-width: 100%;
   overflow: hidden;
   position: relative;
+  text-align: center;
 
   &::before,
   &::after {

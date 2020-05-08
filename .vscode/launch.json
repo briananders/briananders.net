@@ -7,8 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceRoot}/index.js --verbose"
+      "name": "Verbose Preview",
+      "program": "${workspaceRoot}/index.js"
     },
     {
       "type": "node",
