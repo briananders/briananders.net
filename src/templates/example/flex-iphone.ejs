@@ -8,26 +8,7 @@ styles:
   - 'example/flex-iphone'
 ---
 
-<phone>
-  <main>
-    <app><name>name</name></app>
-    <app><name>long name</name></app>
-    <app><name>very long name</name></app>
-    <app><name>very very long name</name></app>
-    <app><name>very very very long name</name></app>
-    <app><name>name</name></app>
-    <app><name>name</name></app>
-    <app><name>name</name></app>
-    <app><name>name</name></app>
-    <app><name>name</name></app>
-  </main>
-  <dock>
-    <app><name>name</name><close>⨯</close></app>
-    <app><name>name</name><close>⨯</close></app>
-    <app><name>name</name><close>⨯</close></app>
-    <app><name>name</name><close>⨯</close></app>
-  </dock>
-</phone>
+<%- partial('example/phone-markup', { closeButton: true }) %>
 
 <script>
   const closeButtons = document.querySelectorAll('close');

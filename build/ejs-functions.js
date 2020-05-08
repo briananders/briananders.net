@@ -1,5 +1,6 @@
 const ejs = require('ejs');
 const fs = require('fs');
+const merge = require('merge');
 
 function squeakyClean(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -62,9 +63,19 @@ module.exports = (dir, pageMappingData) => ({
 
   code(block, locals = { class: '', style: '' }) {
     return `
-      <div class="code-container ${locals.class}" style="${locals.style}">
-        <code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
-      </div>
+      <div class="code-container ${locals.class}" style="${locals.style}"><code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></div>
     `;
+  },
+
+  link(str, locals) {
+    if (!locals.href) {
+      throw new Error('externalLink is missing href attribute');
+    }
+    return `<a itemprop="url"
+    ${Object.keys(locals).map((attr) => `${attr}="${locals[attr]}"`).join(' ')}>${str}</a>`;
+  },
+
+  externalLink(str, locals) {
+    return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
   },
 });

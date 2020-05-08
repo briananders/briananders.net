@@ -2,18 +2,17 @@
 
 phone {
   overflow: hidden;
-  position: relative;
   width: 100vw;
   height: 128vw;
 }
 main {
   width: 100vw;
-  padding-bottom: 4vw;
+  padding: 2vw;
   height: 100vw;
 }
 dock {
-  padding-bottom: 4vw;
   width: 100vw;
+  padding: 2vw;
   height: 28vw;
 }
 app {
@@ -22,8 +21,7 @@ app {
   width: 20vw;
   height: 20vw;
   float: left;
-  margin-left: 4vw;
-  margin-top: 4vw;
+  margin: 2vw;
 }
 name {
   bottom: -4.25vw;
