@@ -35,7 +35,7 @@ styles:
           { copy: 'Github', url: locals.github, },
           { copy: 'LinkedIn', url: locals.linkedin, },
         ].map(item => externalLink(item.copy, {
-          href: "${item.url}",
+          href: item.url,
           itemprop: "url",
           target: "blank",
           rel: "noopener",
