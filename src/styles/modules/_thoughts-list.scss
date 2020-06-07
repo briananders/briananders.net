@@ -20,12 +20,14 @@
   figcaption {
     @include font-size(3);
     margin-bottom: $s2;
+    flex-grow: 1;
   }
 
   a,
   a:visited {
     overflow: hidden;
-    display: block;
+    display: flex;
+    flex-flow: column;
     text-decoration: none;
     position: relative;
     padding: 0 0 $s2;
