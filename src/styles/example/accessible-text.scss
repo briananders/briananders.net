@@ -13,12 +13,18 @@ h1 {
   &.rem {
     @include font-size(7, 0.1rem);
   }
+  &.em {
+    @include font-size(7, 0.1575em);
+  }
 }
 
 h2 {
   @include font-size(6);
   &.rem {
     @include font-size(6, 0.1rem);
+  }
+  &.em {
+    @include font-size(6, 0.1575em);
   }
 }
 
@@ -27,12 +33,18 @@ h3 {
   &.rem {
     @include font-size(5, 0.1rem);
   }
+  &.em {
+    @include font-size(5, 0.1575em);
+  }
 }
 
 h4 {
   @include font-size(4);
   &.rem {
     @include font-size(4, 0.1rem);
+  }
+  &.em {
+    @include font-size(4, 0.1575em);
   }
 }
 
@@ -41,6 +53,9 @@ h5 {
   &.rem {
     @include font-size(3, 0.1rem);
   }
+  &.em {
+    @include font-size(3, 0.1575em);
+  }
 }
 
 h6 {
@@ -48,11 +63,17 @@ h6 {
   &.rem {
     @include font-size(2, 0.1rem);
   }
+  &.em {
+    @include font-size(2, 0.1575em);
+  }
 }
 
 p {
   @include font-size(1);
   &.rem {
      @include font-size(1, 0.1rem);
+  }
+  &.em {
+     @include font-size(1, 0.1575em);
   }
 }
