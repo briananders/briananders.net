@@ -140,7 +140,7 @@ const alwaysSwapFiles = (fileName) => {
     /\.html\.gz$/,
     /\.xml$/,
     /\.xml\.gz$/,
-    /\.txt$/
+    /\.txt$/,
     /\.ico$/
   ].filter((regex) => regex.test(fileName)).length;
 };
