@@ -134,17 +134,33 @@ const invalidateCloudFront = () => {
   });
 };
 
+const alwaysSwapFiles = (fileName) => {
+  return [
+    /\.html$/,
+    /\.html\.gz$/,
+    /\.xml$/,
+    /\.xml\.gz$/,
+    /\.txt$/
+    /\.ico$/
+  ].filter((regex) => regex.test(fileName)).length;
+};
+
 getS3Objects().then((data) => {
   const s3FileList = data.Contents.map(({ Key }) => Key);
 
   const packageGlob = glob.sync(`${dir.package}**/*`);
 
   const s3DeleteList = s3FileList.filter((s3File) => {
-    return !packageGlob.includes(dir.package + s3File) || /\.(html|html.gz)$/.test(s3File);
+    return !packageGlob.includes(dir.package + s3File) ||
+      alwaysSwapFiles(s3File);
   });
 
   const toUploadList = packageGlob.filter((packageFile) => {
-    return !fs.lstatSync(packageFile).isDirectory() && (!s3FileList.includes(packageFile.replace(dir.package, '')) || /\.(html|html.gz)$/.test(packageFile));
+    return !fs.lstatSync(packageFile).isDirectory() &&
+    (
+      !s3FileList.includes(packageFile.replace(dir.package, '')) ||
+      alwaysSwapFiles(packageFile)
+    );
   });
 
   console.log(`${s3DeleteList.length + toUploadList.length} files to change`);
