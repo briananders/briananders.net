@@ -1,0 +1,58 @@
+html, body {
+  font-size: 62.5%;
+}
+
+
+@mixin font-size($size: 1, $unit: 1px) {
+  font-size: (($size * 4) + 12) * $unit;
+}
+
+
+h1 {
+  @include font-size(7);
+  &.rem {
+    @include font-size(7, 0.1rem);
+  }
+}
+
+h2 {
+  @include font-size(6);
+  &.rem {
+    @include font-size(6, 0.1rem);
+  }
+}
+
+h3 {
+  @include font-size(5);
+  &.rem {
+    @include font-size(5, 0.1rem);
+  }
+}
+
+h4 {
+  @include font-size(4);
+  &.rem {
+    @include font-size(4, 0.1rem);
+  }
+}
+
+h5 {
+  @include font-size(3);
+  &.rem {
+    @include font-size(3, 0.1rem);
+  }
+}
+
+h6 {
+  @include font-size(2);
+  &.rem {
+    @include font-size(2, 0.1rem);
+  }
+}
+
+p {
+  @include font-size(1);
+  &.rem {
+     @include font-size(1, 0.1rem);
+  }
+}
