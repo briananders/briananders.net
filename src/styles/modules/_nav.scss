@@ -24,7 +24,7 @@ nav.main {
     padding: 0;
   }
 
-  .content {
+  .content, .container {
     overflow: visible;
     align-items: center;
     display: flex;
@@ -84,7 +84,7 @@ nav.main {
 
 
 
-  a[role] {
+  a {
     text-decoration: none;
     display: inline-block;
     color: $primary-color-text;
@@ -93,7 +93,7 @@ nav.main {
     font-weight: $regular;
     position: relative;
 
-    + a[role] {
+    + a {
       margin-left: $s4;
     }
     &.brand {
@@ -125,7 +125,7 @@ nav.main {
 
   @include mq(600px) {
 
-    .content {
+    .content, .container {
       border-bottom: none;
     }
     .desktop-nav-links {
