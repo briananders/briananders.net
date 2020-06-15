@@ -167,6 +167,10 @@ a:visited,
     }
   }
 
+  &:focus {
+    font-weight: bold;
+  }
+
   img {
     filter: hue-rotate(0deg);
     transform: scale(1);
@@ -215,14 +219,14 @@ button.button {
   &:focus,
   &:active {
     background-color: var(--primary-color-dark, #{$primary-color-dark});
-
-    // @include dark-mode {
-    //   background-color: var(--primary-color-dark, #{$primary-color-dark});
-    // }
   }
 
   &::before {
     height: 0;
+  }
+
+  &:focus {
+    font-weight: bold;
   }
 }
 
