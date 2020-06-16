@@ -27,6 +27,8 @@ a.movie {
     }
   }
 
+  @include remove-link-animation;
+
   &:hover,
   &:focus {
     background-color: transparent;

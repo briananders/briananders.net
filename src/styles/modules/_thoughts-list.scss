@@ -34,11 +34,22 @@
     color: $primary-text-color;
     background-color: transparent;
 
+    @include remove-link-animation;
+
     @include dark-mode {
       color: $primary-color-text;
 
       &:before {
         background-color: $primary-color-text;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      h3,
+      date,
+      figcaption {
+        font-weight: $mega-bold;
       }
     }
   }

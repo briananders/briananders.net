@@ -11,8 +11,7 @@ nav.main {
     background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
-  &.shadow,
-  .mobile-nav-tray {
+  &.shadow {
     box-shadow: 0 0 $s2 $primary-text-color;
   }
 
@@ -20,7 +19,6 @@ nav.main {
   a:visited,
   button {
     outline: none;
-    background-color: transparent !important;
     padding: 0;
   }
 
@@ -30,28 +28,31 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $s11;
-    background-color: var(--primary-color, #{$primary-color});
-
-    @include dark-mode {
-      background-color: var(--primary-color-dark, #{$primary-color-dark});
-    }
   }
 
-  .desktop-nav-links {
-    display: none;
-  }
   .menu {
     display: block;
     background-color: transparent;
-    color: $primary-color-text;
-    font-weight: $regular;
+    color: var(--primary-color-text, #{$primary-color-text});
+    font-weight: $bold;
     padding: 4px 8px;
-    box-shadow: 0 0 0 1px $google-white;
+    border: none;
+    border-radius: 0;
+    font-family: $sans-serif;
 
     &:hover,
     &:focus {
-      color: $primary-color-text;
-      box-shadow: 0 0 0 2px $google-white;
+      color: $primary-text-color;
+      background-color: $google-white;
+
+      @include dark-mode {
+        background-color: $primary-text-color;
+        color: $google-white;
+      }
+    }
+
+    &[aria-expanded="true"] {
+      box-shadow: 0 0 0 1px $google-white;
     }
 
     &::before {
@@ -62,81 +63,97 @@ nav.main {
   .mobile-nav-tray {
     z-index: -1;
     position: absolute;
-    top: -100%;
-    transition-property: top;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
+    transition-property: transform;
+    top: $s11;
+    right: $s8;
+    display: grid;
     align-items: center;
-    height: $s10;
     transition-duration: $transition-speed;
     transition-timing-function: ease;
+    transform: scale(0) rotateX(90deg);
+    padding: 0;
+    transform-origin: 80% 0%;
+
+    background-color: $google-white;
+    color: $primary-text-color;
+    box-shadow: 0 0 0 1px $google-white;
+
+
+    @include dark-mode {
+      background-color: $primary-text-color;
+      color: $primary-color-text;
+      box-shadow: 0 0 0 1px $primary-text-color;
+    }
+
+    &[aria-hidden="false"] {
+      transform: scale(1) rotateX(0deg);
+    }
+  }
+
+  [role="menuitem"] {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: $s9;
+    padding: 0 $s4;
+    transition: filter .3s ease;
+    font-family: $sans-serif;
+    color: $primary-color-text;
     background-color: var(--primary-color, #{$primary-color});
 
     @include dark-mode {
       background-color: var(--primary-color-dark, #{$primary-color-dark});
     }
+
+    &:hover,
+    &:focus {
+      background-color: $google-white;
+      color: $primary-text-color;
+      box-shadow: inset 0 0 0 1px var(--primary-color, #{$primary-color});
+
+      @include dark-mode {
+        background-color: $primary-text-color;
+        color: $google-white;
+        box-shadow: inset 0 0 0 1px var(--primary-color-dark, #{$primary-color-dark});
+      }
+    }
   }
-  .mobile-active .mobile-nav-tray {
-    top: 100%;
+
+  .menu,
+  [role="menuitem"] {
+    &:before,
+    &:after {
+      display: none;
+    }
   }
 
 
-
-  a {
+  a.brand {
     text-decoration: none;
     display: inline-block;
     color: $primary-color-text;
-    @include font-size();
     font-family: $sans-serif;
     font-weight: $regular;
     position: relative;
+    background: transparent;
 
-    + a {
-      margin-left: $s4;
-    }
-    &.brand {
-      @include font-size(7);
-      margin: 0;
-
-      &::before {
-        bottom: 0;
-        height: 2px;
-      }
-
-      @include mq-max(375px) {
-        @include font-size(6);
-      }
-    }
+    @include font-size(7);
+    margin: 0;
 
     &::before {
+      bottom: 0;
+      height: 2px;
       background-color: $primary-color-text;
     }
 
     &:hover,
     &:focus {
       color: $primary-color-text;
+      background: transparent;
     }
-  }
 
-
-
-
-  @include mq(600px) {
-
-    .content, .container {
-      border-bottom: none;
-    }
-    .desktop-nav-links {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      float: right;
-    }
-    .menu,
-    .mobile-nav-tray {
-      display: none;
+    @include mq-max(375px) {
+      @include font-size(5);
     }
   }
 }

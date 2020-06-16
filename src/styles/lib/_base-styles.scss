@@ -54,3 +54,10 @@
     @content;
   }
 }
+
+@mixin remove-link-animation {
+  &:before,
+  &:after {
+    display: none;
+  }
+}

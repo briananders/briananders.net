@@ -23,26 +23,26 @@ module.exports = {
     const mainNavContent = document.querySelector('nav.main .content');
     const mobileNavTray = mainNavContent.querySelector('.mobile-nav-tray');
     menuButton.addEventListener('click', () => {
-      if (mainNavContent.classList.contains('mobile-active')) {
+      if (menuButton.getAttribute('aria-expanded') === 'true') {
         analytics.pushEvent({
           category: 'nav',
           action: 'menu close',
         });
         menuButton.setAttribute('aria-expanded', 'false');
-        mainNavContent.classList.remove('mobile-active');
+        mobileNavTray.setAttribute('aria-hidden', 'true');
         setTimeout(() => {
-          mobileNavTray.setAttribute('aria-hidden', 'true');
-        }, 250);
+          mobileNavTray.style.display = 'none';
+        }, 500);
       } else {
         analytics.pushEvent({
           category: 'nav',
           action: 'menu open',
         });
-        menuButton.setAttribute('aria-expanded', 'true');
-        mobileNavTray.setAttribute('aria-hidden', 'false');
+        mobileNavTray.style.display = '';
         setTimeout(() => {
-          mainNavContent.classList.add('mobile-active');
-        }, 1);
+          menuButton.setAttribute('aria-expanded', 'true');
+          mobileNavTray.setAttribute('aria-hidden', 'false');
+        }, 0);
       }
     });
   },
@@ -52,7 +52,7 @@ module.exports = {
     const skipNavButton = skipNavContainer.querySelector('button');
     const nonNavContainerSelectors = ['main', 'footer'];
     const interactableElements = ['a', 'input', 'button', 'textarea', 'select'];
-    const querySelectors = nonNavContainerSelectors.map(container => interactableElements.map(input => `${container} ${input}`));
+    const querySelectors = nonNavContainerSelectors.map((container) => interactableElements.map((input) => `${container} ${input}`));
 
     skipNavButton.addEventListener('focus', () => {
       skipNavContainer.dataset.state = 'active';
