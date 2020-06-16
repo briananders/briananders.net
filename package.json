@@ -62,6 +62,7 @@
     "merge": "^1.2.1",
     "node-notifier": "^6.0.0",
     "node-sass": "^4.13.1",
+    "node-watch": "^0.6.4",
     "simple-fmt": "^0.1.0",
     "uglify-js": "^3.8.0",
     "vinyl-buffer": "^1.0.1",

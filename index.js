@@ -38,6 +38,7 @@ const production = require(`${dir.build}production`);
 const app = express();
 const buildEvents = new EventEmitter();
 const exec = require('child_process').exec;
+const watch = require('node-watch');
 
 
 const hashingFileNameList = {};
@@ -81,7 +82,7 @@ buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, configs));
 
 if (!production) {
 
-  fs.watch(`${dir.src}js/`, {
+  watch(`${dir.src}js/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
@@ -89,7 +90,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}styles/`, {
+  watch(`${dir.src}styles/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
@@ -97,7 +98,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}templates/`, {
+  watch(`${dir.src}templates/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
@@ -105,7 +106,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}partials/`, {
+  watch(`${dir.src}partials/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
@@ -113,7 +114,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}layout/`, {
+  watch(`${dir.src}layout/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
@@ -121,7 +122,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}images/`, {
+  watch(`${dir.src}images/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
@@ -129,7 +130,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.build}`, {
+  watch(`${dir.build}`, {
     recursive: true,
   }, (evt, file) => {
     console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
