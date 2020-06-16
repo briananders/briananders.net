@@ -39,7 +39,7 @@
     @include dark-mode {
       color: $primary-color-text;
 
-      &:before {
+      &::before {
         background-color: $primary-color-text;
       }
     }

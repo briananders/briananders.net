@@ -121,8 +121,8 @@ nav.main {
 
   .menu,
   [role="menuitem"] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       display: none;
     }
   }
@@ -132,24 +132,58 @@ nav.main {
     text-decoration: none;
     display: inline-block;
     color: $primary-color-text;
-    font-family: $sans-serif;
-    font-weight: $regular;
     position: relative;
     background: transparent;
-
-    @include font-size(7);
     margin: 0;
 
+    &,
+    &::before,
+    &::after {
+      font-family: $sans-serif;
+      font-weight: $regular;
+      @include font-size(7);
+    }
+
     &::before {
+      content: attr(title);
+      z-index: 1;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      right: 0;
+      left: 0;
+      top: 0;
       bottom: 0;
-      height: 2px;
       background-color: $primary-color-text;
+      color: $primary-text-color;
+      transition: clip-path 1s ease;
+      clip-path: circle(0px at 0%);
+    }
+
+    &::after {
+      content: attr(title);
+      z-index: 2;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: $primary-text-color;
+      color: $primary-color-text;
+      transition: clip-path 1s ease;
+      clip-path: circle(0px at 100%);
     }
 
     &:hover,
     &:focus {
-      color: $primary-color-text;
-      background: transparent;
+      &::before {
+        clip-path: circle(400px at 0%);
+      }
+      &::after {
+        clip-path: circle(400px at 100%);
+      }
     }
 
     @include mq-max(375px) {

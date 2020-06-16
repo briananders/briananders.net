@@ -35,8 +35,8 @@
 }
 
 @mixin remove-link-animation {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     display: none;
   }
 }

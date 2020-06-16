@@ -13,11 +13,11 @@ answer, answer-array {
 }
 
 answer-array {
-  a:after {
+  a::after {
     content: ',';
   }
 
-  a:last-of-type:after {
+  a:last-of-type::after {
     content: '';
   }
 }
