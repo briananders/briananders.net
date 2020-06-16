@@ -2,4 +2,76 @@
 
 .thoughts.headphones {
 
+  form {
+    .name,
+    .ear-fit,
+    .connection {
+      display: flex;
+    }
+    select {
+      flex-grow: 1;
+    }
+    @include mq($tablet) {
+      margin-bottom: $s3;
+    }
+    @include mq-max($tablet - 1px) {
+      .name,
+      .ear-fit,
+      .connection {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        margin-bottom: $s3;
+      }
+    }
+  }
+
+  .table {
+    display: grid;
+    gap: $s3;
+    grid-auto-flow: row;
+    grid-auto-columns: max-content;
+    justify-content: center;
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    display: grid;
+    column-gap: $s2;
+
+    @include mq-max($tablet - 1px) {
+      &.header {
+        display: none;
+      }
+    }
+    @include mq($tablet) {
+      grid-template-columns: repeat(4, 1fr);
+
+      &.header {
+        background-color: var(--primary-color-light, #{$primary-color-light});
+        color: $primary-text-color;
+        font-family: $sans-serif;
+
+        @include dark-mode {
+          background-color: transparent;
+          color: $primary-color-text;
+        }
+      }
+
+      .name {
+        grid-column: 2 span;
+        padding-left: $s1;
+      }
+    }
+  }
+
+  @include mq($tablet) {
+    .name,
+    .ear-fit,
+    .connection {
+      span {
+        display: none;
+      }
+    }
+  }
+
 }

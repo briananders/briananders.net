@@ -1,6 +1,6 @@
 ---
-title: ''
-description: ''
+title: 'Headphones'
+description: "I've listened to a lot of music over time. My music player has changed, and the headphones I listen with have changed. I decided to review them."
 date: 2020-06-14
 priority: 0.8
 pageClasses:
@@ -11,116 +11,147 @@ styles:
   - 'thoughts/headphones'
 ---
 
-<form>
-  <select name="in-over-ear">
-    <option value="*" selected>All</option>
-    <option value="over-ear">Over-ear</option>
-    <option value="in-ear">In-ear</option>
-  </select>
+<section>
+  <div class="content">
+    <p>
+      Recently, I travelled with my wife, and she was generally alarmed at how many headphones I packed. Over-ear sound cancelling headphones for the flight, general use wireless in-ear earbuds, sleeping headphones, wired headphones for making phone calls, and a couple of dumb wired earbuds for back-up. Since then, I realized that I have a pretty fair amount of headphone experience.
+    </p>
+    <p>
+      Remembering the names or details of headphones I wore pre-2003 is beyond my abilities, though I do remember what they looked like. In 2003 I got my first iPod; a 3rd generation iPod that came with a little dongle to pause/play music and <a href="https://en.wikipedia.org/wiki/Apple_earbuds">the first generation iPod earbuds</a>.
+    </p>
+    <p>
+      I didn't really like those; they wouldn't stay in my ears. But ever since I've been searching for my next set of headphones.
+    </p>
+  </div>
+</section>
 
-  <select name="sleeping">
-    <option value="*" selected>All</option>
-    <option value="sleeping">For Sleeping</option>
-  </select>
-
-  <select name="wired-wireless">
-    <option value="*" selected>All</option>
-    <option value="wired">Wired</option>
-    <option value="wireless">Wireless</option>
-    <option value="true-wireless">True Wireless</option>
-  </select>
+<form class="table content">
+  <div class="row">
+    <div class="name">
+      <span id="sleeping">Sleeping filter:</span>
+      <select name="sleeping" aria-labelledby="sleeping">
+        <option value="*" selected>All</option>
+        <option value="sleeping">For Sleeping</option>
+      </select>
+    </div>
+    <div class="connection">
+      <span id="connection">Connection:</span>
+      <select name="wired-wireless" aria-labelledby="connection">
+        <option value="*" selected>All</option>
+        <option value="wired">Wired</option>
+        <option value="wireless">Wireless</option>
+        <option value="true-wireless">True Wireless</option>
+      </select>
+    </div>
+    <div class="ear-fit">
+      <span id="ear-fit">Ear fit:</span>
+      <select name="in-over-ear" aria-labelledby="ear-fit">
+        <option value="*" selected>All</option>
+        <option value="over-ear">Over-ear</option>
+        <option value="in-ear">In-ear</option>
+      </select>
+    </div>
+  </div>
 </form>
 
-<div class="table">
+<%
+const headphones = [{
+    filters: ["wired", "over-ear"],
+    href: "/thoughts/headphones-bose-quietcomfort-25.ejs",
+    name: "Bose QuietComfort 25",
+    wire: "Wired",
+    ear: "Over-ear",
+},
+{
+    filters: ["true-wireless", "over-ear"],
+    href: "/thoughts/headphones-bose-quietcomfort-35-ii.ejs",
+    name: "Bose QuietComfort 35 II",
+    wire: "True Wireless",
+    ear: "Over-ear",
+},
+{
+    filters: ["wireless", "in-ear", "sleeping"],
+    href: "/thoughts/headphones-goojodoq-wireless-sleeping.ejs",
+    name: "GOOJODOQ wireless (sleeping)",
+    wire: "Wireless",
+    ear: "In-ear",
+},
+{
+    filters: ["true-wireless", "in-ear"],
+    href: "/thoughts/headphones-jabra-elite-65t.ejs",
+    name: "Jabra Elite 65t",
+    wire: "True Wireless",
+    ear: "In-ear",
+},
+{
+    filters: ["true-wireless", "in-ear"],
+    href: "/thoughts/headphones-jaybird-run.ejs",
+    name: "Jaybird Run",
+    wire: "True Wireless",
+    ear: "In-ear",
+},
+{
+    filters: ["wired", "in-ear", "sleeping"],
+    href: "/thoughts/headphones-maxrock-wired-sleeping.ejs",
+    name: "Maxrock wired (sleeping)",
+    wire: "Wired",
+    ear: "In-ear",
+},
+{
+    filters: ["wireless", "in-ear", "sleeping"],
+    href: "/thoughts/headphones-maxrock-wireless-sleeping.ejs",
+    name: "Maxrock wireless (sleeping)",
+    wire: "Wireless",
+    ear: "In-ear",
+},
+{
+    filters: ["wired", "over-ear"],
+    href: "/thoughts/headphones-philips-oneill-sho9560-28.ejs",
+    name: "Philips O'Neill SHO9560/28",
+    wire: "Wired",
+    ear: "Over-ear",
+},
+{
+    filters: ["true-wireless", "in-ear"],
+    href: "/thoughts/headphones-pixel-buds-2.ejs",
+    name: "Pixel Buds 2",
+    wire: "True Wireless",
+    ear: "In-ear",
+},
+{
+    filters: ["wired", "in-ear"],
+    href: "/thoughts/headphones-pixel-usb-c-earbuds.ejs",
+    name: "Pixel USB-C earbuds",
+    wire: "Wired",
+    ear: "In-ear",
+},
+{
+    filters: ["wired", "in-ear"],
+    href: "/thoughts/headphones-sony-mdr-j10-h.ear.ejs",
+    name: "Sony MDR-J10 H.Ear",
+    wire: "Wired",
+    ear: "In-ear",
+},
+{
+    filters: ["wired", "in-ear"],
+    href: "/thoughts/headphones-apple-wired",
+    name: "Apple earbuds - 3 versions",
+    wire: "Wired",
+    ear: "In-ear",
+}];
+%>
+
+<div class="table content">
   <div class="row header">
-    <div class="name">
-      Product name
-    </div>
-    <div class="wire">Wired/Wireless</div>
-    <div class="ear">In-ear/Over-ear</div>
+    <span class="name">Product</span>
+    <span class="connection">Connection</span>
+    <span class="ear-fit">Ear fit</span>
   </div>
-  <div class="row" data-filters="wired over-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-bose-quietcomfort-25.ejs">Bose QuietComfort 25</a>
+  <% headphones.forEach((product) => { %>
+    <div class="row" data-filters="<%- product.filters.join(" ") %>">
+      <a class="name" href="<%- product.href %>"><span>Product:</span> <%- product.name %></a>
+      <div class="connection"><span>Connection:</span> <%- product.wire %></div>
+      <div class="ear-fit"><span>Ear fit:</span> <%- product.ear %></div>
     </div>
-    <div class="wire">Wired</div>
-    <div class="ear">Over-ear</div>
-  </div>
-  <div class="row" data-filters="true-wireless over-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-bose-quietcomfort-35-ii.ejs">Bose QuietComfort 35 II</a>
-    </div>
-    <div class="wire">True Wireless</div>
-    <div class="ear">Over-ear</div>
-  </div>
-  <div class="row" data-filters="wireless in-ear sleeping">
-    <div class="name">
-      <a href="/thoughts/headphones-goojodoq-wireless-sleeping.ejs">GOOJODOQ wireless (sleeping)</a>
-    </div>
-    <div class="wire">Wireless</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="true-wireless in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-jabra-elite-65t.ejs">Jabra Elite 65t</a>
-    </div>
-    <div class="wire">True Wireless</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="true-wireless in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-jaybird-run.ejs">Jaybird Run</a>
-    </div>
-    <div class="wire">True Wireless</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wired in-ear sleeping">
-    <div class="name">
-      <a href="/thoughts/headphones-maxrock-wired-sleeping.ejs">Maxrock wired (sleeping)</a>
-    </div>
-    <div class="wire">Wired</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wireless in-ear sleeping">
-    <div class="name">
-      <a href="/thoughts/headphones-maxrock-wireless-sleeping.ejs">Maxrock wireless (sleeping)</a>
-    </div>
-    <div class="wire">Wireless</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wired over-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-philips-oneill-sho9560-28.ejs">Philips O'Neill SHO9560/28</a>
-    </div>
-    <div class="wire">Wired</div>
-    <div class="ear">Over-ear</div>
-  </div>
-  <div class="row" data-filters="true-wireless in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-pixel-buds-2.ejs">Pixel Buds 2</a>
-    </div>
-    <div class="wire">True Wireless</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wired in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-pixel-usb-c-earbuds.ejs">Pixel USB-C earbuds</a>
-    </div>
-    <div class="wire">Wired</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wired in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-sony-mdr-j10-h.ear.ejs">Sony MDR-J10 H.Ear</a>
-    </div>
-    <div class="wire">Wired</div>
-    <div class="ear">In-ear</div>
-  </div>
-  <div class="row" data-filters="wired in-ear">
-    <div class="name">
-      <a href="/thoughts/headphones-apple-wired">Apple earbuds - 3 versions</a>
-    </div>
-    <div class="wire">Wired</div>
-    <div class="ear">In-ear</div>
-  </div>
+  <% }); %>
 </div>

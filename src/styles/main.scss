@@ -168,6 +168,7 @@ a:visited,
   }
 
   &:focus {
+    filter: invert(1);
     font-weight: bold;
   }
 
@@ -273,6 +274,8 @@ select {
   border-radius: $border-radius;
   background-color: $google-grey-50;
   border: 1px solid $divider-color;
+
+  filter: invert(.8);
 }
 
 date {

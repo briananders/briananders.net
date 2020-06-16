@@ -1,6 +1,6 @@
 
 const form = document.querySelector('form');
-const table = document.querySelector('.table');
+const table = document.querySelector('div.table');
 const filterControllers = Array.from(form.querySelectorAll('select, input'));
 
 function intersect(elementArrays) {
@@ -23,7 +23,7 @@ function updateFilters() {
   const elementsToShow = intersect(filteredElements);
 
   Array.from(table.querySelectorAll('.row[data-filters]')).forEach((rowElement) => { rowElement.style.display = 'none'; });
-  elementsToShow.forEach((rowElement) => { rowElement.style.display = 'block'; });
+  elementsToShow.forEach((rowElement) => { rowElement.style.display = ''; });
 }
 
 module.exports = {
