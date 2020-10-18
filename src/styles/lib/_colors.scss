@@ -383,13 +383,13 @@ $pallettes: (
     'accent-color': $google-blue-a200
   ),
   'orange': (
-    'primary-color-dark': $google-orange-900,
+    'primary-color-dark': darken($google-orange-900, 5),
     'primary-color': $google-orange-800,
     'primary-color-light': $google-orange-100,
     'accent-color': $google-green-a200
   ),
   'deep-orange': (
-    'primary-color-dark': $google-deep-orange-800,
+    'primary-color-dark': $google-deep-orange-900,
     'primary-color': $google-deep-orange-600,
     'primary-color-light': $google-deep-orange-100,
     'accent-color': $google-green-a200
