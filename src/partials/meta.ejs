@@ -79,7 +79,11 @@
 
 <link rel="preload" media="all" href="<%- fontApi %>" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
 <% locals.styles.forEach((path) => { %>
-  <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
+  <% if(path === 'main') { %>
+    <link rel="stylesheet" media="all" href="/styles/<%- path %>.css">
+  <% } else { %>
+    <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
+  <% } %>
 <% }); %>
 
 <noscript>
