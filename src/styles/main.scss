@@ -287,7 +287,7 @@ button, select {
   font-family: $sans-serif;
   border-radius: $border-radius;
   color: $primary-text-color;
-  border: 1px solid $divider-color;
+  border: none;
   @include font-size(3);
   line-height: 25px; // override
   padding: 0 $s3;
