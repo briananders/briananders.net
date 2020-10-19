@@ -1,0 +1,266 @@
+---
+title: 'In-view text animation'
+description: ''
+date: 2020-10-18
+priority: 0.8
+pageClasses:
+  - 'thoughts in-view-text-animation'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/in-view-text-animation'
+  - 'thoughts/code'
+---
+
+<section>
+  <div class="content">
+    <header>
+      <h2>The task</h2>
+    </header>
+    <p>
+      It's a really popular trend in 2020 web design to have text animate in when the
+    </p>
+    <%- code(`const inView = (element, callback, options = { rootMargin: '0px 0px 0px 0px' }) => {
+  if (window.IntersectionObserver) {
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        callback(entry.target, entry.isIntersecting);
+      });
+    }, options);
+
+    intersectionObserver.observe(element);
+  } else {
+    callback(element, true);
+  }
+};`) %>
+    <p>then</p>
+    <%- code(`const inViewOutOfView = (element, isInView) => {
+  element.setAttribute('in-view', isInView);
+};`); %>
+    <p>then</p>
+    <%- code(`const querySelector = 'h1, h2, h3, h4, h5, h6, p';
+Array.from(document.querySelectorAll(querySelector)).forEach((element) => {
+  inView(element, inViewOutOfView, {
+    rootMargin: '-70px 0px -20px 0px',
+  });
+});`) %>
+    <p>then SASS</p>
+    <%- code(`h1, h2, h3, h4, h5, h6, p {
+  transition: opacity 500ms ease, transform 500ms ease;
+
+  &[in-view=false],
+  &:not([in-view]) {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+}`) %>
+  </div>
+</section>
+
+<section class="the-test">
+  <div class="content">
+    <header>
+      <h2>The test</h2>
+    </header>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
+    <p>
+      Sed ut commodo velit.
+    </p>
+    <p>
+      Cras enim dui, luctus facilisis laoreet a, auctor vitae nulla.
+    </p>
+    <p>
+      Nunc et neque laoreet, euismod turpis a, viverra ipsum.
+    </p>
+    <p>
+      Etiam laoreet aliquet tortor quis pretium.
+    </p>
+    <p>
+      Etiam volutpat justo eget eros laoreet ultricies.
+    </p>
+    <p>
+      Donec tincidunt eros eu tristique gravida.
+    </p>
+    <p>
+      Nullam aliquam elit a lacinia aliquam.
+    </p>
+    <p>
+      Integer quis est vel nisl auctor hendrerit vitae sit amet magna.
+    </p>
+    <p>
+      In rhoncus tellus nec congue venenatis.
+    </p>
+    <p>
+      Nam vitae massa eget mi eleifend viverra vitae quis tellus.
+    </p>
+    <p>
+      Cras venenatis nec justo a rutrum.
+    </p>
+    <p>
+      Sed vestibulum nisl et odio pretium, in dictum libero fringilla.
+    </p>
+    <p>
+      Sed facilisis venenatis metus, vitae efficitur lectus dignissim a.
+    </p>
+    <p>
+      In tincidunt lacinia mi, eget fringilla ante hendrerit in.
+    </p>
+    <p>
+      Nam viverra mi sit amet arcu interdum, quis suscipit ex commodo.
+    </p>
+    <p>
+      Duis quis odio id felis venenatis commodo.
+    </p>
+    <p>
+      Cras sollicitudin, quam non laoreet euismod, risus elit tincidunt nulla, vel ullamcorper neque nibh vel leo.
+    </p>
+    <p>
+      Sed dignissim tincidunt magna sed vestibulum.
+    </p>
+    <p>
+      Curabitur eget leo porta, vehicula tellus non, imperdiet arcu.
+    </p>
+    <p>
+      Vivamus quis dolor congue magna consequat vulputate.
+    </p>
+    <p>
+      Aenean scelerisque massa dignissim, egestas dui eu, maximus felis.
+    </p>
+    <p>
+      Aliquam aliquet felis sed nibh porta gravida.
+    </p>
+    <p>
+      Nunc eget erat a erat mattis consectetur.
+    </p>
+    <p>
+      Cras id sollicitudin ligula.
+    </p>
+    <p>
+      Vestibulum facilisis finibus sapien, sed eleifend elit accumsan quis.
+    </p>
+    <p>
+      Cras commodo congue tellus nec interdum.
+    </p>
+    <p>
+      Sed laoreet erat in tellus posuere semper.
+    </p>
+    <p>
+      Quisque vitae commodo nisi, a aliquam sem.
+    </p>
+    <p>
+      Suspendisse leo neque, fermentum vel suscipit vitae, suscipit ac leo.
+    </p>
+    <p>
+      Duis tincidunt eget odio quis mollis.
+    </p>
+    <p>
+      Aenean eget magna consequat leo sollicitudin sodales.
+    </p>
+    <p>
+      Sed semper egestas lobortis.
+    </p>
+    <p>
+      Aliquam tincidunt, ex ac porttitor eleifend, metus dolor volutpat elit, eget rutrum nibh justo eu lectus.
+    </p>
+    <p>
+      Cras pharetra laoreet faucibus.
+    </p>
+    <p>
+      Maecenas et auctor mauris, at blandit enim.
+    </p>
+    <p>
+      Integer ut enim rutrum, tristique quam id, placerat augue.
+    </p>
+    <p>
+      Ut ac facilisis lacus.
+    </p>
+    <p>
+      Nulla aliquam arcu et ultricies porttitor.
+    </p>
+    <p>
+      Maecenas nec elementum dui, ac rutrum sapien.
+    </p>
+    <p>
+      Integer ac cursus dolor.
+    </p>
+    <p>
+      Interdum et malesuada fames ac ante ipsum primis in faucibus.
+    </p>
+    <p>
+      Morbi id nisl sed nulla aliquet posuere a id leo.
+    </p>
+    <p>
+      Proin nec lacus in ligula aliquet varius.
+    </p>
+    <p>
+      Fusce quis sodales odio.
+    </p>
+    <p>
+      Pellentesque suscipit facilisis egestas.
+    </p>
+    <p>
+      Integer auctor mollis justo, in volutpat tortor interdum non.
+    </p>
+    <p>
+      Maecenas sit amet nunc tempus, venenatis sem vestibulum, mattis ex.
+    </p>
+    <p>
+      Mauris tristique erat sem, ac pulvinar metus tempor ut.
+    </p>
+    <p>
+      Nunc nec ullamcorper sem.
+    </p>
+    <p>
+      Sed laoreet tellus id odio interdum, ut egestas velit vulputate.
+    </p>
+    <p>
+      Sed facilisis nunc sed risus euismod sollicitudin.
+    </p>
+    <p>
+      Ut maximus sit amet diam in venenatis.
+    </p>
+    <p>
+      Proin non urna eu mauris consequat laoreet.
+    </p>
+    <p>
+      Mauris ac vulputate justo.
+    </p>
+    <p>
+      Pellentesque pretium, sapien eget gravida accumsan, tortor neque rutrum augue, ut dapibus massa nunc iaculis ligula.
+    </p>
+    <p>
+      Cras feugiat, tortor eu tincidunt sollicitudin, eros turpis dapibus turpis, ut finibus nisl erat vel leo.
+    </p>
+    <p>
+      Fusce fermentum, tellus non posuere pretium, felis nulla congue mi, non eleifend arcu velit vel metus.
+    </p>
+    <p>
+      Nunc dui orci, facilisis in nisi in, semper hendrerit ligula.
+    </p>
+    <p>
+      Aenean in leo in velit placerat dignissim sed non turpis.
+    </p>
+    <p>
+      Sed lobortis justo lectus, condimentum auctor lorem feugiat sit amet.
+    </p>
+    <p>
+      Aliquam nec lorem viverra, fermentum orci at, condimentum ante.
+    </p>
+    <p>
+      Cras pretium enim ut lorem varius aliquet.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="content">
+    <header>
+      <h2>Conclusion</h2>
+    </header>
+    <p>
+      Really popular web design trends, don't have to be complicated. I hope this was helpful, and maybe taught a trick or two.
+    </p>
+  </div>
+</section>

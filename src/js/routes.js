@@ -13,5 +13,6 @@ module.exports = {
     'raining-paint': require('./thoughts/raining-paint'),
     'unique-stars': require('./thoughts/unique-stars'),
     'using-canvas-to-make-patterns-with-circles': require('./thoughts/using-canvas'),
+    'in-view-text-animation': require('./thoughts/in-view-text-animation'),
   },
 };
