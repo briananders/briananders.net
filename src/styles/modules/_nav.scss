@@ -1,15 +1,11 @@
 nav.main {
-  background-color: var(--primary-color, #{$primary-color});
   border-radius: 0;
   margin: 0;
   transition-property: opacity;
   z-index: 5;
   position: fixed;
   width: 100%;
-
-  @include dark-mode {
-    background-color: var(--primary-color-dark, #{$primary-color-dark});
-  }
+  background-color: var(--primary-color-dark, #{$primary-color-dark});
 
   &.shadow {
     box-shadow: 0 0 $s2 $primary-text-color;
@@ -28,6 +24,7 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $s11;
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   .menu {
@@ -40,8 +37,7 @@ nav.main {
     border-radius: 0;
     font-family: $sans-serif;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $primary-text-color;
       background-color: $google-white;
 
@@ -49,6 +45,9 @@ nav.main {
         background-color: $primary-text-color;
         color: $google-white;
       }
+    }
+    &:focus {
+      text-decoration: underline;
     }
 
     &[aria-expanded="true"] {
@@ -64,7 +63,7 @@ nav.main {
     z-index: -1;
     position: absolute;
     transition-property: transform;
-    top: $s11;
+    top: $s11 + 1;
     right: $s8;
     display: grid;
     align-items: center;
@@ -99,14 +98,9 @@ nav.main {
     transition: filter .3s ease;
     font-family: $sans-serif;
     color: $primary-color-text;
-    background-color: var(--primary-color, #{$primary-color});
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
 
-    @include dark-mode {
-      background-color: var(--primary-color-dark, #{$primary-color-dark});
-    }
-
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $google-white;
       color: $primary-text-color;
       box-shadow: inset 0 0 0 1px var(--primary-color, #{$primary-color});
@@ -116,6 +110,10 @@ nav.main {
         color: $google-white;
         box-shadow: inset 0 0 0 1px var(--primary-color-dark, #{$primary-color-dark});
       }
+    }
+
+    &:focus {
+      text-decoration: underline;
     }
   }
 
@@ -176,14 +174,16 @@ nav.main {
       clip-path: circle(0px at 100%);
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       &::before {
         clip-path: circle(400px at 0%);
       }
       &::after {
         clip-path: circle(400px at 100%);
       }
+    }
+    &:focus {
+      text-decoration: underline;
     }
 
     @include mq-max(375px) {

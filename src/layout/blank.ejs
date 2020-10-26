@@ -24,10 +24,10 @@
       var palletteIndex = Math.floor(Math.random() * pallettes.length);
       var pallette = pallettes[palletteIndex];
       var palletteRegex = new RegExp('pallette=([a-zA-Z\-]+)&?');
-      var queryString = location.search.substr(1);
+      var urlParams = new URLSearchParams(window.location.search);
 
-      if (palletteRegex.test(queryString)) {
-        pallette = queryString.match(palletteRegex)[1];
+      if (urlParams.has('pallette')) {
+        pallette = urlParams.get('pallette');
       }
 
       document.documentElement.classList.add(pallette);

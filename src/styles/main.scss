@@ -118,11 +118,8 @@ a:visited,
   position: relative;
   text-decoration: none;
   transition-property: color, background-color;
-  color: $google-white;
-
-  @include dark-mode {
-    color: $primary-text-color;
-  }
+  color: $primary-color-text;
+  background-color: var(--primary-color-dark, #{$primary-color-dark});
 
   &::before {
     position: absolute;
@@ -132,22 +129,14 @@ a:visited,
     left: 0;
     right: 0;
     transition-property: top;
-    background-color: var(--primary-color, #{$primary-color});
     z-index: -1;
-
-    @include dark-mode {
-      background-color: var(--primary-color-dark, #{$primary-color-dark});
-    }
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
-
-    @include dark-mode {
-      background-color: $google-white;
-    }
+    background-color: var(--primary-color, #{$primary-color});
 
     &::before {
       top: calc(100% - 2px);
@@ -189,6 +178,13 @@ select {
   outline-color: var(--accent-color, #{$accent-color});
 }
 
+input,
+button,
+textarea,
+select {
+  border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
+}
+
 a.button,
 a:visited.button,
 button.button {
@@ -201,25 +197,18 @@ button.button {
   font-weight: $bold;
   transition-property: background-color;
   color: $primary-color-text;
-  background-color: var(--primary-color, #{$primary-color});
-  border: 2px solid var(--primary-color, #{$primary-color});
+  background-color: var(--primary-color-dark, #{$primary-color-dark});
+  border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
   @include remove-link-animation;
 
   @include dark-mode {
     background-color: transparent;
-    border-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: $primary-color-text;
-    color: var(--primary-color, #{$primary-color});
-
-    @include dark-mode {
-      background-color: $primary-text-color;
-      color: var(--primary-color-dark, #{$primary-color-dark});
-    }
+    background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 
   &:focus {
@@ -287,7 +276,6 @@ button, select {
   font-family: $sans-serif;
   border-radius: $border-radius;
   color: $primary-text-color;
-  border: 1px solid $divider-color;
   @include font-size(3);
   line-height: 25px; // override
   padding: 0 $s3;
@@ -295,11 +283,16 @@ button, select {
 
 button {
   color: $primary-color-text;
-  background-color: var(--primary-color, #{$primary-color});
+  background-color: var(--primary-color-dark, #{$primary-color-dark});
+  border: 2px solid var(--primary-color-dark, #{$primary-color-dark});
+
+  @include dark-mode {
+    background-color: transparent;
+  }
 
   &:hover,
-  &:active,
-  &:focus {
+  &:focus,
+  &:active {
     background-color: var(--primary-color-dark, #{$primary-color-dark});
   }
 }
