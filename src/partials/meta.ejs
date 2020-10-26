@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible"                 content="IE=edge">
-<title><%- locals.name %></title>
+<title><%- locals.name %> | <%- locals.title %></title>
 <meta name="description"                           content="<%- locals.description %>">
 
 <meta http-equiv="content-type"                    content="text/html; charset=UTF-8">
@@ -79,7 +79,11 @@
 
 <link rel="preload" media="all" href="<%- fontApi %>" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
 <% locals.styles.forEach((path) => { %>
-  <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
+  <% if(path === 'main') { %>
+    <link rel="stylesheet" media="all" href="/styles/<%- path %>.css">
+  <% } else { %>
+    <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
+  <% } %>
 <% }); %>
 
 <noscript>

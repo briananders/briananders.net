@@ -11,7 +11,7 @@
     }
     newestPages.forEach(({ url, data: { date, description, title }}) => {
   %>
-  <a itemprop="url" href="/<%- url %>" itemscope itemtype="http://schema.org/BlogPosting" role="list-item">
+  <a itemprop="url" href="/<%- url %>" itemscope itemtype="http://schema.org/BlogPosting" role="listitem">
     <h3 itemprop="name"><%- noWidows(title) %></h3>
     <figcaption itemprop="description">
       <%- noWidows(description) %>
