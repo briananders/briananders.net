@@ -56,7 +56,7 @@
     "gray-matter": "^4.0.2",
     "gulp": "^4.0.2",
     "handlebars": "^4.7.3",
-    "highlight.js": "^10.0.2",
+    "highlight.js": "^10.1.2",
     "html-minifier": "^4.0.0",
     "image-optimizer": "^0.4.0-pre2",
     "merge": "^1.2.1",
