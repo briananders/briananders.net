@@ -1,0 +1,88 @@
+---
+title: ''
+description: ''
+date: 2020-12-18
+priority: 0.8
+pageClasses:
+  - 'thoughts yahtzee'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/yahtzee'
+---
+
+<button type=button id=roll>Roll</button>
+
+<div id=dice>
+  <% for (let i = 0; i < 5; i++) { %>
+    <button type=button id=die-<%- i %>></button>
+  <% } %>
+</div>
+
+<div id=score-board>
+  <column>
+    <div id=ones>
+      <label title="Groups of Ones">Ones</label>
+      <button type=button></button>
+    </div>
+    <div id=twos>
+      <label title="Groups of Twos">Twos</label>
+      <button type=button></button>
+    </div>
+    <div id=threes>
+      <label title="Groups of Threes">Threes</label>
+      <button type=button></button>
+    </div>
+    <div id=fours>
+      <label title="Groups of Fours">Fours</label>
+      <button type=button></button>
+    </div>
+    <div id=fives>
+      <label title="Groups of Fives">Fives</label>
+      <button type=button></button>
+    </div>
+    <div id=sixes>
+      <label title="Groups of Sixes">Sixes</label>
+      <button type=button></button>
+    </div>
+    <div id=kind-total>
+      <label title="Total of the above">Total</label>
+      <div></div>
+    </div>
+    <div id=bonus>
+      <label title="Extra 35 points if totals are greater than 62">Bonus</label>
+      <div></div>
+    </div>
+  </column>
+  <column>
+    <div id=three-kind>
+      <label title="3 or more of the same number">Three of a kind</label>
+      <button type=button></button>
+    </div>
+    <div id=four-kind>
+      <label title="4 or more of the same number">Four of a kind</label>
+      <button type=button></button>
+    </div>
+    <div id=small-straight>
+      <label title="4 sequential numbers">Small Straight</label>
+      <button type=button></button>
+    </div>
+    <div id=large-straight>
+      <label title="5 sequential numbers">Large Straight</label>
+      <button type=button></button>
+    </div>
+    <div id=full-house>
+      <label title="2 of one number, 3 of another number">Full House</label>
+      <button type=button></button>
+    </div>
+    <div id=wild>
+      <label title="Any combination">Wild</label>
+      <button type=button></button>
+    </div>
+    <div id=yahtzee>
+      <label title="5 of the same number">Yahtzee</label>
+      <button type=button></button>
+    </div>
+  </column>
+  <div id=total></div>
+</div>
