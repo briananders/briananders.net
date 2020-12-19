@@ -1,44 +1,45 @@
 #!/bin/bash
 
-# scaffold.sh - A script to produce a basic wombat template
+# scaffold.sh - Auto-generate files for a new page
 # sh scaffold.sh name-of-page
 # $1 = name-of-page
 
 if [ "$1" == "" ]; then
-  echo "Don't forget to add your template name"
+  echo "Add page name name: sh scaffold.sh home-page"
   exit 1
 fi
 
 ##### Constants
 
-TEMPLATE_NAME=$1
-STYLES_LOCATION="src/styles/$TEMPLATE_NAME.scss"
-SCRIPTS_LOCATION="src/js/$TEMPLATE_NAME.js"
-EJS_LOCATION="src/templates/$TEMPLATE_NAME.ejs"
+PAGE_NAME=$1
+STYLES_LOCATION="src/styles/$PAGE_NAME.scss"
+SCRIPTS_LOCATION="src/js/$PAGE_NAME.js"
+EJS_LOCATION="src/templates/$PAGE_NAME.ejs"
+NOW=$(date +'%Y-%m-%d')
+SCSS_CLASS=$(echo "$PAGE_NAME" | sed "s+/+.+g")
+HTML_CLASS=$(echo "$PAGE_NAME" | sed "s+/+ +g")
 
 ##### Functions
 
 
 make_scss_file()
 {
-echo "
-.$TEMPLATE_NAME {
+echo "@import \"lib/base-styles\";
 
-}
-" >> $STYLES_LOCATION
+.$SCSS_CLASS {
+
+}" >> $STYLES_LOCATION
 echo "created $STYLES_LOCATION"
 }
 
 
 make_js_file()
 {
-echo "
-module.exports = {
+echo "module.exports = {
   init() {
 
   },
-};
-" >> $SCRIPTS_LOCATION
+};" >> $SCRIPTS_LOCATION
 echo "created $SCRIPTS_LOCATION"
 }
 
@@ -48,14 +49,14 @@ make_ejs_file() {
 echo "---
 title: ''
 description: ''
-date:
+date: $NOW
 priority: 0.8
 pageClasses:
-  - '$TEMPLATE_NAME'
+  - '$HTML_CLASS'
 layout: base
 styles:
   - 'main'
-  - '$TEMPLATE_NAME'
+  - '$PAGE_NAME'
 ---
 " >> $EJS_LOCATION
 echo "created $EJS_LOCATION"
@@ -68,4 +69,4 @@ make_scss_file &
 make_ejs_file &
 wait
 
-echo "DONE"
+echo "DONE: Update your routes.js"

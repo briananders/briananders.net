@@ -8,6 +8,7 @@ const dir = {
   package: `${__dirname}/package/`,
   build: `${__dirname}/build/`,
   jsOutputPath: `${__dirname}/package/scripts/`,
+  nodeModules: `${__dirname}/node_modules/`,
 };
 
 const completionFlags = {
@@ -125,6 +126,14 @@ if (!production) {
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
     moveImages(configs);
+  });
+
+
+  fs.watch(`${dir.build}`, {
+    recursive: true,
+  }, (evt, file) => {
+    console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
+    process.exit();
   });
 } else {
   buildEvents.on('templates-moved', minifyHTML.bind(this, configs));

@@ -24,7 +24,7 @@ module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFi
           if (debug) console.log(`${timestamp.stamp()}: finishHashing()::: ${file}: ${'DONE'.bold.green}`);
           processedCss++;
           if (processedCss >= array.length) {
-            console.log(`${timestamp.stamp()}: assetHashing(): ${'CSS UPDATES ARE DONE'.bold.red}`);
+            console.log(`${timestamp.stamp()}: assetHashing(): ${'CSS UPDATES ARE DONE'.bold.green}`);
             buildEvents.emit('index-css-for-hashing');
           }
         });

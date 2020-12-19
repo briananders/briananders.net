@@ -1,5 +1,8 @@
 const ejs = require('ejs');
 const fs = require('fs');
+const hljs = require('highlight.js');
+const merge = require('merge');
+
 
 function squeakyClean(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -27,9 +30,9 @@ module.exports = (dir, pageMappingData) => ({
       const len = splitUrl.length - 1;
       if (parentPath === '') {
         return len === 0 && !page.url.includes('.html');
-      } else if (iOf === -1) {
+      } if (iOf === -1) {
         return false;
-      } else if (len - iOf === 1) {
+      } if (len - iOf === 1) {
         return true;
       }
       return false;
@@ -60,11 +63,25 @@ module.exports = (dir, pageMappingData) => ({
     return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
   },
 
-  code(block, locals = { class: '', style: '' }) {
+  code(block, locals = { class: '', style: '', language: '' }) {
+    // https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
+    const highlightedCode = (locals.language)
+      ? hljs.highlight(locals.language, block).value
+      : hljs.highlightAuto(block).value;
     return `
-      <div class="code-container ${locals.class}" style="${locals.style}">
-        <code>${block.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
-      </div>
+      <div class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></div>
     `;
+  },
+
+  link(str, locals) {
+    if (!locals.href) {
+      throw new Error('externalLink is missing href attribute');
+    }
+    return `<a itemprop="url"
+    ${Object.keys(locals).map((attr) => `${attr}="${locals[attr]}"`).join(' ')}>${str}</a>`;
+  },
+
+  externalLink(str, locals) {
+    return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
   },
 });
