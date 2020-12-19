@@ -31,6 +31,7 @@ const debug = process.argv.includes('--verbose');
 
 const timestamp = require(`${dir.build}timestamp`);
 const fs = require('fs-extra');
+const chokidar = require('chokidar');
 const express = require('express');
 const serve = require('express-static');
 const EventEmitter = require('events');
@@ -81,7 +82,7 @@ buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, configs));
 
 if (!production) {
 
-  fs.watch(`${dir.src}js/`, {
+  chokidar.watch(`${dir.src}js/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
@@ -89,7 +90,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}styles/`, {
+  chokidar.watch(`${dir.src}styles/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
@@ -97,7 +98,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}templates/`, {
+  chokidar.watch(`${dir.src}templates/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
@@ -105,7 +106,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}partials/`, {
+  chokidar.watch(`${dir.src}partials/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
@@ -113,7 +114,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}layout/`, {
+  chokidar.watch(`${dir.src}layout/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
@@ -121,7 +122,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.src}images/`, {
+  chokidar.watch(`${dir.src}images/`, {
     recursive: true,
   }, (evt, file) => {
     if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
@@ -129,7 +130,7 @@ if (!production) {
   });
 
 
-  fs.watch(`${dir.build}`, {
+  chokidar.watch(`${dir.build}`, {
     recursive: true,
   }, (evt, file) => {
     console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
