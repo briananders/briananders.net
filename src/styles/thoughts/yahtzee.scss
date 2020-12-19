@@ -1,6 +1,9 @@
 @import "lib/base-styles";
 
 .thoughts.yahtzee {
+  display: grid;
+  align-items: center;
+  justify-content: center;
 
   #roll {
 

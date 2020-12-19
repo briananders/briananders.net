@@ -179,12 +179,12 @@ module.exports = {
       updateSingleScore(bonusElement, false, getBonus);
       updateSingleScore(threeKindElement, lockedScores.threeKind, getThreeOfAKindTotal);
       updateSingleScore(fourKindElement, lockedScores.fourKind, getFourOfAKindTotal);
-      updateSingleScore(smallStraightElement
-      updateSingleScore(largeStraightElement
-      updateSingleScore(fullHouseElement
-      updateSingleScore(wildElement
-      updateSingleScore(yahtzeeElement
-      updateSingleScore(totalElement
+      // updateSingleScore(smallStraightElement
+      // updateSingleScore(largeStraightElement
+      // updateSingleScore(fullHouseElement
+      // updateSingleScore(wildElement
+      // updateSingleScore(yahtzeeElement
+      // updateSingleScore(totalElement
     }
 
     function attachEventListeners() {
