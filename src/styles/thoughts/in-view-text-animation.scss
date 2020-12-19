@@ -7,7 +7,7 @@
 
       &[in-view=false],
       &:not([in-view]) {
-        transform: translateY(-30px);
+        transform: translateY(1em) rotateX(-90deg);
         opacity: 0;
       }
     }
