@@ -2,4 +2,15 @@
 
 .thoughts.yahtzee {
 
+  #roll {
+
+    &::after {
+      content: attr(data-rolls-left);
+    }
+
+    &:disabled {
+      opacity: .7;
+    }
+  }
+
 }

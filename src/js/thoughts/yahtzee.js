@@ -1,7 +1,7 @@
 module.exports = {
   init() {
     const rollElement = document.getElementById('roll');
-    const diceElement = document.getElementById('dice');
+    // const diceElement = document.getElementById('dice');
     const die0Element = document.getElementById('die-0');
     const die1Element = document.getElementById('die-1');
     const die2Element = document.getElementById('die-2');
@@ -28,20 +28,20 @@ module.exports = {
     let rollCount = 0;
 
     const lockedScores = {
-      ones: 0,
-      twos: 0,
-      threes: 0,
-      fours: 0,
-      fives: 0,
-      sixes: 0,
-      bonus: 0,
-      threeKind: 0,
-      fourKind: 0,
-      smallStraight: 0,
-      largeStraign: 0,
-      fullHouse: 0,
-      wild: 0,
-      yahtzee: 0,
+      ones: false,
+      twos: false,
+      threes: false,
+      fours: false,
+      fives: false,
+      sixes: false,
+      bonus: false,
+      threeKind: false,
+      fourKind: false,
+      smallStraight: false,
+      largeStraign: false,
+      fullHouse: false,
+      wild: false,
+      yahtzee: false,
     };
 
     const diceElementArray = [die0Element, die1Element, die2Element, die3Element, die4Element];
@@ -84,11 +84,33 @@ module.exports = {
       return Object.keys(lockedScores).map((key) => lockedScores[key]).reduce((sum = 0, value) => sum + value);
     }
 
-    function updateScoreBoard() {}
+    function getDiceTotal() {
+      return diceElementArray.reduce((sum = 0, element) => sum + element.value);
+    }
 
-    function isThreeOfAKind() {}
+    function isThreeOfAKind() {
+      //
+    }
 
-    function isFourOfAKind() {}
+    function getThreeOfAKindTotal() {
+      return (isThreeOfAKind()) ? getDiceTotal() : 0;
+    }
+
+    function isFourOfAKind() {
+      // only two numbers total
+    }
+
+    function getFourOfAKindTotal() {
+      return (isFourOfAKind()) ? getDiceTotal() : 0;
+    }
+
+    function isFullHouse() {
+      // only two numbers total
+    }
+
+    function getFullHouseTotal() {
+      return (isFullHouse()) ? 25 : 0;
+    }
 
     function getOnesTotal() {
       return diceElementArray.filter((element) => element.value === 1).length * 1;
@@ -114,20 +136,69 @@ module.exports = {
       return diceElementArray.filter((element) => element.value === 6).length * 6;
     }
 
+    function getKindTotal() {
+      return 0;
+    }
+
+    function getBonus() {
+      return (getKindTotal() > 62) ? 35 : 0;
+    }
+
+    function updateRollCounter() {
+      rollElement.setAttribute('data-rolls-left', 3 - rollCount);
+      if (rollCount >= 3) {
+        disable(rollElement);
+      } else {
+        enable(rollElement);
+      }
+    }
+
+    function resetRollCount() {
+      rollCount = 0;
+      updateRollCounter();
+    }
+
+    function updateSingleScore(element, lock, scoringFunction) {
+      if (lock !== false) {
+        element.value = lock;
+        element.innerText = lock;
+      } else {
+        element.value = scoringFunction();
+        element.innerText = scoringFunction();
+      }
+    }
+
+    function updateScoreBoard() {
+      updateSingleScore(onesElement, lockedScores.ones, getOnesTotal);
+      updateSingleScore(twosElement, lockedScores.twos, getTwosTotal);
+      updateSingleScore(threesElement, lockedScores.threes, getThreesTotal);
+      updateSingleScore(foursElement, lockedScores.fours, getFoursTotal);
+      updateSingleScore(fivesElement, lockedScores.fives, getFivesTotal);
+      updateSingleScore(sixesElement, lockedScores.sixes, getSixesTotal);
+      updateSingleScore(kindTotalElement, false, getKindTotal);
+      updateSingleScore(bonusElement, false, getBonus);
+      updateSingleScore(threeKindElement, lockedScores.threeKind, getThreeOfAKindTotal);
+      updateSingleScore(fourKindElement, lockedScores.fourKind, getFourOfAKindTotal);
+      updateSingleScore(smallStraightElement
+      updateSingleScore(largeStraightElement
+      updateSingleScore(fullHouseElement
+      updateSingleScore(wildElement
+      updateSingleScore(yahtzeeElement
+      updateSingleScore(totalElement
+    }
+
     function attachEventListeners() {
       rollElement.addEventListener('click', () => {
-        if (rollCount < 2) {
+        if (rollCount < 3) {
           roll();
           rollCount++;
         }
-        if (rollCount >= 2) {
-          disable(rollElement);
-        }
+        updateRollCounter();
+        updateScoreBoard();
       });
-
-
     }
 
     attachEventListeners();
+    resetRollCount();
   },
 };
