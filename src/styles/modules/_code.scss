@@ -29,6 +29,7 @@ code {
   overflow: hidden;
   position: relative;
   text-align: center;
+  display: flex;
 
   &::before,
   &::after {
