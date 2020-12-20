@@ -11,9 +11,9 @@ code {
   display: inline-block;
   overflow-x: auto;
   max-width: 100%;
-  border: 2px solid var(--primary-color, #{$primary-color});
   color: $primary-text-color;
   text-align: left;
+  margin: auto;
 
   @include dark-mode {
     color: $primary-color-text;
@@ -29,18 +29,20 @@ code {
   overflow: hidden;
   position: relative;
   text-align: center;
+  display: flex;
+  border: 2px solid var(--primary-color, #{$primary-color});
 
   &::before,
   &::after {
     content: '';
     position: absolute;
-    top: 2px;
-    bottom: 2px;
-    width: $s9;
+    top: 0px;
+    bottom: 0px;
+    width: $s5;
   }
 
   &::before {
-    left: 2px;
+    left: 0px;
     background: linear-gradient(to left, transparent, $google-white);
 
     @include dark-mode {
@@ -48,7 +50,7 @@ code {
     }
   }
   &::after {
-    right: 2px;
+    right: 0px;
     background: linear-gradient(to right, transparent, $google-white);
 
     @include dark-mode {
