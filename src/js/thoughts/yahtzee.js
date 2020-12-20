@@ -416,9 +416,7 @@ module.exports = {
       rollElement.addEventListener('click', () => {
         if (rollCount < 3 && getRollableDice().length) {
           roll();
-          if (rollCount < 1) {
-            rollCount++;
-          }
+          rollCount++;
         }
       });
 
@@ -447,6 +445,7 @@ module.exports = {
         [yahtzeeElement, 'yahtzee', getYahtzeeTotal]
       ].forEach(([element, lockId, scoreFunction]) => {
         element.addEventListener('click', () => {
+          if (rollCount === 0) return;
           disable(element);
           lockedScores[lockId] = scoreFunction();
           updateScoreBoard();
