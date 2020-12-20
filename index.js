@@ -105,8 +105,8 @@ if (!production) {
     if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
     moveImages(configs);
   });
-
   chokidar.watch(`${dir.build}`).on('change', (evt, file) => {
+
     console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
     process.exit();
   });

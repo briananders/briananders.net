@@ -8,6 +8,7 @@ module.exports = {
     'last-fm': require('./thoughts/last-fm'),
     minesweeper: require('./thoughts/minesweeper/index'),
     paint: require('./thoughts/paint'),
+    yahtzee: require('./thoughts/yahtzee'),
     'earth-rotating-sprite-animation': require('./thoughts/earth-rotating-sprite-animation'),
     'color-canvas': require('./thoughts/color-canvas'),
     'raining-paint': require('./thoughts/raining-paint'),
