@@ -1,4 +1,4 @@
-@import "lib/base-styles";
+@import "system/utilities";
 
 .lissajous-curve-container {
   $a-color: #a55;
@@ -78,25 +78,25 @@
   }
 }
 
-form {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+// form {
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap;
 
-  &.p:last-child {
-    margin-bottom: $s6;
-  }
+//   &.p:last-child {
+//     margin-bottom: $s6;
+//   }
 
-  > * {
-    padding: 0 $s1;
-  }
+//   > * {
+//     padding: 0 $s1;
+//   }
 
-  span,
-  label {
-    display: inline-flex;
-    align-items: center;
-  }
-}
+//   span,
+//   label {
+//     display: inline-flex;
+//     align-items: center;
+//   }
+// }
 
 canvas {
   display: block;

@@ -1,49 +1,49 @@
-@import "lib/base-styles";
+@import "system/utilities";
 
 
-article {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  text-align: center;
-}
+// article {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-evenly;
+//   align-items: flex-start;
+//   text-align: center;
+// }
 
-a.movie {
-  width: 100%;
-  max-width: 240px;
-  display: block;
-  padding-bottom: $s4;
-  margin-bottom: $s4;
-  transition-property: color;
-  background-color: transparent;
-  color: $primary-text-color;
+// a.movie {
+//   width: 100%;
+//   max-width: 240px;
+//   display: block;
+//   padding-bottom: $s4;
+//   margin-bottom: $s4;
+//   transition-property: color;
+//   background-color: transparent;
+//   color: $pallette--primary-text-color;
 
-  @include dark-mode {
-    color: $primary-color-text;
+//   @include dark-mode {
+//     color: $pallette--primary-color-text;
 
-    &::before {
-      background-color: $primary-color-text;
-    }
-  }
+//     &::before {
+//       background-color: $pallette--primary-color-text;
+//     }
+//   }
 
-  &:hover,
-  &:focus {
-    background-color: transparent;
-    color: var(--primary-color-dark, #{$primary-color-dark});
+//   &:hover,
+//   &:focus {
+//     background-color: transparent;
+//     color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 
-    @include dark-mode {
-      color: $primary-color-text;
-    }
-  }
+//     @include dark-mode {
+//       color: $pallette--primary-color-text;
+//     }
+//   }
 
-  h3 {
-    margin-bottom: $s2;
-  }
+//   h3 {
+//     margin-bottom: $s2;
+//   }
 
-  h6 {
-    @include font-size();
-    font-family: $sans-serif;
-    font-weight: $bold;
-  }
-}
+//   h6 {
+//     @include font-size;
+//     font-family: $sans-serif;
+//     font-weight: $bold;
+//   }
+// }

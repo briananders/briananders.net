@@ -1,38 +1,38 @@
-@import "lib/base-styles";
+// @import "system/utilities";
 
-$squareSize: 768;
+// $squareSize: 768;
 
-#canvas-holder {
-  width: 100%;
-  height: $squareSize + px;
-  max-height: 90vw;
-  position: relative;
+// #canvas-holder {
+//   width: 100%;
+//   height: $squareSize + px;
+//   max-height: 90vw;
+//   position: relative;
 
-  @for $i from 0 through $squareSize {
-    &[data-blue="#{$i}"] [data-blue="#{$i}"] {
-      z-index: 1;
-    }
-  }
-}
+//   @for $i from 0 through $squareSize {
+//     &[data-blue="#{$i}"] [data-blue="#{$i}"] {
+//       z-index: 1;
+//     }
+//   }
+// }
 
-canvas {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: $squareSize + px;
-  height: $squareSize + px;
-  border: 1px solid gray;
-  box-sizing: border-box;
-  background-color: white;
-  z-index: 0;
-  transform: translate(-50%, -50%);
-  max-width: 90vw;
-  max-height: 90vw;
-}
+// canvas {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   width: $squareSize + px;
+//   height: $squareSize + px;
+//   border: 1px solid gray;
+//   box-sizing: border-box;
+//   background-color: white;
+//   z-index: 0;
+//   transform: translate(-50%, -50%);
+//   max-width: 90vw;
+//   max-height: 90vw;
+// }
 
-input {
-  max-width: $squareSize + px;
-  margin: $s10 auto 0;
-  display: block;
-  width: 90%;
-}
+// input {
+//   max-width: $squareSize + px;
+//   margin: $s10 auto 0;
+//   display: block;
+//   width: 90%;
+// }
