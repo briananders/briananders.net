@@ -1,0 +1,28 @@
+@import "../system/utilities";
+
+@import "./nav";
+@import "./skip-nav";
+
+header.main-header {
+  @include font-size;
+  margin-top: $s11;
+  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+  margin-bottom: $s6;
+
+  .name {
+    @include font-size(7);
+    margin: auto;
+  }
+}
+
+
+
+
+
+@include mq($medium) {
+  header.main-header {
+    .name {
+      @include font-size(8);
+    }
+  }
+}

@@ -11,13 +11,13 @@ layout: blank
 <%- partial('header', locals); %>
 
 <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
-  <header class="content">
-    <% if (locals.description) { %>
-      <p class="description" itemprop="description">
+  <% if (locals.description && !locals.homepage) { %>
+    <div class="content description" itemprop="description">
+      <p>
         <%- noWidows(locals.description); %>
       </p>
-    <% } %>
-  </header>
+    </div>
+  <% } %>
 
   <%- content %>
 

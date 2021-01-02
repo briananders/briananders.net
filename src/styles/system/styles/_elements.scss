@@ -34,6 +34,10 @@ body {
 
 p {
   @include paragraph;
+
+  a {
+    @include inline-link;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -89,6 +93,8 @@ select {
   appearance: menulist;
   border-radius: $border-radius;
   background-color: $color--grey-50;
+
+  @include button-select;
 }
 
 date {
@@ -101,8 +107,9 @@ label {
   @include label;
 }
 
-a, button, input, select, textarea {
-  @include interactive;
+button,
+select {
+  @include button-select;
 }
 
 list {
@@ -119,6 +126,7 @@ button,
 textarea,
 select {
   @include interactive-outline;
+  @include interactive;
 }
 
 input,
@@ -126,4 +134,8 @@ button,
 textarea,
 select {
   @include interactive-border;
+}
+
+a {
+  @include link-image-setup;
 }

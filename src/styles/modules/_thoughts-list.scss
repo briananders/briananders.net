@@ -23,23 +23,9 @@
     flex-grow: 1;
   }
 
-  // a,
-  // a:visited {
-  //   overflow: hidden;
-  //   display: flex;
-  //   flex-flow: column;
-  //   text-decoration: none;
-  //   position: relative;
-  //   padding: 0 0 $s2;
-  //   color: $pallette--primary-text-color;
-  //   background-color: transparent;
-
-  //   @include dark-mode {
-  //     color: $pallette--primary-color-text;
-
-  //     &:before {
-  //       background-color: $pallette--primary-color-text;
-  //     }
-  //   }
-  // }
+  a {
+    display: flex;
+    flex-flow: column;
+    padding-bottom: 6px;
+  }
 }

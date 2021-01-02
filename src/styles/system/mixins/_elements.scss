@@ -29,7 +29,17 @@
 }
 
 @mixin inline-link {
+  padding: 0 $s1;
+  display: inline-block;
+  text-decoration: none;
+  transition-property: color, background-color;
+  @include pallette--primary;
 
+  &:hover,
+  &:focus,
+  &:active {
+    @include pallette--primary--active;
+  }
 }
 
 @mixin block-link {
@@ -38,7 +48,7 @@
   position: relative;
   text-decoration: none;
   transition-property: color, background-color;
-  @include pallette--primary;
+  @include pallette--base;
 
   &::before {
     position: absolute;
@@ -48,14 +58,16 @@
     left: 51%;
     right: 51%;
     transition-property: left, right;
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+    background-color: var(--primary-text-color, #{$pallette--primary-text-color});
+
+    @include dark-mode {
+      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
+    }
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: var(--primary-color, #{$pallette--primary-color});
-
     &::before {
       left: 0;
       right: 0;
@@ -65,15 +77,25 @@
   }
 }
 
+@mixin link-image-setup {
+  img {
+    @include link-image;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    img {
+      @include link-image-active;
+    }
+  }
+}
+
 @mixin link-image {
-  filter: hue-rotate(0deg);
-  transform: scale(1);
-  transition-property: filter, transform;
 }
 
 @mixin link-image-active {
-  filter: hue-rotate(180deg);
-  transform: scale(.98);
+  @include hue-rotate;
 }
 
 @mixin interactive {
@@ -184,4 +206,12 @@
 @mixin list-item {
   margin-top: $s6;
   display: block;
+}
+
+@mixin button-select {
+  @include font-size;
+}
+
+@mixin mega-button {
+  padding: $s2 $s4;
 }

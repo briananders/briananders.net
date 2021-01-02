@@ -1,47 +1,9 @@
 @import "./vendor/normalize";
+@import "./system/utilities";
 @import "./system/styles";
 
 @import "./four-oh-four";
 
-@import "./modules/header";
-@import "./modules/footer";
-
-* {
-  border: 1px solid color('divider-color');
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  outline: none;
-}
-
-a,
-a:visited,
-.link {
-  @include block-link;
-
-  img {
-    @include link-image;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    img {
-      @include link-image-active;
-    }
-  }
-}
-
-header.content, header.container {
-  padding-bottom: $s6;
-
-  p {
-    margin-bottom: 0;
-  }
-}
 
 // button, select {
 //   font-family: $sans-serif;

@@ -2,10 +2,9 @@
 
 main.home {
   @import "modules/thoughts-list";
+  @import "thoughts/last-fm";
 
-  header.content, header.container {
-    display: none;
-  }
+  margin-top: $s17;
 
   // .intro {
   //   padding-top: 0;
@@ -17,9 +16,7 @@ main.home {
   //   margin-bottom: $s6;
   // }
 
-  @import "thoughts/last-fm";
-
-  // .last-fm-module {
-  //   margin-bottom: 48px;
-  // }
+  .last-fm-module {
+    margin-top: $s5;
+  }
 }
