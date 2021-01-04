@@ -385,11 +385,11 @@ styles:
 
   <%- externalLink(`
     <img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="${movie.imgSrc}" alt="${movie.name}"/>
-    <h3>${movie.name}</h3>
-    <h6>(${movie.imdb.year})</h6>
+    <h2 class="h3">${movie.name}</h2>
+    <p class="h4">(${movie.imdb.year})</p>
   `, {
     id: movie.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(),
-    class: 'movie',
+    class: 'movie block',
     href: `https://www.imdb.com/title/${movie.imdb.id}`,
   }) %>
 

@@ -1,52 +1,27 @@
-// @import "system/utilities";
+@import "system/utilities";
 
-// canvas {
-//   width: 100vw;
-//   max-width: 100vh;
-//   margin: auto;
-//   display: block;
-//   border: 1px solid;
-// }
+canvas {
+  width: 100vw;
+  max-width: 100vh;
+  max-height: 100vw;
+  display: block;
+  border: 1px solid;
+  margin: $s6 auto 0;
+}
 
-// input[type=checkbox] {
-//   height: $s4;
-//   width: $s4;
-// }
+form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: $sans-serif;
 
-// #rule-up-and-down,
-// #height-up-and-down {
-//   display: inline-block;
-// }
+  > * {
+    margin: 0 $s1;
+  }
 
-// list {
-//   padding-left: $s6;
-//   margin-bottom: $s6;
-// }
-
-// list, item {
-//   display: block;
-// }
-
-// item {
-//   margin-top: $s6;
-// }
-
-// form {
-//   display: flex;
-//   align-items: center;
-//   flex-wrap: wrap;
-
-//   &.p:last-child {
-//     margin-bottom: $s6;
-//   }
-
-//   > * {
-//     padding: 0 $s1;
-//   }
-
-//   span,
-//   label {
-//     display: inline-flex;
-//     align-items: center;
-//   }
-// }
+  span,
+  label {
+    display: inline-flex;
+    align-items: center;
+  }
+}

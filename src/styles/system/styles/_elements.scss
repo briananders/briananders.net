@@ -139,3 +139,15 @@ select {
 a {
   @include link-image-setup;
 }
+
+input[type=text],
+input[type=number] {
+  height: 33px;
+  @include font-size;
+  padding: 0 $s1;
+}
+
+input[type=checkbox] {
+  height: $s4;
+  width: $s4;
+}

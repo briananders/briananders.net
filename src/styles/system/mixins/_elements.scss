@@ -204,8 +204,13 @@
 }
 
 @mixin list-item {
-  margin-top: $s6;
-  display: block;
+  margin-bottom: $s3;
+  float: left;
+  clear: both;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 @mixin button-select {
