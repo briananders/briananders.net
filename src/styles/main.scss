@@ -4,37 +4,3 @@
 
 @import "./four-oh-four";
 
-
-// button, select {
-//   font-family: $sans-serif;
-//   border-radius: $border-radius;
-//   color: $pallette--primary-text-color;
-//   @include font-size(3);
-//   line-height: 25px; // override
-//   padding: 0 $s3;
-// }
-
-// button {
-//   color: $pallette--primary-color-text;
-//   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-//   border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-
-//   @include dark-mode {
-//     background-color: transparent;
-//   }
-
-//   &:hover,
-//   &:focus,
-//   &:active {
-//     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-//   }
-// }
-
-// input[type=number],
-// input[type=text] {
-//   border: none;
-//   box-shadow: inset 0 0 0 1px;
-//   font-size: inherit;
-//   line-height: inherit;
-// }
-

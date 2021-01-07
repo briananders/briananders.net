@@ -70,6 +70,7 @@ nav.main {
 
   .nav-link {
     background: transparent;
+    padding: 0;
   }
 
 
@@ -84,6 +85,8 @@ nav.main {
       @include font-size(7);
       margin: 0;
       font-weight: $regular;
+      background: transparent;
+      padding: 0;
 
       @include mq-max(375px) {
         @include font-size(6);

@@ -86,7 +86,7 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   defaultLastFMModule: (albums = true) => `
-    <span class="item">
+    <span class="item ${albums ? 'album' : 'artist'}">
       <span class="info">
         ${albums ? `
           <span class="name">

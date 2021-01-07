@@ -140,6 +140,12 @@ a {
   @include link-image-setup;
 }
 
+select,
+input[type=text],
+input[type=number] {
+  @include input;
+}
+
 input[type=text],
 input[type=number] {
   height: 33px;

@@ -13,14 +13,12 @@ main.thoughts.how-to-match {
   .tall {
     border-top: $s3 solid var(--accent-color, #{$pallette--accent-color});
   }
-  .column-1 {
-    background-color: $pallette--primary-text-color;
+  .column-1,
+  .column-3 {
+    background-color: $color--grey-900;
   }
   .column-2 {
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-  }
-  .column-3 {
-    background-color: $pallette--primary-text-color;
+    background-color: $color--grey-800;
   }
   .column-1,
   .column-2,

@@ -39,8 +39,10 @@
   }
 
   #dice {
-    display: flex;
+    display: grid;
     justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: $s2;
 
     button {
       @include button;
@@ -55,9 +57,6 @@
     }
     &.locked {
       border-color: transparent !important;
-    }
-    &:not(:last-child) {
-      margin-right: $s2;
     }
   }
 

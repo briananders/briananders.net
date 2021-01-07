@@ -96,7 +96,7 @@ styles:
       <h2>
         <%- noWidows("What I've been screaming into the abyss."); %>
       </h2>
-      <p class="center">
+      <p class="center p-margin">
         &#61;&#61;&gt;
         <%- externalLink(`@${locals.twitterHandle}`, {
           href: `${locals.twitter}?ref_src=twsrc%5Etfw`
@@ -104,14 +104,14 @@ styles:
         &lt;&#61;&#61;
       </p>
     </header>
-    <p>
+    <div class="p">
       <%- externalLink(`Tweets by @${locals.twitterHandle}`, {
         class: "twitter-timeline",
         href: `${locals.twitter}?ref_src=twsrc%5Etfw`,
         'data-height': "800",
         'data-theme': "light",
       }) %>
-    </p>
+    </div>
   </div>
   <script>
     (function() {

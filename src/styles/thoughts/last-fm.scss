@@ -1,17 +1,20 @@
 @import "system/utilities";
 
-
 .last-fm-module {
   display: grid;
   grid-gap: $s5;
 
   .item {
     display: grid;
-    grid-template-columns: 1fr 100px;
+    grid-template-columns: 1fr;
     grid-gap: $s1 / 2;
     grid-gap: $s3;
 
     @include pallette--base;
+
+    &.album {
+      grid-template-columns: 1fr 100px;
+    }
 
     &:focus,
     &:hover {

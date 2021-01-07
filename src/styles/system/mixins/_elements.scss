@@ -28,6 +28,10 @@
   }
 }
 
+@mixin input {
+  min-width: $s10;
+}
+
 @mixin inline-link {
   padding: 0 $s1;
   display: inline-block;
@@ -151,6 +155,13 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+@mixin paragraph-margin {
+  &,
+  &:last-child {
+    margin-bottom: $s6;
   }
 }
 

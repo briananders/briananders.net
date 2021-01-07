@@ -8,21 +8,16 @@ header.main-header {
   margin-top: $s11;
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
   margin-bottom: $s6;
+  padding: $s1 0;
+  color: $pallette--primary-color-text;
 
   .name {
     @include font-size(7);
     margin: auto;
-  }
-}
 
-
-
-
-
-@include mq($medium) {
-  header.main-header {
-    .name {
+    @include mq($medium) {
       @include font-size(8);
     }
   }
 }
+
