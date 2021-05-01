@@ -33,4 +33,12 @@ layout: blank
 
 <%- partial('footer', locals); %>
 
-<script src="/scripts/main.js" async defer></script>
+<script src="/scripts/all.js" async defer></script>
+<%
+  if(locals.scripts) {
+    locals.scripts.forEach((path) => { %>
+  <script src="/scripts/<%- path %>.js" async defer></script>
+<%
+    });
+  }
+%>

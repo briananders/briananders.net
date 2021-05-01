@@ -1,45 +1,40 @@
+(function earthRotating() {
+  const frameContainer = document.getElementById('frame-container');
+  const numberOfFrames = 48;
+  let number = 0;
+  const frameSlider = document.getElementById('frame-slider');
+  let canSlide = false;
 
-module.exports = {
+  // function next() {
+  //   number++;
 
-  init() {
-    const frameContainer = document.getElementById('frame-container');
-    const numberOfFrames = 48;
-    let number = 0;
-    const frameSlider = document.getElementById('frame-slider');
-    let canSlide = false;
+  //   if (number > 48) {
+  //     number %= 48;
+  //   }
 
-    // function next() {
-    //   number++;
+  //   frameContainer.dataset.number = number;
+  //   window.setTimeout(next, 1000 / 25);
+  // }
 
-    //   if (number > 48) {
-    //     number %= 48;
-    //   }
+  // next();
 
-    //   frameContainer.dataset.number = number;
-    //   window.setTimeout(next, 1000 / 25);
-    // }
+  function animate() {
+    frameContainer.dataset.number = Number(frameSlider.value);
 
-    // next();
+    if (canSlide) window.requestAnimationFrame(animate);
+  }
 
-    function animate() {
-      frameContainer.dataset.number = Number(frameSlider.value);
+  frameSlider.addEventListener('touchstart', () => {
+    canSlide = true;
+    animate();
+  });
 
-      if (canSlide) window.requestAnimationFrame(animate);
-    }
+  frameSlider.addEventListener('touchend', () => {
+    canSlide = false;
+  });
 
-    frameSlider.addEventListener('touchstart', () => {
-      canSlide = true;
-      animate();
-    });
-
-    frameSlider.addEventListener('touchend', () => {
-      canSlide = false;
-    });
-
-    document.documentElement.addEventListener('mousemove', (event) => {
-      number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
-      frameContainer.dataset.number = number;
-    });
-  },
-
-};
+  document.documentElement.addEventListener('mousemove', (event) => {
+    number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
+    frameContainer.dataset.number = number;
+  });
+}());

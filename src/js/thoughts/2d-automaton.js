@@ -1,5 +1,6 @@
+/** globals window */
 
-function init() {
+(function automaton() {
   const darkMode = require('../_modules/dark-mode');
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
@@ -27,7 +28,6 @@ function init() {
 
   let date;
 
-
   function resetPlane() {
     const returnArray = new Array(WIDTH);
     for (let i = 0; i < WIDTH; i++) {
@@ -35,7 +35,6 @@ function init() {
     }
     return returnArray;
   }
-
 
   function setup10110Array() {
     const CHECK = '10110';
@@ -50,7 +49,6 @@ function init() {
 
     return returnArray;
   }
-
 
   function calculate(x, y) {
     // get parent 3 values
@@ -70,7 +68,6 @@ function init() {
 
     window.thenPlane[x][y] = Number(ruleString.charAt(ruleIndex));
   }
-
 
   function drawPlane() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -94,7 +91,6 @@ function init() {
     window.thenPlane = resetPlane();
   }
 
-
   function run(checkDate, then) {
     if (checkDate !== date) {
       return;
@@ -110,7 +106,6 @@ function init() {
     });
   }
 
-
   function reverse(str) {
     let retString = '';
     for (let i = 0; i < str.length; i++) {
@@ -118,7 +113,6 @@ function init() {
     }
     return retString;
   }
-
 
   function setupFirstPlane() {
     const plane = resetPlane();
@@ -134,7 +128,6 @@ function init() {
     }
     window.nowPlane = plane;
   }
-
 
   function reset() {
     const rect = canvas.getClientRects()[0];
@@ -153,7 +146,6 @@ function init() {
     run(date, 0);
   }
 
-
   function addEventListeners() {
     ruleInput.addEventListener('change', reset);
     window.addEventListener('resize', reset);
@@ -171,8 +163,8 @@ function init() {
         let newRule = rule + iterator;
 
         while (
-          !stepArray.includes(newRule) &&
-          (newRule > MIN && newRule < MAX)
+          !stepArray.includes(newRule)
+          && (newRule > MIN && newRule < MAX)
         ) {
           newRule += iterator;
         }
@@ -187,9 +179,4 @@ function init() {
   reset(); // setup
   addEventListeners();
   stepArray = setup10110Array();
-}
-
-
-module.exports = {
-  init,
-};
+}());
