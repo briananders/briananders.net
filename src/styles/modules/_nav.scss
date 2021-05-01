@@ -37,11 +37,15 @@ nav.main {
     font-weight: $regular;
     padding: 4px 8px;
     box-shadow: 0 0 0 1px $color--white;
+    border-color: transparent;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $pallette--primary-color-text;
       box-shadow: 0 0 0 2px $color--white;
+    }
+
+    &:focus {
+      background-color: rgba($pallette--primary-text-color, 0.6);
     }
 
     &::before {
