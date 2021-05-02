@@ -12,6 +12,7 @@
     overflow-x: auto;
     margin-top: $s6;
     margin-bottom: $s6;
+    border: 1px solid;
   }
 
   td {
@@ -27,6 +28,11 @@
     &:nth-child(3) {
       padding-left: $s4;
     }
+  }
+
+  .shadow {
+    border: 1px solid;
+    text-align: center;
   }
 
   .display-table {
