@@ -61,7 +61,7 @@
     "highlight.js": "^10.4.1",
     "html-minifier": "^4.0.0",
     "image-optimizer": "^0.4.0-pre2",
-    "merge": "^2.1.0",
+    "merge": "^2.1.1",
     "node-notifier": "^9.0.0",
     "node-sass": "^5.0.0",
     "simple-fmt": "^0.1.0",
