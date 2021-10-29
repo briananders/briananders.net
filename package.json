@@ -44,6 +44,7 @@
     "aws-sdk": "^2.814.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
+    "caniuse-lite": "^1.0.30001265",
     "chokidar": "^3.4.3",
     "clean-array": "^1.0.0",
     "clean-css": "^4.2.3",
