@@ -1,19 +1,17 @@
-module.exports = {
-  init() {
-    const Slider = require('./slider');
-    const sliders = [];
+(function soundSlider() {
+  const Slider = require('./slider');
+  const sliders = [];
 
-    const scope = document.getElementById('slider-holder');
+  const scope = document.getElementById('slider-holder');
 
-    function addAnother() {
-      sliders.push(new Slider(scope));
-    }
+  function addAnother() {
+    sliders.push(new Slider(scope));
+  }
 
-    function addEventListeners() {
-      scope.querySelector('button[value=add]').addEventListener('click', addAnother.bind(this));
-    }
+  function addEventListeners() {
+    scope.querySelector('button[value=add]').addEventListener('click', addAnother.bind(this));
+  }
 
-    addEventListeners();
-    addAnother();
-  },
-};
+  addEventListeners();
+  addAnother();
+}());

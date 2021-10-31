@@ -1,4 +1,4 @@
-@import "lib/base-styles";
+@import "system/utilities";
 
 .sound-slider {
   text-align: center;
@@ -16,7 +16,7 @@
     margin: 0;
   }
   input[type=number] {
-    width: 50px;
+    width: 150px;
   }
 
   button[value=remove] {

@@ -1,6 +1,6 @@
 const log = require('../_modules/log');
 
-function init() {
+(function uniqueStars() {
   const scrollTo = require('../_modules/scroll-to');
   const darkMode = require('../_modules/dark-mode');
 
@@ -133,7 +133,7 @@ function init() {
       }
     }
 
-    const starOptions = answers.map(step => `<option value='${step}'>${step}</option>`);
+    const starOptions = answers.map((step) => `<option value='${step}'>${step}</option>`);
 
     answerTag.innerHTML = `${answers.length} unique star${answers.length === 1 ? '' : 's'}`;
     if (starOptions.length) {
@@ -199,8 +199,4 @@ function init() {
 
   addEventListeners();
   go();
-}
-
-module.exports = {
-  init,
-};
+}());

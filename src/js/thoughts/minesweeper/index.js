@@ -10,7 +10,6 @@ Object.keys(eventKeys).forEach((key) => {
   events[key].initEvent(eventKeys[key], true, true);
 });
 
-
 const difficulties = {
   beginner: {
     square: 8,
@@ -163,11 +162,11 @@ function getNeighbors([row, column]) {
     for (let columnIndex = column - 1; columnIndex <= column + 1; columnIndex++) {
       if (
         !(
-          rowIndex < 0 ||
-          columnIndex < 0 ||
-          rowIndex >= square ||
-          columnIndex >= square ||
-          (rowIndex === row && columnIndex === column)
+          rowIndex < 0
+          || columnIndex < 0
+          || rowIndex >= square
+          || columnIndex >= square
+          || (rowIndex === row && columnIndex === column)
         )
       ) {
         neighbors.push(game[rowIndex][columnIndex]);
@@ -263,7 +262,7 @@ function setMines() {
 
 function countUnrevealed() {
   const { mineCount } = getDifficulty();
-  const unrevealedCells = gameAsArray().filter(cell => !cell.isRevealed);
+  const unrevealedCells = gameAsArray().filter((cell) => !cell.isRevealed);
   if (unrevealedCells.length === mineCount) {
     state.hasWon = true;
     state.isPlaying = false;
@@ -295,11 +294,11 @@ function updateFlagCount() {
 }
 
 function getValue([row, column]) {
-  return getNeighbors([row, column]).filter(cell => cell.isMine).length;
+  return getNeighbors([row, column]).filter((cell) => cell.isMine).length;
 }
 
 function countSurroundingFlags([row, column]) {
-  return getNeighbors([row, column]).filter(cell => cell.hasFlag).length;
+  return getNeighbors([row, column]).filter((cell) => cell.hasFlag).length;
 }
 
 function watchTableFirstClick() {
@@ -354,7 +353,6 @@ function reset() {
   updateFlagElements();
 }
 
-
 document.body.addEventListener(eventKeys.gameOver, () => {
 });
 document.body.addEventListener(eventKeys.reRender, () => {
@@ -362,17 +360,14 @@ document.body.addEventListener(eventKeys.reRender, () => {
 document.body.addEventListener(eventKeys.isPlaying, () => {
 });
 
-module.exports = {
-  init() {
+(function minesweeper() {
+  document.body.addEventListener(eventKeys.gameOver, renderGameOver);
+  document.body.addEventListener(eventKeys.reRender, updateFlagCount);
+  document.body.addEventListener(eventKeys.reRender, countUnrevealed);
+  document.body.addEventListener(eventKeys.isPlaying, runLoop);
 
-    document.body.addEventListener(eventKeys.gameOver, renderGameOver);
-    document.body.addEventListener(eventKeys.reRender, updateFlagCount);
-    document.body.addEventListener(eventKeys.reRender, countUnrevealed);
-    document.body.addEventListener(eventKeys.isPlaying, runLoop);
+  watchHeaderElements();
+  watchTableFirstClick();
 
-    watchHeaderElements();
-    watchTableFirstClick();
-
-    reset();
-  },
-};
+  reset();
+}());
