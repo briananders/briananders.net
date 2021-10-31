@@ -48,6 +48,11 @@
       transition-duration: $transition-speed;
       transition-timing-function: ease;
     }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   .info {

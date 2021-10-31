@@ -43,18 +43,18 @@ code {
 
   &::before {
     left: 0px;
-    background: linear-gradient(to left, transparent, $color--white);
+    background: linear-gradient(to left, rgba($color--white, 0), rgba($color--white, 1));
 
     @include dark-mode {
-      background: linear-gradient(to left, transparent, $pallette--primary-text-color);
+      background: linear-gradient(to left, rgba($pallette--primary-text-color, 0), rgba($pallette--primary-text-color, 1));
     }
   }
   &::after {
     right: 0px;
-    background: linear-gradient(to right, transparent, $color--white);
+    background: linear-gradient(to right, rgba($color--white, 0), rgba($color--white, 1));
 
     @include dark-mode {
-      background: linear-gradient(to right, transparent, $pallette--primary-text-color);
+      background: linear-gradient(to right, rgba($pallette--primary-text-color, 0), rgba($pallette--primary-text-color, 1));
     }
   }
 }

@@ -15,11 +15,6 @@ layout: blank
     }
   }
 </style>
-<% if(!locals.devBuild) { %>
-  <%# Google Tag Manager (noscript); %>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KZW4HX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <%# End Google Tag Manager (noscript); %>
-<% } %>
 
 <%- partial('header', locals); %>
 
@@ -38,4 +33,12 @@ layout: blank
 
 <%- partial('footer', locals); %>
 
-<script src="/scripts/main.js" async defer></script>
+<script src="/scripts/all.js" async defer></script>
+<%
+  if(locals.scripts) {
+    locals.scripts.forEach((path) => { %>
+  <script src="/scripts/<%- path %>.js" async defer></script>
+<%
+    });
+  }
+%>

@@ -1,24 +1,10 @@
-const queryParameters = require('./_modules/queryParameters');
-const lazyLoader = require('./_modules/lazy-loader');
+const analytics = require('./_modules/analytics.js');
+const lazyLoader = require('./_modules/lazy-loader.js');
+const queryParameters = require('./_modules/queryParameters.js');
+const parameters = queryParameters();
 
-module.exports = {
-
-  parameters: queryParameters(),
-
-  init() {
-    const analytics = require('./_modules/analytics');
-
-    this.setupNavEvents(analytics);
-    this.testForTouch();
-    this.navScrollWatcher();
-    this.setMainMinHeight();
-    this.setUpSkipNav();
-
-    lazyLoader.init();
-    analytics.watchElements();
-  },
-
-  setupNavEvents(analytics) {
+(function all() {
+  function setupNavEvents() {
     const menuButton = document.querySelector('#activate-menu');
     const mainNavContent = document.querySelector('nav.main .content');
     const mobileNavTray = mainNavContent.querySelector('.mobile-nav-tray');
@@ -45,14 +31,14 @@ module.exports = {
         }, 1);
       }
     });
-  },
+  }
 
-  setUpSkipNav() {
+  function setUpSkipNav() {
     const skipNavContainer = document.getElementById('skip-nav');
     const skipNavButton = skipNavContainer.querySelector('button');
     const nonNavContainerSelectors = ['main', 'footer'];
     const interactableElements = ['a', 'input', 'button', 'textarea', 'select'];
-    const querySelectors = nonNavContainerSelectors.map(container => interactableElements.map(input => `${container} ${input}`));
+    const querySelectors = nonNavContainerSelectors.map((container) => interactableElements.map((input) => `${container} ${input}`));
 
     skipNavButton.addEventListener('focus', () => {
       skipNavContainer.dataset.state = 'active';
@@ -64,9 +50,9 @@ module.exports = {
       const firstInput = document.querySelector(querySelectors.join(', '));
       firstInput.focus();
     });
-  },
+  }
 
-  navScrollWatcher() {
+  function navScrollWatcher() {
     const mainNav = document.querySelector('nav.main');
 
     const checkScrollDepth = () => {
@@ -79,17 +65,17 @@ module.exports = {
 
     window.addEventListener('scroll', checkScrollDepth);
     checkScrollDepth();
-  },
+  }
 
-  testForTouch() {
+  function testForTouch() {
     if ('ontouchstart' in document.documentElement) {
       document.documentElement.classList.add('touch-events');
     } else {
       document.documentElement.classList.add('no-touch-events');
     }
-  },
+  }
 
-  setMainMinHeight() {
+  function setMainMinHeight() {
     const mainElement = document.querySelector('main');
     const footerElement = document.querySelector('footer');
 
@@ -106,6 +92,18 @@ module.exports = {
     calculateMinHeight();
     window.addEventListener('resize', calculateMinHeight);
     window.addEventListener('orientationchange', calculateMinHeight);
-  },
+  }
 
-};
+  setupNavEvents(analytics);
+
+  testForTouch();
+
+  navScrollWatcher();
+
+  setMainMinHeight();
+
+  setUpSkipNav();
+
+  lazyLoader.init();
+  analytics.watchElements();
+}());

@@ -1,5 +1,4 @@
-
-function init() {
+(function automaton() {
   const darkMode = require('../_modules/dark-mode');
 
   const canvas = document.getElementById('canvas');
@@ -25,7 +24,6 @@ function init() {
 
   let date;
 
-
   function addRow(y) {
     world[y] = new Array(WIDTH);
     for (let x = 0; x < WIDTH; x++) {
@@ -33,14 +31,12 @@ function init() {
     }
   }
 
-
   function getRow(y) {
     if (world[y] === undefined) {
       addRow(y);
     }
     return world[y];
   }
-
 
   function drawRow(rowNumber, offset) {
     const row = getRow(rowNumber);
@@ -58,7 +54,6 @@ function init() {
     });
   }
 
-
   function calculate(x, y) {
     const parentRow = getRow(y - 1);
 
@@ -75,14 +70,12 @@ function init() {
     return Number(ruleString.charAt(ruleIndex));
   }
 
-
   function drawRange(y1, y2) {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
     for (let y = y1; y < y2; y++) {
       drawRow(y, y1);
     }
   }
-
 
   function run(count, checkDate, runDate) {
     let then = runDate || 0;
@@ -101,7 +94,6 @@ function init() {
     });
   }
 
-
   function reverse(str) {
     let retString = '';
     for (let i = 0; i < str.length; i++) {
@@ -109,7 +101,6 @@ function init() {
     }
     return retString;
   }
-
 
   function reset() {
     const rect = canvas.getClientRects()[0];
@@ -127,14 +118,13 @@ function init() {
     ruleString = reverse(ruleString);
     world.push(new Array(WIDTH).fill(0));
     if (randomStart) {
-      world[0] = world[0].map(() => (Math.random() > 0.4) ? 0 : 1);
+      world[0] = world[0].map(() => ((Math.random() > 0.4) ? 0 : 1));
     } else {
       world[0][Math.floor(WIDTH / 2)] = 1;
     }
     date = Date.now();
     run(-1, date, 0);
   }
-
 
   function addEventListeners() {
     ruleInput.addEventListener('change', reset);
@@ -169,9 +159,4 @@ function init() {
 
   reset(); // setup
   addEventListeners();
-}
-
-
-module.exports = {
-  init,
-};
+}());

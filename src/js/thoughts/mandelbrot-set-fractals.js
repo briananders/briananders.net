@@ -1,5 +1,4 @@
-
-function init() {
+(function mandelbrot() {
   const canvas = document.querySelector('canvas');
   const ctx = canvas.getContext('2d');
   const buttons = document.querySelectorAll('button');
@@ -9,12 +8,12 @@ function init() {
   let panY = 1.05;
 
   // Create Canvas
-  canvas.width = 1000;
-  canvas.height = 1000;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
   let mouseOverCanvas = false;
 
-  function checkIfBelongsToMandelbrotSet(x, y) {
+  function belongsToMandelbrotSet(x, y) {
     let realComponentOfResult = x;
     let imaginaryComponentOfResult = y;
     const maxIterations = 100;
@@ -48,7 +47,7 @@ function init() {
     for (let x = 0; x < canvas.width; x++) {
       for (let y = 0; y < canvas.height; y++) {
         const belongsToSet =
-          checkIfBelongsToMandelbrotSet(
+          belongsToMandelbrotSet(
             (x / magnification) - panX,
             (y / magnification) - panY
           );
@@ -63,28 +62,52 @@ function init() {
     return (50 / magnification);
   }
 
+  function panRight() {
+    panX -= panChange();
+  }
+  function panLeft() {
+    panX += panChange();
+  }
+  function panUp() {
+    panY += panChange();
+  }
+  function panDown() {
+    panY -= panChange();
+  }
+  function zoomIn() {
+    magnification += magnification;
+  }
+  function zoomOut() {
+    magnification += magnification;
+  }
+
   buttons.forEach((button) => {
     button.addEventListener('click', ({ target }) => {
       switch (target.value) {
         case '+1':
-          magnification += 50;
+          zoomIn();
+          panRight();
+          panDown();
           break;
         case '-1':
-          magnification -= 50;
+          zoomOut();
+          panLeft();
+          panUp();
           break;
         case 'up':
-          panY -= panChange();
+          panUp()
           break;
         case 'down':
-          panY += panChange();
+          panDown();
           break;
         case 'left':
-          panX -= panChange();
+          panLeft();
           break;
         case 'right':
-          panX += panChange();
+          panRight();
           break;
         default:
+          return;
       }
       draw();
     });
@@ -92,27 +115,25 @@ function init() {
 
   document.addEventListener('keydown', (evt) => {
     switch (evt.keyCode) {
-      case 38:
-        // up = 38
+      case 38: // up
         evt.preventDefault();
-        panY += panChange();
+        panUp();
         break;
-      case 40:
-        // down = 40
+      case 40: // down
         evt.preventDefault();
-        panY -= panChange();
+        panDown();
         break;
-      case 37:
-        // left = 37
+      case 37: // left
         evt.preventDefault();
-        panX += panChange();
+        panLeft();
         break;
-      case 39:
-        // right = 39
+      case 39: // right
         evt.preventDefault();
-        panX -= panChange();
+        panRight();
         break;
       default:
+        console.log(evt.keyCode);
+        return;
     }
     draw();
   });
@@ -137,8 +158,4 @@ function init() {
   });
 
   draw();
-}
-
-module.exports = {
-  init,
-};
+}());
