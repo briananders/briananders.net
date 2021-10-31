@@ -93,6 +93,7 @@ select {
   appearance: menulist;
   border-radius: $border-radius;
   background-color: $color--grey-50;
+  height: $s5 + $s1 / 2;
 
   @include button-select;
 }

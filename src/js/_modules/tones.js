@@ -1,7 +1,7 @@
 module.exports = {
-  numberOfScales: 8,
+  numberOfScales: 9,
   order: [
-    'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'
+    'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
   ],
   hertz: {
     C0: 16.35,

@@ -3,26 +3,26 @@
 .sound-slider {
   text-align: center;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   position: relative;
-  padding: $s4 0;
+  padding: $s2;
+  border: 1px solid;
+  @include paragraph;
 
   + .sound-slider {
     border-top: 1px solid;
   }
 
   input[type=range] {
-    width: 92%;
-    margin: 0;
+    width: 100%;
+    margin: $s2 0;
   }
   input[type=number] {
     width: 150px;
   }
 
   button[value=remove] {
-    position: absolute;
-    top: $s4;
-    right: $s4;
   }
 
   button[value=play] {

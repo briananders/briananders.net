@@ -9,6 +9,8 @@ module.exports = function Slider(parent) {
   */
   const tones = require('../../_modules/tones');
   const sound = new Sound();
+  const DEFAULT_TONE = 'C4';
+  const DEFAULT_HERTZ = tones.hertz[DEFAULT_TONE];
 
   const events = {
     removeMeEvent: new Event('remove'),
@@ -16,14 +18,16 @@ module.exports = function Slider(parent) {
 
   const elements = {};
 
-  let hertz = [261.6];
+  let hertz = [DEFAULT_HERTZ];
 
   let mouseDownOnSlider = false;
 
   function removeMe() {
     sound.stop();
     parent.dispatchEvent(events.removeMeEvent);
-    scope.outerHTML = '';
+    setTimeout(() => {
+      scope.outerHTML = '';
+    }, 0);
   }
 
   function watchSlider() {
@@ -72,6 +76,14 @@ module.exports = function Slider(parent) {
     }
   }
 
+  function labelDashes(startLabel, endLabel) {
+    const numberOfStartDashes = 8 - startLabel.length;
+    const startDashes = new Array(numberOfStartDashes).fill('-').join('');
+    const numberOfEndDashes = 4 - endLabel.split('.')[0].length;
+    const endDashes = new Array(numberOfEndDashes).fill('-').join('');
+    return startDashes + endDashes;
+  }
+
   function addToneSelect() {
     elements.select = document.createElement('select');
     scope.appendChild(elements.select);
@@ -80,7 +92,11 @@ module.exports = function Slider(parent) {
       tones.order.forEach((tone) => {
         const option = document.createElement('option');
         option.value = tones.hertz[`${tone}${scale}`];
-        option.innerHTML = `${scale} ${tones.labels[tone]}`;
+        option.innerHTML = `${scale} ${tones.labels[tone]} ${labelDashes(`${scale} ${tones.labels[tone]}`, `${tones.hertz[`${tone}${scale}`]}`)} ${tones.hertz[`${tone}${scale}`]}`;
+
+        if(`${tone}${scale}` === DEFAULT_TONE) {
+          option.selected = "selected";
+        }
         elements.select.appendChild(option);
       });
     }
@@ -106,12 +122,17 @@ module.exports = function Slider(parent) {
     elements.input = scope.querySelector('input.hertz-input');
     elements.remove = scope.querySelector('button[value=remove]');
 
+    elements.slider.value = DEFAULT_HERTZ;
+    elements.input.value = DEFAULT_HERTZ;
+
     return callback();
   }
 
   function init() {
     buildAndRender(setupEventListeners);
     runLoop();
+
+    hertz.push(DEFAULT_HERTZ);
   }
 
   init();
