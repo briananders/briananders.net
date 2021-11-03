@@ -1,15 +1,15 @@
 (function mandelbrot() {
   const canvas = document.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
+  const context = canvas.getContext('2d');
   const buttons = document.querySelectorAll('button');
 
-  let magnification = 450;
-  let panX = 1.5;
-  let panY = 1.05;
+  let magnification = 400;
+  let panX = 1.85;
+  let panY = 1.25;
 
   // Create Canvas
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = 1000;
+  canvas.height = 1000;
 
   let mouseOverCanvas = false;
 
@@ -43,7 +43,7 @@
       panX,
       panY,
     });
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);
     for (let x = 0; x < canvas.width; x++) {
       for (let y = 0; y < canvas.height; y++) {
         const belongsToSet =
@@ -52,7 +52,11 @@
             (y / magnification) - panY
           );
         if (belongsToSet) {
-          ctx.fillRect(x, y, 1, 1); // Draw a black pixel
+          context.fillStyle = `rgb(${255 - belongsToSet * 5}, ${255 - belongsToSet * 5}, ${255 - belongsToSet * 5})`;
+          context.fillRect(x, y, 1, 1); // Draw a black pixel
+        } else {
+          context.fillStyle = `rgb(0, 0, 0)`;
+          context.fillRect(x, y, 1, 1);
         }
       }
     }
@@ -75,10 +79,10 @@
     panY -= panChange();
   }
   function zoomIn() {
-    magnification += magnification;
+    magnification += magnification / 5;
   }
   function zoomOut() {
-    magnification += magnification;
+    magnification -= magnification / 6;
   }
 
   buttons.forEach((button) => {
@@ -131,6 +135,14 @@
         evt.preventDefault();
         panRight();
         break;
+      case 187: // plus
+        evt.preventDefault();
+        zoomIn();
+        break;
+      case 189: // plus
+        evt.preventDefault();
+        zoomOut();
+        break;
       default:
         console.log(evt.keyCode);
         return;
@@ -138,24 +150,24 @@
     draw();
   });
 
-  canvas.addEventListener('mouseover', () => {
-    mouseOverCanvas = true;
-    document.documentElement.style.overflow = 'hidden';
-    console.info({ mouseOverCanvas });
-  });
+  // canvas.addEventListener('mouseover', () => {
+  //   mouseOverCanvas = true;
+  //   document.documentElement.style.overflow = 'hidden';
+  //   console.info({ mouseOverCanvas });
+  // });
 
-  canvas.addEventListener('mouseout', () => {
-    mouseOverCanvas = false;
-    document.documentElement.style.overflow = '';
-    console.info({ mouseOverCanvas });
-  });
+  // canvas.addEventListener('mouseout', () => {
+  //   mouseOverCanvas = false;
+  //   document.documentElement.style.overflow = '';
+  //   console.info({ mouseOverCanvas });
+  // });
 
-  document.addEventListener('scroll', (evt) => {
-    console.log(evt.eventPhase);
-    if (mouseOverCanvas) {
-      evt.preventDefault();
-    }
-  });
+  // document.addEventListener('scroll', (evt) => {
+  //   console.log(evt.eventPhase);
+  //   if (mouseOverCanvas) {
+  //     evt.preventDefault();
+  //   }
+  // });
 
   draw();
 }());
