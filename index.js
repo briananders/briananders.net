@@ -77,37 +77,37 @@ buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, configs));
 
 if (!production) {
   chokidar.watch(`${dir.src}js/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: JavaScript: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: JavaScript: ${file}`.yellow);
     bundleJS(configs);
   });
 
   chokidar.watch(`${dir.src}styles/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: SCSS: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: SCSS: ${file}`.yellow);
     bundleSCSS(configs);
   });
 
   chokidar.watch(`${dir.src}templates/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: Template: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: Template: ${file}`.yellow);
     compilePageMappingData(configs);
   });
 
   chokidar.watch(`${dir.src}partials/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: Partial: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: Partial: ${file}`.yellow);
     compilePageMappingData(configs);
   });
 
   chokidar.watch(`${dir.src}layout/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: Layout: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: Layout: ${file}`.yellow);
     compilePageMappingData(configs);
   });
 
   chokidar.watch(`${dir.src}images/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()}: File modified: image: ${file}`.yellow);
+    if (debug) console.log(`${timestamp.stamp()} File modified: image: ${file}`.yellow);
     moveImages(configs);
   });
   chokidar.watch(`${dir.build}`).on('change', (evt, file) => {
 
-    console.log(`${timestamp.stamp()}: Build file modified: ${file}\n\nRestart the server`.red);
+    console.log(`${timestamp.stamp()} Build file modified: ${file}\n\nRestart the server`.red);
     process.exit();
   });
 } else {
@@ -135,7 +135,7 @@ if (!production) {
 /* ////////////////////////////////////////////////////////////////////////// */
 
 const clean = new Promise((resolve, reject) => {
-  console.log(`${timestamp.stamp()}: clean()`);
+  console.log(`${timestamp.stamp()} clean()`);
 
   exec(`rm -rf ${dir.package}**`, (error) => {
     if (error) {
@@ -147,10 +147,10 @@ const clean = new Promise((resolve, reject) => {
   });
 });
 
-console.log(`production: ${production}`);
+console.log(`production: ${production}`.toUpperCase().brightBlue.bold);
 
 clean.then(() => {
-  if (debug) console.log(`${timestamp.stamp()}: clean.then()`);
+  if (debug) console.log(`${timestamp.stamp()} clean.then()`);
   fs.mkdirp(dir.package);
   compilePageMappingData(configs);
   bundleJS(configs);
@@ -162,7 +162,7 @@ if (!production) {
   app.use(serve(dir.package));
 
   const server = app.listen(3000, () => {
-    console.log(`${timestamp.stamp()}: server is running at %s`, server.address().port);
+    console.log(`${timestamp.stamp()} server is running at %s`, server.address().port);
     console.log('If on chrostini, run `hostname -I` to get the localhost IP address');
   });
 }

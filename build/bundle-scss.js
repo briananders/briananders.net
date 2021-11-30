@@ -12,13 +12,13 @@ module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug 
   const timestamp = require(`${dir.build}timestamp`);
   const production = require(`${dir.build}production`);
 
-  console.log(`${timestamp.stamp()}: bundleSCSS()`);
+  console.log(`${timestamp.stamp()} bundleSCSS()`);
   const stylesGlob = glob.sync(`${dir.src}**/**/[^_]*.scss`);
   let processed = 0;
   stylesGlob.forEach((scssFilename, index, array) => {
     const outFile = scssFilename.replace(dir.src, dir.package).replace(/\.scss$/, '.css');
 
-    if (debug) console.log(`${timestamp.stamp()}: ${'REQUEST'.magenta} - Compiling SASS - ${outFile.split(/styles/)[1]}`);
+    if (debug) console.log(`${timestamp.stamp()} ${'REQUEST'.magenta} - Compiling SASS - ${outFile.split(/styles/)[1]}`);
 
     sass.render({
       file: scssFilename,
@@ -54,11 +54,11 @@ module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug 
 
           fs.writeFile(outFile, cssOutput, (e) => {
             if (e) throw e;
-            if (debug) console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
+            if (debug) console.log(`${timestamp.stamp()} ${'SUCCESS'.bold.green} - Compiled SASS  - ${outFile.split(/styles/)[1]}`);
             processed++;
 
             if (processed === array.length) {
-              console.log(`${timestamp.stamp()}: ${'STYLES DONE'.green.bold}`);
+              console.log(`${timestamp.stamp()} bundleSCSS(): ${'DONE'.bold.green}`);
               completionFlags.CSS_IS_MINIFIED = true;
               buildEvents.emit('styles-moved');
             }

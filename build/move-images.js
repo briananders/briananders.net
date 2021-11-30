@@ -6,10 +6,13 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
 
   const timestamp = require(`${dir.build}timestamp`);
 
+  console.log(`${timestamp.stamp()} moveImages()`);
+  console.log(`${timestamp.stamp()} moveTxt()`);
+
   // move images over
   fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
-    console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - moved images`);
+    console.log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
     completionFlags.IMAGES_ARE_MOVED = true;
     buildEvents.emit('images-moved');
   });
@@ -17,6 +20,6 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   // move humans and robots text files
   copy(`${dir.src}*.txt`, `${dir.package}`, (err) => {
     if (err) throw err;
-    console.log(`${timestamp.stamp()}: ${'SUCCESS'.green} - moved .txt files`);
+    console.log(`${timestamp.stamp()} moveTxt(): ${'DONE'.bold.green}`);
   });
 };

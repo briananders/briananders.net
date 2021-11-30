@@ -7,6 +7,8 @@ module.exports = function hashCSS({ dir, completionFlags, buildEvents, hashingFi
 
   const timestamp = require(`${dir.build}timestamp`);
 
+  console.log(`${timestamp.stamp()} assetHashing().css`);
+
   const cssGlob = glob.sync(`${dir.package}**/*.css`);
   let processedCss = 0;
   cssGlob.forEach((file, index, array) => {
@@ -16,11 +18,11 @@ module.exports = function hashCSS({ dir, completionFlags, buildEvents, hashingFi
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()} assetHashing().css: ${hashedFileName} renamed complete`);
       processedCss++;
       if (processedCss >= array.length) {
         completionFlags.ASSET_HASH.CSS = true;
-        console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.CSS: ${completionFlags.ASSET_HASH.CSS}`);
+        console.log(`${timestamp.stamp()} assetHashing().css: ${'DONE'.bold.green}`);
         buildEvents.emit('asset-hash-css-listed');
       }
     });

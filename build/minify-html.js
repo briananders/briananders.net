@@ -7,13 +7,13 @@ module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug 
 
   const timestamp = require(`${dir.build}timestamp`);
 
-  console.log(`${timestamp.stamp()}: minifyHTML()`);
+  console.log(`${timestamp.stamp()} minifyHTML()`);
 
   const htmlGlob = glob.sync(`${dir.package}**/*.html`);
   let processed = 0;
 
   htmlGlob.forEach((htmlFileName, index, array) => {
-    if (debug) console.log(`${timestamp.stamp()}: minifyHTML - ${htmlFileName.split('/package/')[1]}`);
+    if (debug) console.log(`${timestamp.stamp()} minifyHTML - ${htmlFileName.split('/package/')[1]}`);
 
     fs.readFile(htmlFileName, (error, data) => {
       if (error) throw error;
@@ -37,7 +37,7 @@ module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug 
         processed++;
 
         if (processed === array.length) {
-          console.log(`${timestamp.stamp()}: ${'minifyHTML completionFlags'.bold.green}`);
+          console.log(`${timestamp.stamp()} minifyHTML(): ${'DONE'.bold.green}`);
           completionFlags.HTML_IS_MINIFIED = true;
           buildEvents.emit('html-minified');
         }

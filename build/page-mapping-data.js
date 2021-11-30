@@ -8,7 +8,7 @@ module.exports = ({ dir, buildEvents, pageMappingData }) => {
   // clean it out before compiling. No dupes.
   pageMappingData.splice(0,pageMappingData.length);
 
-  console.log(`${timestamp.stamp()}: compilePageMappingData()`);
+  console.log(`${timestamp.stamp()} compilePageMappingData()`);
   let processed = 0;
   templateGlob.forEach((templatePath, index, array) => {
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
@@ -21,7 +21,7 @@ module.exports = ({ dir, buildEvents, pageMappingData }) => {
 
     processed++;
     if (processed >= array.length) {
-      console.log(`${timestamp.stamp()}: compilePageMappingData() DONE`);
+      console.log(`${timestamp.stamp()} compilePageMappingData() ${'DONE'.bold.green}`);
 
       buildEvents.emit('page-mapping-data-compiled');
     }

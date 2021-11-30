@@ -8,10 +8,10 @@ module.exports = function checkDone({ dir, completionFlags }) {
     return false;
   }
 
-  console.log(`${timestamp.stamp()}: completionFlags.ASSET_HASH.DONE   : ${completionFlags.ASSET_HASH.DONE}`);
-  console.log(`${timestamp.stamp()}: completionFlags.SITE_MAP          : ${completionFlags.SITE_MAP}`);
-  console.log(`${timestamp.stamp()}: completionFlags.IMAGE_COMPRESSION : ${completionFlags.IMAGE_COMPRESSION}`);
-  console.log(`${timestamp.stamp()}: completionFlags.GZIP              : ${completionFlags.GZIP}`);
+  console.log(`${timestamp.stamp()} completionFlags.ASSET_HASH.DONE   : ${completionFlags.ASSET_HASH.DONE.toString().bold.green}`);
+  console.log(`${timestamp.stamp()} completionFlags.SITE_MAP          : ${completionFlags.SITE_MAP.toString().bold.green}`);
+  console.log(`${timestamp.stamp()} completionFlags.IMAGE_COMPRESSION : ${completionFlags.IMAGE_COMPRESSION.toString().bold.green}`);
+  console.log(`${timestamp.stamp()} completionFlags.GZIP              : ${completionFlags.GZIP.toString().bold.green}`);
 
   require(`${dir.build}exit-message`)();
 

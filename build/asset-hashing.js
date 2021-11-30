@@ -14,7 +14,7 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
       !completionFlags.IMAGES_ARE_MOVED) {
     return false;
   }
-  console.log(`${timestamp.stamp()}: assetHashing()`);
+  console.log(`${timestamp.stamp()} assetHashing().images`);
   if (debug) console.log(`completionFlags.JS_IS_MINIFIED :${completionFlags.JS_IS_MINIFIED}`);
   if (debug) console.log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
   if (debug) console.log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
@@ -31,11 +31,11 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()} assetHashing().images: ${hashedFileName} renamed complete`);
       processedJs++;
       if (processedJs >= array.length) {
         completionFlags.ASSET_HASH.JS = true;
-        if (debug) console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
+        if (debug) console.log(`${timestamp.stamp()} assetHashing().images: completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
         buildEvents.emit('asset-hash-js-listed');
       }
     });
@@ -48,11 +48,11 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) console.log(`${timestamp.stamp()} assetHashing().images: ${hashedFileName} renamed complete`);
       processedImages++;
       if (processedImages >= array.length) {
         completionFlags.ASSET_HASH.IMAGES = true;
-        console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.IMAGES: ${completionFlags.ASSET_HASH.IMAGES}`);
+        console.log(`${timestamp.stamp()} assetHashing().images: ${'DONE'.bold.green}`);
         buildEvents.emit('asset-hash-images-listed');
       }
     });

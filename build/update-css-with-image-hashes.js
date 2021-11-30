@@ -4,6 +4,8 @@ const glob = require('glob');
 module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFileNameList, debug }) {
   const timestamp = require(`${dir.build}timestamp`);
 
+  console.log(`${timestamp.stamp()} hashingUpdateCSS()`);
+
   const cssGlob = glob.sync(`${dir.package}**/*.css`);
   let processedCss = 0;
   cssGlob.forEach((file, index, array) => {
@@ -13,7 +15,7 @@ module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFi
     (Object.keys(hashingFileNameList)).forEach((key, keyIndex, keyArray) => {
       const fileName = key.split(dir.package)[1];
       const fileNameHash = hashingFileNameList[key].split(dir.package)[1];
-      if (debug) console.log(`${timestamp.stamp()}: finishHashing():: ${fileName}`);
+      if (debug) console.log(`${timestamp.stamp()} hashingUpdateCSS():: ${fileName}`);
       if (~fileContents.indexOf(fileName)) {
         fileContents = fileContents.split(fileName).join(fileNameHash);
       }
@@ -21,10 +23,10 @@ module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFi
       if (keysProcessed >= keyArray.length) {
         fs.writeFile(file, fileContents, (err) => {
           if (err) throw err;
-          if (debug) console.log(`${timestamp.stamp()}: finishHashing()::: ${file}: ${'DONE'.bold.green}`);
+          if (debug) console.log(`${timestamp.stamp()} hashingUpdateCSS()::: ${file}: ${'DONE'.bold.green}`);
           processedCss++;
           if (processedCss >= array.length) {
-            console.log(`${timestamp.stamp()}: assetHashing(): ${'CSS UPDATES ARE DONE'.bold.green}`);
+            console.log(`${timestamp.stamp()} hashingUpdateCSS(): ${'DONE'.bold.green}`);
             buildEvents.emit('index-css-for-hashing');
           }
         });

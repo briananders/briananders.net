@@ -7,7 +7,7 @@ module.exports = function minifyJS({ dir, completionFlags, buildEvents }) {
 
   const timestamp = require(`${dir.build}timestamp`);
 
-  console.log(`${timestamp.stamp()}: minifyJS()`);
+  console.log(`${timestamp.stamp()} minifyJS()`);
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
   let processed = 0;
@@ -25,7 +25,7 @@ module.exports = function minifyJS({ dir, completionFlags, buildEvents }) {
         processed++;
 
         if (processed === array.length) {
-          console.log(`${timestamp.stamp()}: ${'minifyJS completionFlags'.bold.green}`);
+          console.log(`${timestamp.stamp()} minifyJS(): ${'DONE'.bold.green}`);
           completionFlags.JS_IS_MINIFIED = true;
           buildEvents.emit('js-minified');
         }
