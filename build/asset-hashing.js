@@ -2,7 +2,9 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+const { log } = console;
+
+module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug, BUILD_EVENTS }) {
   completionFlags.ASSET_HASH.IMAGES = false;
   completionFlags.ASSET_HASH.JS = false;
 
@@ -14,11 +16,11 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
       !completionFlags.IMAGES_ARE_MOVED) {
     return false;
   }
-  console.log(`${timestamp.stamp()}: assetHashing()`);
-  if (debug) console.log(`completionFlags.JS_IS_MINIFIED :${completionFlags.JS_IS_MINIFIED}`);
-  if (debug) console.log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
-  if (debug) console.log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
-  if (debug) console.log(`completionFlags.IMAGES_ARE_MOVED     :${completionFlags.IMAGES_ARE_MOVED}`);
+  log(`${timestamp.stamp()} assetHashing().images`);
+  if (debug) log(`completionFlags.JS_IS_MINIFIED :${completionFlags.JS_IS_MINIFIED}`);
+  if (debug) log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
+  if (debug) log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
+  if (debug) log(`completionFlags.IMAGES_ARE_MOVED     :${completionFlags.IMAGES_ARE_MOVED}`);
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
   const imagesGlob = glob.sync(`${dir.package}images/**/*.{png,svg,jpg}`);
@@ -31,12 +33,12 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) log(`${timestamp.stamp()} assetHashing().images: ${hashedFileName} renamed complete`);
       processedJs++;
       if (processedJs >= array.length) {
         completionFlags.ASSET_HASH.JS = true;
-        if (debug) console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
-        buildEvents.emit('asset-hash-js-listed');
+        if (debug) log(`${timestamp.stamp()} assetHashing().images: completionFlags.ASSET_HASH.JS: ${completionFlags.ASSET_HASH.JS}`);
+        buildEvents.emit(BUILD_EVENTS.assetHashJsListed);
       }
     });
   });
@@ -48,12 +50,12 @@ module.exports = function assetHashing({ dir, completionFlags, buildEvents, hash
     hashingFileNameList[file] = hashedFileName;
     fs.rename(file, hashedFileName, (err) => {
       if (err) throw err;
-      if (debug) console.log(`${timestamp.stamp()}: assetHashing(): ${hashedFileName} renamed complete`);
+      if (debug) log(`${timestamp.stamp()} assetHashing().images: ${hashedFileName} renamed complete`);
       processedImages++;
       if (processedImages >= array.length) {
         completionFlags.ASSET_HASH.IMAGES = true;
-        console.log(`${timestamp.stamp()}: assetHashing(): completionFlags.ASSET_HASH.IMAGES: ${completionFlags.ASSET_HASH.IMAGES}`);
-        buildEvents.emit('asset-hash-images-listed');
+        log(`${timestamp.stamp()} assetHashing().images: ${'DONE'.bold.green}`);
+        buildEvents.emit(BUILD_EVENTS.assetHashImagesListed);
       }
     });
   });

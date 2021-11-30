@@ -1,14 +1,16 @@
 const glob = require('glob');
 const matter = require('gray-matter');
 
-module.exports = ({ dir, buildEvents, pageMappingData }) => {
+const { log } = console;
+
+module.exports = ({ dir, buildEvents, pageMappingData, BUILD_EVENTS }) => {
   const timestamp = require(`${dir.build}timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
 
   // clean it out before compiling. No dupes.
   pageMappingData.splice(0,pageMappingData.length);
 
-  console.log(`${timestamp.stamp()}: compilePageMappingData()`);
+  log(`${timestamp.stamp()} compilePageMappingData()`);
   let processed = 0;
   templateGlob.forEach((templatePath, index, array) => {
     const outputPath = templatePath.replace(`${dir.src}templates/`, dir.package).replace(/\.ejs$/, (templatePath.includes('.html.ejs')) ? '' : '/index.html');
@@ -21,9 +23,9 @@ module.exports = ({ dir, buildEvents, pageMappingData }) => {
 
     processed++;
     if (processed >= array.length) {
-      console.log(`${timestamp.stamp()}: compilePageMappingData() DONE`);
+      log(`${timestamp.stamp()} compilePageMappingData() ${'DONE'.bold.green}`);
 
-      buildEvents.emit('page-mapping-data-compiled');
+      buildEvents.emit(BUILD_EVENTS.pageMappingDataCompiled);
     }
   });
 };

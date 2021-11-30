@@ -65,7 +65,7 @@ module.exports = (dir, pageMappingData) => ({
   code(block, locals = { class: '', style: '', language: '' }) {
     // https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
     const highlightedCode = (locals.language)
-      ? hljs.highlight(locals.language, block).value
+      ? hljs.highlight(block, { language: locals.language }).value
       : hljs.highlightAuto(block).value;
     return `
       <div class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></div>
