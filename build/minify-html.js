@@ -2,18 +2,20 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const htmlMinify = require('html-minifier');
 
-module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug }) {
+const { log } = console;
+
+module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug, BUILD_EVENTS }) {
   completionFlags.HTML_IS_MINIFIED = false;
 
   const timestamp = require(`${dir.build}timestamp`);
 
-  console.log(`${timestamp.stamp()}: minifyHTML()`);
+  log(`${timestamp.stamp()} minifyHTML()`);
 
   const htmlGlob = glob.sync(`${dir.package}**/*.html`);
   let processed = 0;
 
   htmlGlob.forEach((htmlFileName, index, array) => {
-    if (debug) console.log(`${timestamp.stamp()}: minifyHTML - ${htmlFileName.split('/package/')[1]}`);
+    if (debug) log(`${timestamp.stamp()} minifyHTML - ${htmlFileName.split('/package/')[1]}`);
 
     fs.readFile(htmlFileName, (error, data) => {
       if (error) throw error;
@@ -37,9 +39,9 @@ module.exports = function minifyHTML({ dir, completionFlags, buildEvents, debug 
         processed++;
 
         if (processed === array.length) {
-          console.log(`${timestamp.stamp()}: ${'minifyHTML completionFlags'.bold.green}`);
+          log(`${timestamp.stamp()} minifyHTML(): ${'DONE'.bold.green}`);
           completionFlags.HTML_IS_MINIFIED = true;
-          buildEvents.emit('html-minified');
+          buildEvents.emit(BUILD_EVENTS.htmlMinified);
         }
       });
     });
