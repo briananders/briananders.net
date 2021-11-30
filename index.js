@@ -165,14 +165,14 @@ if (!production) {
 const clean = new Promise((resolve, reject) => {
   log(`${timestamp.stamp()} clean()`);
 
-  exec(`rm -rf ${dir.package}**`, (error) => {
+  fs.emptyDir(dir.package, (error) => {
     if (error) {
       log(error);
       reject();
     } else {
       resolve();
     }
-  });
+  })
 });
 
 log(`production: ${production}`.toUpperCase().brightBlue.bold);
