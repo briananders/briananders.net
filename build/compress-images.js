@@ -1,7 +1,9 @@
-module.exports = function compressImages({ dir, completionFlags, buildEvents }) {
+const { log } = console;
+
+module.exports = function compressImages({ dir, completionFlags, buildEvents, BUILD_EVENTS }) {
   const timestamp = require(`${dir.build}timestamp`);
 
-  console.log(`${timestamp.stamp()} ${'TODO'.red.bold} compressImages()`);
+  log(`${timestamp.stamp()} ${'TODO'.red.bold} compressImages()`);
   completionFlags.IMAGE_COMPRESSION = true;
-  buildEvents.emit('image-compression-done');
+  buildEvents.emit(BUILD_EVENTS.imageCompressionDone);
 };

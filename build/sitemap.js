@@ -1,13 +1,15 @@
 const ejs = require('ejs');
 const fs = require('fs-extra');
 
-module.exports = function sitemap({ dir, completionFlags, buildEvents, pageMappingData }) {
+const { log } = console;
+
+module.exports = function sitemap({ dir, completionFlags, buildEvents, pageMappingData, BUILD_EVENTS }) {
   completionFlags.SITE_MAP = false;
 
   const timestamp = require(`${dir.build}timestamp`);
   const siteData = require(`${dir.build}site-data`)(dir);
 
-  console.log(`${timestamp.stamp()} sitemap()`);
+  log(`${timestamp.stamp()} sitemap()`);
   ejs.renderFile(`${dir.src}sitemap.xml.ejs`, {
     pages: pageMappingData,
     siteData,
@@ -19,8 +21,8 @@ module.exports = function sitemap({ dir, completionFlags, buildEvents, pageMappi
       if (err) throw err;
 
       completionFlags.SITE_MAP = true;
-      console.log(`${timestamp.stamp()} sitemap(): ${'DONE'.bold.green}`);
-      buildEvents.emit('sitemap-done');
+      log(`${timestamp.stamp()} sitemap(): ${'DONE'.bold.green}`);
+      buildEvents.emit(BUILD_EVENTS.sitemapDone);
     });
   });
 };

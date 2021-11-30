@@ -27,6 +27,26 @@ const completionFlags = {
   GZIP: false,
 };
 
+const BUILD_EVENTS = {
+  assetHashCssListed: 'asset-hash-css-listed',
+  assetHashImagesListed: 'asset-hash-images-listed',
+  assetHashJsListed: 'asset-hash-js-listed',
+  gzipDone: 'gzip-done',
+  hashingDone: 'hashing-done',
+  htmlMinified: 'html-minified',
+  imageCompressionDone: 'image-compression-done',
+  imagesMoved: 'images-moved',
+  indexCssForHashing: 'index-css-for-hashing',
+  jsMinified: 'js-minified',
+  jsMoved: 'js-moved',
+  sitemapDone: 'sitemap-done',
+  stylesMoved: 'styles-moved',
+  templatesMoved: 'templates-moved',
+  pageMappingDataCompiled: 'page-mapping-data-compiled',
+}
+
+const { log } = console;
+
 const debug = process.argv.includes('--verbose');
 
 const timestamp = require(`${dir.build}timestamp`);
@@ -50,6 +70,7 @@ const configs = {
   dir,
   hashingFileNameList,
   pageMappingData,
+  BUILD_EVENTS,
 };
 
 // /////////////////////////////// compile tasks /////////////////////////////////
@@ -72,62 +93,69 @@ const checkDone = require(`${dir.build}check-done`);
 
 // /////////////////////////////////////// event listeners ////////////////////////////////////////
 
-buildEvents.on('page-mapping-data-compiled', bundleEJS.bind(this, configs));
-buildEvents.on('page-mapping-data-compiled', sitemap.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, bundleEJS.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
 
 if (!production) {
-  chokidar.watch(`${dir.src}js/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: JavaScript: ${file}`.yellow);
-    bundleJS(configs);
-  });
+  chokidar.watch(`${dir.src}js/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: JavaScript: ${path}`.yellow);
+      bundleJS(configs);
+    });
 
-  chokidar.watch(`${dir.src}styles/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: SCSS: ${file}`.yellow);
-    bundleSCSS(configs);
-  });
+  chokidar.watch(`${dir.src}styles/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: SCSS: ${path}`.yellow);
+      bundleSCSS(configs);
+    });
 
-  chokidar.watch(`${dir.src}templates/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: Template: ${file}`.yellow);
-    compilePageMappingData(configs);
-  });
+  chokidar.watch(`${dir.src}templates/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: Template: ${path}`.yellow);
+      compilePageMappingData(configs);
+    });
 
-  chokidar.watch(`${dir.src}partials/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: Partial: ${file}`.yellow);
-    compilePageMappingData(configs);
-  });
+  chokidar.watch(`${dir.src}partials/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: Partial: ${path}`.yellow);
+      compilePageMappingData(configs);
+    });
 
-  chokidar.watch(`${dir.src}layout/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: Layout: ${file}`.yellow);
-    compilePageMappingData(configs);
-  });
+  chokidar.watch(`${dir.src}layout/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: Layout: ${path}`.yellow);
+      compilePageMappingData(configs);
+    });
 
-  chokidar.watch(`${dir.src}images/`).on('change', (evt, file) => {
-    if (debug) console.log(`${timestamp.stamp()} File modified: image: ${file}`.yellow);
-    moveImages(configs);
-  });
-  chokidar.watch(`${dir.build}`).on('change', (evt, file) => {
+  chokidar.watch(`${dir.src}images/`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} File modified: image: ${path}`.yellow);
+      moveImages(configs);
+    });
 
-    console.log(`${timestamp.stamp()} Build file modified: ${file}\n\nRestart the server`.red);
-    process.exit();
-  });
+  chokidar.watch(`${dir.build}`)
+    .on('change', (path) => {
+      log(`${timestamp.stamp()} Build file modified: ${path}\n\nRestart the server`.red);
+      process.exit();
+    });
 } else {
-  buildEvents.on('templates-moved', minifyHTML.bind(this, configs));
-  buildEvents.on('js-moved', minifyJS.bind(this, configs));
-  buildEvents.on('styles-moved', assetHashing.bind(this, configs));
-  buildEvents.on('js-minified', assetHashing.bind(this, configs));
-  buildEvents.on('html-minified', assetHashing.bind(this, configs));
-  buildEvents.on('images-moved', assetHashing.bind(this, configs));
-  buildEvents.on('images-moved', compressImages.bind(this, configs));
-  buildEvents.on('asset-hash-images-listed', updateCSSwithImageHashes.bind(this, configs));
-  buildEvents.on('index-css-for-hashing', hashCSS.bind(this, configs));
-  buildEvents.on('asset-hash-js-listed', finishHashing.bind(this, configs));
-  buildEvents.on('asset-hash-css-listed', finishHashing.bind(this, configs));
-  buildEvents.on('asset-hash-images-listed', finishHashing.bind(this, configs));
-  buildEvents.on('hashing-done', gzipFiles.bind(this, configs));
-  buildEvents.on('gzip-done', checkDone.bind(this, configs));
-  buildEvents.on('hashing-done', checkDone.bind(this, configs));
-  buildEvents.on('sitemap-done', checkDone.bind(this, configs));
-  buildEvents.on('image-compression-done', checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.assetHashCssListed, finishHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.assetHashImagesListed, finishHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.assetHashImagesListed, updateCSSwithImageHashes.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.assetHashJsListed, finishHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.gzipDone, checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.hashingDone, checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.hashingDone, gzipFiles.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.htmlMinified, assetHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.imageCompressionDone, checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.imagesMoved, assetHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.imagesMoved, compressImages.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.indexCssForHashing, hashCSS.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.jsMinified, assetHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.jsMoved, minifyJS.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.sitemapDone, checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.stylesMoved, assetHashing.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.templatesMoved, minifyHTML.bind(this, configs));
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -135,11 +163,11 @@ if (!production) {
 /* ////////////////////////////////////////////////////////////////////////// */
 
 const clean = new Promise((resolve, reject) => {
-  console.log(`${timestamp.stamp()} clean()`);
+  log(`${timestamp.stamp()} clean()`);
 
   exec(`rm -rf ${dir.package}**`, (error) => {
     if (error) {
-      console.log(error);
+      log(error);
       reject();
     } else {
       resolve();
@@ -147,10 +175,10 @@ const clean = new Promise((resolve, reject) => {
   });
 });
 
-console.log(`production: ${production}`.toUpperCase().brightBlue.bold);
+log(`production: ${production}`.toUpperCase().brightBlue.bold);
 
 clean.then(() => {
-  if (debug) console.log(`${timestamp.stamp()} clean.then()`);
+  if (debug) log(`${timestamp.stamp()} clean.then()`);
   fs.mkdirp(dir.package);
   compilePageMappingData(configs);
   bundleJS(configs);
@@ -162,7 +190,7 @@ if (!production) {
   app.use(serve(dir.package));
 
   const server = app.listen(3000, () => {
-    console.log(`${timestamp.stamp()} server is running at %s`, server.address().port);
-    console.log('If on chrostini, run `hostname -I` to get the localhost IP address');
+    log(`${timestamp.stamp()} server is running at %s`, server.address().port);
+    // log('If on chrostini, run `hostname -I` to get the localhost IP address');
   });
 }

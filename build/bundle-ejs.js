@@ -9,6 +9,8 @@ const notifier = require('node-notifier');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
+const { log } = console;
+
 function handleTemplateError(e) {
   console.error(e.message.red);
   notifier.notify({
@@ -99,19 +101,19 @@ async function renderTemplate({
   });
 }
 
-module.exports = async function bundleEJS({ dir, buildEvents, pageMappingData, debug }) {
+module.exports = async function bundleEJS({ dir, buildEvents, pageMappingData, debug, BUILD_EVENTS }) {
   const siteData = require(`${dir.build}site-data`)(dir);
   const timestamp = require(`${dir.build}timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
   const production = require(`${dir.build}production`);
 
-  console.log(`${timestamp.stamp()} bundleEJS()`);
+  log(`${timestamp.stamp()} bundleEJS()`);
 
   let processed = 0;
 
   for (let index = 0; index < templateGlob.length; index++) {
     const templatePath = templateGlob[index];
-    if (debug) console.log(`${timestamp.stamp()} ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
+    if (debug) log(`${timestamp.stamp()} ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
     const ejsFunctions = require(`${dir.build}ejs-functions`)(dir, pageMappingData);
     const ejsOptions = {
       compileDebug: true,
@@ -149,12 +151,12 @@ module.exports = async function bundleEJS({ dir, buildEvents, pageMappingData, d
       fs.writeFile(outputPath, html, (e) => {
         if (e) throw e;
 
-        if (debug) console.log(`${timestamp.stamp()} ${'SUCCESS'.bold.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
+        if (debug) log(`${timestamp.stamp()} ${'SUCCESS'.bold.green} - Compiled Template - ${outputPath.split(/package/)[1]}`);
         processed++;
 
         if (processed >= templateGlob.length) {
-          console.log(`${timestamp.stamp()} bundleEJS(): ${'DONE'.bold.green}`);
-          buildEvents.emit('templates-moved');
+          log(`${timestamp.stamp()} bundleEJS(): ${'DONE'.bold.green}`);
+          buildEvents.emit(BUILD_EVENTS.templatesMoved);
         }
       });
     });
