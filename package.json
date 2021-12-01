@@ -27,6 +27,7 @@
   "author": "Brian Anders",
   "license": "MIT",
   "devDependencies": {
+    "broken-link-checker": "^0.7.8",
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -41,12 +42,10 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
-    "aws-sdk": "^2.1039.0",
+    "aws-sdk": "^2.1040.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
-    "caniuse-lite": "^1.0.30001283",
     "chokidar": "^3.5.2",
-    "clean-array": "^1.0.0",
     "clean-css": "^5.2.2",
     "colors": "^1.4.0",
     "copy": "^0.3.2",
@@ -55,26 +54,24 @@
     "express": "^4.17.1",
     "express-static": "^1.2.6",
     "fs-extra": "^10.0.0",
-    "graceful-fs": "^4.2.8",
     "gray-matter": "^4.0.3",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
+    "gulp-rename": "^2.0.0",
     "handlebars": "^4.7.7",
     "highlight.js": "^11.3.1",
     "html-minifier": "^4.0.0",
-    "image-optimizer": "^0.4.0-pre2",
     "merge": "^2.1.1",
     "node-notifier": "^10.0.0",
     "node-sass": "^6.0.1",
-    "simple-fmt": "^0.1.0",
-    "uglify-js": "^3.14.3",
+    "uglify-js": "^3.14.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0",
     "xxhash": "^0.3.0"
   },
   "engines": {
-    "node": "12.22.7",
-    "npm": "6.10.3"
+    "node": "17.2.0",
+    "npm": "8.1.4"
   }
 }

@@ -1,9 +1,11 @@
 const fs = require('fs-extra');
 const copy = require('copy');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 const { log } = console;
 
-module.exports = function moveImages({ dir, completionFlags, buildEvents, BUILD_EVENTS }) {
+module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   completionFlags.IMAGES_ARE_MOVED = false;
 
   const timestamp = require(`${dir.build}timestamp`);
