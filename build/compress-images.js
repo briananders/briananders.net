@@ -1,6 +1,8 @@
 const { log } = console;
 
-module.exports = function compressImages({ dir, completionFlags, buildEvents, BUILD_EVENTS }) {
+const BUILD_EVENTS = require(`./constants/build-events`);
+
+module.exports = function compressImages({ dir, completionFlags, buildEvents }) {
   const timestamp = require(`${dir.build}timestamp`);
 
   log(`${timestamp.stamp()} ${'TODO'.red.bold} compressImages()`);

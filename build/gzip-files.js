@@ -2,9 +2,11 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const zlib = require('zlib');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 const { log } = console;
 
-module.exports = function gzipFiles({ dir, completionFlags, buildEvents, debug, BUILD_EVENTS }) {
+module.exports = function gzipFiles({ dir, completionFlags, buildEvents, debug }) {
   completionFlags.GZIP = false;
 
   const timestamp = require(`${dir.build}timestamp`);
