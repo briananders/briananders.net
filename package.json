@@ -41,7 +41,7 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
-    "aws-sdk": "^2.1039.0",
+    "aws-sdk": "^2.1040.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "caniuse-lite": "^1.0.30001283",
@@ -67,14 +67,14 @@
     "node-notifier": "^10.0.0",
     "node-sass": "^6.0.1",
     "simple-fmt": "^0.1.0",
-    "uglify-js": "^3.14.3",
+    "uglify-js": "^3.14.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0",
     "xxhash": "^0.3.0"
   },
   "engines": {
-    "node": "12.22.7",
+    "node": "17.2.0",
     "npm": "6.10.3"
   }
 }
