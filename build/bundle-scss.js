@@ -6,9 +6,11 @@ const mkdirp = require('mkdirp');
 const CleanCSS = require('clean-css');
 const notifier = require('node-notifier');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 const { log } = console;
 
-module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug, BUILD_EVENTS }) {
+module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug }) {
   completionFlags.CSS_IS_MINIFIED = false;
 
   const timestamp = require(`${dir.build}timestamp`);

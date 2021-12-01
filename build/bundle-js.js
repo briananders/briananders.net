@@ -8,9 +8,11 @@ const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
 const babelify = require('babelify');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 const { log } = console;
 
-module.exports = function bundleJS({ dir, buildEvents, debug, BUILD_EVENTS }) {
+module.exports = function bundleJS({ dir, buildEvents, debug }) {
   const timestamp = require(`${dir.build}timestamp`);
   const production = require(`${dir.build}production`);
 

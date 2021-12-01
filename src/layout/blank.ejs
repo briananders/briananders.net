@@ -23,7 +23,7 @@
       ];
       var palletteIndex = Math.floor(Math.random() * pallettes.length);
       var pallette = pallettes[palletteIndex];
-      var palletteRegex = new RegExp('pallette=([a-zA-Z\-]+)&?');
+      var palletteRegex = new RegExp('pallette=([a-zA-Z-]+)&?');
       var urlParams = new URLSearchParams(window.location.search);
 
       if (urlParams.has('pallette')) {
