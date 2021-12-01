@@ -1,64 +1,104 @@
 const chokidar = require('chokidar');
 
-const assetHashing = require('./asset-hashing');
-const bundleEJS = require('./bundle-ejs');
+const { log } = console;
+
+const timestamp = require(`./timestamp`);
+const BUILD_EVENTS = require('./constants/build-events');
 const bundleJS = require('./bundle-js');
 const bundleSCSS = require('./bundle-scss');
-const checkDone = require('./check-done');
-const clean = require('./clean');
 const compilePageMappingData = require('./page-mapping-data');
-const compressImages = require('./compress-images');
-const finishHashing = require('./finish-hashing');
-const gzipFiles = require('./gzip-files');
-const hashCSS = require('./hash-css');
-const minifyHTML = require('./minify-html');
-const minifyJS = require('./minify-js');
 const moveImages = require('./move-images');
-const sitemap = require('./sitemap');
-const updateCSSwithImageHashes = require('./update-css-with-image-hashes');
+
+function watchForPreviewReady({ buildEvents, completionFlags }) {
+  const eventsToWatch = {
+    jsMoved: false,
+    templatesMoved: false,
+    stylesMoved: false,
+    imagesMoved: false,
+  };
+
+  function check() {
+    if(Object.keys(eventsToWatch).map(key => eventsToWatch[key]).filter(value => !value).length === 0) {
+      completionFlags.PREVIEW_READY = true;
+      buildEvents.emit(BUILD_EVENTS.previewReady);
+    }
+  }
+
+  buildEvents.on(BUILD_EVENTS.jsMoved, () => {
+    eventsToWatch.jsMoved = true;
+    check();
+  })
+  buildEvents.on(BUILD_EVENTS.templatesMoved, () => {
+    eventsToWatch.templatesMoved = true;
+    check();
+  })
+  buildEvents.on(BUILD_EVENTS.stylesMoved, () => {
+    eventsToWatch.stylesMoved = true;
+    check();
+  })
+  buildEvents.on(BUILD_EVENTS.imagesMoved, () => {
+    eventsToWatch.imagesMoved = true;
+    check();
+  })
+}
 
 module.exports = (configs) => {
   const { dir } = configs;
 
-  chokidar.watch(`${dir.src}js/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: JavaScript: ${path}`.yellow);
-      bundleJS(configs);
-    });
+  watchForPreviewReady(configs);
 
-  chokidar.watch(`${dir.src}styles/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: SCSS: ${path}`.yellow);
-      bundleSCSS(configs);
-    });
+  function update(path) {
+    if (path.includes('.DS_Store')) return;
+    log(`${timestamp.stamp()} ${`File modified: ${path}`.yellow}`);
 
-  chokidar.watch(`${dir.src}templates/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: Template: ${path}`.yellow);
-      compilePageMappingData(configs);
-    });
+    switch (true) {
+      case path.includes('.DS_Store'):
+        break;
+      case path.includes(`${dir.src}js/`):
+        bundleJS(configs);
+        break;
+      case path.includes(`${dir.src}styles/`):
+        bundleSCSS(configs);
+        break;
+      case path.includes(`${dir.src}templates/`):
+      case path.includes(`${dir.src}partials/`):
+      case path.includes(`${dir.src}layout/`):
+        compilePageMappingData(configs);
+        break;
+      case path.includes(`${dir.src}images/`):
+        moveImages(configs);
+        break;
+    }
+  }
 
-  chokidar.watch(`${dir.src}partials/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: Partial: ${path}`.yellow);
-      compilePageMappingData(configs);
-    });
+  function buildChanged(path) {
+    if (path.includes('.DS_Store')) return;
+    log(`${timestamp.stamp()} ${`Build file modified: ${path}`.bold.red}`);
+    process.exit();
+  }
 
-  chokidar.watch(`${dir.src}layout/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: Layout: ${path}`.yellow);
-      compilePageMappingData(configs);
-    });
+  const buildDirWatcher = chokidar.watch(dir.build);
+  const indexWatcher = chokidar.watch(`${dir.root}index.js`);
+  const sourceWatcher = chokidar.watch(dir.src);
 
-  chokidar.watch(`${dir.src}images/`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} File modified: image: ${path}`.yellow);
-      moveImages(configs);
-    });
+  buildDirWatcher.on('ready', () => {
+    buildDirWatcher
+      .on('change', buildChanged)
+      .on('add', buildChanged)
+      .on('unlink', buildChanged)
+      .on('addDir', buildChanged)
+      .on('unlinkDir', buildChanged);
+  });
 
-  chokidar.watch(`${dir.build}`)
-    .on('change', (path) => {
-      log(`${timestamp.stamp()} Build file modified: ${path}\n\nRestart the server`.red);
-      process.exit();
-    });
+  indexWatcher.on('change', buildChanged)
+
+  sourceWatcher.on('ready', () => {
+    sourceWatcher
+      .on('change', update)
+      .on('add', update)
+      .on('unlink', update)
+      .on('addDir', update)
+      .on('unlinkDir', update);
+  });
+
 };

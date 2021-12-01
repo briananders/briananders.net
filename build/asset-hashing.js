@@ -2,9 +2,11 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 const { log } = console;
 
-module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug, BUILD_EVENTS }) {
+module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
   completionFlags.ASSET_HASH.IMAGES = false;
   completionFlags.ASSET_HASH.JS = false;
 

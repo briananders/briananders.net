@@ -1,22 +1,17 @@
 const assetHashing = require('./asset-hashing');
-const bundleEJS = require('./bundle-ejs');
-const bundleJS = require('./bundle-js');
-const bundleSCSS = require('./bundle-scss');
 const checkDone = require('./check-done');
-const clean = require('./clean');
-const compilePageMappingData = require('./page-mapping-data');
 const compressImages = require('./compress-images');
 const finishHashing = require('./finish-hashing');
 const gzipFiles = require('./gzip-files');
 const hashCSS = require('./hash-css');
 const minifyHTML = require('./minify-html');
 const minifyJS = require('./minify-js');
-const moveImages = require('./move-images');
-const sitemap = require('./sitemap');
 const updateCSSwithImageHashes = require('./update-css-with-image-hashes');
 
+const BUILD_EVENTS = require(`./constants/build-events`);
+
 module.exports = (configs) => {
-  const { buildEvents, BUILD_EVENTS } = configs;
+  const { buildEvents } = configs;
 
   buildEvents.on(BUILD_EVENTS.assetHashCssListed, finishHashing.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.assetHashImagesListed, () => {
