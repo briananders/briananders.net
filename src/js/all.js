@@ -1,7 +1,7 @@
-const analytics = require('./_modules/analytics.js');
-const lazyLoader = require('./_modules/lazy-loader.js');
-const queryParameters = require('./_modules/queryParameters.js');
-const parameters = queryParameters();
+const analytics = require('./_modules/analytics');
+const lazyLoader = require('./_modules/lazy-loader');
+// const queryParameters = require('./_modules/queryParameters');
+// const parameters = queryParameters();
 
 (function all() {
   function setupNavEvents() {
@@ -37,8 +37,8 @@ const parameters = queryParameters();
     const skipNavContainer = document.getElementById('skip-nav');
     const skipNavButton = skipNavContainer.querySelector('button');
     const nonNavContainerSelectors = ['main', 'footer'];
-    const interactableElements = ['a', 'input', 'button', 'textarea', 'select'];
-    const querySelectors = nonNavContainerSelectors.map((container) => interactableElements.map((input) => `${container} ${input}`));
+    const interactiveElements = ['a', 'input', 'button', 'textarea', 'select'];
+    const querySelectors = nonNavContainerSelectors.map((container) => interactiveElements.map((input) => `${container} ${input}`));
 
     skipNavButton.addEventListener('focus', () => {
       skipNavContainer.dataset.state = 'active';
