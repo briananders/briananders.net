@@ -24,7 +24,7 @@ HTML_CLASS=$(echo "$PAGE_NAME" | sed "s+/+ +g")
 
 make_scss_file()
 {
-echo "@import \"lib/base-styles\";
+echo "@import \"system/utilities\";
 
 .$SCSS_CLASS {
 
@@ -35,11 +35,9 @@ echo "created $STYLES_LOCATION"
 
 make_js_file()
 {
-echo "module.exports = {
-  init() {
+echo "(function init() {
 
-  },
-};" >> $SCRIPTS_LOCATION
+}());" >> $SCRIPTS_LOCATION
 echo "created $SCRIPTS_LOCATION"
 }
 
@@ -57,6 +55,8 @@ layout: base
 styles:
   - 'main'
   - '$PAGE_NAME'
+scripts:
+  - '$PAGE_NAME'
 ---
 " >> $EJS_LOCATION
 echo "created $EJS_LOCATION"
@@ -69,4 +69,4 @@ make_scss_file &
 make_ejs_file &
 wait
 
-echo "DONE: Update your routes.js"
+echo "DONE"
