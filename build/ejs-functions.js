@@ -2,6 +2,8 @@ const ejs = require('ejs');
 const fs = require('fs');
 const hljs = require('highlight.js');
 const merge = require('merge');
+const sizeOf = require('image-size');
+const path = require('path');
 
 function squeakyClean(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -13,8 +15,8 @@ function squeakyClean(arr) {
 }
 
 module.exports = (dir, pageMappingData) => ({
-  partial(path, data) {
-    const newPath = `${dir.src}partials/${path}.ejs`;
+  partial(partialPath, data) {
+    const newPath = `${dir.src}partials/${partialPath}.ejs`;
 
     return ejs.render(fs.readFileSync(newPath).toString(), data, {
       compileDebug: true,
@@ -70,6 +72,14 @@ module.exports = (dir, pageMappingData) => ({
     return `
       <div class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></div>
     `;
+  },
+
+  lazyImage(locals) {
+    if (!locals.src) {
+      throw new Error('lazyImage is missing src attribute');
+    }
+    const dimensions = sizeOf(path.join(dir.src, locals.src));
+    return `<img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="${locals.src}" alt="${locals.alt || ''}" height="${dimensions.height}" width="${dimensions.width}" style="--aspect-ratio: ${(dimensions.width / dimensions.height) * 100}%;" ${locals.class ? `class="${locals.class}"` : ''}/>`;
   },
 
   link(str, locals) {

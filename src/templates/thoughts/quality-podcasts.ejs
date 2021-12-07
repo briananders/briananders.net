@@ -92,7 +92,7 @@ styles:
   %>
     <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>">
       <header>
-        <img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="<%- podcast.imgUrl %>" alt="<%- podcast.name %>" class="podcast-cover"/>
+        <%- lazyImage({ src: podcast.imgUrl, alt: podcast.name, class: 'podcast-cover' }) %>
         <h2><%- podcast.name %></h2>
       </header>
       <p>
