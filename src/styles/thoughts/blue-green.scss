@@ -11,7 +11,7 @@
 }
 
 row {
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 1fr 120px;
   display: grid;
   text-align: center;
 
@@ -26,7 +26,7 @@ row {
   display: grid;
   gap: $s2;
   justify-content: center;
-  grid-template-columns: 1fr 100px 100px 1fr;
+  grid-template-columns: 1fr 120px 120px 1fr;
 
   @include paragraph-margin;
 
@@ -46,7 +46,7 @@ row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto $s4;
-    gap: $s1;
+    gap: $s2;
 
     * {
       padding: 0 $s1;
@@ -55,5 +55,10 @@ row {
     :nth-child(odd) {
       text-align: right;
     }
+  }
+
+  button {
+    display: block;
+    margin: $s2 auto 0;
   }
 }
