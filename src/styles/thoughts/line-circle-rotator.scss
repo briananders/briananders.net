@@ -59,7 +59,7 @@
 
       animation-name: back-and-forth;
       animation-iteration-count: infinite;
-      animation-timing-function: linear;
+      animation-timing-function: cubic-bezier(0.44, 0.4, 0.6, 1);
       animation-duration: 4000ms;
       animation-delay: 0ms;
     }
