@@ -17,10 +17,10 @@ const itemApi = require('../_modules/last-fm/item-api');
     scope: '.last-fm-module[data-type=albums]',
     customSerialize(data) {
       data.topalbums.album.forEach((item) => {
-        item.imageSrc = '/images/thoughts/last-fm/default.png';
+        item.imageSrc = data.defaultImage;
         const mediumImageArray = item.image.filter((image) => image.size === 'large');
-        if (mediumImageArray.length) {
-          item.imageSrc = mediumImageArray[0]['#text'] || '/images/thoughts/last-fm/default.png';
+        if (mediumImageArray.length && mediumImageArray[0]['#text'].length) {
+          item.imageSrc = mediumImageArray[0]['#text'];
         }
       });
 
