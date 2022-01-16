@@ -17,16 +17,24 @@
 	@return css-function( max, $values );
 }
 
+$circle-diameter: css-min(0.75vh, 0.75vw);
+
 @keyframes back-and-forth {
   0% {
     left: 0%;
   }
   50% {
-    left: 100%;
+    left: calc(100% - #{$circle-diameter});
   }
   100% {
     left: 0%;
   }
+}
+
+select {
+  display: block;
+  margin: auto;
+  @include paragraph-margin;
 }
 
 .circle {
@@ -35,7 +43,19 @@
   margin: auto;
   position: relative;
 
+  line {
+    background: $color--grey-100;
+    @include dark-mode {
+      background: $color--grey-800;
+    }
+    z-index: 0;
+  }
+
   span {
+    z-index: 2;
+  }
+
+  span, line {
     overflow: hidden;
     position: absolute;
     top: 50%;
@@ -43,12 +63,15 @@
     transform: translate(-50%, -50%);
     width: 100%;
     transform-origin: center center;
-    height: $s1;
+    height: $circle-diameter;
+    border-radius: $circle-diameter / 2;
+  }
 
+  span {
     &:after {
       content: '';
-      width: $s1;
-      height: $s1;
+      width: $circle-diameter;
+      height: $circle-diameter;
       display: block;
       border-radius: 100%;
       background-color: red;
@@ -56,61 +79,13 @@
       top: 50%;
       transform: translateY(-50%);
       left: 0%;
+      z-index: 2;
 
       animation-name: back-and-forth;
       animation-iteration-count: infinite;
-      animation-timing-function: cubic-bezier(0.44, 0.4, 0.6, 1);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
       animation-duration: 4000ms;
-      animation-delay: 0ms;
-    }
-
-    &:nth-child(2) {
-      transform: translate(-50%, -50%) rotate(90deg);
-      &:after {
-        animation-delay: 1000ms;
-      }
-    }
-
-    &:nth-child(3) {
-      transform: translate(-50%, -50%) rotate(45deg);
-      &:after {
-        animation-delay: 500ms;
-      }
-    }
-
-    &:nth-child(4) {
-      transform: translate(-50%, -50%) rotate(-45deg);
-      &:after {
-        animation-delay: 3500ms;
-      }
-    }
-
-    &:nth-child(5) {
-      transform: translate(-50%, -50%) rotate(-22.5deg);
-      &:after {
-        animation-delay: 3750ms;
-      }
-    }
-
-    &:nth-child(6) {
-      transform: translate(-50%, -50%) rotate(22.5deg);
-      &:after {
-        animation-delay: 250ms;
-      }
-    }
-
-    &:nth-child(7) {
-      transform: translate(-50%, -50%) rotate(67.5deg);
-      &:after {
-        animation-delay: 750ms;
-      }
-    }
-
-    &:nth-child(8) {
-      transform: translate(-50%, -50%) rotate(-67.5deg);
-      &:after {
-        animation-delay: 3250ms;
-      }
+      animation-delay: var(--animation-delay, 0ms);
     }
   }
 }
