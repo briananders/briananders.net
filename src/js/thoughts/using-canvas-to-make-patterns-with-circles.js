@@ -243,6 +243,14 @@ const { isDarkMode } = require('../_modules/dark-mode');
     const orientationEvent = supportsOrientationChange ? 'orientationchange' : 'resize';
 
     window.addEventListener(orientationEvent, erase, false);
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        clear();
+      } else if (evt.key === ' ') {
+        evt.preventDefault();
+        pauseUnpause();
+      }
+    });
 
     alphaBorder.addEventListener('change', updateAlphaBorder, false);
     alphaFill.addEventListener('change', updateAlphaFill, false);

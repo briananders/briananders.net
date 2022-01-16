@@ -45,8 +45,8 @@ echo "created $SCRIPTS_LOCATION"
 
 make_ejs_file() {
 echo "---
-title: ''
-description: ''
+title: /"/"
+description: /"/"
 date: $NOW
 priority: 0.8
 pageClasses:

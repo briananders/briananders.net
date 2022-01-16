@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage" class="<%- locals.sitePallette %>">
 <head>
+  <% if (!locals.sitePallette) { %>
   <script>
     function setSitePallette() {
       var pallettes = [
@@ -23,7 +24,6 @@
       ];
       var palletteIndex = Math.floor(Math.random() * pallettes.length);
       var pallette = pallettes[palletteIndex];
-      var palletteRegex = new RegExp('pallette=([a-zA-Z-]+)&?');
       var urlParams = new URLSearchParams(window.location.search);
 
       if (urlParams.has('pallette')) {
@@ -34,6 +34,7 @@
     }
     setSitePallette();
   </script>
+  <% } %>
   <%- partial('meta', locals); %>
   <script>
     window.onerror = function (msg, url, lineNo, columnNo, error) {

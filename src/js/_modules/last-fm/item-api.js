@@ -39,11 +39,12 @@ module.exports = {
     }
 
     function serialize(data) {
+      data.defaultImage = containerElement.getAttribute('src');
       const items = opts.customSerialize(data);
       const maxPlayCount = Math.max(...items.map((item) => Number(item.playcount)));
       items.forEach((item) => {
         const playCount = Number(item.playcount);
-        item.percent = playCount / maxPlayCount * 100;
+        item.percent = (playCount / maxPlayCount) * 100;
       });
       const shortenedItem = items.filter((item, index) => index < opts.count);
       return shortenedItem;
@@ -91,7 +92,6 @@ module.exports = {
         });
       }
     }
-
 
     watchPeriod();
     getData();
