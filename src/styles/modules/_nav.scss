@@ -78,13 +78,19 @@ nav.main {
   }
 
 
-  a {
+  .link {
     @include font-size;
     font-family: $sans-serif;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
 
-    + a {
+    + .link {
       margin-left: $s4;
     }
+
+    &::before {
+      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
+    }
+
     &.brand {
       @include font-size(7);
       margin: 0;
