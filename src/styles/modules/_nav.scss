@@ -8,7 +8,7 @@ nav.main {
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 
   &.shadow,
-  .mobile-nav-tray {
+  #nav-tray {
     box-shadow: 0 0 $s2 $pallette--primary-text-color;
   }
 
@@ -25,10 +25,17 @@ nav.main {
     justify-content: space-between;
     min-height: $s11;
     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-  }
 
-  .desktop-nav-links {
-    display: none;
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      top: 0;
+      bottom: 0;
+      left: 100%;
+      width: 100vw;
+    }
   }
   .menu {
     display: block;
@@ -53,28 +60,54 @@ nav.main {
     }
   }
 
-  .mobile-nav-tray {
+  #nav-tray {
     z-index: -1;
     position: absolute;
-    top: -100%;
-    transition-property: top;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: $s10;
+    top: calc(100% + 12px);
+    transform-origin: calc(100% - #{$s2 + 20px}) -$s2;
+    transform: rotate(-180deg);
+    display: grid;
+    right: $s2;
+    transition-property: transform;
     transition-duration: $transition-speed;
     transition-timing-function: ease;
     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-  }
-  .mobile-nav-tray[aria-hidden="false"] {
-    top: 100%;
+    box-shadow: 0 0 0 1px $color--white;
+
+    &.slide-down {
+      transform: rotate(0deg);
+    }
+
+    @include mq($medium) {
+      right: $s5;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -$s4;
+      right: 20px;
+      width: $s4;
+      height: $s4;
+      border-style: solid;
+      border-width: $s2;
+      border-radius: 0;
+      border-color: transparent;
+      border-bottom-color: $color--white;
+    }
   }
 
   .nav-link {
-    background: transparent;
-    padding: 0;
+    background-color: transparent;
+    padding: 4px 8px;
+
+    &:hover {
+      box-shadow: inset 0 0 0 2px $color--white;
+    }
+
+    &:focus {
+      background-color: rgba($pallette--primary-text-color, 0.6);
+    }
   }
 
 
@@ -82,10 +115,6 @@ nav.main {
     @include font-size;
     font-family: $sans-serif;
     color: var(--primary-color-text, #{$pallette--primary-color-text});
-
-    + .link {
-      margin-left: $s4;
-    }
 
     &::before {
       background-color: var(--primary-color-text, #{$pallette--primary-color-text});
@@ -98,27 +127,13 @@ nav.main {
       background: transparent;
       padding: 0;
 
-      @include mq-max(375px) {
+      &:focus {
+        background-color: rgba($pallette--primary-text-color, 0.6);
+      }
+
+      @include mq-max(340px) {
         @include font-size(6);
       }
-    }
-  }
-
-
-
-
-  @include mq($medium) {
-
-    .desktop-nav-links {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      float: right;
-    }
-
-    .menu,
-    .mobile-nav-tray {
-      display: none;
     }
   }
 }
