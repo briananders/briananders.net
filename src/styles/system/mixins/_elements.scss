@@ -32,74 +32,63 @@
   min-width: $s10;
 }
 
+@mixin link-focus {
+  transition-property: color, background-color;
+
+  &:focus {
+    color: $color--white;
+    background-color: $color--grey-800 !important;
+  }
+}
+
+@mixin link-hover {
+  transition-property: color, background-color;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: $border-radius;
+    left: -$s1;
+    top: -$s1;
+    width: calc(100% + #{$s2});
+    height: calc(100% + #{$s2});
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: $transition-speed;
+
+    box-shadow: 0 0 0 2px var(--primary-text-color, #{$pallette--primary-text-color});
+
+    @include dark-mode {
+      box-shadow: 0 0 0 2px var(--primary-color-text, #{$pallette--primary-color-text});
+    }
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
 @mixin inline-link {
   padding: 0 $s1;
   display: inline-block;
   text-decoration: none;
-  transition-property: color, background-color;
   @include pallette--primary;
-
-  &:hover,
-  &:focus,
-  &:active {
-    @include pallette--primary--active;
-  }
 }
 
 @mixin block-link {
   padding: 0 $s1;
   display: inline-block;
-  position: relative;
   text-decoration: none;
-  transition-property: color, background-color;
   @include pallette--base;
 
-  &::before {
-    position: absolute;
-    bottom: 0;
-    height: 1px;
-    content: "";
-    left: 51%;
-    right: 51%;
-    transition-property: left, right;
-    background-color: var(--primary-text-color, #{$pallette--primary-text-color});
+  &:focus {
+    background-color: $color--grey-200 !important;
 
     @include dark-mode {
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
+      background-color: $color--grey-800 !important;
     }
   }
-
-  &:hover,
-  &:focus,
-  &:active {
-    &::before {
-      left: 0;
-      right: 0;
-      transition-duration: $transition-speed;
-      transition-timing-function: ease;
-    }
-  }
-}
-
-@mixin link-image-setup {
-  img {
-    @include link-image;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    img {
-      @include link-image-active;
-    }
-  }
-}
-
-@mixin link-image {
-}
-
-@mixin link-image-active {
-  @include hue-rotate;
 }
 
 @mixin interactive {
@@ -108,6 +97,8 @@
   @include interactive-outline;
   transition-duration: $transition-speed;
   transition-timing-function: ease;
+  @include link-hover;
+  @include link-focus;
 }
 
 @mixin interactive-outline {
@@ -133,12 +124,6 @@
 
   @include dark-mode {
     background-color: transparent;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
   }
 
   &::before {
@@ -208,7 +193,7 @@
 }
 
 @mixin list {
-  overflow: hidden;
+  // overflow: hidden;
   padding-left: $s6;
   margin-bottom: $s6;
   display: block;

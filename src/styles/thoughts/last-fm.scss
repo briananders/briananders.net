@@ -16,17 +16,11 @@
       grid-template-columns: 1fr 100px;
     }
 
-    &:focus,
-    &:hover {
-      bar {
-        background-color: var(--primary-color, #{$pallette--primary-color});
-      }
+    @include link-hover;
+    @include link-focus;
 
-      color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-
-      @include dark-mode {
-        color: var(--primary-color-light, #{$pallette--primary-color-light});
-      }
+    &:hover img {
+      transform: scale(1.12);
     }
 
     .name {
@@ -52,6 +46,8 @@
     img {
       width: 100px;
       height: 100px;
+      transform: scale(1);
+      transition: transform $transition-speed ease;
     }
   }
 
