@@ -56,6 +56,7 @@
     opacity: 0;
     transition-property: opacity;
     transition-duration: $transition-speed;
+    z-index: 1000;
 
     box-shadow: 0 0 0 2px var(--primary-text-color, #{$pallette--primary-text-color});
 
@@ -180,9 +181,15 @@
     color: $pallette--primary-color-text;
   }
 
-  &::after,
-  &::before {
-    content: '"';
+  p {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &::after,
+    &::before {
+      content: '"';
+    }
   }
 }
 
@@ -193,17 +200,11 @@
 }
 
 @mixin list {
-  // overflow: hidden;
-  padding-left: $s6;
-  margin-bottom: $s6;
-  display: block;
+  @include paragraph;
 }
 
 @mixin list-item {
   margin-bottom: $s3;
-  float: left;
-  clear: both;
-
   &:last-of-type {
     margin-bottom: 0;
   }

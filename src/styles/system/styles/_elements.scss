@@ -5,7 +5,6 @@ i {
 }
 
 main {
-  // overflow: hidden;
   @include margin-center;
 }
 
@@ -97,6 +96,14 @@ select {
   background-color: $color--grey-50;
 
   @include button-select;
+
+  &:hover {
+    box-shadow: 0 0 0 #{$s1} $color--white, 0 0 0 #{$s1 + 2px} $pallette--primary-text-color;
+
+    @include dark-mode {
+      box-shadow: 0 0 0 #{$s1} $pallette--primary-text-color, 0 0 0 #{$s1 + 2px} $color--white;
+    }
+  }
 }
 
 date {
@@ -114,11 +121,19 @@ select {
   @include button-select;
 }
 
-list {
+list,
+ul,
+ol {
   @include list;
 }
 
-item {
+ol:not(.default) {
+  list-style: decimal;
+  padding-left: $s4;
+}
+
+item,
+li {
   @include list-item;
 }
 

@@ -95,6 +95,17 @@ const lazyLoader = require('./_modules/lazy-loader');
     window.addEventListener('orientationchange', calculateMinHeight);
   }
 
+  function preventFormSubmit() {
+    const formElements = document.querySelectorAll('form');
+    formElements.forEach((element) => {
+      element.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter') evt.preventDefault();
+      });
+    });
+  }
+
+  preventFormSubmit();
+
   setupNavEvents(analytics);
 
   testForTouch();
