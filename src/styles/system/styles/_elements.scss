@@ -93,15 +93,15 @@ strong {
 select {
   appearance: menulist;
   border-radius: $border-radius;
-  background-color: $color--grey-50;
+  background-color: var(--color-grey, #{$color--grey-50});
 
   @include button-select;
 
   &:hover {
-    box-shadow: 0 0 0 #{$s1} $color--white, 0 0 0 #{$s1 + 2px} $pallette--primary-text-color;
+    box-shadow: 0 0 0 #{$s1} var(--color-white, #{$color--white}), 0 0 0 #{$s1 + 2px} var(--primary-text-color, #{$pallette--primary-text-color});
 
     @include dark-mode {
-      box-shadow: 0 0 0 #{$s1} $pallette--primary-text-color, 0 0 0 #{$s1 + 2px} $color--white;
+      box-shadow: 0 0 0 #{$s1} var(--primary-text-color, #{$pallette--primary-text-color}), 0 0 0 #{$s1 + 2px} var(--color-white, #{$color--white});
     }
   }
 }

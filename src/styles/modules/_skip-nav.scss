@@ -12,8 +12,8 @@
   @include pallette--base;
 
   @include dark-mode {
-    background-color: $pallette--primary-text-color;
-    color: $pallette--primary-color-text;
+    background-color: var(--primary-text-color, #{$pallette--primary-text-color});
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
   }
 
   &[data-state=inactive] {

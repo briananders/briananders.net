@@ -9,7 +9,7 @@ nav.main {
 
   &.shadow,
   #nav-tray {
-    box-shadow: 0 0 $s2 $pallette--primary-text-color;
+    box-shadow: 0 0 $s2 var(--primary-text-color, #{$pallette--primary-text-color});
   }
 
   a,
@@ -40,10 +40,10 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    color: $pallette--primary-color-text;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
     font-weight: $regular;
     padding: 4px 8px;
-    box-shadow: 0 0 0 1px $color--white;
+    box-shadow: 0 0 0 1px var(--color-white, #{$color--white});
     border-color: transparent;
 
     &::before {
@@ -63,7 +63,7 @@ nav.main {
     transition-duration: $transition-speed;
     transition-timing-function: ease;
     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-    box-shadow: 0 0 0 1px $color--white;
+    box-shadow: 0 0 0 1px var(--color-white, #{$color--white});
 
     &.slide-down {
       transform: rotate(0deg);
@@ -85,7 +85,7 @@ nav.main {
       border-width: $s2;
       border-radius: 0;
       border-color: transparent;
-      border-bottom-color: $color--white;
+      border-bottom-color: var(--color-white, #{$color--white});
     }
     &::after {
       border-bottom-color: var(--primary-color-dark, #{$pallette--primary-color-dark});

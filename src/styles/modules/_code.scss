@@ -11,12 +11,12 @@ code {
   display: inline-block;
   overflow-x: auto;
   max-width: 100%;
-  color: $pallette--primary-text-color;
+  color: var(--primary-text-color, #{$pallette--primary-text-color});
   text-align: left;
   margin: auto;
 
   @include dark-mode {
-    color: $pallette--primary-color-text;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
   }
 }
 
@@ -62,14 +62,14 @@ code {
 var {
   font-family: courier;
   display: inline-block;
-  border: 1px solid $pallette--divider-color;
+  border: 1px solid var(--divider-color, #{$pallette--divider-color});
   border-radius: 4px;
   padding: 0 0.5rem;
   background-color: var(--primary-color-light, #{$pallette--primary-color-light});
-  color: $pallette--primary-text-color;
+  color: var(--primary-text-color, #{$pallette--primary-text-color});
 
   @include dark-mode {
     background-color: transparent;
-    color: $pallette--primary-color-text;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
   }
 }

@@ -1,0 +1,91 @@
+$blindfold_value: black !important;
+$unset_value: unset !important;
+
+#blindfold-instructions {
+  text-align: center;
+  display: block;
+  visibility: visible;
+
+  &,
+  & * {
+    background: black;
+    color: white;
+    opacity: 1;
+  }
+}
+
+html.blindfold-mode {
+  --primary-color-dark: black;
+  --primary-color-light: black;
+  --accent-color: black;
+  --primary-color: black;
+  --primary-color-text: black;
+  --primary-text-color: black;
+  --secondary-text-color: black;
+  --divider-color: black;
+  --color-white: black;
+  --color-grey-900: black;
+  --color-grey-800: black;
+  --color-grey-700: black;
+  --color-grey-200: black;
+  --color-grey-100: black;
+  --color-grey-50: black;
+
+  pointer-events: none;
+
+  .code-container {
+    &::before,
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  select {
+    opacity: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li {
+    @include pallette--base-text;
+  }
+
+  code,
+  [lazy],
+  img,
+  iframe,
+  video {
+    opacity: 0;
+
+    &:focus,
+    &:focus-within {
+      opacity: 1;
+    }
+  }
+
+  [tabindex="0"],
+  *:focus {
+    --primary-color: #{$pallette--primary-color};
+    --primary-color-text: #{$pallette--primary-color-text};
+    --primary-text-color: #{$pallette--primary-text-color};
+    --primary-color-dark: #{$color--green-800};
+    --primary-color: #{$color--green-600};
+    --primary-color-light: #{$color--green-100};
+    --accent-color: #{$color--red-a200};
+    --color-white: #{$color--white};
+    opacity: 1;
+
+    code,
+    [lazy],
+    img,
+    iframe,
+    video {
+      opacity: 1;
+    }
+  }
+}

@@ -44,9 +44,9 @@ select {
   position: relative;
 
   line {
-    background-color: $color--grey-100;
+    background-color: var(--color-grey-100, #{$color--grey-100});
     @include dark-mode {
-      background-color: $color--grey-800;
+      background-color: var(--color-grey-800, #{$color--grey-800});
     }
     z-index: 0;
   }

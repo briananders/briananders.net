@@ -9,7 +9,7 @@ header.main-header {
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
   margin-bottom: $s6;
   padding: $s1 0;
-  color: $pallette--primary-color-text;
+  color: var(--primary-color-text, #{$pallette--primary-color-text});
 
   .name {
     @include font-size(7);

@@ -1,6 +1,18 @@
 @import "../variables/all";
 
 @mixin html {
+  --primary-color-text: #{$pallette--primary-color-text};
+  --primary-text-color: #{$pallette--primary-text-color};
+  --secondary-text-color: #{$pallette--secondary-text-color};
+  --divider-color: #{$pallette--divider-color};
+  --color-white: #{$color--white};
+  --color-grey-900: #{$color--grey-900};
+  --color-grey-800: #{$color--grey-800};
+  --color-grey-700: #{$color--grey-700};
+  --color-grey-200: #{$color--grey-200};
+  --color-grey-100: #{$color--grey-100};
+  --color-grey-50: #{$color--grey-50};
+
   min-height: 100%;
   font-size: 62.5%;
   position: relative;
@@ -36,8 +48,8 @@
   transition-property: color, background-color;
 
   &:focus {
-    color: $color--white;
-    background-color: $color--grey-800 !important;
+    color: var(--color-white, #{$color--white});
+    background-color: var(--color-grey-800, #{$color--grey-800}) !important;
   }
 }
 
@@ -75,6 +87,7 @@
   display: inline-block;
   text-decoration: none;
   @include pallette--primary;
+  font-family: inherit;
 }
 
 @mixin block-link {
@@ -84,10 +97,10 @@
   @include pallette--base;
 
   &:focus {
-    background-color: $color--grey-200 !important;
+    background-color: var(--color-grey-200, #{$color--grey-200}) !important;
 
     @include dark-mode {
-      background-color: $color--grey-800 !important;
+      background-color: var(--color-grey-800, #{$color--grey-800}) !important;
     }
   }
 }
@@ -119,7 +132,7 @@
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
-  color: $pallette--primary-color-text;
+  color: var(--primary-color-text, #{$pallette--primary-color-text});
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
   border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
 
@@ -173,12 +186,12 @@
   margin-bottom: $s6;
   @include font-size(3);
   background-color: var(--primary-color-light, #{$pallette--primary-color-light});
-  color: $pallette--primary-text-color;
+  color: var(--primary-text-color, #{$pallette--primary-text-color});
 
   @include dark-mode {
     background-color: transparent;
     border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-    color: $pallette--primary-color-text;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
   }
 
   p {

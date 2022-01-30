@@ -5,13 +5,13 @@ layout: blank
 
 <style>
   html {
-    background-color: #ffffff;
-    color: #212121;
+    background-color: var(--primary-color-text, #ffffff);
+    color: var(--primary-text-color, #212121);
   }
   @media (prefers-color-scheme: dark) {
     html {
-      background-color: #212121;
-      color: #ffffff;
+      background-color: var(--primary-text-color, #212121);
+      color: var(--primary-color-text, #ffffff);
     }
   }
 </style>
@@ -19,6 +19,7 @@ layout: blank
 <%- partial('header', locals); %>
 
 <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
+  <div id="skip-to-main">Continue to main content</div>
   <% if (locals.description && !locals.homepage) { %>
     <div class="content description" itemprop="description">
       <p>

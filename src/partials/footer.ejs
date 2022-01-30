@@ -4,12 +4,12 @@
 </noscript>
 
 <footer class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>" role="navigation" aria-label="Site footer">
-  <ul class="content">
-    <li>
+  <div class="content">
+    <span>
       <% const date = new Date(); %>
       &copy; <%- date.getFullYear(); %>
-    </li>
-    <li>
+    </span>
+    <span>
       <% const contactLinks = [
           { copy: 'Twitter', url: locals.twitter, },
           { copy: 'Last.fm', url: locals.lastfm, },
@@ -22,6 +22,7 @@
         });
       %>
       <%- contactLinks.join(' - ') %>
-    </li>
-  </ul>
+      - <button id=blindfold class=link type=button >Toggle Blindfold Mode</button>
+    </span>
+  </div>
 </footer>

@@ -6,9 +6,14 @@ footer {
 
   @include pallette--primary;
 
-  ul {
+  .content {
     display: grid;
     grid-gap: $s1;
+  }
+
+  .link-container {
+    margin-left: -$s1;
+    margin-right: -$s1;
   }
 
   a {
@@ -16,7 +21,7 @@ footer {
     padding: 0;
 
     &::before {
-      background-color: $pallette--primary-color-text;
+      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
     }
   }
 }

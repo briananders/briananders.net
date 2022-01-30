@@ -17,13 +17,13 @@ a.movie {
   margin-bottom: $s4;
   transition-property: color;
   background-color: transparent;
-  color: $pallette--primary-text-color;
+  color: var(--primary-text-color, #{$pallette--primary-text-color});
 
   @include dark-mode {
-    color: $pallette--primary-color-text;
+    color: var(--primary-color-text, #{$pallette--primary-color-text});
 
     &::before {
-      background-color: $pallette--primary-color-text;
+      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
     }
   }
 
@@ -33,7 +33,7 @@ a.movie {
     color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 
     @include dark-mode {
-      color: $pallette--primary-color-text;
+      color: var(--primary-color-text, #{$pallette--primary-color-text});
     }
   }
 

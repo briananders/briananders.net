@@ -1,7 +1,6 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
-// const queryParameters = require('./_modules/queryParameters');
-// const parameters = queryParameters();
+const { blindfoldToggle } = require('./_modules/blindfold-mode');
 
 (function all() {
   function setupNavEvents() {
@@ -37,9 +36,6 @@ const lazyLoader = require('./_modules/lazy-loader');
   function setUpSkipNav() {
     const skipNavContainer = document.getElementById('skip-nav');
     const skipNavButton = skipNavContainer.querySelector('button');
-    const nonNavContainerSelectors = ['main', 'footer'];
-    const interactiveElements = ['a', 'input', 'button', 'textarea', 'select'];
-    const querySelectors = nonNavContainerSelectors.map((container) => interactiveElements.map((input) => `${container} ${input}`));
 
     skipNavButton.addEventListener('focus', () => {
       skipNavContainer.dataset.state = 'active';
@@ -48,8 +44,9 @@ const lazyLoader = require('./_modules/lazy-loader');
       skipNavContainer.dataset.state = 'inactive';
     });
     skipNavButton.addEventListener('click', () => {
-      const firstInput = document.querySelector(querySelectors.join(', '));
-      firstInput.focus();
+      const main = document.getElementById('skip-to-main');
+      main.setAttribute('tabindex', '0');
+      main.focus();
     });
   }
 
@@ -103,6 +100,8 @@ const lazyLoader = require('./_modules/lazy-loader');
       });
     });
   }
+
+  blindfoldToggle();
 
   preventFormSubmit();
 

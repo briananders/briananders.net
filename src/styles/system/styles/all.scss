@@ -3,3 +3,13 @@
 @import "./defaults";
 @import "./attributes";
 @import "./elements";
+
+#skip-to-main {
+  opacity: 0.0001;
+  @include pallette--base-text;
+  text-align: center;
+
+  &:focus {
+    opacity: 1;
+  }
+}
