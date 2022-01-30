@@ -1,7 +1,13 @@
 const Cookies = require('js-cookie');
+const SwipeListener = require('swipe-listener');
+
 const queryParameters = require('./queryParameters');
 
 const parameters = queryParameters();
+const swipeListener = SwipeListener(document.documentElement);
+
+let lastTapTime = Date.now();
+let activeElement;
 
 const interactiveElements = [
   'a',
@@ -48,6 +54,7 @@ function setFocus(element) {
   cleanFocus();
   element.setAttribute('tabindex', 0);
   element.focus();
+  activeElement = element;
 }
 
 function isHidden(element) {
@@ -112,11 +119,17 @@ function addInstructions() {
   instructionsDiv.innerHTML = `
     <h2>Welcome to BLINDFOLD MODE.</h2>
     <p>An experience to emulate what it is like to navigate a website using a screen reader.</p>
-    <div>Use your arrow keys to navigate the page content.</div>
-    <div>Use your ENTER key trigger buttons and links.</div>
-    <div>Use your ESCAPE key to exit blindfold mode.</div>
+    <div class="keyboard">
+      <div>Use your arrow keys to navigate the page content.</div>
+      <div>Use your ENTER key trigger buttons and links.</div>
+      <div>Use your ESCAPE key to exit blindfold mode.</div>
+    </div>
+    <div class="touch">
+      <div>Swipe left and right to navigate the page content.</div>
+      <div>Double tap to trigger the visible element</div>
+    </div>
   `;
-  document.body.insertBefore(instructionsDiv, document.body.firstChild);
+  document.body.insertBefore(instructionsDiv, document.querySelector('nav.main').nextSibling);
   window.scrollTo(0, 0);
 }
 
@@ -146,12 +159,42 @@ function onKeyDown(evt) {
   }
 }
 
+function onSwipe(evt) {
+  const { directions } = evt.detail;
+  if (directions.left) {
+    goToNextElement();
+    // debugger;
+  } else if (directions.right) {
+    goToPreviousElement();
+    // debugger;
+  }
+}
+
+function onTap(evt) {
+  const tapTime = Date.now();
+  const timeSince = tapTime - lastTapTime;
+
+  if (timeSince < 500 && timeSince > 0) {
+    setFocus(activeElement);
+    activeElement.click();
+
+    setTimeout(() => {
+      setFocus(activeElement);
+    }, 200);
+  }
+  lastTapTime = tapTime;
+}
+
 function addEventListeners() {
   document.addEventListener('keydown', onKeyDown);
+  document.documentElement.addEventListener('swipe', onSwipe);
+  document.documentElement.addEventListener('touchstart', onTap);
 }
 
 function removeEventListeners() {
   document.addEventListener('keydown', onKeyDown);
+  document.documentElement.addEventListener('swipe', onSwipe);
+  document.documentElement.addEventListener('touchstart', onTap);
 }
 
 function toggleBlindfoldStyles() {

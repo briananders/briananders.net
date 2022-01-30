@@ -2,6 +2,7 @@ $blindfold_value: black !important;
 $unset_value: unset !important;
 
 #blindfold-instructions {
+  padding-top: 66px;
   text-align: center;
   display: block;
   visibility: visible;
@@ -11,6 +12,14 @@ $unset_value: unset !important;
     background: black;
     color: white;
     opacity: 1;
+  }
+
+  html.touch-events & .keyboard {
+    display: none;
+  }
+
+  html.no-touch-events & .touch {
+    display: none;
   }
 }
 
@@ -31,7 +40,9 @@ html.blindfold-mode {
   --color-grey-100: black;
   --color-grey-50: black;
 
-  pointer-events: none;
+  body {
+    pointer-events: none;
+  }
 
   .code-container {
     &::before,

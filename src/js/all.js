@@ -35,7 +35,7 @@ const { blindfoldToggle } = require('./_modules/blindfold-mode');
 
   function setUpSkipNav() {
     const skipNavContainer = document.getElementById('skip-nav');
-    const skipNavButton = skipNavContainer.querySelector('button');
+    const skipNavButton = skipNavContainer.querySelector('a');
 
     skipNavButton.addEventListener('focus', () => {
       skipNavContainer.dataset.state = 'active';
@@ -46,7 +46,7 @@ const { blindfoldToggle } = require('./_modules/blindfold-mode');
     skipNavButton.addEventListener('click', () => {
       const main = document.getElementById('skip-to-main');
       main.setAttribute('tabindex', '0');
-      main.focus();
+      // main.focus();
     });
   }
 
