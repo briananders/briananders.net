@@ -39,8 +39,20 @@ const mainElements = [
 
 let isBlindFoldMode = false;
 
+function openTargetBlankLink(link) {
+  const url = link.getAttribute('href');
+  window.open(url);
+}
+
 function getFocus() {
-  return (document.activeElement === document.body) ? false : document.activeElement;
+  const documentActiveElement = document.activeElement;
+  if (documentActiveElement === document.body && activeElement === undefined) {
+    return false;
+  }
+  if (documentActiveElement === document.body && activeElement !== undefined) {
+    return activeElement;
+  }
+  return documentActiveElement;
 }
 
 function cleanFocus() {
@@ -163,24 +175,36 @@ function onSwipe(evt) {
   const { directions } = evt.detail;
   if (directions.left) {
     goToNextElement();
-    // debugger;
   } else if (directions.right) {
     goToPreviousElement();
-    // debugger;
   }
 }
 
-function onTap(evt) {
+function repeatFocus(element, iteration) {
+  activeElement.click();
+  console.log(activeElement);
+
+  if (activeElement.getAttribute('target') === '_blank') {
+    openTargetBlankLink(activeElement);
+  }
+
+  if (iteration < 8) {
+    setTimeout(() => {
+      repeatFocus(element, ++iteration);
+    }, 30);
+  }
+}
+
+function onTap() {
   const tapTime = Date.now();
   const timeSince = tapTime - lastTapTime;
 
   if (timeSince < 500 && timeSince > 0) {
     setFocus(activeElement);
     activeElement.click();
+    console.log(activeElement);
 
-    setTimeout(() => {
-      setFocus(activeElement);
-    }, 200);
+    repeatFocus(activeElement, 0);
   }
   lastTapTime = tapTime;
 }
@@ -192,9 +216,9 @@ function addEventListeners() {
 }
 
 function removeEventListeners() {
-  document.addEventListener('keydown', onKeyDown);
-  document.documentElement.addEventListener('swipe', onSwipe);
-  document.documentElement.addEventListener('touchstart', onTap);
+  document.removeEventListener('keydown', onKeyDown);
+  document.documentElement.removeEventListener('swipe', onSwipe);
+  document.documentElement.removeEventListener('touchstart', onTap);
 }
 
 function toggleBlindfoldStyles() {

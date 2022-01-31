@@ -42,6 +42,7 @@ html.blindfold-mode {
 
   body {
     pointer-events: none;
+    touch-action: none;
   }
 
   .code-container {

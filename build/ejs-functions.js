@@ -92,7 +92,7 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   externalLink(str, locals) {
-    return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
+    return this.link(str, merge(locals, { rel: 'noopener', target: '_blank' }));
   },
 
   defaultLastFMModule: (albums = true) => `
