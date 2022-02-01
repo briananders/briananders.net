@@ -3,6 +3,8 @@ const lazyLoader = require('./_modules/lazy-loader');
 // const queryParameters = require('./_modules/queryParameters');
 // const parameters = queryParameters();
 
+const stickyStack = require('./_modules/sticky-stacky');
+
 (function all() {
   function setupNavEvents() {
     const menuButton = document.getElementById('activate-menu');
@@ -116,6 +118,7 @@ const lazyLoader = require('./_modules/lazy-loader');
 
   setUpSkipNav();
 
+  stickyStack.init();
   lazyLoader.init();
   analytics.watchElements();
 }());

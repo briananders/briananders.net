@@ -1,0 +1,91 @@
+const stickyContainers = document.querySelectorAll('.sticky-container');
+
+function StickyStacky(containerElement) {
+  let previousHeights = 0;
+
+  this.stickyElement = containerElement.firstElementChild;
+  this.top = window.pageYOffset + containerElement.getBoundingClientRect().top;
+  this.height = this.stickyElement.offsetHeight;
+  this.isStuck = false;
+  this.currentTransform = 0;
+
+  const getCurrentTransform = () => {
+    const valueString = document.documentElement.style.getPropertyValue('--sticky-stacky-transform');
+    return Number(valueString.slice(0, -2));
+  };
+
+  this.setPreviousHeights = (heights) => {
+    previousHeights = heights;
+    containerElement.style.setProperty('--previous-heights', `${heights}px`);
+  };
+
+  const runLoop = () => {
+    this.isStuck = window.pageYOffset + (previousHeights + getCurrentTransform()) >= this.top;
+
+    if (this.isStuck) {
+      this.stickyElement.classList.add('fixed');
+    } else {
+      this.stickyElement.classList.remove('fixed');
+    }
+
+    this.top = window.pageYOffset + containerElement.getBoundingClientRect().top;
+    this.height = this.stickyElement.offsetHeight;
+    containerElement.style.setProperty('--sticky-container-height', `${this.height}px`);
+
+    window.requestAnimationFrame(runLoop.bind(this));
+  };
+  window.requestAnimationFrame(runLoop.bind(this));
+}
+
+function StickyController(containerNodeList) {
+  const containerArray = Array.from(containerNodeList);
+  let scrollHeight = 0;
+  let transformTop = 0;
+  let maxTransform = 0;
+
+  const stickyStacks = containerArray
+    .map((containerElement) => new StickyStacky(containerElement))
+    .sort((stackA, stackB) => (stackA.top < stackB.top ? -1 : 1));
+
+  const getStuckStacks = () => stickyStacks.filter((stickyStack) => stickyStack.isStuck);
+
+  const calculateMaxTransform = () => {
+    let height = 0;
+    const stuckStacks = getStuckStacks();
+    stuckStacks.forEach((stuckStack, index) => {
+      if (index === stuckStacks.length - 1) {
+        maxTransform = 0 - height;
+      }
+      stuckStack.setPreviousHeights(height);
+      height += stuckStack.height;
+    });
+  };
+
+  const recalculateHeights = () => {
+    let height = 0;
+    stickyStacks.forEach((stickyStack) => {
+      stickyStack.setPreviousHeights(height);
+      height += stickyStack.height;
+    });
+  };
+
+  const runLoop = () => {
+    calculateMaxTransform();
+
+    if (scrollHeight !== window.pageYOffset) {
+      const diff = scrollHeight - window.pageYOffset;
+      scrollHeight = window.pageYOffset;
+      transformTop = Math.max(Math.min(transformTop + diff, 0), maxTransform);
+      document.documentElement.style.setProperty('--sticky-stacky-transform', `${transformTop}px`);
+    }
+
+    recalculateHeights();
+
+    window.requestAnimationFrame(runLoop);
+  };
+  window.requestAnimationFrame(runLoop);
+}
+
+module.exports.init = () => {
+  StickyController(stickyContainers);
+};

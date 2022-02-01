@@ -30,7 +30,7 @@
   background-color: var(--primary-color, #{$pallette--primary-color});
 }
 
-@mixin pallette--secondary {
-  // color: $pallette--primary-color-text;
-  // background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+@mixin pallette--header {
+  color: $pallette--primary-color-text;
+  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 }

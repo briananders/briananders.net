@@ -5,7 +5,6 @@
 
 header.main-header {
   @include font-size;
-  margin-top: $s11;
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
   margin-bottom: $s6;
   padding: $s1 0;

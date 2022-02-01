@@ -1,29 +1,31 @@
-<nav class="nav main" role="navigation" aria-label="Main navigation">
-  <div class="content">
-    <%- link(locals.name, {
-      href: '/',
-      class: 'brand h1',
-    }) %>
-    <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
-      Menu
-    </button>
-    <div aria-hidden="true" role="menu" id="nav-tray">
-      <%- link('Main', {
+<div class="sticky-container">
+  <nav class="nav main" role="navigation" aria-label="Main navigation">
+    <div class="content">
+      <%- link(locals.name, {
         href: '/',
-        class: 'nav-link',
-        role: 'menuitem',
+        class: 'brand h1',
       }) %>
-      <%
-        var basePages = getChildPages('');
-        for(var i = 0; i < basePages.length; i++) {
-          var page = basePages[i];
-      %>
-        <%- link(page.data.title, {
-          href: `/${page.url}`,
+      <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
+        Menu
+      </button>
+      <div aria-hidden="true" role="menu" id="nav-tray">
+        <%- link('Main', {
+          href: '/',
           class: 'nav-link',
           role: 'menuitem',
         }) %>
-      <% } %>
+        <%
+          var basePages = getChildPages('');
+          for(var i = 0; i < basePages.length; i++) {
+            var page = basePages[i];
+        %>
+          <%- link(page.data.title, {
+            href: `/${page.url}`,
+            class: 'nav-link',
+            role: 'menuitem',
+          }) %>
+        <% } %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>

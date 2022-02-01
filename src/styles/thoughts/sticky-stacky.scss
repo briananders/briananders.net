@@ -1,0 +1,23 @@
+@import "system/utilities";
+
+nav.default-styles {
+  width: 100%;
+  padding: $s1 $s2;
+  @include pallette--header;
+  text-align: center;
+}
+
+nav.fixed {
+  position: fixed;
+  z-index: 1000;
+  top: var(--previous-heights, 0px);
+  transform: translateY(var(--sticky-stacky-transform, 0px));
+
+  &.shadow {
+    box-shadow: 0 0 $s2 $pallette--primary-text-color;
+  }
+}
+
+.sticky-container {
+  height: var(--sticky-container-height, 0px);
+}
