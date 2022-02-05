@@ -10,8 +10,8 @@ nav.default-styles {
 nav.fixed {
   position: fixed;
   z-index: 1000;
-  top: var(--previous-heights, 0px);
-  transform: translateY(var(--sticky-stacky-transform, 0px));
+  top: var(--previous-heights);
+  transform: translateY(var(--sticky-stacky-transform));
 
   &.shadow {
     box-shadow: 0 0 $s2 $pallette--primary-text-color;
@@ -19,5 +19,5 @@ nav.fixed {
 }
 
 .sticky-container {
-  height: var(--sticky-container-height, 0px);
+  height: var(--sticky-container-height);
 }

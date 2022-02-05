@@ -55,20 +55,20 @@ const stickyStack = require('./_modules/sticky-stacky');
     });
   }
 
-  function navScrollWatcher() {
-    const mainNav = document.querySelector('nav.main');
+  // function navScrollWatcher() {
+  //   const mainNav = document.querySelector('nav.main');
 
-    const checkScrollDepth = () => {
-      if (window.scrollY <= 0) {
-        mainNav.classList.remove('shadow');
-      } else {
-        mainNav.classList.add('shadow');
-      }
-    };
+  //   const checkScrollDepth = () => {
+  //     if (window.scrollY <= 0) {
+  //       mainNav.classList.remove('shadow');
+  //     } else {
+  //       mainNav.classList.add('shadow');
+  //     }
+  //   };
 
-    window.addEventListener('scroll', checkScrollDepth);
-    checkScrollDepth();
-  }
+  //   window.addEventListener('scroll', checkScrollDepth);
+  //   checkScrollDepth();
+  // }
 
   function testForTouch() {
     if ('ontouchstart' in document.documentElement) {
@@ -112,7 +112,7 @@ const stickyStack = require('./_modules/sticky-stacky');
 
   testForTouch();
 
-  navScrollWatcher();
+  // navScrollWatcher();
 
   setMainMinHeight();
 

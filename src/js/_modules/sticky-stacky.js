@@ -7,7 +7,6 @@ function StickyStacky(containerElement) {
   this.top = window.pageYOffset + containerElement.getBoundingClientRect().top;
   this.height = this.stickyElement.offsetHeight;
   this.isStuck = false;
-  this.currentTransform = 0;
 
   const getCurrentTransform = () => {
     const valueString = document.documentElement.style.getPropertyValue('--sticky-stacky-transform');
@@ -20,7 +19,7 @@ function StickyStacky(containerElement) {
   };
 
   const runLoop = () => {
-    this.isStuck = window.pageYOffset + (previousHeights + getCurrentTransform()) >= this.top;
+    this.isStuck = window.pageYOffset + (previousHeights + getCurrentTransform()) > this.top;
 
     if (this.isStuck) {
       this.stickyElement.classList.add('fixed');
@@ -47,14 +46,22 @@ function StickyController(containerNodeList) {
     .map((containerElement) => new StickyStacky(containerElement))
     .sort((stackA, stackB) => (stackA.top < stackB.top ? -1 : 1));
 
+  stickyStacks.forEach((stack, index) => {
+    stack.stickyElement.style.zIndex = 10000 + index;
+  });
+
   const getStuckStacks = () => stickyStacks.filter((stickyStack) => stickyStack.isStuck);
 
   const calculateMaxTransform = () => {
     let height = 0;
-    const stuckStacks = getStuckStacks();
+    const stuckStacks = getStuckStacks()
+      .sort((stackA, stackB) => (stackA.top < stackB.top ? -1 : 1));
     stuckStacks.forEach((stuckStack, index) => {
-      if (index === stuckStacks.length - 1) {
+      if (index === stuckStacks.length - 1) { // last stack
         maxTransform = 0 - height;
+        stuckStack.stickyElement.classList.add('shadow');
+      } else {
+        stuckStack.stickyElement.classList.remove('shadow');
       }
       stuckStack.setPreviousHeights(height);
       height += stuckStack.height;
