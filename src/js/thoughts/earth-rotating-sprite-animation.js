@@ -5,19 +5,6 @@
   const frameSlider = document.getElementById('frame-slider');
   let canSlide = false;
 
-  // function next() {
-  //   number++;
-
-  //   if (number > 48) {
-  //     number %= 48;
-  //   }
-
-  //   frameContainer.dataset.number = number;
-  //   window.setTimeout(next, 1000 / 25);
-  // }
-
-  // next();
-
   function animate() {
     frameContainer.dataset.number = Number(frameSlider.value);
 

@@ -16,7 +16,7 @@
   const byLine = document.querySelector('.by-line');
   const bStepElement = document.querySelector('#b-step');
 
-  const [mainCanvas, mainContext] = setupCanvas('#lissajous-curve');
+  const [mainContext] = setupCanvas('#lissajous-curve');
 
   let aCircumferencePosition = 27; // circumference out of 360
   let bCircumferencePosition = 27; // circumference out of 360
@@ -36,9 +36,6 @@
   let bxCache = null;
   let byCache = null;
 
-  let aCache = [];
-  let bCache = [];
-
   const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
 
   function moneyRound(num) {
@@ -49,9 +46,9 @@
     return (deg * (2 * Math.PI)) / 360;
   }
 
-  function radiansToDegrees(radians = 0) {
-    return (radians * 360) / (2 * Math.PI);
-  }
+  // function radiansToDegrees(radians = 0) {
+  //   return (radians * 360) / (2 * Math.PI);
+  // }
 
   function reset() {
     mainContext.clearRect(525, 525, 450, 450);
@@ -61,9 +58,6 @@
     ayCache = null;
     bxCache = null;
     byCache = null;
-
-    aCache = [];
-    bCache = [];
 
     aCircumferencePosition = 27;
     bCircumferencePosition = 27;
@@ -140,9 +134,7 @@
     ayLine.style.width = `${(axOffset - bxOffset) / 10}%`;
 
     mainContext.clearRect(525, 25, 450, 450);
-    // mainContext.fillRect(525, 25, 450, 450);
     mainContext.clearRect(25, 525, 450, 450);
-    // mainContext.fillRect(25, 525, 450, 450);
 
     mainContext.fillRect(
       axOffset - pointRadius,
@@ -178,14 +170,6 @@
     bxCache = newBXOffset - pointRadius;
     byCache = newBYOffset - pointRadius;
 
-    // mainContext.fillRect(
-    //   newAXOffset - pointRadius,
-    //   newBYOffset - pointRadius,
-    //   pointDiameter,
-    //   pointDiameter
-    // );
-
-    // window.requestAnimationFrame(runLoop);
     window.setTimeout(runLoop, 1000 / 30);
   }
 

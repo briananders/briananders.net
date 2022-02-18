@@ -15,4 +15,4 @@ module.exports = {
   templatesMoved: 'templates-moved',
   pageMappingDataCompiled: 'page-mapping-data-compiled',
   previewReady: 'preview-ready',
-}
+};

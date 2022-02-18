@@ -79,7 +79,7 @@ module.exports = (dir, pageMappingData) => ({
       throw new Error('lazyImage is missing src attribute');
     }
     const dimensions = sizeOf(path.join(dir.src, locals.src));
-    return `<img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="${locals.src}" alt="${locals.alt || ''}" height="${dimensions.height}" width="${dimensions.width}" style="--aspect-ratio: ${(dimensions.width / dimensions.height) * 100}%;" ${locals.class ? `class="${locals.class}"` : ''}/>`;
+    return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${dimensions.width} ${dimensions.height}'%3E%3C/svg%3E" data-src="${locals.src}" alt="${locals.alt || ''}" height="${dimensions.height}" width="${dimensions.width}" ${locals.class ? `class="${locals.class}"` : ''} />`;
   },
 
   link(str, locals) {

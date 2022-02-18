@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const watchify = require('watchify');
 const source = require('vinyl-source-stream');
 const rename = require('gulp-rename');
@@ -8,7 +9,7 @@ const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
 const babelify = require('babelify');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
@@ -50,6 +51,7 @@ module.exports = function bundleJS({ dir, buildEvents, debug }) {
       .pipe(rename(outFile.replace(dir.jsOutputPath, '')))
       .pipe(gulp.dest(dir.jsOutputPath))
       .on('end', (err) => {
+        if (err) throw err;
         if (debug) log(`${timestamp.stamp()} ${'SUCCESS'.bold.green} - Compiled JS  - ${outFile.split(/scripts/)[1]}`);
         processed++;
 
