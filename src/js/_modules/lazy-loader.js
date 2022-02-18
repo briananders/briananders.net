@@ -9,6 +9,7 @@ function updateOnIntersect(element, observer) {
 
 module.exports = {
   init(specificQuery = 'body') {
+    // return;
     if (window.IntersectionObserver) {
       const intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -16,8 +17,6 @@ module.exports = {
             updateOnIntersect(entry.target, observer);
           }
         });
-      }, {
-        rootMargin: '0px 0px 0px 0px',
       });
 
       document.querySelectorAll(`${specificQuery} [lazy]`).forEach((element) => {

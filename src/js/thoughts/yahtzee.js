@@ -1,5 +1,3 @@
-/* globals Event */
-
 (function yahtzee() {
   const rollElement = document.getElementById('roll');
   const diceElement = document.getElementById('dice');
@@ -139,7 +137,9 @@
      */
   function getGrandTotal() {
     const bonusScore = getBonus();
-    return Object.keys(lockedScores).map((key) => lockedScores[key]).reduce((sum = 0, value) => sum + value, 0) + bonusScore;
+    return Object.keys(lockedScores)
+      .map((key) => lockedScores[key])
+      .reduce((sum = 0, value = 0) => sum + value, 0) + bonusScore;
   }
 
   /**
@@ -147,7 +147,7 @@
      * @returns {Number}
      */
   function getDiceTotal() {
-    return diceElementArray.reduce((sum = 0, element) => sum + Number(element.value), 0);
+    return diceElementArray.reduce((sum, element) => sum + Number(element.value), 0);
   }
 
   /**
@@ -249,7 +249,8 @@
      */
   function isSmallStraight() {
     const diceNumbers = uniqueDice();
-    return [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]].filter((valueArray) => hasAll(diceNumbers, valueArray)).length;
+    return [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]]
+      .filter((valueArray) => hasAll(diceNumbers, valueArray)).length;
   }
 
   /**
@@ -266,7 +267,8 @@
      */
   function isLargeStraight() {
     const diceNumbers = uniqueDice();
-    return [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]].filter((valueArray) => hasAll(diceNumbers, valueArray)).length;
+    return [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]]
+      .filter((valueArray) => hasAll(diceNumbers, valueArray)).length;
   }
 
   /**
@@ -451,8 +453,8 @@
         updateScoreBoard();
         resetRollCount();
         reenable(rollElement);
-        diceElementArray.forEach((diceElement) => {
-          reenable(diceElement);
+        diceElementArray.forEach((diceEl) => {
+          reenable(diceEl);
         });
       });
     });

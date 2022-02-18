@@ -1,7 +1,5 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
-// const queryParameters = require('./_modules/queryParameters');
-// const parameters = queryParameters();
 
 const stickyStack = require('./_modules/sticky-stacky');
 

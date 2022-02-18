@@ -285,7 +285,7 @@ function updateFlagElements() {
 function updateFlagCount() {
   const { mineCount } = getDifficulty();
   const valueReducer = (accumulator, currentValue) => accumulator + (currentValue.hasFlag ? 1 : 0);
-  const arrayReducer = (accumulator, currentArray) => accumulator + currentArray.reduce(valueReducer, 0);
+  const arrayReducer = (accumulator, currArray) => accumulator + currArray.reduce(valueReducer, 0);
 
   mines.flagCount = game.reduce(arrayReducer, 0);
   mines.minesMinusFlags = mineCount - mines.flagCount;
@@ -353,12 +353,12 @@ function reset() {
   updateFlagElements();
 }
 
-document.body.addEventListener(eventKeys.gameOver, () => {
-});
-document.body.addEventListener(eventKeys.reRender, () => {
-});
-document.body.addEventListener(eventKeys.isPlaying, () => {
-});
+// document.body.addEventListener(eventKeys.gameOver, () => {
+// });
+// document.body.addEventListener(eventKeys.reRender, () => {
+// });
+// document.body.addEventListener(eventKeys.isPlaying, () => {
+// });
 
 (function minesweeper() {
   document.body.addEventListener(eventKeys.gameOver, renderGameOver);

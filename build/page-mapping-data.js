@@ -1,7 +1,7 @@
 const glob = require('glob');
 const matter = require('gray-matter');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
@@ -10,7 +10,7 @@ module.exports = ({ dir, buildEvents, pageMappingData }) => {
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
 
   // clean it out before compiling. No dupes.
-  pageMappingData.splice(0,pageMappingData.length);
+  pageMappingData.splice(0, pageMappingData.length);
 
   log(`${timestamp.stamp()} compilePageMappingData()`);
   let processed = 0;
