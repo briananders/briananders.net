@@ -20,9 +20,9 @@ const log = require('../_modules/log');
     return (deg * (2 * Math.PI)) / 360;
   }
 
-  function radiansToDegrees(radians = 0) {
-    return (radians * 360) / (2 * Math.PI);
-  }
+  // function radiansToDegrees(radians = 0) {
+  //   return (radians * 360) / (2 * Math.PI);
+  // }
 
   function clearCanvas() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);

@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const copy = require('copy');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 

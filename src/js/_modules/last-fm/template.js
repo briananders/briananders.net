@@ -21,7 +21,7 @@ module.exports = `
         <bar style="width: {{percent}}%;"></bar>
       </span>
       {{#if imageSrc}}
-        <img lazy src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{imageSrc}}" alt="{{name}}" width="100" height="100" style="--aspect-ratio: 100%" />
+        <img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="{{imageSrc}}" alt="{{name}}" width="100" height="100" />
       {{/if}}
     </a>
   {{/each}}

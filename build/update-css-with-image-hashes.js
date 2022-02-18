@@ -1,11 +1,13 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFileNameList, debug }) {
+module.exports = function updateCSSwithImageHashes({
+  dir, buildEvents, hashingFileNameList, debug,
+}) {
   const timestamp = require(`${dir.build}timestamp`);
 
   log(`${timestamp.stamp()} hashingUpdateCSS()`);
@@ -20,6 +22,7 @@ module.exports = function updateCSSwithImageHashes({ dir, buildEvents, hashingFi
       const fileName = key.split(dir.package)[1];
       const fileNameHash = hashingFileNameList[key].split(dir.package)[1];
       if (debug) log(`${timestamp.stamp()} hashingUpdateCSS():: ${fileName}`);
+      // eslint-disable-next-line no-bitwise
       if (~fileContents.indexOf(fileName)) {
         fileContents = fileContents.split(fileName).join(fileNameHash);
       }

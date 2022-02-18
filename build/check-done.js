@@ -3,11 +3,10 @@ module.exports = function checkDone({ dir, debug, completionFlags }) {
 
   const { log } = console;
 
-
-  if (!completionFlags.ASSET_HASH.DONE ||
-      !completionFlags.SITE_MAP ||
-      !completionFlags.IMAGE_COMPRESSION ||
-      !completionFlags.GZIP) {
+  if (!completionFlags.ASSET_HASH.DONE
+      || !completionFlags.SITE_MAP
+      || !completionFlags.IMAGE_COMPRESSION
+      || !completionFlags.GZIP) {
     if (debug) {
       log(`${timestamp.stamp()} completionFlags.ASSET_HASH.DONE   : ${completionFlags.ASSET_HASH.DONE.toString().bold.green}`);
       log(`${timestamp.stamp()} completionFlags.SITE_MAP          : ${completionFlags.SITE_MAP.toString().bold.green}`);

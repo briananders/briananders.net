@@ -1,16 +1,18 @@
+/* eslint-disable no-console */
 const sass = require('node-sass');
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const CleanCSS = require('clean-css');
 const notifier = require('node-notifier');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug }) {
+module.exports = function bundleSCSS({
+  dir, completionFlags, buildEvents, debug,
+}) {
   completionFlags.CSS_IS_MINIFIED = false;
 
   const timestamp = require(`${dir.build}timestamp`);
@@ -43,7 +45,7 @@ module.exports = function bundleSCSS({ dir, completionFlags, buildEvents, debug 
       } else {
         // No errors during the compilation, write this result on the disk
 
-        mkdirp(path.dirname(outFile), (err) => {
+        fs.mkdirp(path.dirname(outFile), (err) => {
           if (err) {
             if (production) throw err;
             console.error(err);

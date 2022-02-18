@@ -50,10 +50,6 @@ module.exports = {
       return shortenedItem;
     }
 
-    function xhrRequest() {
-
-    }
-
     function getData() {
       const url = getURL();
       if (cache[url]) {
@@ -70,7 +66,7 @@ module.exports = {
             render();
           } else {
             // We reached our target server, but it returned an error
-            console.error(`${url} returned ${request.status}`);
+            // console.error(`${url} returned ${request.status}`);
           }
         };
 

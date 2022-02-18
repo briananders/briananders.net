@@ -1,11 +1,13 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-module.exports = function finishHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+module.exports = function finishHashing({
+  dir, completionFlags, buildEvents, hashingFileNameList, debug,
+}) {
   completionFlags.ASSET_HASH.DONE = false;
 
   const timestamp = require(`${dir.build}timestamp`);
@@ -16,9 +18,9 @@ module.exports = function finishHashing({ dir, completionFlags, buildEvents, has
   if (debug) log(`${timestamp.stamp()} finishHashing(): completionFlags.ASSET_HASH.IMAGES :${completionFlags.ASSET_HASH.IMAGES}`);
   if (debug) log(`${timestamp.stamp()} finishHashing(): completionFlags.ASSET_HASH.CSS    :${completionFlags.ASSET_HASH.CSS}`);
   if (debug) log(`${timestamp.stamp()} finishHashing(): completionFlags.ASSET_HASH.JS     :${completionFlags.ASSET_HASH.JS}`);
-  if (!completionFlags.ASSET_HASH.IMAGES ||
-      !completionFlags.ASSET_HASH.CSS ||
-      !completionFlags.ASSET_HASH.JS) {
+  if (!completionFlags.ASSET_HASH.IMAGES
+      || !completionFlags.ASSET_HASH.CSS
+      || !completionFlags.ASSET_HASH.JS) {
     return false;
   }
   if (debug) log(`${timestamp.stamp()} finishHashing(): ${Object.keys(hashingFileNameList)}`);
@@ -32,6 +34,7 @@ module.exports = function finishHashing({ dir, completionFlags, buildEvents, has
       const fileName = key.split(dir.package)[1];
       const fileNameHash = hashingFileNameList[key].split(dir.package)[1];
       if (debug) log(`${timestamp.stamp()} finishHashing():: ${fileName}`);
+      // eslint-disable-next-line no-bitwise
       if (~fileContents.indexOf(fileName)) {
         fileContents = fileContents.split(fileName).join(fileNameHash);
       }
