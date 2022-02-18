@@ -4,17 +4,15 @@ const timestamp = require('./timestamp');
 
 const { log } = console;
 
-module.exports = ({ dir }) => {
-  return new Promise((resolve, reject) => {
-    log(`${timestamp.stamp()} clean()`);
+module.exports = ({ dir }) => new Promise((resolve, reject) => {
+  log(`${timestamp.stamp()} clean()`);
 
-    fs.emptyDir(dir.package, (error) => {
-      if (error) {
-        log(error);
-        reject();
-      } else {
-        resolve();
-      }
-    });
+  fs.emptyDir(dir.package, (error) => {
+    if (error) {
+      log(error);
+      reject();
+    } else {
+      resolve();
+    }
   });
-};
+});

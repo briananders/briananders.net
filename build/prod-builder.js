@@ -8,7 +8,7 @@ const minifyHTML = require('./minify-html');
 const minifyJS = require('./minify-js');
 const updateCSSwithImageHashes = require('./update-css-with-image-hashes');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 module.exports = (configs) => {
   const { buildEvents } = configs;

@@ -1,5 +1,8 @@
 /** globals window */
 
+let nowPlane;
+let thenPlane;
+
 (function automaton() {
   const darkMode = require('../_modules/dark-mode');
   const canvas = document.getElementById('canvas');
@@ -8,9 +11,6 @@
   const playInput = document.getElementById('play');
   const randomStartInput = document.getElementById('random-start');
   const canvasContext = canvas.getContext('2d');
-
-  window.nowPlane;
-  window.thenPlane;
 
   let rule;
   let ruleString;
@@ -60,18 +60,18 @@
       [-1, 0]
     ].forEach(([xVal, yVal]) => {
       // add width and mod width to account for array overflow
-      binary += window.nowPlane[(x + xVal + WIDTH) % WIDTH][(y + yVal + WIDTH) % WIDTH];
+      binary += nowPlane[(x + xVal + WIDTH) % WIDTH][(y + yVal + WIDTH) % WIDTH];
     });
 
     // convert to decimal
     const ruleIndex = parseInt(binary, 2);
 
-    window.thenPlane[x][y] = Number(ruleString.charAt(ruleIndex));
+    thenPlane[x][y] = Number(ruleString.charAt(ruleIndex));
   }
 
   function drawPlane() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    window.nowPlane.forEach((row, rIndex) => {
+    nowPlane.forEach((row, rIndex) => {
       row.forEach((col, cIndex) => {
         calculate(rIndex, cIndex);
 
@@ -87,8 +87,8 @@
         }
       });
     });
-    window.nowPlane = window.thenPlane;
-    window.thenPlane = resetPlane();
+    // thenPlane;
+    thenPlane = resetPlane();
   }
 
   function run(checkDate, then) {
@@ -126,7 +126,7 @@
     } else {
       plane[half][half] = 1;
     }
-    window.nowPlane = plane;
+    nowPlane = plane;
   }
 
   function reset() {
@@ -140,7 +140,7 @@
     ruleString = ruleString.substr(ruleString.length - 8); // must be 8 characters long
     ruleString = reverse(ruleString);
 
-    window.thenPlane = resetPlane();
+    thenPlane = resetPlane();
     setupFirstPlane();
     date = Date.now();
     run(date, 0);

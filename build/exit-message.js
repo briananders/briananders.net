@@ -1,6 +1,6 @@
 const { log } = console;
 
-module.exports = function () {
+module.exports = () => {
   log('\n\n');
 
   log('██████╗░██████╗░██╗░█████╗░███╗░░██╗');

@@ -2,11 +2,13 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-module.exports = function hashCSS({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+module.exports = function hashCSS({
+  dir, completionFlags, buildEvents, hashingFileNameList, debug,
+}) {
   completionFlags.ASSET_HASH.CSS = false;
 
   const timestamp = require(`${dir.build}timestamp`);

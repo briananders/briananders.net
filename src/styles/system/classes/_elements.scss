@@ -33,7 +33,6 @@
   max-width: 170 * $s1;
   @include margin-center;
   padding: 0 $s2;
-  overflow: hidden;
 
   @include mq($medium) {
     padding: 0 $s5;
@@ -93,10 +92,6 @@
 .link.block,
 .block-link {
   @include block-link;
-}
-
-.link-image {
-  @include link-image;
 }
 
 .mega-button {

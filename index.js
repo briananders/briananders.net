@@ -1,7 +1,5 @@
 'use strict';
 
-const dir = require('./build/constants/directories')(__dirname);
-
 /* //////////////////////////// node modules //////////////////////////////// */
 
 require('colors');
@@ -9,6 +7,7 @@ const fs = require('fs-extra');
 const express = require('express');
 const serve = require('express-static');
 const EventEmitter = require('events');
+const dir = require('./build/constants/directories')(__dirname);
 
 /* //////////////////////////// local packages ////////////////////////////// */
 

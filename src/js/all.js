@@ -1,34 +1,33 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
-// const queryParameters = require('./_modules/queryParameters');
-// const parameters = queryParameters();
 
 (function all() {
   function setupNavEvents() {
-    const menuButton = document.querySelector('#activate-menu');
-    const mainNavContent = document.querySelector('nav.main .content');
-    const mobileNavTray = mainNavContent.querySelector('.mobile-nav-tray');
+    const menuButton = document.getElementById('activate-menu');
+    const navTray = document.getElementById('nav-tray');
     menuButton.addEventListener('click', () => {
-      if (mainNavContent.classList.contains('mobile-active')) {
+      if (menuButton.getAttribute('aria-expanded') === 'true') { // it's open
         analytics.pushEvent({
           category: 'nav',
           action: 'menu close',
         });
-        menuButton.setAttribute('aria-expanded', 'false');
-        mainNavContent.classList.remove('mobile-active');
+        navTray.classList.remove('slide-down');
+
         setTimeout(() => {
-          mobileNavTray.setAttribute('aria-hidden', 'true');
-        }, 250);
-      } else {
+          menuButton.setAttribute('aria-expanded', 'false');
+          navTray.setAttribute('aria-hidden', 'true');
+        }, 300);
+      } else { // it's closed
         analytics.pushEvent({
           category: 'nav',
           action: 'menu open',
         });
         menuButton.setAttribute('aria-expanded', 'true');
-        mobileNavTray.setAttribute('aria-hidden', 'false');
+        navTray.setAttribute('aria-hidden', 'false');
+
         setTimeout(() => {
-          mainNavContent.classList.add('mobile-active');
-        }, 1);
+          navTray.classList.add('slide-down');
+        }, 100);
       }
     });
   }
@@ -93,6 +92,17 @@ const lazyLoader = require('./_modules/lazy-loader');
     window.addEventListener('resize', calculateMinHeight);
     window.addEventListener('orientationchange', calculateMinHeight);
   }
+
+  function preventFormSubmit() {
+    const formElements = document.querySelectorAll('form');
+    formElements.forEach((element) => {
+      element.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter') evt.preventDefault();
+      });
+    });
+  }
+
+  preventFormSubmit();
 
   setupNavEvents(analytics);
 
