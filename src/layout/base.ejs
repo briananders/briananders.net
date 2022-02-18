@@ -16,6 +16,16 @@ layout: blank
   }
 </style>
 
+<script src="/scripts/all.js" async defer></script>
+<%
+  if(locals.scripts) {
+    locals.scripts.forEach((path) => { %>
+  <script src="/scripts/<%- path %>.js" async defer></script>
+<%
+    });
+  }
+%>
+
 <%- partial('header', locals); %>
 
 <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
@@ -32,13 +42,3 @@ layout: blank
 </main>
 
 <%- partial('footer', locals); %>
-
-<script src="/scripts/all.js" async defer></script>
-<%
-  if(locals.scripts) {
-    locals.scripts.forEach((path) => { %>
-  <script src="/scripts/<%- path %>.js" async defer></script>
-<%
-    });
-  }
-%>

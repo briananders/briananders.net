@@ -1,22 +1,5 @@
 @import "system/utilities";
 
-@function css-function( $function, $values... ) {
-	@return
-		$function
-		+ unquote( '(' )
-		+ $values
-		+ unquote( ')' )
-	;
-}
-
-@function css-min( $values... ) {
-	@return css-function( min, $values );
-}
-
-@function css-max( $values... ) {
-	@return css-function( max, $values );
-}
-
 $circle-diameter: css-min(0.75vh, 0.75vw);
 
 @keyframes back-and-forth {
@@ -44,9 +27,9 @@ select {
   position: relative;
 
   line {
-    background: $color--grey-100;
+    background-color: $color--grey-100;
     @include dark-mode {
-      background: $color--grey-800;
+      background-color: $color--grey-800;
     }
     z-index: 0;
   }

@@ -21,8 +21,8 @@
 <!-- Schema.org markup for Google+ -->
 <meta itemprop="name"                              content="<%- locals.author %>">
 <meta itemprop="description"                       content="<%- locals.description %>">
-<meta itemprop="image"                             content="<%- locals.domain %>images/favicon_base.png">
-<link rel="canonical"                                 href="<%- locals.domain %><%- locals.path %>" />
+<meta itemprop="image"                             content="/images/favicon_base.png">
+<link rel="canonical"                              href="<%- locals.domain %><%- locals.path %>" />
 
 <!-- Twitter Card data -->
 <meta name="twitter:card"                          content="summary">
@@ -31,32 +31,32 @@
 <meta name="twitter:creator"                       content="@<%- locals.twitterHandle %>">
 <meta name="twitter:title"                         content="<%- locals.author %>">
 <meta name="twitter:description"                   content="<%- locals.description %>">
-<meta name="twitter:image"                         content="<%- locals.domain %>images/favicon_base.png">
+<meta name="twitter:image"                         content="/images/favicon_base.png">
 
 <!-- Open Graph data -->
 <meta property="og:type"                           content="profile" />
-<meta property="og:url"                            content="<%- locals.domain %><%- locals.path %>" />
+<meta property="og:url"                            content="/<%- locals.path %>" />
 <meta property="og:title"                          content="<%- locals.author %>" />
-<meta property="og:image"                          content="<%- locals.domain %>images/favicon_base.png" />
+<meta property="og:image"                          content="/images/favicon_base.png" />
 <meta property="og:description"                    content="<%- locals.description %>" />
 <meta property="og:site_name"                      content="<%- locals.name %>" />
 
 <!-- Favicon -->
-<link rel="shortcut icon"                          href="<%- locals.domain %>images/favicon_144.png" />
-<link rel="icon"                          href="<%- locals.domain %>images/favicon_144.png" />
-<link rel="apple-touch-icon"                          href="<%- locals.domain %>images/favicon_144.png" />
-<link rel="apple-touch-icon-precomposed"                          href="<%- locals.domain %>images/favicon_144.png" />
+<link rel="shortcut icon"                          href="/images/favicon_144.png" />
+<link rel="icon"                                   href="/images/favicon_144.png" />
+<link rel="apple-touch-icon"                       href="/images/favicon_144.png" />
+<link rel="apple-touch-icon-precomposed"           href="/images/favicon_144.png" />
 
-<meta itemprop="copyrightHolder"  content="<%- locals.author %>"/>
-<meta itemprop="copyrightYear"    content="<%- new Date().getFullYear() %>"/>
-<meta itemprop="isFamilyFriendly" content="true"/>
+<meta itemprop="copyrightHolder"                   content="<%- locals.author %>"/>
+<meta itemprop="copyrightYear"                     content="<%- new Date().getFullYear() %>"/>
+<meta itemprop="isFamilyFriendly"                  content="true"/>
 
-<meta itemprop="author" content="<%- locals.author %>"/>
-<meta itemprop="datePublished" content="<%- locals.date %>"/>
-<meta itemprop="publisher" content="<%- locals.author %>"/>
+<meta itemprop="author"                            content="<%- locals.author %>"/>
+<meta itemprop="datePublished"                     content="<%- locals.date %>"/>
+<meta itemprop="publisher"                         content="<%- locals.author %>"/>
 
 <% if(locals.robots === false) { %>
-<meta name="robots" content="noindex, nofollow">
+  <meta name="robots"                              content="noindex, nofollow">
 <% } %>
 
 <% if(!locals.devBuild) { %>

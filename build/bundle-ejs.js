@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable no-loop-func */
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const merge = require('merge');
 const ejs = require('ejs');
 const matter = require('gray-matter');
@@ -149,7 +150,7 @@ module.exports = async function bundleEJS({
       processed++;
     });
 
-    mkdirp(path.dirname(outputPath), (err) => {
+    fs.mkdirp(path.dirname(outputPath), (err) => {
       if (err) throw err;
 
       fs.writeFile(outputPath, html, (e) => {

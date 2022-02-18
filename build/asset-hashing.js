@@ -2,20 +2,22 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-const BUILD_EVENTS = require(`./constants/build-events`);
+const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-module.exports = function assetHashing({ dir, completionFlags, buildEvents, hashingFileNameList, debug }) {
+module.exports = function assetHashing({
+  dir, completionFlags, buildEvents, hashingFileNameList, debug,
+}) {
   completionFlags.ASSET_HASH.IMAGES = false;
   completionFlags.ASSET_HASH.JS = false;
 
   const timestamp = require(`${dir.build}timestamp`);
 
-  if (!completionFlags.JS_IS_MINIFIED ||
-      !completionFlags.CSS_IS_MINIFIED ||
-      !completionFlags.HTML_IS_MINIFIED ||
-      !completionFlags.IMAGES_ARE_MOVED) {
+  if (!completionFlags.JS_IS_MINIFIED
+      || !completionFlags.CSS_IS_MINIFIED
+      || !completionFlags.HTML_IS_MINIFIED
+      || !completionFlags.IMAGES_ARE_MOVED) {
     return false;
   }
   log(`${timestamp.stamp()} assetHashing().images`);
