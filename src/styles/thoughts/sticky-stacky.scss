@@ -13,8 +13,15 @@ nav.fixed {
   top: var(--previous-heights);
   transform: translateY(var(--sticky-stacky-transform));
 
-  &.shadow {
-    box-shadow: 0 0 $s2 $pallette--primary-text-color;
+  &.shadow::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    height: $s2;
+    background: linear-gradient(to bottom, rgba($pallette--primary-text-color, 0.3), transparent);
+    left: 0;
+    right: 0;
   }
 }
 
