@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# scaffold.sh - Auto-generate files for a new page
-# sh scaffold.sh name-of-page
+# scaffold - Auto-generate files for a new page
+# bin/scaffold name-of-page
 # $1 = name-of-page
 
 if [ "$1" == "" ]; then
@@ -45,8 +45,8 @@ echo "created $SCRIPTS_LOCATION"
 
 make_ejs_file() {
 echo "---
-title: /"/"
-description: /"/"
+title: \"\"
+description: \"\"
 date: $NOW
 priority: 0.8
 pageClasses:
