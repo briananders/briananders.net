@@ -1,0 +1,86 @@
+---
+title: "Drum Banders"
+description: ""
+date: 2022-02-18
+priority: 0.8
+pageClasses:
+  - 'drum-banders'
+layout: base
+styles:
+  - 'main'
+  - 'drum-banders'
+scripts:
+  - 'drum-banders'
+---
+
+Channel: https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw
+
+Glow Sticks playlist: https://youtube.com/playlist?list=PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9
+Drum Covers playlist: https://youtube.com/playlist?list=PLetKrknUS6uORehWMWAOfojlwXGCsUXZw
+
+<%
+  const videoTitle = (title, artist) => {
+    if (artist) {
+      return `
+        <ul>
+          <li>Title: ${title}</li>
+          <li>artist: ${artist}</li>
+        </ul>
+      `;
+    }
+    return title;
+  };
+
+  const videos = [
+    {  
+      artist: "Underoath",
+      title: "I don't feel very receptive today", 
+      id: "loGe3CfA9r8"
+    },
+    {  
+      artist: "Queens of the Stone Age",
+      title: "Song for the Dead", 
+      id: "ib--ZJhxoPU" 
+    },
+    {
+      artist: "Chumbawamba",
+      title: "Tubthumping (Drum Cover)",
+      id: "OYF05_zmLbg"
+    },
+    {
+      artist: "Box Car Racer",
+      title: "All Systems Go",
+      id: "5efQM16xcNE"
+    },
+    {
+      artist: "These Green Eyes",
+      title: "Something Perfect",
+      id: "FnJVUBm8TXg"
+    },
+    {
+      artist: "Blink-182",
+      title: "Down",
+      id: "6CmnK_GC9YM"
+    },
+    {
+      title: "What happens when your camera isn't mounted very well",
+      id: "VIFcO2bItjU"
+    },
+    {
+      artist: "Blink-182",
+      title: "What's My Age Again",
+      id: "f8HAx-N4z28"
+    },
+    {
+      artist: "Blink-182",
+      title: "Adam's Song",
+      id: "NSZ8_1lQ_I8"
+    },
+  ];
+%>
+
+<ul>
+  <% videos.forEach(({ artist, title, id }) => { %>
+    <li><a class="block link" href="https://www.youtube.com/watch?v=<%- id %>"><%- videoTitle(title, artist) %><a/></li>
+  <% }); %>
+</ul>
