@@ -1,0 +1,52 @@
+@import "system/utilities";
+
+$yt-video-width: 560;
+$yt-video-height: 315;
+
+$width-in-vh: $yt-video-width/$yt-video-height * 90vh;
+$height-in-vw: $yt-video-height/$yt-video-width * 90vw;
+
+html.youtube-modal-open,
+html.youtube-modal-open body {
+  overflow: hidden;
+}
+
+.youtube-modal-container {
+  width: css-min(90vw, $width-in-vh);
+  height: css-min(90vh, $height-in-vw);
+  position: fixed;
+  z-index: 100000;
+  left: 50%;
+  top: 50%;
+  background-color: $pallette--primary-text-color;
+  transform: translate(-50%, -50%);
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.youtube-modal-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 99999;
+  cursor: pointer;
+}
+
+.youtube-modal-close {
+  position: fixed;
+  z-index: 100001;
+  top: 10px;
+  right: 10px;
+  @include button;
+  background-color: $pallette--primary-text-color;
+
+  @include dark-mode {
+    background-color: $pallette--primary-text-color;
+  }
+}

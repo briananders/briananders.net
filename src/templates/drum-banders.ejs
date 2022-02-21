@@ -13,10 +13,21 @@ scripts:
   - 'drum-banders'
 ---
 
-Channel: https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw
+<section>
+  <div class="content">
+    <p>
+      <a class="link" href="https://www.instagram.com/drummer.banders/">Instagram</a>
+    </p>
+    <p>
+      <a class="link" href="https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw">Channel</a>
+    </p>
+  </div>
+</section>
 
-Glow Sticks playlist: https://youtube.com/playlist?list=PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9
-Drum Covers playlist: https://youtube.com/playlist?list=PLetKrknUS6uORehWMWAOfojlwXGCsUXZw
+
+<button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">Drum Covers</button>
+<button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">Glow Sticks</button>
+
 
 <%
   const videoTitle = (title, artist) => {
@@ -32,55 +43,72 @@ Drum Covers playlist: https://youtube.com/playlist?list=PLetKrknUS6uORehWMWAOfoj
   };
 
   const videos = [
-    {  
+    {
       artist: "Underoath",
-      title: "I don't feel very receptive today", 
-      id: "loGe3CfA9r8"
+      title: "I don't feel very receptive today",
+      id: "loGe3CfA9r8",
+      date: "2020-12-23"
     },
-    {  
+    {
       artist: "Queens of the Stone Age",
-      title: "Song for the Dead", 
-      id: "ib--ZJhxoPU" 
+      title: "Song for the Dead",
+      id: "ib--ZJhxoPU",
+      date: "2020-12-23"
     },
     {
       artist: "Chumbawamba",
       title: "Tubthumping (Drum Cover)",
-      id: "OYF05_zmLbg"
+      id: "OYF05_zmLbg",
+      date: "2020-12-29"
     },
     {
       artist: "Box Car Racer",
       title: "All Systems Go",
-      id: "5efQM16xcNE"
+      id: "5efQM16xcNE",
+      date: "2020-12-29"
     },
     {
       artist: "These Green Eyes",
       title: "Something Perfect",
-      id: "FnJVUBm8TXg"
+      id: "FnJVUBm8TXg",
+      date: "2020-12-29"
     },
     {
       artist: "Blink-182",
       title: "Down",
-      id: "6CmnK_GC9YM"
+      id: "6CmnK_GC9YM",
+      date: "2021-02-28"
     },
     {
       title: "What happens when your camera isn't mounted very well",
-      id: "VIFcO2bItjU"
+      id: "VIFcO2bItjU",
+      date: "2022-02-01"
     },
     {
       artist: "Blink-182",
       title: "What's My Age Again",
-      id: "f8HAx-N4z28"
+      id: "f8HAx-N4z28",
+      date: "2022-02-02"
     },
     {
       artist: "Blink-182",
       title: "Adam's Song",
-      id: "NSZ8_1lQ_I8"
+      id: "NSZ8_1lQ_I8",
+      date: "2022-02-15"
     },
-  ];
+    {
+      artist: "Blink-182",
+      title: "All The Small Things",
+      id: "9ubiPRp5uto",
+      date: "2022-03-02"
+    },
+  ].sort((a, b) => (a.date < b.date) ? 1 : -1);
 %>
 
-<ul>
-  <% videos.forEach(({ artist, title, id }) => { %>
-    <li><a class="block link" href="https://www.youtube.com/watch?v=<%- id %>"><%- videoTitle(title, artist) %><a/></li>
-  <% }); %>
-</ul>
+<section>
+  <div class="content video-grid">
+    <% videos.forEach(({ artist, title, id }) => { %>
+      <button class="block link yt-modal-trigger" data-video-id="<%- id %>"><%- videoTitle(title, artist) %></button>
+    <% }); %>
+  </div>
+</section>

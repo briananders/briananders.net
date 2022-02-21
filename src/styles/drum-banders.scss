@@ -1,5 +1,29 @@
 @import "system/utilities";
+@import "./modules/youtube-modal";
+
+$width: 560;
+$height: 315;
+$aspectRatio: $height / $width;
 
 .drum-banders {
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+    max-width: 320px;
 
+    @include mq(700px) {
+      max-width: 700px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mq(900px) {
+      max-width: none;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .yt-modal-trigger {
+    padding: $s2;
+  }
 }
