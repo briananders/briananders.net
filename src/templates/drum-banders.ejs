@@ -13,28 +13,39 @@ scripts:
   - 'drum-banders'
 ---
 
+big picture of me<br><br>
+
 <section>
   <div class="content">
     <p>
+      profile picture
       <a class="link" href="https://www.instagram.com/drummer.banders/">Instagram</a>
     </p>
     <p>
-      <a class="link" href="https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw">Channel</a>
+      profile picture
+      <a class="link" href="https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw">Youtube Channel</a>
     </p>
   </div>
 </section>
 
-
-<button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">Drum Covers</button>
-<button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">Glow Sticks</button>
-
+<section>
+  <header class="content">
+    <h2>
+      Playlists
+    </h2>
+  </header>
+  <div class="content video-grid">
+    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">Drum Covers</button>
+    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">Glow Sticks</button>
+  </div>
+</section>
 
 <%
   const videoTitle = (title, artist) => {
     if (artist) {
       return `
         <ul>
-          <li>Title: ${title}</li>
+          <li>Title: ${noWidows(title)}</li>
           <li>artist: ${artist}</li>
         </ul>
       `;
@@ -106,6 +117,11 @@ scripts:
 %>
 
 <section>
+  <header class="content">
+    <h2>
+      Videos
+    </h2>
+  </header>
   <div class="content video-grid">
     <% videos.forEach(({ artist, title, id }) => { %>
       <button class="block link yt-modal-trigger" data-video-id="<%- id %>"><%- videoTitle(title, artist) %></button>
