@@ -6,6 +6,36 @@ $height: 315;
 $aspectRatio: $height / $width;
 
 .drum-banders {
+  .social-profiles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-profile {
+    @include block-link;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: $s2;
+    width: 150px;
+
+    img,
+    span {
+      display: block;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: $s2;
+      background-color: var(--primary-color-dark, $pallette--primary-color-dark);
+    }
+  }
+
   .video-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -17,9 +47,11 @@ $aspectRatio: $height / $width;
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include mq(900px) {
-      max-width: none;
-      grid-template-columns: repeat(3, 1fr);
+    &:not(.playlists) {
+      @include mq(900px) {
+        max-width: none;
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 

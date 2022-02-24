@@ -13,18 +13,35 @@ scripts:
   - 'drum-banders'
 ---
 
-big picture of me<br><br>
-
 <section>
   <div class="content">
-    <p>
-      profile picture
-      <a class="link" href="https://www.instagram.com/drummer.banders/">Instagram</a>
-    </p>
-    <p>
-      profile picture
-      <a class="link" href="https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw">Youtube Channel</a>
-    </p>
+    <%- lazyImage({ src: '/images/icons/my-face.svg' }) %>
+  </div>
+</section>
+
+<section>
+  <header class="content">
+    <h2>
+      Social Channels
+    </h2>
+  </header>
+  <div class="content social-profiles">
+    <%- externalLink(`
+        ${lazyImage({ src: '/images/icons/my-face.svg' })}
+        <span role="heading" aria-level="3" class="h4">Instagram</span>
+        <span>@drummer.banders</span>
+      `, {
+        class: "link social-profile",
+        href: "https://www.instagram.com/drummer.banders/"
+    }) %>
+    <%- externalLink(`
+        ${lazyImage({ src: '/images/icons/my-face.svg' })}
+        <span role="heading" aria-level="3" class="h4">Youtube</span>
+        <span>Drum Banders</span>
+      `, {
+        class: "link social-profile",
+        href: "https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw"
+    }) %>
   </div>
 </section>
 
@@ -34,9 +51,15 @@ big picture of me<br><br>
       Playlists
     </h2>
   </header>
-  <div class="content video-grid">
-    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">Drum Covers</button>
-    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">Glow Sticks</button>
+  <div class="content video-grid playlists">
+    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
+      <%- lazyImage({ src: '/images/icons/my-face.svg' }) %>
+      Drum Covers
+    </button>
+    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
+      <%- lazyImage({ src: '/images/icons/my-face.svg' }) %>
+      Glow Sticks
+    </button>
   </div>
 </section>
 
@@ -45,8 +68,8 @@ big picture of me<br><br>
     if (artist) {
       return `
         <ul>
-          <li>Title: ${noWidows(title)}</li>
-          <li>artist: ${artist}</li>
+          <li>${noWidows(title)}</li>
+          <li>By: ${artist}</li>
         </ul>
       `;
     }

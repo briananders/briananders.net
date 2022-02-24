@@ -74,7 +74,7 @@ module.exports = (dir, pageMappingData) => ({
     `;
   },
 
-  lazyImage(locals) {
+  lazyImage(locals = {}) {
     if (!locals.src) {
       throw new Error('lazyImage is missing src attribute');
     }
