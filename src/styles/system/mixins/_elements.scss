@@ -132,11 +132,26 @@
   }
 }
 
+@mixin content-width {
+  max-width: $content-max-width;
+  @include margin-center;
+}
+
+@mixin content {
+  @include content-width;
+  position: relative;
+  padding: 0 $s2;
+
+  @include mq($medium) {
+    padding: 0 $s5;
+  }
+}
+
 @mixin paragraph {
   width: 100%;
   max-width: $grid--copy-max-width;
   @include margin-center;
-  margin-bottom: $s6;
+  margin-bottom: $paragraph-bottom;
   @include font-size(3);
 
   &:last-child {
@@ -147,7 +162,7 @@
 @mixin paragraph-margin {
   &,
   &:last-child {
-    margin-bottom: $s6;
+    margin-bottom: $paragraph-bottom;
   }
 }
 

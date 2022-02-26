@@ -13,11 +13,16 @@ scripts:
   - 'drum-banders'
 ---
 
-<section>
-  <div class="content">
-    <%- lazyImage({ src: '/images/icons/my-face.svg' }) %>
-  </div>
-</section>
+<%- lazyVideo({
+  srcs: {
+    desktop: '/videos/drum-banders/hero-desktop.mp4',
+    mobile: '/videos/drum-banders/hero-mobile.mp4',
+  },
+  placeholders: {
+    desktop: '/videos/drum-banders/hero-desktop.jpg',
+    mobile: '/videos/drum-banders/hero-mobile.jpg',
+  }
+}) %>
 
 <section>
   <header class="content">
@@ -27,17 +32,17 @@ scripts:
   </header>
   <div class="content social-profiles">
     <%- externalLink(`
-        ${lazyImage({ src: '/images/icons/my-face.svg' })}
-        <span role="heading" aria-level="3" class="h4">Instagram</span>
-        <span>@drummer.banders</span>
+        <div class="social-icon">${lazyImage({ src: '/images/drum-banders/instagram-icon.svg' })}</div>
+        <div role="heading" aria-level="3" class="h4">Instagram</div>
+        <div class="h5">@drummer.banders</div>
       `, {
         class: "link social-profile",
         href: "https://www.instagram.com/drummer.banders/"
     }) %>
     <%- externalLink(`
-        ${lazyImage({ src: '/images/icons/my-face.svg' })}
+        <span class="social-icon">${lazyImage({ src: '/images/drum-banders/youtube-icon.svg' })}</span>
         <span role="heading" aria-level="3" class="h4">Youtube</span>
-        <span>Drum Banders</span>
+        <span class="h5">Drum Banders</span>
       `, {
         class: "link social-profile",
         href: "https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw"

@@ -6,6 +6,28 @@ $height: 315;
 $aspectRatio: $height / $width;
 
 .drum-banders {
+  .video-container {
+    margin-bottom: $s6;
+    @include content-width;
+
+    @include mq($content-max-width) {
+      height: calc(var(--aspect-ratio) * #{$content-max-width});
+      padding-top: 0 !important;
+    }
+  }
+
+  .social-icon {
+    margin-bottom: $s2;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: $s3;
+    background: $pallette--primary-color-text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .social-profiles {
     display: flex;
     align-items: center;
@@ -21,19 +43,7 @@ $aspectRatio: $height / $width;
     flex-direction: column;
     margin: $s2;
     width: 150px;
-
-    img,
-    span {
-      display: block;
-    }
-
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: $s2;
-      background-color: var(--primary-color-dark, $pallette--primary-color-dark);
-    }
+    padding-top: $s3;
   }
 
   .video-grid {

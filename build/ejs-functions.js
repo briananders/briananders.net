@@ -74,12 +74,36 @@ module.exports = (dir, pageMappingData) => ({
     `;
   },
 
-  lazyImage(locals = {}) {
-    if (!locals.src) {
+  lazyImage({ src, alt, classString } = {}) {
+    if (!src) {
       throw new Error('lazyImage is missing src attribute');
     }
-    const dimensions = sizeOf(path.join(dir.src, locals.src));
-    return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${dimensions.width} ${dimensions.height}'%3E%3C/svg%3E" data-src="${locals.src}" alt="${locals.alt || ''}" height="${dimensions.height}" width="${dimensions.width}" ${locals.class ? `class="${locals.class}"` : ''} />`;
+    const dimensions = sizeOf(path.join(dir.src, src));
+    return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${dimensions.width} ${dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt || ''}" height="${dimensions.height}" width="${dimensions.width}" ${classString ? `class="${classString}"` : ''} />`;
+  },
+
+  lazyVideo({ srcs, placeholders, attributes = ['autoplay', 'muted', 'loop', 'playsinline'] } = {}) {
+    if (!srcs) {
+      throw new Error('lazyVideo is missing srcs attribute');
+    }
+    const desktopDimensions = sizeOf(path.join(dir.src, placeholders.desktop));
+    const mobileDimensions = sizeOf(path.join(dir.src, placeholders.mobile));
+    return `
+    <div class="video-container" style="padding-top: ${(desktopDimensions.height / desktopDimensions.width) * 100}%; --aspect-ratio: ${desktopDimensions.height / desktopDimensions.width};">
+      <video lazy ${attributes.join(' ')}
+        data-mobile-width="${mobileDimensions.width}"
+        data-mobile-height="${mobileDimensions.height}"
+        data-mobile-poster="${placeholders.mobile}"
+        data-desktop-width="${desktopDimensions.width}"
+        data-desktop-height="${desktopDimensions.height}"
+        data-desktop-poster="${placeholders.desktop}"
+      >
+        <source
+          data-mobile-src="${srcs.mobile}"
+          data-desktop-src="${srcs.desktop}"
+        type="video/mp4">
+      </video>
+    </div>`;
   },
 
   link(str, locals) {

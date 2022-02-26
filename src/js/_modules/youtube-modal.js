@@ -64,16 +64,22 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
     document.body.appendChild(MODAL_ELEMENTS.overlay);
     document.body.appendChild(MODAL_ELEMENTS.container);
     document.body.appendChild(MODAL_ELEMENTS.closeButton);
-    document.documentElement.classList.add(CLASSES.bodyOpen);
     MODAL_ELEMENTS.container.innerHTML = iframeString;
+
+    setTimeout(() => {
+      document.documentElement.classList.add(CLASSES.bodyOpen);
+    }, 1);
   };
 
   const closeModal = () => {
     document.documentElement.classList.remove(CLASSES.bodyOpen);
-    document.body.removeChild(MODAL_ELEMENTS.overlay);
-    document.body.removeChild(MODAL_ELEMENTS.container);
-    document.body.removeChild(MODAL_ELEMENTS.closeButton);
-    MODAL_ELEMENTS.container.innerHTML = '';
+
+    setTimeout(() => {
+      document.body.removeChild(MODAL_ELEMENTS.overlay);
+      document.body.removeChild(MODAL_ELEMENTS.container);
+      document.body.removeChild(MODAL_ELEMENTS.closeButton);
+      MODAL_ELEMENTS.container.innerHTML = '';
+    }, 300);
   };
 
   const checkNodeNames = () => {

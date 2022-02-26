@@ -17,7 +17,8 @@ module.exports = function assetHashing({
   if (!completionFlags.JS_IS_MINIFIED
       || !completionFlags.CSS_IS_MINIFIED
       || !completionFlags.HTML_IS_MINIFIED
-      || !completionFlags.IMAGES_ARE_MOVED) {
+      || !completionFlags.IMAGES_ARE_MOVED
+      || !completionFlags.VIDEOS_ARE_MOVED) {
     return false;
   }
   log(`${timestamp.stamp()} assetHashing().images`);
@@ -25,9 +26,10 @@ module.exports = function assetHashing({
   if (debug) log(`completionFlags.CSS_IS_MINIFIED    :${completionFlags.CSS_IS_MINIFIED}`);
   if (debug) log(`completionFlags.HTML_IS_MINIFIED     :${completionFlags.HTML_IS_MINIFIED}`);
   if (debug) log(`completionFlags.IMAGES_ARE_MOVED     :${completionFlags.IMAGES_ARE_MOVED}`);
+  if (debug) log(`completionFlags.VIDEOS_ARE_MOVED     :${completionFlags.VIDEOS_ARE_MOVED}`);
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
-  const imagesGlob = glob.sync(`${dir.package}images/**/*.{png,svg,jpg}`);
+  const assetGlob = glob.sync(`${dir.package}{images,videos}/**/*.{png,svg,jpg,webm,mp4}`);
 
   let processedJs = 0;
   jsGlob.forEach((file, index, array) => {
@@ -47,7 +49,7 @@ module.exports = function assetHashing({
     });
   });
   let processedImages = 0;
-  imagesGlob.forEach((file, index, array) => {
+  assetGlob.forEach((file, index, array) => {
     const fileContents = fs.readFileSync(file);
     const hash = XXHash.hash(fileContents, 0xCAFEBABE);
     const hashedFileName = `${file.substr(0, file.lastIndexOf('.'))}-${hash}${file.substr(file.lastIndexOf('.'))}`;

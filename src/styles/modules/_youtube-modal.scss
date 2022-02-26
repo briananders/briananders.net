@@ -11,13 +11,44 @@ html.youtube-modal-open body {
   overflow: hidden;
 }
 
+.youtube-modal-close,
+.youtube-modal-container,
+.youtube-modal-overlay {
+  opacity: 0;
+}
+
+.youtube-modal-close,
+.youtube-modal-container {
+  transition: opacity 300ms ease, top 300ms ease;
+}
+
+.youtube-modal-overlay {
+  transition: opacity 300ms ease;
+}
+
+html.youtube-modal-open {
+  .youtube-modal-close,
+  .youtube-modal-container,
+  .youtube-modal-overlay {
+    opacity: 1;
+  }
+
+  .youtube-modal-close {
+    top: 10px;
+  }
+
+  .youtube-modal-container {
+    top: 50%;
+  }
+}
+
 .youtube-modal-container {
   width: css-min(90vw, $width-in-vh);
   height: css-min(90vh, $height-in-vw);
   position: fixed;
   z-index: 100000;
   left: 50%;
-  top: 50%;
+  top: 100%;
   background-color: $pallette--primary-text-color;
   transform: translate(-50%, -50%);
 
@@ -41,7 +72,7 @@ html.youtube-modal-open body {
 .youtube-modal-close {
   position: fixed;
   z-index: 100001;
-  top: 10px;
+  top: -100px;
   right: 10px;
   @include button;
   background-color: $pallette--primary-text-color;
