@@ -73,8 +73,8 @@
       font-size: 50%;
       top: 0;
       left: 0;
-      background-color: $pallette--primary-text-color;
-      color: $pallette--primary-color-text;
+      background-color: $pallette--primary-text-color--dark;
+      color: $pallette--primary-color-text--white;
       max-width: 100%;
       border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
       border-radius: $s1;

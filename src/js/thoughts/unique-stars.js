@@ -2,7 +2,6 @@ const log = require('../_modules/log');
 
 (function uniqueStars() {
   const scrollTo = require('../_modules/scroll-to');
-  const darkMode = require('../_modules/dark-mode');
 
   const nInput = document.getElementById('n');
   const answerTag = document.querySelector('answer');
@@ -14,7 +13,7 @@ const log = require('../_modules/log');
   canvas.height = 1000;
   let currentConfig;
 
-  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
+  const FILL_STYLE = '#ffffff';
 
   function degreesToRadians(deg = 0) {
     return (deg * (2 * Math.PI)) / 360;
