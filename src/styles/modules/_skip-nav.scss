@@ -10,11 +10,8 @@
   border-bottom-right-radius: $border-radius;
 
   @include pallette--base;
-
-  @include dark-mode {
-    background-color: $pallette--primary-text-color;
-    color: $pallette--primary-color-text;
-  }
+  background-color: $pallette--primary-text-color--dark;
+  color: $pallette--primary-color-text--white;
 
   &[data-state=inactive] {
     top: -100%;

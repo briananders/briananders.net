@@ -58,11 +58,7 @@
     transition-duration: $transition-speed;
     z-index: 1000;
 
-    box-shadow: 0 0 0 2px var(--primary-text-color, #{$pallette--primary-text-color});
-
-    @include dark-mode {
-      box-shadow: 0 0 0 2px var(--primary-color-text, #{$pallette--primary-color-text});
-    }
+    box-shadow: 0 0 0 2px var(--primary-color-text, #{$pallette--primary-color-text--white});
   }
 
   &:hover::after {
@@ -84,11 +80,7 @@
   @include pallette--base;
 
   &:focus {
-    background-color: $color--grey-200 !important;
-
-    @include dark-mode {
-      background-color: $color--grey-800 !important;
-    }
+    background-color: $color--grey-800 !important;
   }
 }
 
@@ -119,16 +111,27 @@
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
-  color: $pallette--primary-color-text;
-  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+  color: $pallette--primary-color-text--white;
   border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-
-  @include dark-mode {
-    background-color: transparent;
-  }
+  background-color: transparent;
 
   &::before {
     height: 0;
+  }
+}
+
+@mixin content-width {
+  max-width: $content-max-width;
+  @include margin-center;
+}
+
+@mixin content {
+  @include content-width;
+  position: relative;
+  padding: 0 $s2;
+
+  @include mq($medium) {
+    padding: 0 $s5;
   }
 }
 
@@ -136,7 +139,7 @@
   width: 100%;
   max-width: $grid--copy-max-width;
   @include margin-center;
-  margin-bottom: $s6;
+  margin-bottom: $paragraph-bottom;
   @include font-size(3);
 
   &:last-child {
@@ -147,7 +150,7 @@
 @mixin paragraph-margin {
   &,
   &:last-child {
-    margin-bottom: $s6;
+    margin-bottom: $paragraph-bottom;
   }
 }
 
@@ -172,14 +175,9 @@
   @include margin-center;
   margin-bottom: $s6;
   @include font-size(3);
-  background-color: var(--primary-color-light, #{$pallette--primary-color-light});
-  color: $pallette--primary-text-color;
-
-  @include dark-mode {
-    background-color: transparent;
-    border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-    color: $pallette--primary-color-text;
-  }
+  background-color: transparent;
+  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
+  color: $pallette--primary-color-text--white;
 
   p {
     &:last-of-type {

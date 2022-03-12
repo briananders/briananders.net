@@ -1,7 +1,4 @@
-@import "highlight.js/scss/a11y-light";
-@include dark-mode {
-  @import "highlight.js/scss/a11y-dark";
-}
+@import "highlight.js/scss/a11y-dark";
 
 code {
   white-space: pre;
@@ -11,13 +8,9 @@ code {
   display: inline-block;
   overflow-x: auto;
   max-width: 100%;
-  color: $pallette--primary-text-color;
   text-align: left;
   margin: auto;
-
-  @include dark-mode {
-    color: $pallette--primary-color-text;
-  }
+  color: $pallette--primary-color-text--white;
 }
 
 .code-container {
@@ -43,19 +36,11 @@ code {
 
   &::before {
     left: 0px;
-    background: linear-gradient(to left, rgba($color--white, 0), rgba($color--white, 1));
-
-    @include dark-mode {
-      background: linear-gradient(to left, rgba($pallette--primary-text-color, 0), rgba($pallette--primary-text-color, 1));
-    }
+    background: linear-gradient(to left, rgba($pallette--primary-text-color--dark, 0), rgba($pallette--primary-text-color--dark, 1));
   }
   &::after {
     right: 0px;
-    background: linear-gradient(to right, rgba($color--white, 0), rgba($color--white, 1));
-
-    @include dark-mode {
-      background: linear-gradient(to right, rgba($pallette--primary-text-color, 0), rgba($pallette--primary-text-color, 1));
-    }
+    background: linear-gradient(to right, rgba($pallette--primary-text-color--dark, 0), rgba($pallette--primary-text-color--dark, 1));
   }
 }
 
@@ -65,11 +50,6 @@ var {
   border: 1px solid $pallette--divider-color;
   border-radius: 4px;
   padding: 0 0.5rem;
-  background-color: var(--primary-color-light, #{$pallette--primary-color-light});
-  color: $pallette--primary-text-color;
-
-  @include dark-mode {
-    background-color: transparent;
-    color: $pallette--primary-color-text;
-  }
+  background-color: transparent;
+  color: $pallette--primary-color-text--white;
 }

@@ -11,12 +11,12 @@ main.thoughts.using-canvas-to-make-patterns-with-circles {
   }
 
   #pause-button.paused {
-    color: $pallette--primary-color-text;
-    background-color: $pallette--primary-text-color;
+    color: $pallette--primary-color-text--white;
+    background-color: $pallette--primary-text-color--dark;
   }
 
   #clear-button {
-    color: $pallette--primary-color-text;
+    color: $pallette--primary-color-text--white;
     background-color: darken($color: red, $amount: 15);
 
     &:hover,
