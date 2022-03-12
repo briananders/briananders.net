@@ -35,6 +35,8 @@ const getContentType = (fileName) => {
     case '.jpg':
     case '.gif':
       return `image/${extn}`;
+    case '.svg':
+      return 'image/svg+xml';
     default:
       return 'application/octet-stream';
   }
