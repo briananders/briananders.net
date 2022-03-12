@@ -8,7 +8,7 @@
 }
 
 @mixin mq-max($query) {
-  @media (max-width: $query - 1) {
+  @media (max-width: #{$query - 1}) {
     @content;
   }
 }

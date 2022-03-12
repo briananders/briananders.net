@@ -8,7 +8,7 @@ nav.main {
 
   &.shadow,
   #nav-tray {
-    box-shadow: 0 0 $s2 $pallette--primary-text-color;
+    box-shadow: 0 0 $s2 $pallette--primary-text-color--dark;
   }
 
   a,
@@ -39,7 +39,7 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    color: $pallette--primary-color-text;
+    color: $pallette--primary-color-text--white;
     font-weight: $regular;
     padding: 4px 8px;
     box-shadow: 0 0 0 1px $color--white;
@@ -101,10 +101,10 @@ nav.main {
   .link {
     @include font-size;
     font-family: $sans-serif;
-    color: var(--primary-color-text, #{$pallette--primary-color-text});
+    color: var(--primary-color-text, #{$pallette--primary-color-text--white});
 
     &::before {
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text});
+      background-color: var(--primary-color-text, #{$pallette--primary-color-text--white});
     }
 
     &.brand {

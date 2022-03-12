@@ -7,6 +7,7 @@ module.exports = {
   htmlMinified: 'html-minified',
   imageCompressionDone: 'image-compression-done',
   imagesMoved: 'images-moved',
+  videosMoved: 'videos-moved',
   indexCssForHashing: 'index-css-for-hashing',
   jsMinified: 'js-minified',
   jsMoved: 'js-moved',

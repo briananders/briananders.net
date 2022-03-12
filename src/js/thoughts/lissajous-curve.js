@@ -1,6 +1,4 @@
 (function lissajousCurve() {
-  const darkMode = require('../_modules/dark-mode');
-
   function setupCanvas(query) {
     const canvas = document.querySelector(query);
     canvas.width = 1000;
@@ -36,7 +34,7 @@
   let bxCache = null;
   let byCache = null;
 
-  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
+  const FILL_STYLE = '#ffffff';
 
   function moneyRound(num) {
     return Math.ceil(num * 100) / 100;

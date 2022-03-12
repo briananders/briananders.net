@@ -1,32 +1,22 @@
 @import "../variables/all";
 
 @mixin pallette--base {
-  background-color: $color--white;
-  color: $pallette--primary-text-color;
-
-  @include dark-mode {
-    background-color: $pallette--primary-text-color;
-    color: $pallette--primary-color-text;
-  }
+  background-color: $pallette--primary-text-color--dark;
+  color: $pallette--primary-color-text--white;
 }
 
 @mixin pallette--base--inverted {
-  background-color: $pallette--primary-text-color;
-  color: $pallette--primary-color-text;
-
-  @include dark-mode {
-    background-color: $color--white;
-    color: $pallette--primary-text-color;
-  }
+  background-color: $color--white;
+  color: $pallette--primary-text-color--dark;
 }
 
 @mixin pallette--primary {
-  color: $pallette--primary-color-text;
+  color: $pallette--primary-color-text--white;
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 }
 
 @mixin pallette--primary--active {
-  color: $pallette--primary-color-text;
+  color: $pallette--primary-color-text--white;
   background-color: var(--primary-color, #{$pallette--primary-color});
 }
 

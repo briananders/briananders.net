@@ -4,7 +4,6 @@ let nowPlane;
 let thenPlane;
 
 (function automaton() {
-  const darkMode = require('../_modules/dark-mode');
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -22,7 +21,7 @@ let thenPlane;
   const MIN = 0;
   const MAX = 65535;
 
-  const FILL_STYLE = darkMode.isDarkMode ? '#ffffff' : '#212121';
+  const FILL_STYLE = '#ffffff';
   const WIDTH = 256;
   const FPS = 1000 / 15;
 

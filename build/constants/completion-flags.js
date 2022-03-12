@@ -3,6 +3,7 @@ module.exports = {
   CSS_IS_MINIFIED: false,
   HTML_IS_MINIFIED: false,
   IMAGES_ARE_MOVED: false,
+  VIDEOS_ARE_MOVED: false,
   ASSET_HASH: {
     IMAGES: false,
     CSS: false,

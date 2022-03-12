@@ -7,10 +7,12 @@ const { log } = console;
 
 module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   completionFlags.IMAGES_ARE_MOVED = false;
+  completionFlags.VIDEOS_ARE_MOVED = false;
 
   const timestamp = require(`${dir.build}timestamp`);
 
   log(`${timestamp.stamp()} moveImages()`);
+  log(`${timestamp.stamp()} moveVideos()`);
   log(`${timestamp.stamp()} moveTxt()`);
 
   // move images over
@@ -19,6 +21,14 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
     log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
     completionFlags.IMAGES_ARE_MOVED = true;
     buildEvents.emit(BUILD_EVENTS.imagesMoved);
+  });
+
+  // move videos over
+  fs.copy(`${dir.src}videos/`, `${dir.package}videos/`, (err) => {
+    if (err) throw err;
+    log(`${timestamp.stamp()} moveVideos(): ${'DONE'.bold.green}`);
+    completionFlags.VIDEOS_ARE_MOVED = true;
+    buildEvents.emit(BUILD_EVENTS.videosMoved);
   });
 
   // move humans and robots text files
