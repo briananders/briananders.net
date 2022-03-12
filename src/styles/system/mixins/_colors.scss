@@ -21,6 +21,6 @@
 }
 
 @mixin pallette--header {
-  color: $pallette--primary-color-text;
+  color: $pallette--primary-color-text--white;
   background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 }

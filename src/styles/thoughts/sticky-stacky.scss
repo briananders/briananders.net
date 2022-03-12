@@ -5,6 +5,18 @@ nav.default-styles {
   padding: $s1 $s2;
   @include pallette--header;
   text-align: center;
+  position: relative;
+
+  &:before {
+    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+    width: 100%;
+    left: 0;
+    height: 3px;
+    top: -3px;
+    content: '';
+    display: block;
+    position: absolute;
+  }
 }
 
 nav.fixed {
@@ -19,7 +31,7 @@ nav.fixed {
     position: absolute;
     top: 100%;
     height: $s2;
-    background: linear-gradient(to bottom, rgba($pallette--primary-text-color, 0.3), transparent);
+    background: linear-gradient(to bottom, rgba($pallette--primary-text-color--dark, 0.3), transparent);
     left: 0;
     right: 0;
   }
