@@ -4,17 +4,7 @@ main.home {
   @import "modules/thoughts-list";
   @import "thoughts/last-fm";
 
-  margin-top: $s17;
-
-  // .intro {
-  //   padding-top: 0;
-  //   margin-top: 0;
-  // }
-
-  // .container header p,
-  // .content header p {
-  //   margin-bottom: $s6;
-  // }
+  margin-top: $s10;
 
   .last-fm-module {
     margin-top: $s5;

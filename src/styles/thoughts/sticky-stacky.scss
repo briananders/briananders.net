@@ -1,42 +1,31 @@
 @import "system/utilities";
 
-nav.default-styles {
-  width: 100%;
-  padding: $s1 $s2;
-  @include pallette--header;
-  text-align: center;
-  position: relative;
-
-  &:before {
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-    width: 100%;
-    left: 0;
-    height: 3px;
-    top: -3px;
-    content: '';
-    display: block;
-    position: absolute;
-  }
-}
-
-nav.fixed {
-  position: fixed;
-  z-index: 1000;
-  top: var(--previous-heights);
-  transform: translateY(var(--sticky-stacky-transform));
-
-  &.shadow::after {
-    content: '';
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    height: $s2;
-    background: linear-gradient(to bottom, rgba($pallette--primary-text-color--dark, 0.3), transparent);
-    left: 0;
-    right: 0;
-  }
-}
-
 .sticky-container {
   height: var(--sticky-container-height);
+
+  > *.default-styles {
+    width: 100%;
+    padding: $s1 $s2;
+    @include pallette--header;
+    text-align: center;
+    position: relative;
+  }
+
+  > *.fixed {
+    position: fixed;
+    z-index: 1000;
+    top: var(--previous-heights);
+    transform: translateY(var(--sticky-stacky-transform));
+
+    &.shadow::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      height: $s2;
+      background: linear-gradient(to bottom, rgba($pallette--primary-text-color--dark, 0.3), transparent);
+      left: 0;
+      right: 0;
+    }
+  }
 }

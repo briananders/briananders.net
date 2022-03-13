@@ -18,7 +18,7 @@ function StickyStacky(containerElement) {
     containerElement.style.setProperty('--previous-heights', `${heights}px`);
   };
 
-  const runLoop = () => {
+  const recalculate = () => {
     this.isStuck = window.pageYOffset + (previousHeights + getCurrentTransform()) > this.top;
 
     if (this.isStuck) {
@@ -30,10 +30,9 @@ function StickyStacky(containerElement) {
     this.top = window.pageYOffset + containerElement.getBoundingClientRect().top;
     this.height = this.stickyElement.offsetHeight;
     containerElement.style.setProperty('--sticky-container-height', `${this.height}px`);
-
-    window.requestAnimationFrame(runLoop.bind(this));
   };
-  window.requestAnimationFrame(runLoop.bind(this));
+
+  this.update = recalculate;
 }
 
 function StickyController(containerNodeList) {
@@ -71,12 +70,13 @@ function StickyController(containerNodeList) {
   const recalculateHeights = () => {
     let height = 0;
     stickyStacks.forEach((stickyStack) => {
+      stickyStack.update();
       stickyStack.setPreviousHeights(height);
       height += stickyStack.height;
     });
   };
 
-  const runLoop = () => {
+  const update = () => {
     calculateMaxTransform();
 
     if (scrollHeight !== window.pageYOffset) {
@@ -87,10 +87,9 @@ function StickyController(containerNodeList) {
     }
 
     recalculateHeights();
-
-    window.requestAnimationFrame(runLoop);
   };
-  window.requestAnimationFrame(runLoop);
+
+  window.addEventListener('scroll', update.bind(this));
 }
 
 module.exports.init = () => {
