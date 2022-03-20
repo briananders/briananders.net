@@ -1,0 +1,39 @@
+---
+title: "Recommendations"
+description: ""
+date: 2022-03-19
+priority: 0.8
+pageClasses:
+  - 'recommendations index'
+layout: base
+styles:
+  - 'main'
+  - 'recommendations/index'
+scripts:
+  - 'recommendations/index'
+---
+
+<%
+    const basePages = getChildPages('recommendations');
+    let newestPages = basePages.sort((pageA, pageB) => {
+      const dateA = new Date(pageA.data.date);
+      const dateB = new Date(pageB.data.date);
+      return (dateA < dateB) ? 1 : -1;
+    });
+    if (locals.thoughtCount) {
+      newestPages = newestPages.splice(0, locals.thoughtCount);
+    }
+    newestPages.forEach(({ url, data: { date, description, title }}) => {
+  %>
+    <%- link(`
+      <h3 itemprop="name" ${locals.headingLevel ? `role="heading" aria-level="${locals.headingLevel}"` : ""}>${noWidows(title)}</h3>
+      <meta itemprop="author" content="Brian Anders"/>
+      <meta itemprop="publisher" content="Brian Anders"/>
+    `, {
+      href: `/${url}`,
+      itemscope: '',
+      itemtype: 'http://schema.org/BlogPosting',
+      role: 'listitem',
+      class: 'block',
+    }) %>
+  <% }); %>
