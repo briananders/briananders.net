@@ -90,6 +90,8 @@ function StickyController(containerNodeList) {
   };
 
   window.addEventListener('scroll', update.bind(this));
+  setTimeout(update.bind(this), 0);
+  setTimeout(update.bind(this), 100);
 }
 
 module.exports.init = () => {
