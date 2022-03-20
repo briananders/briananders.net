@@ -41,14 +41,14 @@
     if (y === undefined) {
       y = 1;
     }
-    const radius = Math.floor(Math.random() * 50);
+    const radius = Math.floor(5 + (Math.random() * 100));
 
     // color
     const fill = new ColorObject();
     const border = new ColorObject();
 
     // speed
-    const speed = (Math.random() * 50) + 50;
+    const speed = (Math.random() * 100) + 100;
     let xVelocity = (Math.random() - 0.5) * speed;
     let yVelocity = (Math.random() - 0.5) * speed;
 
@@ -159,8 +159,8 @@
   }
 
   function setCanvasDimensions() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    canvas.width = canvas.clientWidth * 2; // x2 for retina displays
+    canvas.height = canvas.clientHeight * 2; // x2 for retina displays
   }
 
   function update() {
