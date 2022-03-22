@@ -109,14 +109,11 @@ nav.main {
     }
 
     &.brand {
-      @include font-size(7);
-      margin: 0 -$s2;
-      font-weight: $regular;
-      padding: 0 $s2;
-
-      @include mq-max(340px) {
-        @include font-size(6);
-      }
+      width: auto;
+      max-width: css-min(calc(100% - #{66px + 12px}), 200px);
+      display: flex;
+      justify-content: flex-start;
+      align-items: middle;
     }
   }
 }
