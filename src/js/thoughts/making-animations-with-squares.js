@@ -1,7 +1,7 @@
-(function usingCanvas() {
+(function init() {
   let canvasContext;
   let canvas;
-  let circles = [];
+  let squares = [];
   let borderStyle;
   let alphaBorder;
   let fillStyle;
@@ -33,8 +33,8 @@
     };
   }
 
-  // Circle Class
-  function Circle(x, y) {
+  // Square Class
+  function Square(x, y) {
     // position and size
     if (x === undefined) {
       x = 1;
@@ -54,8 +54,13 @@
     let yVelocity = (Math.random() - 0.5) * speed;
 
     this.draw = () => {
-      canvasContext.beginPath();
-      canvasContext.arc(x, y, radius, 0, 2 * Math.PI, false);
+      // canvasContext.beginPath();
+      // canvasContext.arc(x, y, radius, 0, 2 * Math.PI, false);
+      // canvasContext.fillRect(25, 25, 100, 100);
+      // canvasContext.clearRect(45, 45, 60, 60);
+      // canvasContext.strokeRect(x - radius, y - radius, x + radius, y + radius);
+      const rectangle = new Path2D();
+      rectangle.rect(x - radius, y - radius, 2 * radius, 2 * radius);
 
       switch (fillStyle.value) {
         case 'no-fill':
@@ -73,7 +78,7 @@
         default:
       }
 
-      canvasContext.fill();
+      canvasContext.fillRect(x - radius, y - radius, (2 * radius), (2 * radius));
 
       if (borderStyle.value !== 'no-border') {
         canvasContext.lineWidth = '1px';
@@ -93,10 +98,8 @@
             break;
           default:
         }
-        canvasContext.stroke();
+        canvasContext.stroke(rectangle);
       }
-
-      canvasContext.closePath();
     };
 
     this.update = () => {
@@ -144,18 +147,18 @@
   // //////////////////////////////////////////////////////////////////////////////
 
   function updateAlphaBorder() {
-    let i = circles.length;
+    let i = squares.length;
 
     while (i) {
-      circles[--i].updateAlphaBorder();
+      squares[--i].updateAlphaBorder();
     }
   }
 
   function updateAlphaFill() {
-    let i = circles.length;
+    let i = squares.length;
 
     while (i) {
-      circles[--i].updateAlphaFill();
+      squares[--i].updateAlphaFill();
     }
   }
 
@@ -165,20 +168,20 @@
   }
 
   function update() {
-    let i = circles.length;
+    let i = squares.length;
 
     while (i) {
-      circles[--i].update();
+      squares[--i].update();
     }
   }
 
   function drawCanvas() {
     canvasContext.save();
 
-    let i = circles.length;
+    let i = squares.length;
 
     while (i) {
-      circles[--i].draw(canvasContext);
+      squares[--i].draw(canvasContext);
     }
 
     canvasContext.restore();
@@ -203,7 +206,7 @@
   function pauseUnpause() {
     const pauseCache = paused;
 
-    if (circles.length < 1) {
+    if (squares.length < 1) {
       paused = true;
       return;
     }
@@ -226,10 +229,10 @@
     }
   }
 
-  function createCircle(e) {
-    circles.push(new Circle(e.x, e.y));
+  function createSquare(e) {
+    squares.push(new Square(e.x, e.y));
 
-    if (circles.length === 1) {
+    if (squares.length === 1) {
       pauseUnpause();
     }
   }
@@ -241,7 +244,7 @@
 
   function clear() {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    circles = [];
+    squares = [];
     pauseUnpause();
   }
 
@@ -262,7 +265,7 @@
     alphaBorder.addEventListener('change', updateAlphaBorder, false);
     alphaFill.addEventListener('change', updateAlphaFill, false);
 
-    canvas.addEventListener('click', createCircle, false);
+    canvas.addEventListener('click', createSquare, false);
     pauseButton.addEventListener('click', pauseUnpause, false);
     clearButton.addEventListener('click', clear, false);
     eraseButton.addEventListener('click', erase, false);
