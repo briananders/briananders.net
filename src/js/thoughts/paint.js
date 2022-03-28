@@ -119,16 +119,8 @@ const log = require('../_modules/log');
     canvasContext.stroke();
   }
 
-  function addCircle(x, y) {
+  function addCircle(x = 1, y = 1) {
     const radius = diameter / 2;
-
-    // position and size
-    if (x === undefined) {
-      x = 1;
-    }
-    if (y === undefined) {
-      y = 1;
-    }
 
     canvasContext.beginPath();
     if (shape === 'square') {
