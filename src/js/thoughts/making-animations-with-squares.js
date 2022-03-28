@@ -34,14 +34,8 @@
   }
 
   // Square Class
-  function Square(x, y) {
-    // position and size
-    if (x === undefined) {
-      x = 1;
-    }
-    if (y === undefined) {
-      y = 1;
-    }
+  function Square(x = 1, y = 1) {
+    // size
     const radius = Math.floor(5 + (Math.random() * 100));
 
     // color
@@ -198,7 +192,7 @@
       if (fastSlow.checked) {
         window.setTimeout(draw, 0);
       } else {
-        window.setTimeout(draw, 1000 / 24);
+        window.requestAnimationFrame(draw);
       }
     }
   }
@@ -216,7 +210,7 @@
       if (fastSlow.checked) {
         window.setTimeout(draw, 0);
       } else {
-        window.setTimeout(draw, 1000 / 24);
+        window.requestAnimationFrame(draw);
       }
     }
 
@@ -230,7 +224,7 @@
   }
 
   function createSquare(e) {
-    squares.push(new Square(e.x, e.y));
+    squares.push(new Square(e.offsetX * 2, e.offsetY * 2)); // x2 for retina displays
 
     if (squares.length === 1) {
       pauseUnpause();

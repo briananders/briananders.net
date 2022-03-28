@@ -202,7 +202,7 @@ input[type=checkbox] {
       background-color: var(--accent-color, #{$pallette--accent-color});
       top: -#{$s1 / 2};
       left:-#{$s1 / 2};
-      transition: left 0.5s, background-color 0.5s;
+      transition: left $transition-speed, background-color $transition-speed;
       box-shadow: 0 0 $s1 $color--grey-900;
     }
 
