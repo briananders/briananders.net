@@ -192,7 +192,7 @@
       if (fastSlow.checked) {
         window.setTimeout(draw, 0);
       } else {
-        window.requestAnimationFrame(draw);
+        window.setTimeout(draw, 1000 / 60);
       }
     }
   }
@@ -210,7 +210,7 @@
       if (fastSlow.checked) {
         window.setTimeout(draw, 0);
       } else {
-        window.requestAnimationFrame(draw);
+        window.setTimeout(draw, 1000 / 60);
       }
     }
 
