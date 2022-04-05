@@ -18,5 +18,7 @@ module.exports = (dir) => {
     twitter,
     github: 'https://github.com/briananders',
     linkedin: 'https://www.linkedin.com/in/andersbrian/',
+    goodReads: 'https://www.goodreads.com/user/show/26461993-brian-anders',
+    imdb: 'https://www.imdb.com/user/ur23740510/',
   };
 };
