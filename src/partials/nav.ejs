@@ -1,8 +1,9 @@
 <nav class="nav main" role="navigation" aria-label="Main navigation">
   <div class="content">
-    <%- link(locals.name, {
+    <%- link(`<img src="/images/logo.svg" alt="Brian Anders logo" />`, {
       href: '/',
-      class: 'brand h1',
+      class: 'brand',
+      'aria-label': 'Brian Anders home page',
     }) %>
     <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
       Menu

@@ -1,4 +1,4 @@
-(function usingCanvas() {
+(function init() {
   let canvasContext;
   let canvas;
   let circles = [];
@@ -11,6 +11,26 @@
   let eraseButton;
   let paused = true;
   let pauseButton;
+
+  const randomVelocity = () => (Math.random() - 0.5) * ((Math.random() * 5) + 1);
+  const minMax = (value) => Math.max(Math.min(value, 6), -6);
+
+  function newCircle(x, y, radius, xVelocity, yVelocity) {
+    if (circles.length > 2 ** 10) {
+      // console.log(`circles exceed limit. ${circles.length}/1000`);
+      return circles.length;
+    }
+
+    const circle = new Circle(x, y);
+    circle.setRadius(radius);
+
+    const newXVelocity = minMax(xVelocity + randomVelocity());
+    const newYVelocity = minMax(yVelocity + randomVelocity());
+
+    circle.setVelocity(newXVelocity, newYVelocity);
+
+    circles.push(circle);
+  }
 
   function ColorObject() {
     function randomColor() {
@@ -36,16 +56,15 @@
   // Circle Class
   function Circle(x = 1, y = 1) {
     // size
-    const radius = Math.floor(5 + (Math.random() * 100));
+    let radius = Math.floor(5 + (Math.random() * 100));
 
     // color
     const fill = new ColorObject();
     const border = new ColorObject();
 
-    // speed
-    const speed = (Math.random() * 100) + 100;
-    let xVelocity = (Math.random() - 0.5) * speed;
-    let yVelocity = (Math.random() - 0.5) * speed;
+    // velocity
+    let xVelocity = randomVelocity();
+    let yVelocity = randomVelocity();
 
     this.draw = () => {
       canvasContext.beginPath();
@@ -96,18 +115,31 @@
     this.update = () => {
       if ((y + yVelocity) < radius) {
         yVelocity = Math.abs(yVelocity);
+        newCircle(x, y, radius, xVelocity, yVelocity);
       } else if ((y + yVelocity) > (canvas.height - radius)) {
         yVelocity = 0 - Math.abs(yVelocity);
+        newCircle(x, y, radius, xVelocity, yVelocity);
       }
 
       if ((x + xVelocity) < radius) {
         xVelocity = Math.abs(xVelocity);
+        newCircle(x, y, radius, xVelocity, yVelocity);
       } else if ((x + xVelocity) > (canvas.width - radius)) {
         xVelocity = 0 - Math.abs(xVelocity);
+        newCircle(x, y, radius, xVelocity, yVelocity);
       }
 
       y += yVelocity;
       x += xVelocity;
+    };
+
+    this.setRadius = (newRadius) => {
+      radius = newRadius;
+    };
+
+    this.setVelocity = (setX, setY) => {
+      xVelocity = minMax(setX);
+      yVelocity = minMax(setY);
     };
 
     this.updateAlphaBorder = () => {
@@ -125,6 +157,8 @@
         fill.alpha = 1;
       }
     };
+
+    this.getVelocity = () => Math.round(Math.sqrt((xVelocity ** 2) + (yVelocity ** 2)) * 100) / 100;
 
     this.updateAlphaBorder();
     this.updateAlphaFill();
@@ -167,11 +201,12 @@
 
   function drawCanvas() {
     canvasContext.save();
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
     let i = circles.length;
 
     while (i) {
-      circles[--i].draw(canvasContext);
+      circles[--i].draw();
     }
 
     canvasContext.restore();
@@ -208,6 +243,10 @@
       } else {
         window.setTimeout(draw, 1000 / 60);
       }
+    } else {
+      console.log(
+        Math.max(...circles.map((circle) => circle.getVelocity()))
+      );
     }
 
     if (pauseCache !== paused) {
