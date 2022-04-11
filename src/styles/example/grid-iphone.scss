@@ -7,7 +7,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  grid-gap: 4vw;
+  gap: 4vw;
   height: 100vw;
   width: 100vw;
   padding: 4vw;
@@ -16,7 +16,7 @@ dock {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 28vw;
-  grid-gap: 4vw;
+  gap: 4vw;
   width: 100vw;
   padding: 4vw;
 }

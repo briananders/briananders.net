@@ -14,7 +14,7 @@
     width: 100%;
     margin: auto;
     display: grid;
-    grid-gap: 0;
+    gap: 0;
 
     &[data-difficulty=beginner] {
       grid-template-columns: repeat(8, 1fr);

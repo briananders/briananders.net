@@ -2,13 +2,13 @@
 
 .last-fm-module {
   display: grid;
-  grid-gap: $s5;
+  gap: $s5;
 
   .item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $s1 / 2;
-    grid-gap: $s3;
+    gap: $s1 / 2;
+    gap: $s3;
 
     @include pallette--base;
 

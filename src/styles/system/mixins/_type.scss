@@ -33,7 +33,7 @@
   @include font-size;
 
   @include mq($medium) {
-    @include font-size(3);
+    @include font-size(3.5);
   }
 }
 
@@ -45,15 +45,23 @@
 @mixin type--heading-1 {
   @include type--headings;
 
-  @include font-size(6);
+  @include font-size(5);
   margin-bottom: $s6;
+
+  @include mq($medium) {
+    @include font-size(8);
+  }
 }
 
 @mixin type--heading-2 {
   @include type--headings;
 
-  @include font-size(5);
+  @include font-size(4);
   margin-bottom: $s5;
+
+  @include mq($medium) {
+    @include font-size(6.5);
+  }
 }
 
 @mixin type--heading-3 {
@@ -61,6 +69,10 @@
 
   @include font-size(4);
   margin-bottom: $s4;
+
+  @include mq($medium) {
+    @include font-size(5);
+  }
 }
 
 @mixin type--heading-4 {
@@ -68,20 +80,17 @@
 
   @include font-size(3);
   margin-bottom: $s3;
+
+  @include mq($medium) {
+    @include font-size(4);
+  }
 }
 
 @mixin type--heading-5 {
   @include type--headings;
 
-  @include font-size(2);
-  margin-bottom: $s3;
-}
-
-@mixin type--heading-6 {
-  @include type--headings;
-
-  @include font-size(1);
-  margin-bottom: $s3;
+  @include font-size(3);
+  margin-bottom: $s2;
 }
 
 @mixin type--heading-link {

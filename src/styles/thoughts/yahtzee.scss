@@ -7,7 +7,7 @@
 
   .game-container {
     display: grid;
-    grid-gap: $s2;
+    gap: $s2;
     margin-top: $s6;
 
     label {
@@ -42,7 +42,7 @@
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: $s2;
+    gap: $s2;
 
     button {
       @include button;
@@ -85,7 +85,7 @@
   #score-board {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $s2;
+    gap: $s2;
 
     @include mq($medium) {
       grid-template-columns: 1fr 1fr;
