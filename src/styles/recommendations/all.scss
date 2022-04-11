@@ -1,0 +1,38 @@
+@import "system/utilities";
+
+.section-container {
+  display: flex;
+  flex-wrap: wrap;
+  @include paragraph;
+
+  a.cover-link {
+    max-width: 150px;
+    padding: 0;
+    background: none;
+  }
+
+  img.cover {
+    max-width: 150px;
+    display: block;
+  }
+
+  p.year {
+    margin-bottom: $s2;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: $s2;
+
+    @include mq($medium) {
+      grid-template-columns: css-max(150px, percentage(150/720)) 1fr;
+      gap: $s4;
+    }
+  }
+
+  h2 {
+    text-align: left;
+  }
+}

@@ -115,24 +115,23 @@ styles:
 
     podcasts.forEach(podcast => {
   %>
-    <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>">
-      <%- lazyImage({ src: podcast.imgUrl, alt: podcast.name, classString: 'podcast-cover' }) %>
+    <section>
+      <%- externalLink(lazyImage({
+        src: podcast.imgUrl,
+        alt: `${podcast.name} cover art`,
+        classString: 'cover',
+        }), {
+          href: podcast.url,
+          class: 'cover-link'
+        }) %>
       <div class="details">
-        <h2 class="h4"><%- podcast.name %></h2>
-        <p>
-          <% if (podcast.description) { %>
-            <%- podcast.description %>
-          <% } else { %>
-            My thoughts on this podcast, coming soon.
-          <% } %>
-        </p>
-        <p>
-          <%- externalLink('Link to their website', {
-            itemprop: 'url',
+        <h2 class="h4">
+          <%- externalLink(podcast.name, {
             href: podcast.url,
-            target: 'blank',
-            rel: 'noopener',
           }) %>
+        </h2>
+        <p>
+          <%- podcast.description %>
         </p>
       </div>
     </section>
