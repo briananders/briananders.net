@@ -25,6 +25,7 @@
     grid-template-columns: 1fr;
     align-items: start;
     gap: $s2;
+    width: 100%;
 
     @include mq($medium) {
       grid-template-columns: css-max(150px, percentage(150/720)) 1fr;

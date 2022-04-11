@@ -13,6 +13,7 @@ scripts:
   - 'recommendations/index'
 ---
 
+<div class="section-container">
 <%
     const basePages = getChildPages('recommendations');
     let newestPages = basePages.sort((pageA, pageB) => {
@@ -25,15 +26,18 @@ scripts:
     }
     newestPages.forEach(({ url, data: { date, description, title }}) => {
   %>
-    <%- link(`
-      <h3 itemprop="name" ${locals.headingLevel ? `role="heading" aria-level="${locals.headingLevel}"` : ""}>${noWidows(title)}</h3>
-      <meta itemprop="author" content="Brian Anders"/>
-      <meta itemprop="publisher" content="Brian Anders"/>
-    `, {
-      href: `/${url}`,
-      itemscope: '',
-      itemtype: 'http://schema.org/BlogPosting',
-      role: 'listitem',
-      class: 'block',
-    }) %>
+    <section itemscope itemtype="http://schema.org/BlogPosting">
+      <a class='cover-link'>image</a>
+      <div class="details">
+        <meta itemprop="author" content="Brian Anders"/>
+        <meta itemprop="publisher" content="Brian Anders"/>
+        <h2 itemprop="name" class="h3">
+          <%- link(noWidows(title), {
+            href: `/${url}`,
+          }) %>
+        </h2>
+        <p><%- description %></p>
+      </div>
+    </section>
   <% }); %>
+</div>
