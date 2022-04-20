@@ -1,0 +1,102 @@
+@import "system/utilities";
+
+@mixin close {
+  background: yellow;
+  color: $pallette--primary-text-color--dark;
+}
+@mixin correct {
+  background: green;
+  color: $pallette--primary-color-text--white;
+}
+@mixin wrong {
+  background: black;
+  color: $pallette--primary-color-text--white;
+}
+
+.board {
+}
+
+.line {
+  display: grid;
+  grid-template-columns: repeat(5, #{$s10}) 150px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: $s2;
+
+  fieldset {
+    display: grid;
+    grid-template-columns: $s4 $s4;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+  }
+
+  button {
+    margin-left: $s2;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+}
+
+fieldset {
+  label {
+    display: block;
+    padding: 0;
+    height: $s4;
+    position: relative;
+
+    &[for^="close"] {
+      @include close;
+    }
+    &[for^="correct"] {
+      @include correct;
+    }
+    &[for^="wrong"] {
+      @include wrong;
+    }
+  }
+  input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+
+    &:checked::before {
+      content: '✓';
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+}
+
+input.letter {
+  text-align: center;
+  width: $s10;
+  height: $s10;
+  line-height: $s10;
+  padding: 0;
+  font-size: $s6;
+
+  &[data-state="wrong"] {
+    @include wrong;
+  }
+  &[data-state="close"] {
+    @include close;
+  }
+  &[data-state="correct"] {
+    @include correct;
+  }
+}

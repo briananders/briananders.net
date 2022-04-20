@@ -1,0 +1,73 @@
+---
+title: ""
+description: ""
+date: 2022-04-17
+priority: 0.8
+pageClasses:
+  - 'thoughts wordle-solver'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/wordle-solver'
+scripts:
+  - 'thoughts/wordle-solver/index'
+---
+
+<div class="board p" id="board">
+  <%
+    const lines = 6;
+    const letters = 5;
+
+    for (let line = 0; line < lines; line++) {
+  %>
+    <div class="line" id="line-<%- line %>">
+      <% for (let letter = 0; letter < letters; letter++) { %>
+        <div data-letter-number="<%- letter %>">
+          <input
+            type="text"
+            maxlength="2"
+            placeholder="?"
+            id="letter-<%- line %>-<%- letter %>"
+            class="letter"
+            data-letter-number="<%- letter %>"
+            data-state="wrong" />
+          <fieldset id="lettercolor-<%- line %>-<%- letter %>">
+            <label for="close-<%- line %>-<%- letter %>" >
+              <input
+                type="radio"
+                id="close-<%- line %>-<%- letter %>"
+                name="letter-<%- line %>-<%- letter %>"
+                data-letter-number="<%- letter %>" />
+            </label>
+            <label for="correct-<%- line %>-<%- letter %>" >
+              <input
+                type="radio"
+                id="correct-<%- line %>-<%- letter %>"
+                name="letter-<%- line %>-<%- letter %>"
+                data-letter-number="<%- letter %>" />
+            </label>
+            <label for="wrong-<%- line %>-<%- letter %>" >
+              <input checked
+                type="radio"
+                id="wrong-<%- line %>-<%- letter %>"
+                name="letter-<%- line %>-<%- letter %>"
+                data-letter-number="<%- letter %>" />
+            </label>
+          </fieldset>
+        </div>
+      <% } %>
+      <button
+        class="button"
+        type="button"
+        data-line="line-<%- line %>" >
+        Submit
+      </button>
+    </div>
+  <%
+    }
+  %>
+</div>
+
+<div class="p" id="options">
+
+</div>
