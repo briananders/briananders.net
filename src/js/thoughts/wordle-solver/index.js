@@ -36,8 +36,6 @@ const { WorkDocs } = require('aws-sdk');
           alert(`It looks like you have two letters marked for the same position: ${value} and ${correctLetters[letterIndex]}`);
         }
         correctLetters[letterIndex] = value;
-      } else {
-        debugger;
       }
     });
 
@@ -101,7 +99,6 @@ const { WorkDocs } = require('aws-sdk');
   }
 
   function calculate() {
-    console.log('calculate');
     // check letter states
     const {
       closeLetters,
@@ -124,7 +121,6 @@ const { WorkDocs } = require('aws-sdk');
 
     dictionary.forEach((word) => {
       const upperCaseWord = word.toUpperCase();
-      // console.log(word, matcher.matches(upperCaseWord));
       if (matcher.matches(upperCaseWord)) potentialMatches.push(word);
     });
 
@@ -146,8 +142,16 @@ const { WorkDocs } = require('aws-sdk');
     letterInput.dataset.state = state;
   }
 
+  function previousInput(srcElement) {
+    const [letterWord, lineNumber, letterNumber] = srcElement.id.split('-');
+
+    const nextInput = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) - 1}`);
+    if (nextInput) {
+      nextInput.focus();
+    }
+  }
+
   function nextInput(srcElement) {
-    if (srcElement.value === '') return;
     const [letterWord, lineNumber, letterNumber] = srcElement.id.split('-');
 
     const nextInput = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) + 1}`);
@@ -156,19 +160,29 @@ const { WorkDocs } = require('aws-sdk');
     }
   }
 
-  function validateTextInput({ srcElement }) {
-    const value = srcElement.value;
-    if (value === '') return;
-    if (value.length > 1) {
-      if (isLetter(value[1])) {
-        srcElement.value = value[1].toUpperCase();
+  function inputKeydown(evt) {
+    const { srcElement, key } = evt;
+    const char = key.toUpperCase();
+
+    switch (key) {
+      case 'Backspace':
+        srcElement.value = '';
+      case 'ArrowLeft':
+        previousInput(srcElement);
+        evt.preventDefault();
+        return;
+      case 'Tab':
+      case 'ArrowRight':
         nextInput(srcElement);
-      } else {
-        srcElement.value = value[0].toUpperCase();
-      }
-    } else if (isLetter(value)) {
-      srcElement.value = value.toUpperCase();
+        evt.preventDefault();
+        return;
+      default:
+    }
+
+    if (isLetter(char) && char.length === 1) {
+      srcElement.value = char;
       nextInput(srcElement);
+      evt.preventDefault();
     } else {
       srcElement.value = '';
     }
@@ -176,7 +190,7 @@ const { WorkDocs } = require('aws-sdk');
 
   function initEventListeners() {
     textInputs.forEach(input => {
-      input.addEventListener('keyup', validateTextInput);
+      input.addEventListener('keydown', inputKeydown);
     });
     submitButtons.forEach(button => {
       button.addEventListener('click', calculate);
