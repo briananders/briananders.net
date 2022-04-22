@@ -16,9 +16,21 @@
 .board {
 }
 
+#options {
+  display: flex;
+  flex-wrap: wrap;
+
+  span {
+    display: inline-block;
+    padding: #{$s1 / 2} $s1;
+    margin: $s1;
+    border: 1px solid;
+  }
+}
+
 .line {
   display: grid;
-  grid-template-columns: repeat(5, #{$s10}) 150px;
+  grid-template-columns: repeat(5, #{$s10});
   justify-content: center;
   align-items: center;
   margin-bottom: $s2;
@@ -33,9 +45,17 @@
   }
 
   button {
-    margin-left: $s2;
+    grid-column: span 5;
     align-self: flex-start;
-    margin-top: 2px;
+  }
+
+  @include mq(500px) {
+    grid-template-columns: repeat(5, #{$s10}) 150px;
+
+    button {
+      margin-left: $s2;
+      grid-column: unset;
+    }
   }
 }
 
