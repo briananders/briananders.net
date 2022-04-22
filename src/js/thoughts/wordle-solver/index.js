@@ -32,7 +32,7 @@ const { WorkDocs } = require('aws-sdk');
         cannotBeLetters[letterIndex].push(value);
       } else if (state === 'correct') {
         closeLetters.push(value);
-        if (correctLetters[letterIndex]) {
+        if (correctLetters[letterIndex] && correctLetters[letterIndex] !== value) {
           alert(`It looks like you have two letters marked for the same position: ${value} and ${correctLetters[letterIndex]}`);
         }
         correctLetters[letterIndex] = value;
