@@ -1,5 +1,6 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
+const ready = require('./_modules/document-ready');
 
 (function all() {
   function setupNavEvents() {
@@ -102,18 +103,15 @@ const lazyLoader = require('./_modules/lazy-loader');
     });
   }
 
-  preventFormSubmit();
+  ready(function() {
+    preventFormSubmit();
+    setupNavEvents(analytics);
+    testForTouch();
+    navScrollWatcher();
+    setMainMinHeight();
+    setUpSkipNav();
 
-  setupNavEvents(analytics);
-
-  testForTouch();
-
-  navScrollWatcher();
-
-  setMainMinHeight();
-
-  setUpSkipNav();
-
-  lazyLoader.init();
-  analytics.watchElements();
+    lazyLoader.init();
+    analytics.watchElements();
+  });
 }());

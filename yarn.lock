@@ -1302,7 +1302,7 @@ arr-union@^3.1.0:
 
 array-each@^1.0.0, array-each@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.npmjs.org/array-each/-/array-each-1.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/array-each/-/array-each-1.0.1.tgz#a794af0c05ab1752846ee753a1f211a05ba0c44f"
   integrity sha1-p5SvDAWrF1KEbudTofIRoFugxE8=
 
 array-flatten@1.1.1:
@@ -1338,7 +1338,7 @@ array-last@^1.1.1:
 
 array-slice@^1.0.0:
   version "1.1.0"
-  resolved "https://registry.npmjs.org/array-slice/-/array-slice-1.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/array-slice/-/array-slice-1.1.0.tgz#e368ea15f89bc7069f7ffb89aec3a6c7d4ac22d4"
   integrity sha512-B1qMD3RBP7O8o0H2KbrXDyB0IccejMF15+87Lvlor12ONPRHP6gTjXMNkt/d3ZuOGbAe66hFmaCfECI24Ufp6w==
 
 array-sort@^1.0.0:
@@ -1969,9 +1969,9 @@ cache-base@^1.0.1:
     unset-value "^1.0.0"
 
 cached-path-relative@^1.0.0, cached-path-relative@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/cached-path-relative/-/cached-path-relative-1.0.2.tgz"
-  integrity sha512-5r2GqsoEb4qMTTN9J+WzXfjov+hjxT+j3u5K+kIVNIwAd99DLCJE9pBIMP1qVeybV6JiijL385Oz0DcYxfbOIg==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cached-path-relative/-/cached-path-relative-1.1.0.tgz#865576dfef39c0d6a7defde794d078f5308e3ef3"
+  integrity sha512-WF0LihfemtesFcJgO7xfOoOcnWzY/QHR4qeDqV44jPU3HTI54+LnfXK3SA27AVVGCdZFgjjFFaqUA9Jx7dMJZA==
 
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
@@ -2426,12 +2426,19 @@ copy-descriptor@^0.1.0:
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
 copy-props@^2.0.1:
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/copy-props/-/copy-props-2.0.4.tgz"
-  integrity sha512-7cjuUME+p+S3HZlbllgsn2CDwS+5eCCX16qBgNC4jgSTf49qR1VKy/Zhl400m0IQXl/bPGEVqncgUUMjrr4s8A==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/copy-props/-/copy-props-2.0.5.tgz#03cf9ae328d4ebb36f8f1d804448a6af9ee3f2d2"
+  integrity sha512-XBlx8HSqrT0ObQwmSzM7WE5k8FxTV75h1DX1Z3n6NhQ/UYYAvInWYmG06vFt7hQZArE2fuO62aihiWIVQwh1sw==
   dependencies:
-    each-props "^1.3.0"
-    is-plain-object "^2.0.1"
+    each-props "^1.3.2"
+    is-plain-object "^5.0.0"
+
+copy-to-clipboard@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
+  integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
+  dependencies:
+    toggle-selection "^1.0.6"
 
 copy@^0.3.2:
   version "0.3.2"
@@ -2807,9 +2814,9 @@ duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-each-props@^1.3.0:
+each-props@^1.3.2:
   version "1.3.2"
-  resolved "https://registry.npmjs.org/each-props/-/each-props-1.3.2.tgz"
+  resolved "https://registry.yarnpkg.com/each-props/-/each-props-1.3.2.tgz#ea45a414d16dd5cfa419b1a81720d5ca06892333"
   integrity sha512-vV0Hem3zAGkJAyU7JSjixeU66rwdynTAa1vofCrSA5fEln+m67Az9CcnkVD776/fsN/UjIWmBDoNRS6t6G9RfA==
   dependencies:
     is-plain-object "^2.0.1"
@@ -3598,12 +3605,12 @@ flush-write-stream@^1.0.2:
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
 
 for-own@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.npmjs.org/for-own/-/for-own-1.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/for-own/-/for-own-1.0.0.tgz#c63332f415cedc4b04dbfe70cf836494c53cb44b"
   integrity sha1-xjMy9BXO3EsE2/5wz4NklMU8tEs=
   dependencies:
     for-in "^1.0.1"
@@ -4710,6 +4717,11 @@ is-plain-object@^2.0.1, is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   dependencies:
     isobject "^3.0.1"
 
+is-plain-object@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-5.0.0.tgz#4427f50ab3429e9025ea7d52e9043a9ef4159344"
+  integrity sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
+
 is-regex@^1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/is-regex/-/is-regex-1.1.4.tgz"
@@ -4854,7 +4866,7 @@ isobject@^2.0.0, isobject@^2.1.0:
 
 isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
-  resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
 isstream@~0.1.2:
@@ -5426,9 +5438,9 @@ minimist-options@4.1.0:
     kind-of "^6.0.3"
 
 minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 minipass-collect@^1.0.2:
   version "1.0.2"
@@ -5803,7 +5815,7 @@ object.assign@^4.0.4, object.assign@^4.1.0, object.assign@^4.1.2:
 
 object.defaults@^1.0.0, object.defaults@^1.1.0:
   version "1.1.0"
-  resolved "https://registry.npmjs.org/object.defaults/-/object.defaults-1.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/object.defaults/-/object.defaults-1.1.0.tgz#3a7f868334b407dea06da16d88d5cd29e435fecf"
   integrity sha1-On+GgzS0B96gbaFtiNXNKeQ1/s8=
   dependencies:
     array-each "^1.0.1"
@@ -7566,6 +7578,11 @@ to-through@^2.0.0:
   integrity sha1-/JKtq6ByZHvAtn1rA2ZKoZUJOvY=
   dependencies:
     through2 "^2.0.3"
+
+toggle-selection@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
+  integrity sha1-bkWxJj8gF/oKzH2J14sVuL932jI=
 
 toidentifier@1.0.1:
   version "1.0.1"
