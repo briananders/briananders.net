@@ -80,7 +80,7 @@
       const { value } = inputElement;
       if (value === EMPTY) return;
 
-      if (state === STATES.WRONG) {
+      if (state === STATES.WRONG && !closeLetters.includes(value)) {
         wrongLetters.push(value);
       } else if (state === STATES.CLOSE) {
         closeLetters.push(value);
