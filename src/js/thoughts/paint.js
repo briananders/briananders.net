@@ -1,5 +1,6 @@
 const handlebars = require('handlebars');
 const log = require('../_modules/log');
+const ready = require('../_modules/document-ready');
 
 (function paint() {
   const colors = [
@@ -229,9 +230,11 @@ const log = require('../_modules/log');
     setupColorSamples();
   }
 
-  setCanvasDimensions();
-  addEventListeners();
-  updateColor();
-  updateStroke();
-  setCSS();
+  ready(() => {
+    setCanvasDimensions();
+    addEventListeners();
+    updateColor();
+    updateStroke();
+    setCSS();
+  });
 }());
