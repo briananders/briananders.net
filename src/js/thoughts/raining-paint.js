@@ -79,7 +79,7 @@
     }, 500);
   }
 
-  ready(() => {
+  ready.all(() => {
     setupEventListeners();
     setCanvasSize();
     run();

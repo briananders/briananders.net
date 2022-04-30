@@ -230,7 +230,7 @@ const ready = require('../_modules/document-ready');
     setupColorSamples();
   }
 
-  ready(() => {
+  ready.all(() => {
     setCanvasDimensions();
     addEventListeners();
     updateColor();

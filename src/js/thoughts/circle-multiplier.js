@@ -319,5 +319,5 @@
     setCanvasDimensions();
   }
 
-  ready(initialize.bind(this));
+  ready.all(initialize.bind(this));
 }());

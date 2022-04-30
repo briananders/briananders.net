@@ -284,5 +284,5 @@
     setCanvasDimensions();
   }
 
-  ready(initialize);
+  ready.all(initialize);
 }());
