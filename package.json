@@ -6,7 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production node ./index.js",
     "clean": "rm -rf node_modules tmp dist && npm cache clean",
-    "debug": "node ./index.js --verbose",
+    "debug:start": "node ./index.js --verbose",
+    "debug:build": "NODE_ENV=production node ./index.js --verbose",
     "deploy": "NODE_ENV=production node ./s3-uploader.js",
     "lint:build": "npx eslint build/** --fix",
     "lint:src": "npx eslint src/js/** --fix",
