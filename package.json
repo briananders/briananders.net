@@ -5,7 +5,7 @@
   "homepage": "https://briananders.net",
   "scripts": {
     "build": "NODE_ENV=production node ./index.js",
-    "clean": "rm -rf node_modules tmp dist && npm cache clean",
+    "clean": "rm -rf node_modules tmp dist && npm cache clean --force && yarn cache clean",
     "debug:start": "node ./index.js --verbose",
     "debug:build": "NODE_ENV=production node ./index.js --verbose",
     "deploy": "NODE_ENV=production node ./s3-uploader.js",
