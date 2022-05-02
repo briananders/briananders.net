@@ -1,6 +1,6 @@
 ---
 title: "Coyote Drums"
-description: ""
+description: "I drum. This is the portion of my site dedicated to that art."
 date: 2022-02-18
 priority: 0.8
 pageClasses:
@@ -13,7 +13,11 @@ scripts:
   - 'coyote-drums'
 ---
 
-<%- lazyVideo({
+<div class="coyote-drums-logo">
+  <%- getFileContents('/images/coyote-drums/logo.svg') %>
+</div>
+
+<%# lazyVideo({
   srcs: {
     desktop: '/videos/coyote-drums/hero-desktop.mp4',
     mobile: '/videos/coyote-drums/hero-mobile.mp4',
