@@ -5,9 +5,51 @@ $width: 560;
 $height: 315;
 $aspectRatio: $height / $width;
 
+@keyframes logo-hue {
+  0% {
+    filter: hue-rotate(0deg);
+  } 100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes logo-rotate {
+  0% {
+    transform: rotate(0deg);
+  } 100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 .coyote-drums {
   &.main-header {
     margin-bottom: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .content.description {
+    display: none;
+  }
+
+  .coyote-drums-logo {
+    width: css-min(100%, 400px);
+    margin: $s6 auto;
+
+    animation-name: logo-hue;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    #drum {
+      animation-name: logo-rotate;
+      animation-duration: 40s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      transform-origin: center center;
+    }
   }
 
   .video-container {

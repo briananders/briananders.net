@@ -16,7 +16,7 @@ function squeakyClean(arr) {
 
 module.exports = (dir, pageMappingData) => ({
   partial(partialPath, data) {
-    const newPath = `${dir.src}partials/${partialPath}.ejs`;
+    const newPath = path.join(dir.src, "partials/", `${partialPath}.ejs`);
 
     return ejs.render(fs.readFileSync(newPath).toString(), data, {
       compileDebug: true,
@@ -117,6 +117,10 @@ module.exports = (dir, pageMappingData) => ({
 
   externalLink(str, locals) {
     return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
+  },
+
+  getFileContents(src) {
+    return fs.readFileSync(path.join(dir.src, src)).toString();
   },
 
   defaultLastFMModule: (albums = true) => `
