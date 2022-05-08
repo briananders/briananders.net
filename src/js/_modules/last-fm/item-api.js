@@ -1,6 +1,7 @@
 const handlebars = require('handlebars');
 
 const lazyLoader = require('../lazy-loader');
+const { log } = require('../log');
 
 const config = require('./config');
 const template = require('./template');
@@ -66,7 +67,7 @@ module.exports = {
             render();
           } else {
             // We reached our target server, but it returned an error
-            // console.error(`${url} returned ${request.status}`);
+            // log(`${url} returned ${request.status}`);
           }
         };
 

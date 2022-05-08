@@ -1,6 +1,8 @@
 (function init() {
   const copy = require('copy-to-clipboard');
 
+  const { table } = require('../../_modules/log');
+
   const dictionary = require('./five-letter-words');
   const Matcher = require('./matcher');
 
@@ -66,6 +68,13 @@
 
     const lastFullLineElement = lines.filter(line => Number(line.id.split('-')[1]) === lastFullLine)[0];
     boardElement.style.height = `${lastFullLineElement.offsetHeight * (lastFullLine + 1)}px`;
+  }
+
+  function hasDoubleLetter(word) {
+    for (let i = 0; i < word.length; i++) {
+      if (word.indexOf(word.charAt(i)) !== i) return true;
+    }
+    return false;
   }
 
   function getLetters() {
@@ -142,14 +151,14 @@
       if (matcher.matches(upperCaseWord)) potentialMatches.push(word);
     });
 
-    console.table({
+    table({
       closeLetters: closeLetters.toString(),
       wrongLetters: wrongLetters.toString(),
       correctLetters: correctLetters.toString(),
       cannotBeLetters: cannotBeLetters.toString(),
     });
 
-    const wordElements = potentialMatches.map(word => `<span>${word}</span>`);
+    const wordElements = potentialMatches.sort((a, b) => (hasDoubleLetter(b) ? -1 : 1)).map(word => `<span>${word}</span>`);
     answersElement.innerHTML = wordElements.join(SPACE);
 
     resultsElement.innerText = wordElements.length;

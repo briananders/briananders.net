@@ -1,5 +1,5 @@
 const handlebars = require('handlebars');
-const log = require('../_modules/log');
+const { log } = require('../_modules/log');
 const ready = require('../_modules/document-ready');
 
 (function paint() {
