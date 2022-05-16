@@ -5,7 +5,7 @@
   "homepage": "https://briananders.net",
   "scripts": {
     "build": "NODE_ENV=production node ./index.js",
-    "clean": "rm -rf node_modules tmp dist && npm cache clean --force && yarn cache clean",
+    "clean": "rm -rf node_modules tmp dist && npm cache clean --force",
     "debug:start": "node ./index.js --verbose",
     "debug:build": "NODE_ENV=production node ./index.js --verbose",
     "deploy": "NODE_ENV=production node ./s3-uploader.js",
@@ -37,8 +37,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "jshint": "^2.13.4",
-    "yarn-upgrade-all": "^0.6.1"
+    "jshint": "^2.13.4"
   },
   "dependencies": {
     "@babel/core": "^7.17.5",
