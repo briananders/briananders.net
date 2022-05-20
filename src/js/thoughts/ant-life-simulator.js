@@ -1,32 +1,44 @@
 const { log } = require('../_modules/log');
+const ready = require('../_modules/document-ready');
 
 const ANT = 'ant';
-const ANT_EATER = 'anteater'
+const ANT_EATER = 'anteater';
 
-const STARTING_ANT_COUNT = 12;
-const STARTING_ANT_EATER_COUNT = 3;
+const STARTING_ANT_COUNT = 42;
+const STARTING_ANT_EATER_COUNT = 2;
 
+function diceRoll() {
+  return Math.ceil(Math.random() * 6);
+}
 
 function Cell(element) {
+  /*
+    Public Variables
+  */
   this.x = Number(element.dataset.x);
   this.y = Number(element.dataset.y);
   this.value = undefined;
+  this.procreated = false;
 
-  this.isEmpty = () => {
-    return this.value === '' || this.value === null || this.value === undefined;
-  }
+  /*
+    Public Computed Properties
+  */
 
-  this.render = () => {
-    // log(`render cell ${this.x},${this.y}: ${this.value}`);
-    element.dataset.value = (this.value) ? this.value.toString() : '';
-  }
-
+  this.isEmpty = () => this.value === '' || this.value === null || this.value === undefined;
   this.isAnt = () => this.value === ANT;
   this.isAntEater = () => this.value === ANT_EATER;
+
+  /*
+    Public Functions
+  */
+
+  this.render = () => {
+    element.dataset.value = (this.value) ? this.value.toString() : '';
+    this.procreated = false;
+  };
 }
 
 function Board(element) {
-
   /*
     Private variables
   */
@@ -85,8 +97,6 @@ function Board(element) {
   };
 
   const render = () => {
-    log(`${Date.now()}: render board`);
-
     board.forEach((row) => {
       row.forEach((cell) => {
         cell.render();
@@ -100,34 +110,25 @@ function Board(element) {
 
     oldCell.value = undefined;
     newCell.value = type;
-
-    oldCell.render();
-    newCell.render();
-
-    // log(`[${x}, ${y}], [${newX}, ${newY}]`);
   };
 
   const moveLeft = (x, y, type) => {
     if (x - 1 >= 0 && getCell(x - 1, y).isEmpty()) {
-      // log('moveLeft');
       moveFromTo([x, y], [x - 1, y], type);
     }
   };
   const moveRight = (x, y, type) => {
-    if (x + 1 < width - 1 && getCell(x + 1, y).isEmpty()) {
-      // log('moveRight');
+    if (x + 1 < width && getCell(x + 1, y).isEmpty()) {
       moveFromTo([x, y], [x + 1, y], type);
     }
   };
   const moveDown = (x, y, type) => {
     if (y - 1 >= 0 && getCell(x, y - 1).isEmpty()) {
-      // log('moveDown');
       moveFromTo([x, y], [x, y - 1], type);
     }
   };
   const moveUp = (x, y, type) => {
-    if (y + 1 < height - 1 && getCell(x, y + 1).isEmpty()) {
-      // log('moveUp');
+    if (y + 1 < height && getCell(x, y + 1).isEmpty()) {
       moveFromTo([x, y], [x, y + 1], type);
     }
   };
@@ -142,7 +143,7 @@ function Board(element) {
     });
 
     return ants;
-  }
+  };
 
   const getAntEaters = () => {
     const antEaters = [];
@@ -154,16 +155,72 @@ function Board(element) {
     });
 
     return antEaters;
-  }
+  };
+
+  const getSurroundingCells = (x, y) => {
+    const returnArray = [];
+    for (let i = -1; i < 2; i++) {
+      for (let j = -1; j < 2; j++) {
+        if ((x + i >= 0)
+            && (x + i < width)
+            && (y + j >= 0)
+            && (y + j < height)
+            && (i !== 0 && j !== 0)) {
+          returnArray.push(getCell(x + i, y + j));
+        }
+      }
+    }
+    return returnArray;
+  };
+
+  const multiplyAnts = () => {
+    const ants = getAnts();
+    ants.forEach((ant) => {
+      const { x, y } = ant;
+      const surrounds = getSurroundingCells(x, y);
+      const surroundAnts = surrounds.filter((cell) => cell.isAnt() && !cell.procreated);
+      const surroundEmpty = surrounds.filter((cell) => cell.isEmpty());
+
+      if (surroundAnts.length && surroundEmpty.length && diceRoll() < 2) {
+        const randomEmptyIndex = Math.floor(Math.random() * surroundEmpty.length);
+        const randomAntIndex = Math.floor(Math.random() * surroundAnts.length);
+        surroundEmpty[randomEmptyIndex].value = ANT;
+
+        // mark as procreated.
+        ant.procreated = true;
+        surroundAnts[randomAntIndex].procreated = true;
+        surroundEmpty[randomEmptyIndex].procreated = true;
+      }
+    });
+  };
+
+  const multiplyAntEaters = () => {
+    const antEaters = getAntEaters();
+    antEaters.forEach((antEater) => {
+      const { x, y } = antEater;
+      const surrounds = getSurroundingCells(x, y);
+      const surroundAntEaters = surrounds.filter((cell) => cell.isAntEater() && !cell.procreated);
+      const surroundEmpty = surrounds.filter((cell) => cell.isEmpty());
+
+      if (surroundAntEaters.length && surroundEmpty.length && diceRoll() < 2) {
+        const randomEmptyIndex = Math.floor(Math.random() * surroundEmpty.length);
+        const randomAntIndex = Math.floor(Math.random() * surroundAntEaters.length);
+        surroundEmpty[randomEmptyIndex].value = ANT_EATER;
+
+        // mark as procreated.
+        antEater.procreated = true;
+        surroundAntEaters[randomAntIndex].procreated = true;
+        surroundEmpty[randomEmptyIndex].procreated = true;
+      }
+    });
+  };
 
   const moveAnts = () => {
-    // log('moveAnts');
-
     const ants = getAnts();
-    ants.forEach(ant => {
+    ants.forEach((ant) => {
       const { x, y } = ant;
 
-      switch(Math.floor(Math.random() * 4)) {
+      switch (Math.floor(Math.random() * 4)) {
         case 0: // left
           moveLeft(x, y, ANT);
           break;
@@ -177,18 +234,40 @@ function Board(element) {
           moveDown(x, y, ANT);
       }
     });
+  };
 
-    // check for procreation
+  const eatAnts = () => {
+    const antEaters = getAntEaters();
+    antEaters.forEach((eater) => {
+      const { x, y } = eater;
+      const surrounds = getSurroundingCells(x, y);
+      const surroundAnts = surrounds.filter((cell) => cell.isAnt());
+
+      if (surroundAnts.length) {
+        const randomAntIndex = Math.floor(Math.random() * surroundAnts.length);
+        surroundAnts[randomAntIndex].value = undefined;
+      }
+    });
+  };
+
+  const killAntEaters = () => {
+    const antEaters = getAntEaters();
+    antEaters.forEach((eater) => {
+      const { x, y } = eater;
+      const surrounds = getSurroundingCells(x, y);
+      const surroundAnts = surrounds.filter((cell) => cell.isAnt());
+      if (surroundAnts.length === 8) {
+        eater.value = undefined;
+      }
+    });
   };
 
   const moveAntEaters = () => {
-    // log('moveAntEaters');
-
     const antEaters = getAntEaters();
-    antEaters.forEach(antEater => {
+    antEaters.forEach((antEater) => {
       const { x, y } = antEater;
 
-      switch(Math.floor(Math.random() * 4)) {
+      switch (Math.floor(Math.random() * 4)) {
         case 0: // left
           moveLeft(x, y, ANT_EATER);
           break;
@@ -202,8 +281,6 @@ function Board(element) {
           moveDown(x, y, ANT_EATER);
       }
     });
-
-    // check for procreation
   };
 
   const getCell = (x, y) => board[x][y];
@@ -217,11 +294,15 @@ function Board(element) {
   const move = () => {
     moveAnts();
     moveAntEaters();
-    // render();
+    killAntEaters();
+    eatAnts();
+    multiplyAnts();
+    multiplyAntEaters();
+    render();
   };
 
   /*
-    Public Function
+    Public Functions
   */
 
   this.move = move;
@@ -237,10 +318,10 @@ function Board(element) {
   initializeAntEaters();
 }
 
-(function init() {
+ready.document(() => {
   const boardElement = document.getElementById('board');
   const board = new Board(boardElement);
 
   board.render();
   setInterval(board.move, 1000);
-}());
+});
