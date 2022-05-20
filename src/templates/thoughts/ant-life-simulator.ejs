@@ -1,0 +1,33 @@
+---
+title: "Ant Life Simulator"
+description: ""
+date: 2022-05-16
+priority: 0.8
+pageClasses:
+  - 'thoughts ant-life-simulator'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/ant-life-simulator'
+scripts:
+  - 'thoughts/ant-life-simulator'
+---
+
+<ol>
+  <li>2 monsters</li>
+  <li>6 ants</li>
+  <li>When 2 ants are adjacent, they multiply (add one), if another adjacent space is open.</li>
+  <li>When 2 monsters are adjacent, they have a 1/8 chance of multiplying (add one), if another adjacent space is open.</li>
+  <li>When an ant is next to the monster there is a 1/2 chance that the monster will eat an ant.</li>
+  <li>If a monster has 8 ants around it, the ants will eat the monster</li>
+  <li>Ants move first</li>
+</ol>
+
+<% const size = 20; %>
+<div id="board" data-size="<%- size %>" style="--size: <%- size %>;">
+  <% for (let row = 0; row < size; row++) { %>
+    <% for (let column = 0; column < size; column++) { %>
+      <div data-x="<%- row %>" data-y="<%- column %>"></div>
+    <% } %>
+  <% } %>
+</div>

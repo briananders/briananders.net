@@ -1,0 +1,25 @@
+@import "system/utilities";
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--size), 1fr);
+
+  width: css-min(100vh, 100vw);
+  height: css-min(100vh, 100vw);
+  margin: auto;
+
+  div {
+    border: 1px solid;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &[data-value="ant"] {
+      background-image: url('/images/thoughts/ant-life-simulator/ant.jpg');
+    }
+    &[data-value="anteater"] {
+      background-image: url('/images/thoughts/ant-life-simulator/anteater.jpg');
+    }
+  }
+}
