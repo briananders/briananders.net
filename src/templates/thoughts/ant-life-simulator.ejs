@@ -23,11 +23,18 @@ scripts:
   <li>Ants move first</li>
 </ol>
 
-<% const size = 30; %>
+<% const size = 150; %>
 <div id="board" data-size="<%- size %>" style="--size: <%- size %>;">
   <% for (let row = 0; row < size; row++) { %>
     <% for (let column = 0; column < size; column++) { %>
       <div data-x="<%- row %>" data-y="<%- column %>"></div>
     <% } %>
   <% } %>
+</div>
+
+<div id=score-board >
+  <div>Ants: <span id=ants-count ></span></div>
+  <div>Anteaters: <span id=anteaters-count ></span></div>
+  <div>Ants Eaten: <span id=ants-eaten ></span></div>
+  <div>Anteaters Eaten: <span id=anteaters-eaten ></span></div>
 </div>
