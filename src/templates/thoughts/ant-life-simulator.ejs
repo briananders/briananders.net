@@ -1,7 +1,7 @@
 ---
 title: "Ant Life Simulator"
-description: ""
-date: 2022-05-16
+description: "Ants and anteaters will face off in a competitive arena of life, death, and reproduction. The rules for the simulation are as follows..."
+date: 2022-05-23
 priority: 0.8
 pageClasses:
   - 'thoughts ant-life-simulator'
@@ -15,17 +15,24 @@ scripts:
 
 <section class="content">
   <ol>
-    <li>50 whites</li>
-    <li>20 greens</li>
-    <li>2 adjacent elements of the same color can reproduce. Greens, 1 in 8 opportunities. Whites, every other opportunity.</li>
-    <li>If a green is surrounded by whites, the whites will eat the green.</li>
-    <li>If a white is adjacent to a green, the green will eat it.</li>
-    <li>If a green goes without eating for 12 turns, it will starve.</li>
+    <li>50 ants (white)</li>
+    <li>20 anteaters (green)</li>
+    <li>2 adjacent elements of the same type can reproduce. Anteaters, 1 in 8 opportunities. Ants, every other opportunity.</li>
+    <li>If an anteater is surrounded by ants, the ants will eat the anteater.</li>
+    <li>If an ant is adjacent to an anteater, the anteater will eat it.</li>
+    <li>If an anteater goes without eating for 12 turns, it will starve.</li>
     <li>Ants move first</li>
   </ol>
 </section>
 
-<div id="board"></div>
+<div id="board">
+</div>
+
+<div class="overlay-container">
+  <div class="overlay" id="overlay">
+    <button type="button" id="button" class="button">Start</button>
+  </div>
+</div>
 
 <section class="content">
   <div class="score-bar">
@@ -34,10 +41,10 @@ scripts:
   </div>
 
   <ul id="score-board" class="paragraph">
-    <li>Whites: <span id="ants-count" ></span></li>
-    <li>Greens: <span id="ant-eaters-count" ></span></li>
-    <li>Whites Eaten: <span id="ants-eaten" ></span></li>
-    <li>Greens Eaten: <span id="ant-eaters-eaten" ></span></li>
-    <li>Greens Starved: <span id="ant-eaters-killed" ></span></li>
+    <li>Ants: <span id="ants-count" >0</span></li>
+    <li>Anteaters: <span id="ant-eaters-count" >0</span></li>
+    <li>Ants Eaten: <span id="ants-eaten" >0</span></li>
+    <li>Anteaters Eaten: <span id="ant-eaters-eaten" >0</span></li>
+    <li>Anteaters Starved: <span id="ant-eaters-killed" >0</span></li>
   </ul>
 </section>

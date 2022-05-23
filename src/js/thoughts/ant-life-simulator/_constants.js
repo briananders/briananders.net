@@ -11,7 +11,7 @@ const ANT_EATER_DIE_OF_HUNGER = 12;
 const BOARD_SIZE = 100;
 
 const STEPS = 5;
-const DURATION = 60;
+const DURATION = 100;
 const DELAY = DURATION / STEPS;
 
 module.exports = {

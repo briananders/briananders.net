@@ -11,9 +11,22 @@ const {
   DELAY,
 } = require('./_constants');
 
+function hideOverlay(element) {
+  element.classList.add('hidden');
+}
+
+function showOverlay(element) {
+  element.classList.remove('hidden');
+  const button = element.querySelector('button');
+  button.innerText = 'Replay';
+}
+
 ready.document(() => {
+  let shouldReset = false;
+  const overlayElement = document.getElementById('overlay');
+
   const boardElement = document.getElementById('board');
-  const board = new Board(boardElement, BOARD_SIZE);
+  let board = new Board(boardElement, BOARD_SIZE);
 
   const antsCountElement = document.getElementById('ants-count');
   const antEatersCountElement = document.getElementById('ant-eaters-count');
@@ -37,8 +50,31 @@ ready.document(() => {
     antEatersBarElement,
   });
 
-  board.render();
-  setInterval(() => { board.move(); }, DURATION);
-  setInterval(() => { scoreBoard.update(); }, DELAY);
-  setInterval(() => { scoreBar.update(); }, DELAY);
+  const buttonElement = document.getElementById('button');
+  const intervals = [];
+  buttonElement.addEventListener('click', () => {
+    if (shouldReset) {
+      board.destroy();
+      board = new Board(boardElement, BOARD_SIZE);
+      scoreBoard.setBoard(board);
+      scoreBar.setBoard(board);
+    }
+
+    hideOverlay(overlayElement);
+    board.render();
+    intervals.push(setInterval(() => { board.move(); }, DURATION));
+    intervals.push(setInterval(() => { scoreBoard.update(); }, DELAY));
+    intervals.push(setInterval(() => { scoreBar.update(); }, DELAY));
+
+    shouldReset = false;
+  });
+
+  boardElement.addEventListener('end', () => {
+    shouldReset = true;
+    board.render();
+    intervals.forEach((interval) => {
+      clearInterval(interval);
+    });
+    showOverlay(overlayElement);
+  });
 });

@@ -70,7 +70,7 @@ class Board {
 
       this.#board[x][y] = new Cell(childElement);
     });
-  };
+  }
 
   #initializeAnts() {
     let antsToPlace = STARTING_ANT_COUNT;
@@ -84,7 +84,7 @@ class Board {
         antsToPlace--;
       }
     }
-  };
+  }
 
   #initializeAntEaters() {
     let antEatersToPlace = STARTING_ANT_EATER_COUNT;
@@ -98,7 +98,7 @@ class Board {
         antEatersToPlace--;
       }
     }
-  };
+  }
 
   #moveFromTo([x, y], [newX, newY], type) {
     const oldCell = this.#getCell(x, y);
@@ -106,28 +106,28 @@ class Board {
 
     oldCell.value = undefined;
     newCell.value = type;
-  };
+  }
 
   #moveLeft(x, y, type) {
     if (x - 1 >= 0 && this.#getCell(x - 1, y).isEmpty()) {
       this.#moveFromTo([x, y], [x - 1, y], type);
     }
-  };
+  }
   #moveRight(x, y, type) {
     if (x + 1 < this.width && this.#getCell(x + 1, y).isEmpty()) {
       this.#moveFromTo([x, y], [x + 1, y], type);
     }
-  };
+  }
   #moveDown(x, y, type) {
     if (y - 1 >= 0 && this.#getCell(x, y - 1).isEmpty()) {
       this.#moveFromTo([x, y], [x, y - 1], type);
     }
-  };
+  }
   #moveUp(x, y, type) {
     if (y + 1 < this.height && this.#getCell(x, y + 1).isEmpty()) {
       this.#moveFromTo([x, y], [x, y + 1], type);
     }
-  };
+  }
 
   #getSurroundingCells(x, y) {
     const returnArray = [];
@@ -143,7 +143,7 @@ class Board {
       }
     }
     return returnArray;
-  };
+  }
 
   #multiplyAnts() {
     const ants = this.#getAnts();
@@ -164,7 +164,7 @@ class Board {
         surroundEmpty[randomEmptyIndex].procreated = true;
       }
     });
-  };
+  }
 
   #multiplyAntEaters() {
     const antEaters = this.#getAntEaters();
@@ -185,7 +185,7 @@ class Board {
         surroundEmpty[randomEmptyIndex].procreated = true;
       }
     });
-  };
+  }
 
   #moveAnts() {
     const ants = this.#getAnts();
@@ -206,7 +206,7 @@ class Board {
           this.#moveDown(x, y, ANT);
       }
     });
-  };
+  }
 
   #eatAnts() {
     const antEaters = this.#getAntEaters();
@@ -223,7 +223,7 @@ class Board {
 
       surroundAnts.forEach((ant) => { ant.value = undefined; this.antsEaten++; });
     });
-  };
+  }
 
   #killAntEaters() {
     const antEaters = this.#getAntEaters();
@@ -249,7 +249,7 @@ class Board {
         eater.toDie = false;
       }
     });
-  };
+  }
 
   #moveAntEaters() {
     const antEaters = this.#getAntEaters();
@@ -270,7 +270,7 @@ class Board {
           this.#moveDown(x, y, ANT_EATER);
       }
     });
-  };
+  }
 
   #getCell(x, y) { return this.#board[Number(x)][Number(y)]; }
 
@@ -278,7 +278,7 @@ class Board {
 
   #setCell(x, y, value) {
     this.#getCell(Number(x), Number(y)).value = value;
-  };
+  }
 
   #getAnts() {
     const ants = [];
@@ -290,7 +290,7 @@ class Board {
     });
 
     return ants;
-  };
+  }
 
   #getAntEaters() {
     const antEaters = [];
@@ -302,7 +302,15 @@ class Board {
     });
 
     return antEaters;
-  };
+  }
+
+  #checkForEnd() {
+    const { antsCount, antEatersCount } = this.getScores();
+    if (antsCount === 0 || antEatersCount === 0) {
+      const endEvent = new Event('end');
+      this.#element.dispatchEvent(endEvent);
+    }
+  }
 
   /*
     Public functions
@@ -366,7 +374,9 @@ class Board {
       this.#multiplyAnts();
       this.render();
     }, DELAY * index);
-  };
+
+    this.#checkForEnd();
+  }
 
   render() {
     this.#board.forEach((row) => {
@@ -374,7 +384,12 @@ class Board {
         cell.render();
       });
     });
-  };
+  }
+
+  destroy() {
+    this.#element.innerHTML = '';
+    this.#board = undefined;
+  }
 }
 
 module.exports = Board;
