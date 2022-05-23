@@ -10,18 +10,37 @@
   border: 1px solid;
 
   div {
-    // border: 1px solid;
+    border-radius: 100%;
 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 
     &[data-value="ant"] {
-      background-image: url('/images/thoughts/ant-life-simulator/ant.jpg');
+      border: 1px solid;
+      background-color: $pallette--primary-color-text--white;
     }
     &[data-value="anteater"] {
-      background-image: url('/images/thoughts/ant-life-simulator/anteater.jpg');
-      border: 1px solid red;
+      background-color: $pallette--primary-color-dark;
+      border: 1px solid;
+    }
+  }
+}
+
+.score-bar {
+  height: 40px;
+  display: flex;
+  border: 1px solid;
+
+  span {
+    display: block;
+    transition: width 300ms linear;
+
+    &#ants-bar {
+      background-color: $pallette--primary-color-text--white;
+    }
+    &#ant-eaters-bar {
+      background-color: $pallette--primary-color-dark;
     }
   }
 }

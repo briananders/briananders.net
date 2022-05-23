@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 const { log } = require('../_modules/log');
 const ready = require('../_modules/document-ready');
 
@@ -7,6 +8,8 @@ const ANT_EATER = 'anteater';
 const STARTING_ANT_COUNT = 15;
 const STARTING_ANT_EATER_COUNT = 15;
 
+const SIZE = 70;
+
 const STEPS = 5;
 const DURATION = 100;
 const DELAY = DURATION / STEPS;
@@ -15,136 +18,164 @@ function diceRoll() {
   return Math.ceil(Math.random() * 6);
 }
 
-function Cell(element) {
-  /*
-    Public Variables
-  */
-  this.x = Number(element.dataset.x);
-  this.y = Number(element.dataset.y);
-  this.value = undefined;
-  this.procreated = false;
-  this.toDie = false;
+class Cell {
+  constructor(element) {
+    this.element = element;
+    /*
+      Public Variables
+    */
+    this.x = Number(element.dataset.x);
+    this.y = Number(element.dataset.y);
+    this.value = undefined;
+    this.procreated = false;
+    this.toDie = false;
+  }
 
   /*
     Public Computed Properties
   */
 
-  this.isEmpty = () => this.value === '' || this.value === null || this.value === undefined;
-  this.isAnt = () => this.value === ANT;
-  this.isAntEater = () => this.value === ANT_EATER;
+  isEmpty() { return this.value === '' || this.value === null || this.value === undefined; }
+
+  isAnt() { return this.value === ANT; }
+
+  isAntEater() { return this.value === ANT_EATER; }
 
   /*
     Public Functions
   */
 
-  this.render = () => {
-    element.dataset.value = (this.value) ? this.value.toString() : '';
+  render() {
+    this.element.dataset.value = (this.value) ? this.value.toString() : '';
     this.procreated = false;
-  };
+  }
 }
 
-function Board(element) {
+class Board {
   /*
     Private variables
   */
+  #element;
+  #board;
+  width = 0;
+  height = 0;
+  antsEaten = 0;
+  antEatersEaten = 0;
 
-  const size = Number(element.dataset.size);
+  constructor(element, size) {
+    this.#element = element;
+    this.width = size;
+    this.height = size;
+    this.#element.dataset.size = size;
+    this.#element.style.setProperty('--size', size);
 
-  const width = size;
-  const height = size;
-  const board = (() => {
     const returnArray = [];
-    for (let i = 0; i < width; i++) {
+    for (let i = 0; i < size; i++) {
       returnArray[i] = [];
-    }
-    return returnArray;
-  })();
 
-  let antsEaten = 0;
-  let anteatersEaten = 0;
+      for (let j = 0; j < size; j++) {
+        const cellElement = document.createElement('div');
+        cellElement.dataset.x = i;
+        cellElement.dataset.y = j;
+        element.append(cellElement);
+
+        returnArray[i][j] = new Cell(cellElement);
+      }
+    }
+    this.#board = returnArray;
+
+    /*
+      Function Calls
+    */
+
+    this.#mapElementsToBoard();
+
+    this.#initializeAnts();
+    this.#initializeAntEaters();
+  }
 
   /*
     Private functions
   */
 
-  const mapElementsToBoard = () => {
-    Array.from(element.children).forEach((childElement) => {
+  #mapElementsToBoard() {
+    Array.from(this.#element.children).forEach((childElement) => {
       const x = Number(childElement.dataset.x);
       const y = Number(childElement.dataset.y);
 
-      board[x][y] = new Cell(childElement);
+      this.#board[x][y] = new Cell(childElement);
     });
   };
 
-  const initializeAnts = () => {
+  #initializeAnts() {
     let antsToPlace = STARTING_ANT_COUNT;
 
     while (antsToPlace > 0) {
-      const randomX = Math.floor(Math.random() * width);
-      const randomY = Math.floor(Math.random() * height);
+      const randomX = Math.floor(Math.random() * this.width);
+      const randomY = Math.floor(Math.random() * this.height);
 
-      if (cellIsEmpty(randomX, randomY)) {
-        setCell(randomX, randomY, ANT);
+      if (this.#cellIsEmpty(randomX, randomY)) {
+        this.#setCell(randomX, randomY, ANT);
         antsToPlace--;
       }
     }
   };
 
-  const initializeAntEaters = () => {
+  #initializeAntEaters() {
     let antEatersToPlace = STARTING_ANT_EATER_COUNT;
 
     while (antEatersToPlace > 0) {
-      const randomX = Math.floor(Math.random() * width);
-      const randomY = Math.floor(Math.random() * height);
+      const randomX = Math.floor(Math.random() * this.width);
+      const randomY = Math.floor(Math.random() * this.height);
 
-      if (cellIsEmpty(randomX, randomY)) {
-        setCell(randomX, randomY, ANT_EATER);
+      if (this.#cellIsEmpty(randomX, randomY)) {
+        this.#setCell(randomX, randomY, ANT_EATER);
         antEatersToPlace--;
       }
     }
   };
 
-  const render = () => {
-    board.forEach((row) => {
+  render() {
+    this.#board.forEach((row) => {
       row.forEach((cell) => {
         cell.render();
       });
     });
   };
 
-  const moveFromTo = ([x, y], [newX, newY], type) => {
-    const oldCell = getCell(x, y);
-    const newCell = getCell(newX, newY);
+  #moveFromTo([x, y], [newX, newY], type) {
+    const oldCell = this.#getCell(x, y);
+    const newCell = this.#getCell(newX, newY);
 
     oldCell.value = undefined;
     newCell.value = type;
   };
 
-  const moveLeft = (x, y, type) => {
-    if (x - 1 >= 0 && getCell(x - 1, y).isEmpty()) {
-      moveFromTo([x, y], [x - 1, y], type);
+  #moveLeft(x, y, type) {
+    if (x - 1 >= 0 && this.#getCell(x - 1, y).isEmpty()) {
+      this.#moveFromTo([x, y], [x - 1, y], type);
     }
   };
-  const moveRight = (x, y, type) => {
-    if (x + 1 < width && getCell(x + 1, y).isEmpty()) {
-      moveFromTo([x, y], [x + 1, y], type);
+  #moveRight(x, y, type) {
+    if (x + 1 < this.width && this.#getCell(x + 1, y).isEmpty()) {
+      this.#moveFromTo([x, y], [x + 1, y], type);
     }
   };
-  const moveDown = (x, y, type) => {
-    if (y - 1 >= 0 && getCell(x, y - 1).isEmpty()) {
-      moveFromTo([x, y], [x, y - 1], type);
+  #moveDown(x, y, type) {
+    if (y - 1 >= 0 && this.#getCell(x, y - 1).isEmpty()) {
+      this.#moveFromTo([x, y], [x, y - 1], type);
     }
   };
-  const moveUp = (x, y, type) => {
-    if (y + 1 < height && getCell(x, y + 1).isEmpty()) {
-      moveFromTo([x, y], [x, y + 1], type);
+  #moveUp(x, y, type) {
+    if (y + 1 < this.height && this.#getCell(x, y + 1).isEmpty()) {
+      this.#moveFromTo([x, y], [x, y + 1], type);
     }
   };
 
-  const getAnts = () => {
+  getAnts() {
     const ants = [];
 
-    board.forEach((row) => {
+    this.#board.forEach((row) => {
       row.forEach((cell) => {
         if (cell.isAnt()) ants.push(cell);
       });
@@ -153,10 +184,10 @@ function Board(element) {
     return ants;
   };
 
-  const getAntEaters = () => {
+  getAntEaters() {
     const antEaters = [];
 
-    board.forEach((row) => {
+    this.#board.forEach((row) => {
       row.forEach((cell) => {
         if (cell.isAntEater()) antEaters.push(cell);
       });
@@ -165,27 +196,27 @@ function Board(element) {
     return antEaters;
   };
 
-  const getSurroundingCells = (x, y) => {
+  #getSurroundingCells(x, y) {
     const returnArray = [];
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 2; j++) {
         if ((x + i >= 0)
-            && (x + i < width)
+            && (x + i < this.width)
             && (y + j >= 0)
-            && (y + j < height)
+            && (y + j < this.height)
             && !(i === 0 && j === 0)) {
-          returnArray.push(getCell(x + i, y + j));
+          returnArray.push(this.#getCell(x + i, y + j));
         }
       }
     }
     return returnArray;
   };
 
-  const multiplyAnts = () => {
-    const ants = getAnts();
+  #multiplyAnts() {
+    const ants = this.getAnts();
     ants.forEach((ant) => {
       const { x, y } = ant;
-      const surrounds = getSurroundingCells(x, y);
+      const surrounds = this.#getSurroundingCells(x, y);
       const surroundAnts = surrounds.filter((cell) => cell.isAnt() && !cell.procreated);
       const surroundEmpty = surrounds.filter((cell) => cell.isEmpty());
 
@@ -202,11 +233,11 @@ function Board(element) {
     });
   };
 
-  const multiplyAntEaters = () => {
-    const antEaters = getAntEaters();
+  #multiplyAntEaters() {
+    const antEaters = this.getAntEaters();
     antEaters.forEach((antEater) => {
       const { x, y } = antEater;
-      const surrounds = getSurroundingCells(x, y);
+      const surrounds = this.#getSurroundingCells(x, y);
       const surroundAntEaters = surrounds.filter((cell) => cell.isAntEater() && !cell.procreated);
       const surroundEmpty = surrounds.filter((cell) => cell.isEmpty());
 
@@ -223,53 +254,48 @@ function Board(element) {
     });
   };
 
-  const moveAnts = () => {
-    const ants = getAnts();
+  #moveAnts() {
+    const ants = this.getAnts();
     ants.forEach((ant) => {
       const { x, y } = ant;
 
       switch (Math.floor(Math.random() * 4)) {
         case 0: // left
-          moveLeft(x, y, ANT);
+          this.#moveLeft(x, y, ANT);
           break;
         case 1: // right
-          moveRight(x, y, ANT);
+          this.#moveRight(x, y, ANT);
           break;
         case 2: // up
-          moveUp(x, y, ANT);
+          this.#moveUp(x, y, ANT);
           break;
         default: // down
-          moveDown(x, y, ANT);
+          this.#moveDown(x, y, ANT);
       }
     });
   };
 
-  const eatAnts = () => {
-    const antEaters = getAntEaters();
+  #eatAnts() {
+    const antEaters = this.getAntEaters();
     antEaters.forEach((eater) => {
       const { x, y } = eater;
-      const surrounds = getSurroundingCells(x, y);
+      const surrounds = this.#getSurroundingCells(x, y);
       const surroundAnts = surrounds.filter((cell) => cell.isAnt());
 
-      surroundAnts.forEach((ant) => { ant.value = undefined; antsEaten++; });
-
-      // if (surroundAnts.length) {
-      //   const randomAntIndex = Math.floor(Math.random() * surroundAnts.length);
-      //   surroundAnts[randomAntIndex].value = undefined;
-      // }
+      surroundAnts.forEach((ant) => { ant.value = undefined; this.antsEaten++; });
     });
   };
 
-  const killAntEaters = () => {
-    const antEaters = getAntEaters();
+  #killAntEaters() {
+    const antEaters = this.getAntEaters();
     antEaters.forEach((eater) => {
       const { x, y } = eater;
-      const surrounds = getSurroundingCells(x, y);
+      const surrounds = this.#getSurroundingCells(x, y);
       const surroundAnts = surrounds.filter((cell) => cell.isAnt());
       const surroundAntEaters = surrounds.filter((cell) => cell.isAntEater());
       if (surroundAnts.length === surrounds.length) {
         eater.value = undefined;
-        anteatersEaten++;
+        this.antEatersEaten++;
       } else if (surroundAntEaters.length === surrounds.length) {
         eater.toDie = true;
       }
@@ -277,132 +303,171 @@ function Board(element) {
     antEaters.forEach((eater) => {
       if (eater.toDie) {
         eater.value = undefined;
-        anteatersEaten++;
+        this.antEatersEaten++;
         eater.toDie = false;
       }
-    })
+    });
   };
 
-  const moveAntEaters = () => {
-    const antEaters = getAntEaters();
+  #moveAntEaters() {
+    const antEaters = this.getAntEaters();
     antEaters.forEach((antEater) => {
       const { x, y } = antEater;
 
       switch (Math.floor(Math.random() * 4)) {
         case 0: // left
-          moveLeft(x, y, ANT_EATER);
+          this.#moveLeft(x, y, ANT_EATER);
           break;
         case 1: // right
-          moveRight(x, y, ANT_EATER);
+          this.#moveRight(x, y, ANT_EATER);
           break;
         case 2: // up
-          moveUp(x, y, ANT_EATER);
+          this.#moveUp(x, y, ANT_EATER);
           break;
         default: // down
-          moveDown(x, y, ANT_EATER);
+          this.#moveDown(x, y, ANT_EATER);
       }
     });
   };
 
-  const getCell = (x, y) => board[x][y];
+  #getCell(x, y) { return this.#board[Number(x)][Number(y)]; }
 
-  const cellIsEmpty = (x, y) => getCell(x, y).isEmpty();
+  #cellIsEmpty(x, y) { return this.#getCell(Number(x), Number(y)).isEmpty(); }
 
-  const setCell = (x, y, value) => {
-    getCell(x, y).value = value;
+  #setCell(x, y, value) {
+    this.#getCell(Number(x), Number(y)).value = value;
   };
 
-  const getScores = () => ({
-    antsCount: getAnts().length,
-    anteatersCount: getAntEaters().length,
-    antsEaten,
-    anteatersEaten,
-  });
+  getScores() { return {
+    antsCount: this.getAnts().length,
+    antEatersCount: this.getAntEaters().length,
+    antsEaten: this.antsEaten,
+    antEatersEaten: this.antEatersEaten,
+  };
+}
 
-  const move = () => {
+  move() {
     let index = 0;
 
     setTimeout(() => {
       // step 0
-      moveAnts();
-      render();
+      this.#moveAnts();
+      this.render();
     }, DELAY * index);
 
     index++;
 
     setTimeout(() => {
       // step 1
-      moveAntEaters();
-      render();
+      this.#moveAntEaters();
+      this.render();
     }, DELAY * index);
 
     index++;
 
     setTimeout(() => {
       // step 2
-      killAntEaters();
-      render();
+      this.#killAntEaters();
+      this.render();
     }, DELAY * index);
 
     index++;
 
     setTimeout(() => {
       // step 3
-      eatAnts();
-      render();
+      this.#eatAnts();
+      this.render();
     }, DELAY * index);
 
     index++;
 
     setTimeout(() => {
       // step 4
-      multiplyAntEaters();
-      render();
+      this.#multiplyAntEaters();
+      this.render();
     }, DELAY * index);
 
     index++;
 
     setTimeout(() => {
       // step 5
-      multiplyAnts();
-      render();
+      this.#multiplyAnts();
+      this.render();
     }, DELAY * index);
   };
 
-  /*
-    Public Functions
-  */
+}
 
-  this.move = move;
-  this.render = render;
-  this.getScores = getScores;
+class ScoreBoard {
+  constructor({
+    board,
+    antsCountElement,
+    antEatersCountElement,
+    antsEatenElement,
+    antEatersEatenElement,
+  }) {
+    this.board = board;
+    this.antsCountElement = antsCountElement;
+    this.antEatersCountElement = antEatersCountElement;
+    this.antsEatenElement = antsEatenElement;
+    this.antEatersEatenElement = antEatersEatenElement;
+  }
 
-  /*
-    Function Calls
-  */
+  update() {
+    const scores = this.board.getScores();
 
-  mapElementsToBoard();
+    this.antsCountElement.innerText = scores.antsCount;
+    this.antEatersCountElement.innerText = scores.antEatersCount;
+    this.antsEatenElement.innerText = scores.antsEaten;
+    this.antEatersEatenElement.innerText = scores.antEatersEaten;
+  }
+}
 
-  initializeAnts();
-  initializeAntEaters();
+class ScoreBar {
+  constructor({
+    board,
+    antsBarElement,
+    antEatersBarElement,
+  }) {
+    this.board = board;
+    this.antsBarElement = antsBarElement;
+    this.antEatersBarElement = antEatersBarElement;
+  }
+
+  update() {
+    const scores = this.board.getScores();
+    const total = this.board.width * this.board.height;
+    this.antsBarElement.style.width = `${(scores.antsCount / total) * 100}%`;
+    this.antEatersBarElement.style.width = `${(scores.antEatersCount / total) * 100}%`;
+  }
 }
 
 ready.document(() => {
   const boardElement = document.getElementById('board');
+  const board = new Board(boardElement, SIZE);
+
   const antsCountElement = document.getElementById('ants-count');
-  const anteatersCountElement = document.getElementById('anteaters-count');
+  const antEatersCountElement = document.getElementById('anteaters-count');
   const antsEatenElement = document.getElementById('ants-eaten');
-  const anteatersEatenElement = document.getElementById('anteaters-eaten');
-  const board = new Board(boardElement);
+  const antEatersEatenElement = document.getElementById('anteaters-eaten');
+  const scoreBoard = new ScoreBoard({
+    board,
+    antsCountElement,
+    antEatersCountElement,
+    antsEatenElement,
+    antEatersEatenElement,
+  });
+
+  const antsBarElement = document.getElementById('ants-bar');
+  const antEatersBarElement = document.getElementById('ant-eaters-bar');
+  const scoreBar = new ScoreBar({
+    board,
+    antsBarElement,
+    antEatersBarElement,
+  });
 
   board.render();
-  setInterval(board.move, DURATION);
-  setInterval(() => {
-    const scores = board.getScores();
-
-    antsCountElement.innerText = scores.antsCount;
-    anteatersCountElement.innerText = scores.anteatersCount;
-    antsEatenElement.innerText = scores.antsEaten;
-    anteatersEatenElement.innerText = scores.anteatersEaten;
-  }, DELAY);
+  setInterval(() => { board.move(); }, DURATION);
+  setInterval(() => { scoreBoard.update(); }, DELAY);
+  setInterval(() => { scoreBar.update(); }, DELAY);
 });
