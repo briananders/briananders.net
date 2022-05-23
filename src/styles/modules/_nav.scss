@@ -2,6 +2,7 @@ $nav-height: $s11;
 
 html {
   --nav-height: #{$nav-height};
+  --window-height: calc(100vh - #{$nav-height});
 }
 
 nav.main {

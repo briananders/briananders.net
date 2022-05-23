@@ -10,29 +10,34 @@ styles:
   - 'main'
   - 'thoughts/ant-life-simulator'
 scripts:
-  - 'thoughts/ant-life-simulator'
+  - 'thoughts/ant-life-simulator/index'
 ---
 
-<ol>
-  <li>2 monsters</li>
-  <li>6 ants</li>
-  <li>When 2 ants are adjacent, they multiply (add one), if another adjacent space is open.</li>
-  <li>When 2 monsters are adjacent, they have a 1/8 chance of multiplying (add one), if another adjacent space is open.</li>
-  <li>When an ant is next to the monster there is a 1/2 chance that the monster will eat an ant.</li>
-  <li>If a monster has 8 ants around it, the ants will eat the monster</li>
-  <li>Ants move first</li>
-</ol>
+<section class="content">
+  <ol>
+    <li>50 whites</li>
+    <li>20 greens</li>
+    <li>2 adjacent elements of the same color can reproduce. Greens, 1 in 8 opportunities. Whites, every other opportunity.</li>
+    <li>If a green is surrounded by whites, the whites will eat the green.</li>
+    <li>If a white is adjacent to a green, the green will eat it.</li>
+    <li>If a green goes without eating for 12 turns, it will starve.</li>
+    <li>Ants move first</li>
+  </ol>
+</section>
 
 <div id="board"></div>
 
-<div class="score-bar">
-  <span id="ants-bar"></span>
-  <span id="ant-eaters-bar"></span>
-</div>
+<section class="content">
+  <div class="score-bar">
+    <span id="ants-bar"></span>
+    <span id="ant-eaters-bar"></span>
+  </div>
 
-<div id="score-board" >
-  <div>Ants: <span id="ants-count" ></span></div>
-  <div>Anteaters: <span id="anteaters-count" ></span></div>
-  <div>Ants Eaten: <span id="ants-eaten" ></span></div>
-  <div>Anteaters Eaten: <span id="anteaters-eaten" ></span></div>
-</div>
+  <ul id="score-board" class="paragraph">
+    <li>Whites: <span id="ants-count" ></span></li>
+    <li>Greens: <span id="ant-eaters-count" ></span></li>
+    <li>Whites Eaten: <span id="ants-eaten" ></span></li>
+    <li>Greens Eaten: <span id="ant-eaters-eaten" ></span></li>
+    <li>Greens Starved: <span id="ant-eaters-killed" ></span></li>
+  </ul>
+</section>
