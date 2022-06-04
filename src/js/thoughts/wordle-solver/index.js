@@ -16,7 +16,7 @@
 
   const breakpoint = matchMedia('(max-width: 500px)');
 
-  /////////////////////////// CONSTANTS
+  /// //////////////////////// CONSTANTS
 
   const STATES = {
     CLOSE: 'close',
@@ -28,14 +28,14 @@
     KEYDOWN: 'keydown',
     CLICK: 'click',
     CHANGE: 'change',
-  }
+  };
 
   const KEYS = {
     BACKSPACE: 'Backspace',
     ARROW_LEFT: 'ArrowLeft',
     TAB: 'Tab',
     ARROW_RIGHT: 'ArrowRight',
-  }
+  };
 
   const EMPTY = '';
   const SPACE = ' ';
@@ -43,22 +43,22 @@
 
   const isLetter = (value) => /[a-zA-Z]/.test(value);
 
-  ///////////////// functions
+  /// ////////////// functions
 
   function checkLinesFull() {
     const lineFull = new Array(6);
     let lastFullLine = 0;
 
-    lines.forEach(lineElement => {
+    lines.forEach((lineElement) => {
       const inputs = Array.from(lineElement.querySelectorAll('input[type=text]'));
       const [lineWord, lineNumber] = lineElement.id.split(DASH);
 
-      const isFull = (inputs.filter(input => input.value.length).length === 5);
+      const isFull = (inputs.filter((input) => input.value.length).length === 5);
       lineFull[Number(lineNumber)] = isFull;
     });
 
     for (let i = lineFull.length - 1; i >= 0; i--) {
-      if(lineFull[i]) {
+      if (lineFull[i]) {
         lastFullLine = i + 1;
         break;
       }
@@ -66,7 +66,7 @@
 
     if (lastFullLine > 5) lastFullLine = 5;
 
-    const lastFullLineElement = lines.filter(line => Number(line.id.split('-')[1]) === lastFullLine)[0];
+    const lastFullLineElement = lines.filter((line) => Number(line.id.split('-')[1]) === lastFullLine)[0];
     boardElement.style.height = `${lastFullLineElement.offsetHeight * (lastFullLine + 1)}px`;
   }
 
@@ -78,12 +78,12 @@
   }
 
   function getLetters() {
-    let closeLetters = [];
-    let wrongLetters = [];
-    let correctLetters = new Array(5);
-    let cannotBeLetters = [[],[],[],[],[]];
+    const closeLetters = [];
+    const wrongLetters = [];
+    const correctLetters = new Array(5);
+    const cannotBeLetters = [[], [], [], [], []];
 
-    textInputs.forEach(inputElement => {
+    textInputs.forEach((inputElement) => {
       const { state, letterNumber } = inputElement.dataset;
       const letterIndex = Number(letterNumber);
       const { value } = inputElement;
@@ -127,7 +127,6 @@
   }
 
   function calculate() {
-
     checkLinesFull();
 
     const {
@@ -158,7 +157,7 @@
       cannotBeLetters: cannotBeLetters.toString(),
     });
 
-    const wordElements = potentialMatches.sort((a, b) => (hasDoubleLetter(b) ? -1 : 1)).map(word => `<span>${word}</span>`);
+    const wordElements = potentialMatches.sort((a, b) => (hasDoubleLetter(b) ? -1 : 1)).map((word) => `<span>${word}</span>`);
     answersElement.innerHTML = wordElements.join(SPACE);
 
     resultsElement.innerText = wordElements.length;
@@ -174,18 +173,18 @@
   function previousInput(srcElement) {
     const [letterWord, lineNumber, letterNumber] = srcElement.id.split(DASH);
 
-    const nextInput = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) - 1}`);
-    if (nextInput) {
-      nextInput.focus();
+    const nextInputElement = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) - 1}`);
+    if (nextInputElement) {
+      nextInputElement.focus();
     }
   }
 
   function nextInput(srcElement) {
     const [letterWord, lineNumber, letterNumber] = srcElement.id.split(DASH);
 
-    const nextInput = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) + 1}`);
-    if (nextInput) {
-      nextInput.focus();
+    const nextInputElement = document.getElementById(`${letterWord}-${lineNumber}-${Number(letterNumber) + 1}`);
+    if (nextInputElement) {
+      nextInputElement.focus();
     }
   }
 
@@ -221,14 +220,14 @@
   }
 
   function initEventListeners() {
-    textInputs.forEach(input => {
+    textInputs.forEach((input) => {
       input.addEventListener(EVENTS.KEYDOWN, inputKeydown);
     });
-    submitButtons.forEach(button => {
+    submitButtons.forEach((button) => {
       button.addEventListener(EVENTS.CLICK, calculate);
     });
-    checkboxes.forEach(box => {
-      box.addEventListener(EVENTS.CHANGE, checkboxUpdated)
+    checkboxes.forEach((box) => {
+      box.addEventListener(EVENTS.CHANGE, checkboxUpdated);
     });
     answersElement.addEventListener(EVENTS.CLICK, ({ target }) => {
       if (target.tagName !== 'SPAN') return;
@@ -243,5 +242,4 @@
 
   initEventListeners();
   checkLinesFull();
-
 }());

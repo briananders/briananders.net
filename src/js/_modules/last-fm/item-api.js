@@ -1,7 +1,7 @@
 const handlebars = require('handlebars');
 
 const lazyLoader = require('../lazy-loader');
-const { log } = require('../log');
+// const { log } = require('../log');
 
 const config = require('./config');
 const template = require('./template');

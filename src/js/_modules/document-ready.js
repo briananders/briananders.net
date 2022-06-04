@@ -10,12 +10,12 @@ function stylesReadyWatcher(callback) {
   }
 
   styleSheets.forEach((link) => {
-    if (Boolean(link.sheet)) count++;
+    if (link.sheet) count++;
     else {
-      link.addEventListener("load", () => {
+      link.addEventListener('load', () => {
         count++;
         checkCount();
-      })
+      });
     }
     checkCount();
   });
@@ -23,11 +23,11 @@ function stylesReadyWatcher(callback) {
 
 function documentReadyWatcher(callback) {
   // see if DOM is already available
-  if (document.readyState === "complete" || document.readyState === "interactive") {
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
     // call on next available tick
     setTimeout(callback, 1);
   } else {
-    document.addEventListener("DOMContentLoaded", callback);
+    document.addEventListener('DOMContentLoaded', callback);
   }
 }
 
@@ -55,4 +55,3 @@ module.exports = {
 
   styles: stylesReadyWatcher,
 };
-
