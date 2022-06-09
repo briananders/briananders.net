@@ -1,4 +1,6 @@
 (function usingCanvas() {
+  const ready = require('../_modules/document-ready');
+
   let canvasContext;
   let canvas;
   let circles = [];
@@ -6,6 +8,7 @@
   let alphaBorder;
   let fillStyle;
   let alphaFill;
+  let fastSlow;
   let clearButton;
   let eraseButton;
   let paused = true;
@@ -33,22 +36,16 @@
   }
 
   // Circle Class
-  function Circle(x, y) {
-    // position and size
-    if (x === undefined) {
-      x = 1;
-    }
-    if (y === undefined) {
-      y = 1;
-    }
-    const radius = Math.floor(Math.random() * 50);
+  function Circle(x = 1, y = 1) {
+    // size
+    const radius = Math.floor(5 + (Math.random() * 100));
 
     // color
     const fill = new ColorObject();
     const border = new ColorObject();
 
     // speed
-    const speed = (Math.random() * 50) + 50;
+    const speed = (Math.random() * 100) + 100;
     let xVelocity = (Math.random() - 0.5) * speed;
     let yVelocity = (Math.random() - 0.5) * speed;
 
@@ -78,8 +75,8 @@
         canvasContext.lineWidth = '1px';
 
         switch (borderStyle.value) {
-          case 'border-black':
-            canvasContext.strokeStyle = `rgba(0,0,0,${border.alpha})`;
+          case 'border-white':
+            canvasContext.strokeStyle = `rgba(255,255,255,${border.alpha})`;
             break;
           case 'border-gray':
             canvasContext.strokeStyle = border.gray();
@@ -105,14 +102,13 @@
         yVelocity = 0 - Math.abs(yVelocity);
       }
 
-      y += yVelocity;
-
       if ((x + xVelocity) < radius) {
         xVelocity = Math.abs(xVelocity);
       } else if ((x + xVelocity) > (canvas.width - radius)) {
         xVelocity = 0 - Math.abs(xVelocity);
       }
 
+      y += yVelocity;
       x += xVelocity;
     };
 
@@ -159,8 +155,8 @@
   }
 
   function setCanvasDimensions() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
+    canvas.width = canvas.clientWidth * 2; // x2 for retina displays
+    canvas.height = canvas.clientHeight * 2; // x2 for retina displays
   }
 
   function update() {
@@ -191,7 +187,11 @@
     }
 
     if (!paused) {
-      window.setTimeout(draw, 0);
+      if (fastSlow.checked) {
+        window.setTimeout(draw, 0);
+      } else {
+        window.setTimeout(draw, 1000 / 60);
+      }
     }
   }
 
@@ -205,7 +205,11 @@
 
     paused = !paused;
     if (!paused) {
-      window.setTimeout(draw, 0);
+      if (fastSlow.checked) {
+        window.setTimeout(draw, 0);
+      } else {
+        window.setTimeout(draw, 1000 / 60);
+      }
     }
 
     if (pauseCache !== paused) {
@@ -218,7 +222,7 @@
   }
 
   function createCircle(e) {
-    circles.push(new Circle(e.x, e.y));
+    circles.push(new Circle(e.offsetX * 2, e.offsetY * 2)); // x2 for retina displays
 
     if (circles.length === 1) {
       pauseUnpause();
@@ -260,6 +264,7 @@
   }
 
   function initialize() {
+    fastSlow = document.getElementById('fast-slow');
     borderStyle = document.getElementById('border-style');
     alphaBorder = document.getElementById('alpha-border');
     fillStyle = document.getElementById('fill-style');
@@ -275,5 +280,5 @@
     setCanvasDimensions();
   }
 
-  window.addEventListener('load', initialize, false);
+  ready.all(initialize.bind(this));
 }());

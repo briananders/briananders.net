@@ -1,4 +1,4 @@
-const log = require('../_modules/log');
+const { log } = require('../_modules/log');
 
 (function uniqueStars() {
   const scrollTo = require('../_modules/scroll-to');

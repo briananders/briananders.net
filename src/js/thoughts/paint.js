@@ -1,5 +1,6 @@
 const handlebars = require('handlebars');
-const log = require('../_modules/log');
+const { log } = require('../_modules/log');
+const ready = require('../_modules/document-ready');
 
 (function paint() {
   const colors = [
@@ -119,16 +120,8 @@ const log = require('../_modules/log');
     canvasContext.stroke();
   }
 
-  function addCircle(x, y) {
+  function addCircle(x = 1, y = 1) {
     const radius = diameter / 2;
-
-    // position and size
-    if (x === undefined) {
-      x = 1;
-    }
-    if (y === undefined) {
-      y = 1;
-    }
 
     canvasContext.beginPath();
     if (shape === 'square') {
@@ -237,9 +230,11 @@ const log = require('../_modules/log');
     setupColorSamples();
   }
 
-  setCanvasDimensions();
-  addEventListeners();
-  updateColor();
-  updateStroke();
-  setCSS();
+  ready.all(() => {
+    setCanvasDimensions();
+    addEventListeners();
+    updateColor();
+    updateStroke();
+    setCSS();
+  });
 }());

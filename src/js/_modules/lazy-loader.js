@@ -11,7 +11,7 @@ function updateOnIntersect(element, observer) {
 
 function watchVideoSizes(element) {
   const {
-    mobileHeight, mobileWidth, mobilePoster, desktopHeight, desktopWidth, desktopPoster
+    mobileHeight, mobileWidth, mobilePoster, desktopHeight, desktopWidth, desktopPoster,
   } = element.dataset;
   const sourceElement = element.querySelector('source');
   const { mobileSrc, desktopSrc } = sourceElement.dataset;

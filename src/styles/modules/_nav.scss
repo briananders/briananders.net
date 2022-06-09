@@ -1,5 +1,12 @@
 @import "../thoughts/sticky-stacky";
 
+$nav-height: $s11;
+
+html {
+  --nav-height: #{$nav-height};
+  --window-height: calc(100vh - #{$nav-height});
+}
+
 nav.main {
   border-radius: 0;
   margin: 0;
@@ -19,7 +26,7 @@ nav.main {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    min-height: $s11;
+    min-height: $nav-height;
     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 
     &::after {
@@ -100,19 +107,12 @@ nav.main {
     font-family: $sans-serif;
     color: var(--primary-color-text, #{$pallette--primary-color-text--white});
 
-    &::before {
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text--white});
-    }
-
     &.brand {
-      @include font-size(7);
-      margin: 0 -$s2;
-      font-weight: $regular;
-      padding: 0 $s2;
-
-      @include mq-max(340px) {
-        @include font-size(6);
-      }
+      width: auto;
+      max-width: css-min(calc(100% - #{66px + 12px}), 200px);
+      display: flex;
+      justify-content: flex-start;
+      align-items: middle;
     }
   }
 }

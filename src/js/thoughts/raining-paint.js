@@ -1,4 +1,6 @@
 (function rainingPaint() {
+  const ready = require('../_modules/document-ready');
+
   const canvas = document.getElementById('canvas');
   const canvasContext = canvas.getContext('2d');
   const colorCheckbox = document.querySelector('input[name=color]');
@@ -77,8 +79,10 @@
     }, 500);
   }
 
-  setupEventListeners();
-  setCanvasSize();
-  run();
-  draw();
+  ready.all(() => {
+    setupEventListeners();
+    setCanvasSize();
+    run();
+    draw();
+  });
 }());

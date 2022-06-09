@@ -14,11 +14,11 @@ scripts:
   - 'thoughts/using-canvas-to-make-patterns-with-circles'
 ---
 
-<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="content" itemscope itemtype="https://schema.org/BlogPosting">
   <form class="p">
     <select id="border-style" aria-label="Circle border style">
       <option value="no-border">No Border</option>
-      <option value="border-black">Border Black</option>
+      <option value="border-white">Border White</option>
       <option value="border-gray">Border Gray</option>
       <option value="border-color" selected>Border Color</option>
       <option value="epileptic">Epileptic</option>
@@ -34,6 +34,9 @@ scripts:
     </select>
     <label for="alpha-fill">
       <input id="alpha-fill" type="checkbox">Fill Transparency
+    </label>
+    <label for="fast-slow">
+      Slow&nbsp;<input id="fast-slow" type="checkbox" class="toggle">Fast
     </label>
     <span>
       <button id="erase-button" type="button">Erase</button>

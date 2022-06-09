@@ -3,10 +3,10 @@
 <div id="skip-nav" tabindex="-1" data-state=inactive>
   <button>Skip navigation</button>
 </div>
-<%- partial('nav', locals); %>
+<%- partial('nav', locals) %>
 <% if(!locals.homepage) { %>
   <header class="main-header <%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
-    <h1 itemprop="title" class="name content">
+    <h1 itemprop="headline" class="name content">
       <% if (locals.altTitle !== undefined) { %>
         <%- noWidows(locals.altTitle) %>
       <% } else if (locals.title !== undefined) { %>

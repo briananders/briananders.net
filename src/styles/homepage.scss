@@ -4,7 +4,7 @@ main.home {
   @import "modules/thoughts-list";
   @import "thoughts/last-fm";
 
-  margin-top: $s10;
+  margin-top: $section-spacer;
 
   .last-fm-module {
     margin-top: $s5;

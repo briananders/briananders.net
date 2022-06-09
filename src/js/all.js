@@ -1,6 +1,6 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
-
+const ready = require('./_modules/document-ready');
 const stickyStack = require('./_modules/sticky-stacky');
 
 (function all() {
@@ -104,19 +104,16 @@ const stickyStack = require('./_modules/sticky-stacky');
     });
   }
 
-  preventFormSubmit();
+  ready.document(() => {
+    preventFormSubmit();
+    setupNavEvents(analytics);
+    testForTouch();
+    // navScrollWatcher();
+    setMainMinHeight();
+    setUpSkipNav();
 
-  setupNavEvents(analytics);
-
-  testForTouch();
-
-  // navScrollWatcher();
-
-  setMainMinHeight();
-
-  setUpSkipNav();
-
-  stickyStack.init();
-  lazyLoader.init();
-  analytics.watchElements();
+    lazyLoader.init();
+    analytics.watchElements();
+    stickyStack.init();
+  });
 }());
