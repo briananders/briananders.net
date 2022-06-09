@@ -7,7 +7,6 @@ const BUILD_EVENTS = require('./constants/build-events');
 const bundleJS = require('./bundle-js');
 const bundleSCSS = require('./bundle-scss');
 const compilePageMappingData = require('./page-mapping-data');
-const moveImages = require('./move-images');
 const convertToWebp = require('./convert-to-webp');
 
 function watchForPreviewReady({ buildEvents, completionFlags }) {
@@ -80,8 +79,6 @@ module.exports = (configs) => {
     log(`${timestamp.stamp()} ${`Build file modified: ${path.split('briananders.net')[1]}`.bold.red}`);
     process.exit();
   }
-
-  buildEvents.on(BUILD_EVENTS.imagesConverted, moveImages.bind(this, configs));
 
   const buildDirWatcher = chokidar.watch(dir.build);
   const indexWatcher = chokidar.watch(`${dir.root}index.js`);

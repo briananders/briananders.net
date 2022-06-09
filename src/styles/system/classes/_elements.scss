@@ -77,7 +77,7 @@
   }
 }
 
-.link:not(.block),
+.link,
 .inline-link {
   @include inline-link;
 }

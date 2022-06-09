@@ -70,7 +70,10 @@
   padding: 0 $s1;
   display: inline-block;
   text-decoration: none;
-  @include pallette--primary;
+
+  &:not(.block) {
+    @include pallette--primary;
+  }
 }
 
 @mixin block-link {
