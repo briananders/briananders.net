@@ -10,7 +10,7 @@
 
   @include mq($medium) {
     grid-template-columns: repeat(2, 1fr);
-    margin-bottom: $s10;
+    margin-bottom: $s6;
   }
 
   @include mq($large) {

@@ -16,7 +16,7 @@ function squeakyClean(arr) {
 
 module.exports = (dir, pageMappingData) => ({
   partial(partialPath, data) {
-    const newPath = path.join(dir.src, "partials/", `${partialPath}.ejs`);
+    const newPath = path.join(dir.src, 'partials/', `${partialPath}.ejs`);
 
     return ejs.render(fs.readFileSync(newPath).toString(), data, {
       compileDebug: true,
@@ -105,6 +105,10 @@ module.exports = (dir, pageMappingData) => ({
       </video>
     </div>`;
   },
+
+  dasherize: (str) => str.replace(/[A-Z]/g, (char, index) => (index !== 0 ? '-' : '') + char.toLowerCase()),
+
+  camelize: (str) => str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase())).replace(/\s+/g, ''),
 
   link(str, locals) {
     if (!locals.href) {

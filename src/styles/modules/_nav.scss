@@ -111,10 +111,6 @@ nav.main {
     font-family: $sans-serif;
     color: var(--primary-color-text, #{$pallette--primary-color-text--white});
 
-    &::before {
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text--white});
-    }
-
     &.brand {
       width: auto;
       max-width: css-min(calc(100% - #{66px + 12px}), 200px);

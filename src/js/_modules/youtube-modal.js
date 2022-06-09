@@ -35,6 +35,11 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
 
     MODAL_ELEMENTS.closeButton.addEventListener('click', closeModal);
     MODAL_ELEMENTS.overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        closeModal();
+      }
+    });
   };
 
   const destroy = () => {
