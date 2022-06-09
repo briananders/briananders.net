@@ -3,14 +3,14 @@
   grid-template-columns: 1fr;
   justify-content: space-around;
   column-gap: $s5;
-  row-gap: $s10;
+  row-gap: $section-spacer;
   align-items: stretch;
   justify-items: stretch;
   margin-bottom: $s6;
 
   @include mq($medium) {
     grid-template-columns: repeat(2, 1fr);
-    margin-bottom: $s10;
+    margin-bottom: $section-spacer;
   }
 
   @include mq($large) {

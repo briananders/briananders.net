@@ -12,7 +12,7 @@ $frame-height: $sprite-height / $y-max;
 #frame-container {
   width: round($frame-width) + 2px;
   height: round($frame-height) + 2px;
-  --background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite.jpg');
+  --background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite.web');
   margin: auto;
   border-radius: 100%;
   transition-duration: 10ms;
@@ -36,10 +36,3 @@ $frame-height: $sprite-height / $y-max;
     display: none;
   }
 }
-
-
-// ul {
-//   max-width: $grid--copy-max-width;
-//   margin: auto;
-//   margin-bottom: 24px;
-// }
