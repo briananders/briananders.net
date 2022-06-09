@@ -4,7 +4,7 @@ const { log } = console;
 
 const BUILD_EVENTS = require('./constants/build-events');
 
-module.exports = function convertToWebp({ dir, completionFlags, buildEvents }) {
+module.exports = function convertToWebp({ dir, completionFlags, debug, buildEvents }) {
   webp.grant_permission();
 
   completionFlags.IMAGES_TO_WEBP = false;
@@ -18,7 +18,7 @@ module.exports = function convertToWebp({ dir, completionFlags, buildEvents }) {
     const result = webp.cwebp(sourceImage, `${webpImage}.webp`);
     result.then(() => {
       processed++;
-      log(`Webm processed: ${processed} / ${imagesGlob.length}`);
+      if (debug) log(`Webm processed: ${processed} / ${imagesGlob.length}`);
       if (processed >= imagesGlob.length) {
         log(`${timestamp.stamp()} convertToWebp(): ${'DONE'.bold.green}`);
         completionFlags.IMAGES_TO_WEBP = true;

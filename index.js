@@ -51,8 +51,10 @@ const configs = {
 
 /* ////////////////////////////// event listeners /////////////////////////// */
 
+buildEvents.on(BUILD_EVENTS.imagesConverted, compilePageMappingData.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.imagesConverted, bundleEJS.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.imagesConverted, moveImages.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, bundleEJS.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
 
