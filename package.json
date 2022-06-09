@@ -72,6 +72,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0",
+    "webp-converter": "^2.3.3",
     "xxhash": "^0.3.0"
   },
   "engines": {

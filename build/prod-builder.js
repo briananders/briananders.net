@@ -6,6 +6,7 @@ const gzipFiles = require('./gzip-files');
 const hashCSS = require('./hash-css');
 const minifyHTML = require('./minify-html');
 const minifyJS = require('./minify-js');
+const moveImages = require('./move-images');
 const updateCSSwithImageHashes = require('./update-css-with-image-hashes');
 
 const BUILD_EVENTS = require('./constants/build-events');
@@ -26,6 +27,7 @@ module.exports = (configs) => {
   });
   buildEvents.on(BUILD_EVENTS.htmlMinified, assetHashing.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.imageCompressionDone, checkDone.bind(this, configs));
+  buildEvents.on(BUILD_EVENTS.imagesConverted, moveImages.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.imagesMoved, () => {
     assetHashing(configs);
     compressImages(configs);
