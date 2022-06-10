@@ -17,7 +17,7 @@ scripts:
 <blockquote>
   <p>To 'scrobble' a song means that when you listen to it, the name of the song is sent to a Web site (for example, Last.fm) and added to your music profile. Here's how it works: Once you've signed up and downloaded Last.fm, you can scrobble songs you listen to on your computer or iPod automatically.</p>
   <cite>
-    <%- externalLink('Netlingo.com', { href: "http://www.netlingo.com/word/scrobble.php" })%>
+    <%- externalLink('Netlingo.com', { href: "https://www.netlingo.com/word/scrobble.php" })%>
   </cite>
 </blockquote>
 
@@ -35,7 +35,7 @@ scripts:
 
 <section class="content">
   <h2>Top Albums</h2>
-  <div class='last-fm-module p' data-type="albums" src="/images/thoughts/last-fm/default.jpg">
+  <div class='last-fm-module p' data-type="albums" src="/images/thoughts/last-fm/default.webp">
     <% for (let i = 0; i < 10; i++) { %>
       <%- defaultLastFMModule() %>
     <% } %>

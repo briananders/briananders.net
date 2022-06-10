@@ -1,11 +1,11 @@
-module.exports = function Matcher ({
+module.exports = function Matcher({
   closeLetters,
   wrongLetters,
   correctLetters,
   cannotBeLetters,
 }) {
   function any(word, letters) {
-    for(let i = 0; i < letters.length; i++) {
+    for (let i = 0; i < letters.length; i++) {
       const letter = letters[i];
       if (word.includes(letter)) return true;
     }
@@ -13,7 +13,7 @@ module.exports = function Matcher ({
   }
 
   function all(word, letters) {
-    for(let i = 0; i < letters.length; i++) {
+    for (let i = 0; i < letters.length; i++) {
       const letter = letters[i];
       if (!word.includes(letter)) return false;
     }
@@ -21,7 +21,7 @@ module.exports = function Matcher ({
   }
 
   function correctLettersMatch(word, letters) {
-    for(let i = 0; i < letters.length; i++) {
+    for (let i = 0; i < letters.length; i++) {
       const letter = letters[i];
       if (letter !== undefined && word[i] !== letter) return false;
     }
@@ -30,7 +30,7 @@ module.exports = function Matcher ({
 
   // confirms that the close letters do not appear in the same positions
   function cannotBeLettersMatch(word, letters2DArray) { // letters is a 2D array
-    for(let i = 0; i < letters2DArray.length; i++) {
+    for (let i = 0; i < letters2DArray.length; i++) {
       const letters = letters2DArray[i];
       for (let j = 0; j < letters.length; j++) {
         const letter = letters[j];
@@ -47,4 +47,4 @@ module.exports = function Matcher ({
     if (!cannotBeLettersMatch(word, cannotBeLetters)) return false;
     return true;
   };
-}
+};

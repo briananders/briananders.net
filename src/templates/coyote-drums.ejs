@@ -1,6 +1,6 @@
 ---
 title: "Coyote Drums"
-description: ""
+description: "I drum. This is the portion of my site dedicated to that art."
 date: 2022-02-18
 priority: 0.8
 pageClasses:
@@ -13,14 +13,18 @@ scripts:
   - 'coyote-drums'
 ---
 
-<%- lazyVideo({
+<div class="coyote-drums-logo">
+  <%- getFileContents('/images/coyote-drums/logo.svg') %>
+</div>
+
+<%# lazyVideo({
   srcs: {
     desktop: '/videos/coyote-drums/hero-desktop.mp4',
     mobile: '/videos/coyote-drums/hero-mobile.mp4',
   },
   placeholders: {
-    desktop: '/videos/coyote-drums/hero-desktop.jpg',
-    mobile: '/videos/coyote-drums/hero-mobile.jpg',
+    desktop: '/videos/coyote-drums/hero-desktop.webp',
+    mobile: '/videos/coyote-drums/hero-mobile.webp',
   }
 }) %>
 
@@ -58,11 +62,11 @@ scripts:
   </header>
   <div class="content video-grid playlists">
     <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
-      <%- lazyImage({ src: '/images/coyote-drums/drum-covers.jpg' }) %>
+      <%- lazyImage({ src: '/images/coyote-drums/drum-covers.webp' }) %>
       Drum Covers
     </button>
     <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
-      <%- lazyImage({ src: '/images/coyote-drums/glow-sticks.jpg' }) %>
+      <%- lazyImage({ src: '/images/coyote-drums/glow-sticks.webp' }) %>
       Glow Sticks
     </button>
   </div>
@@ -144,7 +148,7 @@ scripts:
   ].sort((a, b) => (a.date < b.date) ? 1 : -1);
 %>
 
-<section>
+<section class="videos">
   <header class="content">
     <h2>
       Videos

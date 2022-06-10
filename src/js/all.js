@@ -103,7 +103,7 @@ const ready = require('./_modules/document-ready');
     });
   }
 
-  ready(function() {
+  ready.document(() => {
     preventFormSubmit();
     setupNavEvents(analytics);
     testForTouch();

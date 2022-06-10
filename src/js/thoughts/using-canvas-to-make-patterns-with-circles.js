@@ -1,4 +1,6 @@
 (function usingCanvas() {
+  const ready = require('../_modules/document-ready');
+
   let canvasContext;
   let canvas;
   let circles = [];
@@ -278,5 +280,5 @@
     setCanvasDimensions();
   }
 
-  window.addEventListener('load', initialize, false);
+  ready.all(initialize.bind(this));
 }());

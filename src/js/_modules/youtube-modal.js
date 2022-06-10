@@ -1,3 +1,5 @@
+const { log } = require('./log');
+
 module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-modal-trigger' }) {
   let triggerElements = [];
 
@@ -22,7 +24,6 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
   };
 
   const init = () => {
-    console.log('YoutubeModal.init()');
     triggerElements = Array.from(document.querySelectorAll(triggerScope));
     addEventListeners();
     checkNodeNames();
@@ -34,6 +35,11 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
 
     MODAL_ELEMENTS.closeButton.addEventListener('click', closeModal);
     MODAL_ELEMENTS.overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        closeModal();
+      }
+    });
   };
 
   const destroy = () => {
@@ -85,7 +91,7 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
   const checkNodeNames = () => {
     triggerElements.forEach((element) => {
       if (element.nodeName !== 'BUTTON') {
-        console.warn('WARNING: YoutubeModal trigger, should be a <button>');
+        log('WARNING: YoutubeModal trigger, should be a <button>');
       }
     });
   };

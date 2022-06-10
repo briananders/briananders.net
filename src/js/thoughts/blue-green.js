@@ -2,7 +2,7 @@
   const {
     floor, min, max, random,
   } = Math;
-  const { log } = console;
+  const { log } = require('../_modules/log');
   const MAX_COLOR = 255;
 
   const canvas = document.getElementById('canvas');

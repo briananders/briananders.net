@@ -1,4 +1,7 @@
 (function init() {
+  const ready = require('../_modules/document-ready');
+  const { log } = require('../_modules/log');
+
   let canvasContext;
   let canvas;
   let circles = [];
@@ -17,7 +20,7 @@
 
   function newCircle(x, y, radius, xVelocity, yVelocity) {
     if (circles.length > 2 ** 10) {
-      // console.log(`circles exceed limit. ${circles.length}/1000`);
+      // log(`circles exceed limit. ${circles.length}/1000`);
       return circles.length;
     }
 
@@ -244,7 +247,7 @@
         window.setTimeout(draw, 1000 / 60);
       }
     } else {
-      console.log(
+      log(
         Math.max(...circles.map((circle) => circle.getVelocity()))
       );
     }
@@ -317,5 +320,5 @@
     setCanvasDimensions();
   }
 
-  window.addEventListener('load', initialize, false);
+  ready.all(initialize.bind(this));
 }());

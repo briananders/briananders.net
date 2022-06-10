@@ -14,9 +14,5 @@ footer {
   a {
     background-color: transparent !important;
     padding: 0;
-
-    &::before {
-      background-color: $pallette--primary-color-text--white;
-    }
   }
 }

@@ -1,3 +1,10 @@
+$nav-height: $s11;
+
+html {
+  --nav-height: #{$nav-height};
+  --window-height: calc(100vh - #{$nav-height});
+}
+
 nav.main {
   border-radius: 0;
   margin: 0;
@@ -23,7 +30,7 @@ nav.main {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    min-height: $s11;
+    min-height: $nav-height;
     background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
 
     &::after {
@@ -103,10 +110,6 @@ nav.main {
     @include font-size;
     font-family: $sans-serif;
     color: var(--primary-color-text, #{$pallette--primary-color-text--white});
-
-    &::before {
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text--white});
-    }
 
     &.brand {
       width: auto;

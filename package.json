@@ -4,15 +4,17 @@
   "description": "",
   "homepage": "https://briananders.net",
   "scripts": {
-    "build": "NODE_ENV=production node ./index.js",
-    "clean": "rm -rf node_modules tmp dist && npm cache clean",
-    "debug": "node ./index.js --verbose",
-    "deploy": "NODE_ENV=production node ./s3-uploader.js",
+    "build": "NODE_ENV=production node index.js",
+    "clean": "rm -rf node_modules tmp dist && npm cache clean --force",
+    "debug:start": "node index.js --verbose",
+    "debug:build": "NODE_ENV=production node index.js --verbose",
+    "deploy": "NODE_ENV=production node s3-uploader.js",
     "lint:build": "npx eslint build/** --fix",
     "lint:src": "npx eslint src/js/** --fix",
-    "preview-production": "node ./preview-production.js",
-    "stage": "node ./s3-uploader.js",
-    "start": "node ./index.js",
+    "preview-production": "node preview-production.js",
+    "scaffold": "node scaffold.js",
+    "stage": "node s3-uploader.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,15 +31,14 @@
   "license": "MIT",
   "devDependencies": {
     "broken-link-checker": "^0.7.8",
-    "eslint": "^8.9.0",
+    "eslint": "^8.15.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-ejs": "^0.0.2",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "jshint": "^2.13.4",
-    "yarn-upgrade-all": "^0.6.1"
+    "jshint": "^2.13.4"
   },
   "dependencies": {
     "@babel/core": "^7.17.5",
@@ -51,7 +52,7 @@
     "colors": "^1.4.0",
     "copy": "^0.3.2",
     "copy-to-clipboard": "^3.3.1",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "empty-dir": "^2.0.0",
     "express": "^4.17.3",
     "express-static": "^1.2.6",
@@ -71,6 +72,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0",
+    "webp-converter": "^2.3.3",
     "xxhash": "^0.3.0"
   },
   "engines": {

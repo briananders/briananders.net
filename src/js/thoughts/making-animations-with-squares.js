@@ -1,4 +1,6 @@
 (function init() {
+  const ready = require('../_modules/document-ready');
+
   let canvasContext;
   let canvas;
   let squares = [];
@@ -282,5 +284,5 @@
     setCanvasDimensions();
   }
 
-  window.addEventListener('load', initialize, false);
+  ready.all(initialize);
 }());

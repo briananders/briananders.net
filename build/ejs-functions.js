@@ -16,7 +16,7 @@ function squeakyClean(arr) {
 
 module.exports = (dir, pageMappingData) => ({
   partial(partialPath, data) {
-    const newPath = `${dir.src}partials/${partialPath}.ejs`;
+    const newPath = path.join(dir.src, 'partials/', `${partialPath}.ejs`);
 
     return ejs.render(fs.readFileSync(newPath).toString(), data, {
       compileDebug: true,
@@ -106,6 +106,10 @@ module.exports = (dir, pageMappingData) => ({
     </div>`;
   },
 
+  dasherize: (str) => str.replace(/[A-Z]/g, (char, index) => (index !== 0 ? '-' : '') + char.toLowerCase()),
+
+  camelize: (str) => str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase())).replace(/\s+/g, ''),
+
   link(str, locals) {
     if (!locals.href) {
       throw new Error('externalLink is missing href attribute');
@@ -117,6 +121,10 @@ module.exports = (dir, pageMappingData) => ({
 
   externalLink(str, locals) {
     return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
+  },
+
+  getFileContents(src) {
+    return fs.readFileSync(path.join(dir.src, src)).toString();
   },
 
   defaultLastFMModule: (albums = true) => `
