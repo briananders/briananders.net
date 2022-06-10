@@ -35,11 +35,34 @@ styles:
 </section>
 
 <div class="sticky-container h3">
-  <nav class="default-styles">Would it hurt to</nav>
+  <nav class="default-styles">The markup</nav>
 </div>
 
 <section>
   <div class="content">
-    <p></p>
+    <%- code(`<div class="sticky-container">
+  <nav>Sticky Nav Element</nav>
+</div>`, { language: 'html' }) %>
   </div>
+</section>
+
+<div class="sticky-container h3">
+  <nav class="default-styles">CSS Styles</nav>
+</div>
+
+<section>
+  <div class="content">
+    <%- code(getFileContents('/styles/modules/_sticky-stacky.scss'), { language: 'css' }) %>
+  </div>
+</section>
+
+<div class="sticky-container h3">
+  <nav class="default-styles">Javascript functions</nav>
+</div>
+
+<section>
+  <div class="content">
+    <%- code(getFileContents('/js/_modules/sticky-stacky.js'), { language: 'javascript' }) %>
+  </div>
+</section>
 </section>
