@@ -1,0 +1,60 @@
+---
+title: "How to change the style of elements when a different element gets the mouse hover"
+description: ""
+date: 2022-06-10
+priority: 0.8
+pageClasses:
+  - 'thoughts reverse-hover-state'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/reverse-hover-state'
+scripts:
+  - 'thoughts/reverse-hover-state'
+---
+
+<section>
+  <div class="container">
+    <header>
+      <h2>Hover over any of these squares</h2>
+    </header>
+  </div>
+  <div class="container cards-container">
+    <% for(let i = 0; i < 21; i++) { %>
+      <card></card>
+    <% } %>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <header>
+      <h2>The Code</h2>
+    </header>
+    <header>
+      <h3>HTML</h3>
+    </header>
+    <%- code(`<div class="container">
+  <div class="card" ></div>
+  <div class="card" ></div>
+  <div class="card" ></div>
+  ...
+</div>`, { language: 'html' }); %>
+    <header>
+      <h3>SCSS</h3>
+    </header>
+    <%- code(`.container {
+  pointer-events: none;
+}
+.container:hover .card {
+  /* unique-style */
+}
+.card {
+  pointer-events: all;
+  /* default-style */
+}
+.container:hover .card:hover {
+  /* default-style */
+}`, { language: 'css' }); %>
+  </div>
+</section>
