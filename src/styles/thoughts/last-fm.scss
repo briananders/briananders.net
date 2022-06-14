@@ -10,7 +10,7 @@
     grid-gap: $s1 / 2;
     grid-gap: $s3;
 
-    @include pallette--base;
+    @include palette--base;
 
     &.album {
       grid-template-columns: 1fr 100px;
@@ -36,7 +36,7 @@
     bar {
       display: block;
       height: $s2;
-      background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
       margin-top: $s1;
       transition-property: background-color;
       transition-duration: $transition-speed;

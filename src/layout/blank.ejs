@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US" itemscope="itemscope" itemtype="https://schema.org/WebPage" class="<%- locals.sitePallette %>">
+<html lang="en-US" itemscope="itemscope" itemtype="https://schema.org/WebPage" class="<%- locals.sitePalette %>">
 <head>
-  <% if (!locals.sitePallette) { %>
+  <% if (!locals.sitePalette) { %>
   <script>
-    function setSitePallette() {
-      var pallettes = [
+    function setSitePalette() {
+      var palettes = [
         'red',
         'pink',
         'purple',
@@ -22,17 +22,17 @@
         'grey',
         'blue-grey',
       ];
-      var palletteIndex = Math.floor(Math.random() * pallettes.length);
-      var pallette = pallettes[palletteIndex];
+      var paletteIndex = Math.floor(Math.random() * palettes.length);
+      var palette = palettes[paletteIndex];
       var urlParams = new URLSearchParams(window.location.search);
 
-      if (urlParams.has('pallette')) {
-        pallette = urlParams.get('pallette');
+      if (urlParams.has('palette')) {
+        palette = urlParams.get('palette');
       }
 
-      document.documentElement.classList.add(pallette);
+      document.documentElement.classList.add(palette);
     }
-    setSitePallette();
+    setSitePalette();
   </script>
   <% } %>
   <%- partial('meta', locals); %>

@@ -1,3 +1,5 @@
+const urlParams = new URLSearchParams(window.location.search);
+
 function updateOnIntersect(element, observer) {
   if (element.tagName === 'IMG') {
     element.src = element.dataset.src;
@@ -48,8 +50,11 @@ function watchVideoSizes(element) {
 
 module.exports = {
   init(specificQuery = 'body') {
-    // return;
-    if (window.IntersectionObserver) {
+    if (urlParams.get('disable-lazy') !== null) {
+      document.querySelectorAll(`${specificQuery} [lazy]`).forEach((element) => {
+        updateOnIntersect(element);
+      });
+    } else if (window.IntersectionObserver) {
       const intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {

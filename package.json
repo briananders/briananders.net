@@ -14,8 +14,7 @@
     "preview-production": "node preview-production.js",
     "scaffold": "node scaffold.js",
     "stage": "node s3-uploader.js",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

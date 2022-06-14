@@ -17,16 +17,16 @@ a.movie {
   margin-bottom: $s4;
   transition-property: color;
   background-color: transparent;
-  color: $pallette--primary-color-text--white;
+  color: $palette--primary-color-text--white;
 
   &::before {
-    background-color: $pallette--primary-color-text--white;
+    background-color: $palette--primary-color-text--white;
   }
 
   &:hover,
   &:focus {
     background-color: transparent;
-    color: $pallette--primary-color-text--white;
+    color: $palette--primary-color-text--white;
   }
 
   p.h4 {

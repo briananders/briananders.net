@@ -79,7 +79,7 @@ const ready = require('../_modules/document-ready');
   const mainStroke = document.querySelector('main-stroke');
   const strokeSlider = document.getElementById('stroke-slider');
   const mainColor = document.querySelector('main-color');
-  const shapePallette = document.querySelector('.shape-pallette');
+  const shapePalette = document.querySelector('.shape-palette');
   let currentColor = colors[0];
   let diameter = strokeSlider.value;
   let canDraw = false;
@@ -191,13 +191,13 @@ const ready = require('../_modules/document-ready');
   }
 
   function setupColorSamples() {
-    const colorPallette = document.querySelector('.color-pallette');
+    const colorPalette = document.querySelector('.color-palette');
 
     colors.forEach(({ name, code }) => {
       const colorSample = document.createElement('color-sample');
       colorSample.classList.add('color');
       colorSample.dataset.color = name;
-      colorPallette.appendChild(colorSample);
+      colorPalette.appendChild(colorSample);
       colorSample.addEventListener('click', () => {
         currentColor = { name, code };
         updateColor();
@@ -218,7 +218,7 @@ const ready = require('../_modules/document-ready');
     strokeSlider.addEventListener('mousedown', slideOn, false);
     strokeSlider.addEventListener('mouseup', slideOff, false);
 
-    shapePallette.querySelectorAll('input').forEach((element) => {
+    shapePalette.querySelectorAll('input').forEach((element) => {
       element.addEventListener('change', (evt) => {
         log(evt.target.value, evt.target.checked);
         if (evt.target.checked) {
