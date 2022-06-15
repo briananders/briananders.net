@@ -19,10 +19,6 @@ a.movie {
   background-color: transparent;
   color: $palette--primary-color-text--white;
 
-  &::before {
-    background-color: $palette--primary-color-text--white;
-  }
-
   &:hover,
   &:focus {
     background-color: transparent;
@@ -35,5 +31,6 @@ a.movie {
 
   img {
     display: block;
+    margin-bottom: $s2;
   }
 }
