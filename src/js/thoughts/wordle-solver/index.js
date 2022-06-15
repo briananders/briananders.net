@@ -195,6 +195,7 @@
     switch (key) {
       case KEYS.BACKSPACE:
         resetLetter(srcElement);
+        // eslint-disable-next-line no-fallthrough
       case KEYS.ARROW_LEFT:
         previousInput(srcElement);
         evt.preventDefault();

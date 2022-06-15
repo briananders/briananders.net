@@ -1,3 +1,5 @@
+const noAnimations = require('../_modules/no-animations');
+
 (function init() {
   const maxSet = 8;
 
@@ -40,5 +42,8 @@
   }
 
   setUpSelect();
-  a(1);
+
+  if (!noAnimations.areAnimationsDisabled) {
+    a(1);
+  }
 }());

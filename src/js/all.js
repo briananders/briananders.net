@@ -1,5 +1,6 @@
 const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
+const noAnimations = require('./_modules/no-animations');
 const ready = require('./_modules/document-ready');
 
 (function all() {
@@ -110,6 +111,7 @@ const ready = require('./_modules/document-ready');
     navScrollWatcher();
     setMainMinHeight();
     setUpSkipNav();
+    noAnimations.initBodyClass();
 
     lazyLoader.init();
     analytics.watchElements();

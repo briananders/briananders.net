@@ -68,6 +68,11 @@ $aspectRatio: $height / $width;
       animation-iteration-count: infinite;
       transform-origin: center center;
     }
+
+    body.no-animations &,
+    body.no-animations & #drum {
+      animation-delay: 100s;
+    }
   }
 
   .video-container {

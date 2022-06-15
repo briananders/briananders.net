@@ -90,38 +90,3 @@ scripts:
     </div>
   </div>
 </section>
-
-
-<section>
-  <div class="content">
-    <header>
-      <h2>
-        <%- noWidows("What I've been screaming into the abyss."); %>
-      </h2>
-      <p class="center p-margin">
-        &#61;&#61;&gt;
-        <%- externalLink(`@${locals.twitterHandle}`, {
-          href: `${locals.twitter}?ref_src=twsrc%5Etfw`
-        }) %>
-        &lt;&#61;&#61;
-      </p>
-    </header>
-    <div class="p">
-      <%- externalLink(`Tweets by @${locals.twitterHandle}`, {
-        class: "twitter-timeline",
-        href: `${locals.twitter}?ref_src=twsrc%5Etfw`,
-        'data-height': "800",
-        'data-theme': "light",
-      }) %>
-    </div>
-  </div>
-  <script>
-    (function() {
-      const timelineElement = document.querySelector('.twitter-timeline[data-theme]');
-      if(matchMedia('(prefers-color-scheme: dark)').matches) {
-        timelineElement.dataset.theme = 'dark';
-      }
-    })();
-  </script>
-  <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</section>

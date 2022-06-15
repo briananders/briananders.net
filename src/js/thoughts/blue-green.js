@@ -1,3 +1,5 @@
+const noAnimations = require('../_modules/no-animations');
+
 (function blueGreen() {
   const {
     floor, min, max, random,
@@ -130,6 +132,8 @@
     updateColors();
   });
 
-  reset();
-  updateColors();
+  if (!noAnimations.areAnimationsDisabled) {
+    reset();
+    updateColors();
+  }
 }());

@@ -1,5 +1,6 @@
 (function rainingPaint() {
   const ready = require('../_modules/document-ready');
+  const noAnimations = require('../_modules/no-animations');
 
   const canvas = document.getElementById('canvas');
   const canvasContext = canvas.getContext('2d');
@@ -83,6 +84,6 @@
     setupEventListeners();
     setCanvasSize();
     run();
-    draw();
+    if (!noAnimations.areAnimationsDisabled) draw();
   });
 }());
