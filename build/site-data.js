@@ -18,5 +18,10 @@ module.exports = (dir) => {
     twitter,
     github: 'https://github.com/briananders',
     linkedin: 'https://www.linkedin.com/in/andersbrian/',
+    coyoteDrums: {
+      youtube: 'https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw',
+      path: '/coyote-drums',
+    },
+    batLessons: 'https://batlessons.com',
   };
 };

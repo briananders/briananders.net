@@ -29,12 +29,12 @@ scripts:
 }) %>
 
 <section>
-  <header class="content">
+  <header class="container">
     <h2>
       Social Channels
     </h2>
   </header>
-  <div class="content social-profiles">
+  <div class="container social-profiles">
     <%- externalLink(`
         <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/instagram-icon.svg' })}</span>
         <span role="heading" aria-level="3" class="h4">Instagram</span>
@@ -49,18 +49,18 @@ scripts:
         <span class="h5">Coyote Drums</span>
       `, {
         class: "link social-profile",
-        href: "https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw"
+        href: locals.coyoteDrums.youtube,
     }) %>
   </div>
 </section>
 
 <section>
-  <header class="content">
+  <header class="container">
     <h2>
       Playlists
     </h2>
   </header>
-  <div class="content video-grid playlists">
+  <div class="container video-grid playlists">
     <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
       <%- lazyImage({ src: '/images/coyote-drums/drum-covers.webp' }) %>
       Drum Covers
@@ -149,12 +149,12 @@ scripts:
 %>
 
 <section class="videos">
-  <header class="content">
+  <header class="container">
     <h2>
       Videos
     </h2>
   </header>
-  <div class="content video-grid">
+  <div class="container video-grid">
     <% videos.forEach(({ artist, title, id }) => { %>
       <button class="block link yt-modal-trigger" data-video-id="<%- id %>"><%- videoTitle(title, artist) %></button>
     <% }); %>
