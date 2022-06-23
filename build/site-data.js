@@ -9,7 +9,7 @@ module.exports = (dir) => {
     devBuild: !production,
     version: pkg.version,
     name: 'Brian Anders',
-    description: "Hi, I'm Brian. Iowa is my home. Graceland University is my alma mater. Now, I live in California and work for Google. That's pretty much it.",
+    description: "Hi, I'm Brian. Iowa is my home. Graceland University is my alma mater. Now, I live in California and work for Google. That’s pretty much it.",
     author: 'Brian Anders',
     contact: twitter,
     domain: 'https://briananders.net/', // set domain

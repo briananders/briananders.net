@@ -8,7 +8,7 @@ const ready = require('./_modules/document-ready');
     const menuButton = document.getElementById('activate-menu');
     const navTray = document.getElementById('nav-tray');
     menuButton.addEventListener('click', () => {
-      if (menuButton.getAttribute('aria-expanded') === 'true') { // it's open
+      if (menuButton.getAttribute('aria-expanded') === 'true') { // it’s open
         analytics.pushEvent({
           category: 'nav',
           action: 'menu close',
@@ -19,7 +19,7 @@ const ready = require('./_modules/document-ready');
           menuButton.setAttribute('aria-expanded', 'false');
           navTray.setAttribute('aria-hidden', 'true');
         }, 300);
-      } else { // it's closed
+      } else { // it’s closed
         analytics.pushEvent({
           category: 'nav',
           action: 'menu open',
