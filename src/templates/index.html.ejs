@@ -54,7 +54,7 @@ scripts:
 
 <section class="contributions">
   <div class="content">
-    <h2>Contributions to the internet</h2>
+    <h2><%- noWidows('Contributions to the internet.'); %></h2>
     <div class="deck">
     <%
       const model = [
@@ -98,6 +98,12 @@ scripts:
         <%- partial('contributions-card', Object.assign(locals, { description, image, title, links })) %>
       <% }); %>
     </div>
+  </div>
+  <div class="content center">
+    <%- link('More experience', {
+      href: '/experience/',
+      class: 'button mega-button',
+    }) %>
   </div>
 </section>
 
