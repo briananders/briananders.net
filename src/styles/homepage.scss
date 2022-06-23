@@ -1,4 +1,5 @@
 @import 'system/utilities';
+@import "./modules/contributions";
 
 main.home {
   @import "modules/thoughts-list";
@@ -8,5 +9,9 @@ main.home {
 
   .last-fm-module {
     margin-top: $s5;
+  }
+
+  [data-card-id="google-store"] img {
+    background-color: white;
   }
 }

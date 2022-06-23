@@ -20,7 +20,7 @@ scripts:
     <h2 lazy data-lazy-style="background-image: var(--background-image);" itemprop="name" class="p"></h2>
     <p><strong>October 2018 - Present</strong></p>
     <p>
-      The <%- externalLink("nest.com", { href: "https://nest.com" }) %> team was moved into the Google Store organization in 2018 as we prepared for the merging of Nest Labs into the then Google Hardware organization under Google, Inc. Since then, I have been working on improving the customer experience across the whole <%- externalLink("Google Store", { href: "https://store.google.com" }) %>.
+      The <%- externalLink("nest.com", { href: "https://nest.com" }) %> team was moved into the Google Store organization in 2018 as we prepared for the merging of Nest Labs into the then Google Hardware organization under Google, Inc. Since then, I have been working on improving the customer experience across the whole <%- externalLink("Google Store", { href: "https://store.google.com" }) %>. My focus areas are new product launches, product pages, accessibility, site performance, SEO, and overall product quality.
     </p>
   </div>
 </section>
@@ -264,22 +264,7 @@ scripts:
       ]
       model.forEach(({ description, image, title, links }) => {
     %>
-        <div class="card">
-          <%- lazyImage({ src: image }) %>
-          <h3><%- title %></h3>
-          <p class="description"><%- description %></p>
-          <div class="links">
-            <% links.forEach(({ label, url, path, className='', dataVideoId }) => { %>
-              <% if (url) { %>
-                <%- externalLink(label, { href: url, 'class': `link ${className}` }); %>
-              <% } else if (path) { %>
-                <%- link(label, { href: path, 'class': `link ${className}` }); %>
-              <% } else { %>
-                <button class="<%- `link ${className}` %>" <%- (dataVideoId) ? `data-video-id="${dataVideoId}"` : '' %> ><%- label %></button>
-              <% } %>
-            <% }); %>
-          </div>
-        </div>
+        <%- partial('contributions-card', Object.assign(locals, { description, image, title, links })) %>
       <% }); %>
     </div>
   </div>

@@ -67,7 +67,7 @@
 }
 
 @mixin inline-link {
-  padding: 0 $s1;
+  padding: 2px $s1 0px;
   display: inline-block;
   text-decoration: none;
   position: relative;
