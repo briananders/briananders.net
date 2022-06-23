@@ -83,7 +83,7 @@ if (!production) {
   app.use(serve(dir.package));
 
   const server = app.listen(3000, () => {
-    log(`${timestamp.stamp()} server is running at %s`, server.address().port);
+    log(`${timestamp.stamp()} server is running at http://localhost:%s`, server.address().port);
     // log('If on chrostini, run `hostname -I` to get the localhost IP address');
   });
 }
