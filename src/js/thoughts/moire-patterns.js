@@ -83,7 +83,13 @@ ready.document(() => {
   const rotationElement = document.getElementById('rotation');
 
   render();
-  windowResize(render.bind(this));
+
+  windowResize(() => {
+    const playingTemp = playing;
+    playing = false;
+    render();
+    playing = playingTemp;
+  });
 
   playButton.addEventListener('click', () => {
     playing = !playing;
@@ -97,6 +103,17 @@ ready.document(() => {
     render();
   });
 
-  thicknessElement.addEventListener('input', render.bind(this));
-  rotationElement.addEventListener('input', render.bind(this));
+  thicknessElement.addEventListener('input', () => {
+    const playingTemp = playing;
+    playing = false;
+    render();
+    playing = playingTemp;
+  });
+
+  rotationElement.addEventListener('input', () => {
+    const playingTemp = playing;
+    playing = false;
+    render();
+    playing = playingTemp;
+  });
 });

@@ -93,9 +93,10 @@ class Variant {
   constructor({
     controllerElement,
     variantCanvasElement,
+    speed = 1,
   }) {
     this.#playing = false;
-    this.#direction = 0.1;
+    this.#direction = 0.1 * speed;
 
     this.#elementPlayButton = controllerElement.querySelector('button.play-pause');
     this.#elementRotationValue = controllerElement.querySelector('.rotation-value');
@@ -109,10 +110,11 @@ class Variant {
 
 ready.document(() => {
   const colors = ['red', 'green', 'blue'];
-  const instances = colors.map((color) =>
+  const instances = colors.map((color, index) =>
     new Variant({
       controllerElement: document.querySelector(`[data-controller=${color}]`),
-      variantCanvasElement: document.getElementById(`variant-${color}`)
+      variantCanvasElement: document.getElementById(`variant-${color}`),
+      speed: index + 1,
     })
   );
 });
