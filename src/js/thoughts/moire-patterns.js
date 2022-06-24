@@ -42,7 +42,6 @@ function setRotation(value) {
 function updateValues() {
   const thicknessValueElement = document.getElementById('thickness-value');
   const rotationValueElement = document.getElementById('rotation-value');
-  const variantElement = document.getElementById('variant');
   const canvas = document.getElementById('canvas');
 
   const rotation = getRotation();
@@ -55,8 +54,6 @@ function updateValues() {
 }
 
 function runLoop() {
-  console.log('runLoop');
-
   const rotation = getRotation();
   if (rotation >= 90 || rotation <= 0) {
     direction = 0 - direction;

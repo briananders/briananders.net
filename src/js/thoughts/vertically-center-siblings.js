@@ -1,4 +1,6 @@
-(function verticallyCenterSiblings() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   const lipsum = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Vivamus tincidunt, felis mollis placerat finibus, ligula erat feugiat leo, ac cursus arcu velit vel lacus.',
@@ -30,4 +32,4 @@
       button.previousElementSibling.innerText += ` ${lipsum[Math.floor(Math.random() * lipsum.length)]}`;
     });
   });
-}());
+});

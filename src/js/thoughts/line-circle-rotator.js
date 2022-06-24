@@ -1,6 +1,7 @@
 const noAnimations = require('../_modules/no-animations');
+const ready = require('../_modules/document-ready');
 
-(function init() {
+ready.document(() => {
   const maxSet = 8;
 
   function a(power) {
@@ -46,4 +47,4 @@ const noAnimations = require('../_modules/no-animations');
   if (!noAnimations.areAnimationsDisabled) {
     a(1);
   }
-}());
+});

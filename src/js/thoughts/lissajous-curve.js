@@ -1,4 +1,6 @@
-(function lissajousCurve() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   function setupCanvas(query) {
     const canvas = document.querySelector(query);
     canvas.width = 1000;
@@ -14,7 +16,7 @@
   const byLine = document.querySelector('.by-line');
   const bStepElement = document.querySelector('#b-step');
 
-  const [mainContext] = setupCanvas('#lissajous-curve');
+  const [, mainContext] = setupCanvas('#lissajous-curve');
 
   let aCircumferencePosition = 27; // circumference out of 360
   let bCircumferencePosition = 27; // circumference out of 360
@@ -175,4 +177,4 @@
   bStepElement.addEventListener('change', reset);
 
   runLoop();
-}());
+});

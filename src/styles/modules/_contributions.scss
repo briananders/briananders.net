@@ -30,7 +30,7 @@ section.contributions {
       margin-top: 9px;
 
       @include mq-max($medium) {
-        width: css-min(100%, 120px);
+        width: css-min(100%, 200px);
         margin: 0 auto #{$s4};
       }
     }

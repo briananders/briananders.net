@@ -1,6 +1,7 @@
 const { log } = require('../_modules/log');
+const ready = require('../_modules/document-ready');
 
-(function uniqueStars() {
+ready.document(() => {
   const scrollTo = require('../_modules/scroll-to');
 
   const nInput = document.getElementById('n');
@@ -198,4 +199,4 @@ const { log } = require('../_modules/log');
 
   addEventListeners();
   go();
-}());
+});
