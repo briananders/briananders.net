@@ -31,7 +31,7 @@ module.exports = function assetHashing({
   }
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
-  const assetGlob = glob.sync(`${dir.package}{images,videos}/**/*.{png,svg,jpg,webp,webm,mp4}`);
+  const assetGlob = glob.sync(`${dir.package}{images,videos}/**/*.{png,svg,jpg,jpeg,webp,webm,mp4}`);
 
   let processedJs = 0;
   jsGlob.forEach((file, index, array) => {
