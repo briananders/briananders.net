@@ -1,0 +1,59 @@
+@import "system/utilities";
+
+$square-size: 30;
+$circle-size: 12px;
+$rotation-steps: 10;
+$rotation-step: 360deg / $rotation-steps;
+
+$rotation-duration: 1s;
+$rotation-time-step: $rotation-duration / $rotation-steps;
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circle-container {
+  display: grid;
+  grid-template: repeat($square-size, $circle-size) / repeat($square-size, $circle-size);
+  background-color: #d6de1d;
+  gap: $s1;
+  justify-content: center;
+  padding: $s6 0;
+}
+
+.circle {
+  border-radius: 100%;
+  background-color: #f569db;
+  // border-width: 2px;
+  // border-style: solid;
+
+  // border-top-color: $palette--primary-text-color--dark;
+  // border-left-color: $palette--primary-text-color--dark;
+
+  // border-right-color: $palette--primary-color-text--white;
+  // border-bottom-color: $palette--primary-color-text--white;
+
+  // @for $i from 1 through $rotation-steps {
+  //   &:nth-child(#{$rotation-steps}n + #{$i}) {
+  //     transform: rotate($rotation-step * $i);
+  //   }
+  // }
+
+  box-shadow: 0 1px 0 black, 0 -1px 0 white;
+
+  animation-name: rotate;
+  animation-duration: $rotation-duration;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  @for $i from 1 through $rotation-steps {
+    &:nth-child(#{$rotation-steps}n + #{$i}) {
+      animation-delay: (1s * $i) + ($i * $rotation-time-step);
+    }
+  }
+}

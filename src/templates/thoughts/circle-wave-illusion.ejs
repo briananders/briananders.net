@@ -1,0 +1,23 @@
+---
+title: ""
+description: ""
+date: 2022-06-26
+priority: 0.8
+pageClasses:
+  - 'thoughts circle-wave-illusion'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/circle-wave-illusion'
+scripts:
+  - 'thoughts/circle-wave-illusion'
+---
+
+<div class="container circle-container">
+  <%
+    const squareSize = 30;
+    for (let i = 0; i < (squareSize**2); i++) {
+  %>
+    <span class="circle"></span>
+  <% } %>
+</div>
