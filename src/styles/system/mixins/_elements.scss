@@ -153,8 +153,7 @@
 }
 
 @mixin paragraph {
-  width: 100%;
-  max-width: $grid--copy-max-width;
+  width: css-min(100%, $grid--copy-max-width);
   @include margin-center;
   margin-bottom: $paragraph-bottom;
   @include font-size(3);
