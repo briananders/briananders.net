@@ -12,33 +12,32 @@ section {
   }
   &.nest {
     h2[lazy] {
-      background-color: #2FC9EF;
-      --background-image: url('/images/experience/nest.webp');
+      background-color: #00afd8;
+      --background-image: url('/images/experience/nest.svg');
     }
   }
   &.principal {
     h2[lazy] {
       background-color: #FFFFFF;
-      --background-image: url('/images/experience/principal_2x.webp');
+      --background-image: url('/images/experience/principal.svg');
     }
   }
   &.smith {
     h2[lazy] {
       background-color: #fafafa;
-      --background-image: url('/images/experience/smith.webp');
-      background-size: auto 70%;
+      --background-image: url('/images/experience/smith.svg');
     }
   }
   &.graceland {
     h2[lazy] {
       background-color: #FFFFFF;
-      --background-image: url('/images/experience/graceland.webp');
+      --background-image: url('/images/experience/graceland.svg');
     }
   }
   &.anders-crane {
     h2[lazy] {
       background-color: #F5B547;
-      --background-image: url('/images/experience/anders.webp');
+      --background-image: url('/images/experience/anders.svg');
     }
   }
 
