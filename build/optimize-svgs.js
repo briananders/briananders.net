@@ -5,7 +5,9 @@ const { readFileSync, writeFile } = require('fs-extra');
 
 const BUILD_EVENTS = require('./constants/build-events');
 
-module.exports = function optimizeSvgs({ dir, completionFlags, debug, buildEvents }) {
+module.exports = function optimizeSvgs({
+  dir, completionFlags, debug, buildEvents,
+}) {
   completionFlags.SVG_OPTIMIZATION = false;
   let processed = 0;
   const timestamp = require(`${dir.build}timestamp`);
@@ -27,7 +29,7 @@ module.exports = function optimizeSvgs({ dir, completionFlags, debug, buildEvent
               removeDoctype: false,
             },
           },
-        },
+        }
       ],
     });
 

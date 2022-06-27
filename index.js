@@ -26,7 +26,7 @@ const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
 const sitemap = require(`${dir.build}sitemap`);
 
-const completionFlags = require(`${dir.build}constants/completion-flags`);
+const completionFlagsSource = require(`${dir.build}constants/completion-flags`);
 const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
 
 /* ///////////////////////////// local variables //////////////////////////// */
@@ -43,7 +43,7 @@ const pageMappingData = [];
 const configs = {
   BUILD_EVENTS,
   buildEvents,
-  completionFlags,
+  completionFlags: completionFlagsSource,
   debug,
   dir,
   hashingFileNameList,
@@ -53,7 +53,7 @@ const configs = {
 function srcImagesReady(configs) {
   const { completionFlags } = configs;
 
-  if(completionFlags.SVG_OPTIMIZATION && completionFlags.IMAGES_TO_WEBP) {
+  if (completionFlags.SVG_OPTIMIZATION && completionFlags.IMAGES_TO_WEBP) {
     moveImages(configs);
   }
 }

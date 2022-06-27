@@ -4,7 +4,9 @@ const { log } = console;
 
 const BUILD_EVENTS = require('./constants/build-events');
 
-module.exports = function convertToWebp({ dir, completionFlags, debug, buildEvents }) {
+module.exports = function convertToWebp({
+  dir, completionFlags, debug, buildEvents,
+}) {
   webp.grant_permission();
 
   completionFlags.IMAGES_TO_WEBP = false;
