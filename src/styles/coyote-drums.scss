@@ -38,6 +38,7 @@ $aspectRatio: $height / $width;
       background-image: url(/images/coyote-drums/logo.svg);
       background-repeat: no-repeat;
       background-position: center center;
+      background-size: contain;
       opacity: 0.05;
       content: '';
       position: absolute;
@@ -67,6 +68,11 @@ $aspectRatio: $height / $width;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       transform-origin: center center;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
     }
 
     body.no-animations &,

@@ -1,6 +1,5 @@
 const assetHashing = require('./asset-hashing');
 const checkDone = require('./check-done');
-const compressImages = require('./compress-images');
 const finishHashing = require('./finish-hashing');
 const gzipFiles = require('./gzip-files');
 const hashCSS = require('./hash-css');
@@ -25,10 +24,8 @@ module.exports = (configs) => {
     gzipFiles(configs);
   });
   buildEvents.on(BUILD_EVENTS.htmlMinified, assetHashing.bind(this, configs));
-  buildEvents.on(BUILD_EVENTS.imageCompressionDone, checkDone.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.imagesMoved, () => {
     assetHashing(configs);
-    compressImages(configs);
   });
   buildEvents.on(BUILD_EVENTS.indexCssForHashing, hashCSS.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.jsMinified, assetHashing.bind(this, configs));

@@ -5,7 +5,7 @@ module.exports = {
   gzipDone: 'gzip-done',
   hashingDone: 'hashing-done',
   htmlMinified: 'html-minified',
-  imageCompressionDone: 'image-compression-done',
+  svgsOptimized: 'svgs-optimized',
   imagesMoved: 'images-moved',
   videosMoved: 'videos-moved',
   imagesConverted: 'images-converted',
