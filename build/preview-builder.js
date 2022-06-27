@@ -7,7 +7,7 @@ const BUILD_EVENTS = require('./constants/build-events');
 const bundleJS = require('./bundle-js');
 const bundleSCSS = require('./bundle-scss');
 const compilePageMappingData = require('./page-mapping-data');
-const convertToWebp = require('./convert-to-webp');
+const { convertToWebp } = require('./convert-to-webp');
 
 function watchForPreviewReady({ buildEvents, completionFlags }) {
   const eventsToWatch = {
@@ -68,7 +68,7 @@ module.exports = (configs) => {
         compilePageMappingData(configs);
         break;
       case path.includes(`${dir.src}images/`):
-        convertToWebp(configs);
+        convertToWebp(path, configs);
         break;
       default:
     }

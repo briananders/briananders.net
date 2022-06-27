@@ -19,7 +19,7 @@ const bundleJS = require(`${dir.build}bundle-js`);
 const bundleSCSS = require(`${dir.build}bundle-scss`);
 const clean = require(`${dir.build}clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const convertToWebp = require(`${dir.build}convert-to-webp`);
+const { convertAllToWebp } = require(`${dir.build}convert-to-webp`);
 const moveImages = require(`${dir.build}move-images`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
@@ -76,7 +76,7 @@ clean(configs).then(() => {
   compilePageMappingData(configs);
   bundleJS(configs);
   bundleSCSS(configs);
-  convertToWebp(configs);
+  convertAllToWebp(configs);
 });
 
 if (!production) {
