@@ -12,10 +12,11 @@ function done({ dir, completionFlags, buildEvents }) {
 }
 
 function convertToWebp(sourceImage, { dir, completionFlags, debug, buildEvents }) {
-}) {
   webp.grant_permission();
   completionFlags.IMAGES_TO_WEBP = false;
   const timestamp = require(`${dir.build}timestamp`);
+
+  log(`${timestamp.stamp()} convertToWebp()`);
 
   const webpImage = sourceImage.substring(0, sourceImage.lastIndexOf('.'));
   const result = webp.cwebp(sourceImage, `${webpImage}.webp`);
@@ -28,6 +29,8 @@ function convertAllToWebp({ dir, completionFlags, debug, buildEvents }) {
   completionFlags.IMAGES_TO_WEBP = false;
   let processed = 0;
   const timestamp = require(`${dir.build}timestamp`);
+
+  log(`${timestamp.stamp()} convertToWebp()`);
 
   const imagesGlob = [...glob.sync(`${dir.src}images/**/*.jpg`), ...glob.sync(`${dir.src}images/**/*.png`)];
 

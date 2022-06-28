@@ -6,11 +6,15 @@ const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
 
-function makeFaviconIco({ dir, timestamp }) {
+function makeFaviconIco({ dir, timestamp, completionFlags, buildEvents }) {
+  log(`${timestamp.stamp()} makeFaviconIco()`);
+  completionFlags.FAVICON_ICO = false;
   pngToIco(`${dir.src}images/favicon_base.png`)
     .then((buffer) => {
       fs.writeFileSync(`${dir.package}favicon.ico`, buffer);
-      log(`${timestamp.stamp()} favicon.ico: ${'MOVED'.bold.green}`);
+      log(`${timestamp.stamp()} makeFaviconIco(): ${'MOVED'.bold.green}`);
+      completionFlags.FAVICON_ICO = true;
+      buildEvents.emit(BUILD_EVENTS.faviconIcoMade);
     })
     .catch(console.error);
 }
@@ -29,7 +33,7 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
 
-    makeFaviconIco({ dir, timestamp })
+    makeFaviconIco({ dir, timestamp, completionFlags, buildEvents })
 
     log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
     completionFlags.IMAGES_ARE_MOVED = true;

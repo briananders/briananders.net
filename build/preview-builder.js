@@ -15,6 +15,8 @@ function watchForPreviewReady({ buildEvents, completionFlags }) {
     templatesMoved: false,
     stylesMoved: false,
     imagesMoved: false,
+    svgsOptimized: false,
+    faviconIcoMade: false,
   };
 
   function check() {
@@ -40,6 +42,14 @@ function watchForPreviewReady({ buildEvents, completionFlags }) {
   });
   buildEvents.on(BUILD_EVENTS.imagesMoved, () => {
     eventsToWatch.imagesMoved = true;
+    check();
+  });
+  buildEvents.on(BUILD_EVENTS.faviconIcoMade, () => {
+    eventsToWatch.faviconIcoMade = true;
+    check();
+  });
+  buildEvents.on(BUILD_EVENTS.svgsOptimized, () => {
+    eventsToWatch.svgsOptimized = true;
     check();
   });
 }

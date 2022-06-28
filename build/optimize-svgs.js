@@ -12,6 +12,7 @@ module.exports = function optimizeSvgs({
   let processed = 0;
   const timestamp = require(`${dir.build}timestamp`);
 
+  log(`${timestamp.stamp()} optimizeSvgs()`);
   const svgGlob = glob.sync(`${dir.src}images/**/*.svg`);
 
   svgGlob.forEach((path, index, array) => {
