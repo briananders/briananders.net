@@ -9,6 +9,7 @@
     "debug:start": "node index.js --verbose",
     "debug:build": "NODE_ENV=production node index.js --verbose",
     "inspect:build": "NODE_ENV=production node inspect index.js --verbose",
+    "inspect:start": "node inspect index.js --verbose",
     "deploy": "NODE_ENV=production node s3-uploader.js",
     "lint:build": "npx eslint build/** --fix",
     "lint:src": "npx eslint src/js/** --fix",

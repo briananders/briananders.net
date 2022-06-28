@@ -4,9 +4,11 @@ const pngToIco = require('png-to-ico');
 
 const BUILD_EVENTS = require('./constants/build-events');
 
-const { log } = console;
+const { log, error } = console;
 
-function makeFaviconIco({ dir, timestamp, completionFlags, buildEvents }) {
+function makeFaviconIco({
+  dir, timestamp, completionFlags, buildEvents,
+}) {
   log(`${timestamp.stamp()} makeFaviconIco()`);
   completionFlags.FAVICON_ICO = false;
   pngToIco(`${dir.src}images/favicon_base.png`)
@@ -16,7 +18,7 @@ function makeFaviconIco({ dir, timestamp, completionFlags, buildEvents }) {
       completionFlags.FAVICON_ICO = true;
       buildEvents.emit(BUILD_EVENTS.faviconIcoMade);
     })
-    .catch(console.error);
+    .catch(error);
 }
 
 module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
@@ -29,17 +31,21 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   log(`${timestamp.stamp()} moveVideos()`);
   log(`${timestamp.stamp()} moveTxt()`);
 
+  fs.removeSync(`${dir.package}images/`);
   // move images over
   fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
 
-    makeFaviconIco({ dir, timestamp, completionFlags, buildEvents })
+    makeFaviconIco({
+      dir, timestamp, completionFlags, buildEvents,
+    });
 
     log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
     completionFlags.IMAGES_ARE_MOVED = true;
     buildEvents.emit(BUILD_EVENTS.imagesMoved);
   });
 
+  fs.removeSync(`${dir.package}videos/`);
   // move videos over
   fs.copy(`${dir.src}videos/`, `${dir.package}videos/`, (err) => {
     if (err) throw err;
@@ -53,5 +59,4 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
     if (err) throw err;
     log(`${timestamp.stamp()} moveTxt(): ${'DONE'.bold.green}`);
   });
-
 };

@@ -7,6 +7,7 @@ const BUILD_EVENTS = require('./constants/build-events');
 const bundleJS = require('./bundle-js');
 const bundleSCSS = require('./bundle-scss');
 const compilePageMappingData = require('./page-mapping-data');
+const optimizeSvgs = require('./optimize-svgs');
 const { convertToWebp } = require('./convert-to-webp');
 
 function watchForPreviewReady({ buildEvents, completionFlags }) {
@@ -77,7 +78,10 @@ module.exports = (configs) => {
       case path.includes(`${dir.src}layout/`):
         compilePageMappingData(configs);
         break;
-      case path.includes(`${dir.src}images/`):
+      case path.includes(`${dir.src}images/`) && /\.svg$/.test(path): // SVGs
+        optimizeSvgs(configs);
+        break;
+      case path.includes(`${dir.src}images/`): // Other images
         convertToWebp(path, configs);
         break;
       default:
