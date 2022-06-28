@@ -20,12 +20,13 @@ const bundleSCSS = require(`${dir.build}bundle-scss`);
 const clean = require(`${dir.build}clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
 const { convertAllToWebp } = require(`${dir.build}convert-to-webp`);
+const optimizeSvgs = require(`${dir.build}optimize-svgs`);
 const moveImages = require(`${dir.build}move-images`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
 const sitemap = require(`${dir.build}sitemap`);
 
-const completionFlags = require(`${dir.build}constants/completion-flags`);
+const completionFlagsSource = require(`${dir.build}constants/completion-flags`);
 const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
 
 /* ///////////////////////////// local variables //////////////////////////// */
@@ -42,18 +43,27 @@ const pageMappingData = [];
 const configs = {
   BUILD_EVENTS,
   buildEvents,
-  completionFlags,
+  completionFlags: completionFlagsSource,
   debug,
   dir,
   hashingFileNameList,
   pageMappingData,
 };
 
+function srcImagesReady(configs) {
+  const { completionFlags } = configs;
+
+  if (completionFlags.SVG_OPTIMIZATION && completionFlags.IMAGES_TO_WEBP) {
+    moveImages(configs);
+  }
+}
+
 /* ////////////////////////////// event listeners /////////////////////////// */
 
 buildEvents.on(BUILD_EVENTS.imagesConverted, compilePageMappingData.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.imagesConverted, bundleEJS.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.imagesConverted, moveImages.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.imagesConverted, srcImagesReady.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.svgsOptimized, srcImagesReady.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, bundleEJS.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
@@ -77,6 +87,7 @@ clean(configs).then(() => {
   bundleJS(configs);
   bundleSCSS(configs);
   convertAllToWebp(configs);
+  optimizeSvgs(configs);
 });
 
 if (!production) {

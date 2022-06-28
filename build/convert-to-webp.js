@@ -12,6 +12,7 @@ function done({ dir, completionFlags, buildEvents }) {
 }
 
 function convertToWebp(sourceImage, { dir, completionFlags, debug, buildEvents }) {
+}) {
   webp.grant_permission();
   completionFlags.IMAGES_TO_WEBP = false;
   const timestamp = require(`${dir.build}timestamp`);

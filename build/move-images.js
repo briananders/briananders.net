@@ -1,9 +1,19 @@
 const fs = require('fs-extra');
 const copy = require('copy');
+const pngToIco = require('png-to-ico');
 
 const BUILD_EVENTS = require('./constants/build-events');
 
 const { log } = console;
+
+function makeFaviconIco({ dir, timestamp }) {
+  pngToIco(`${dir.src}images/favicon_base.png`)
+    .then((buffer) => {
+      fs.writeFileSync(`${dir.package}favicon.ico`, buffer);
+      log(`${timestamp.stamp()} favicon.ico: ${'MOVED'.bold.green}`);
+    })
+    .catch(console.error);
+}
 
 module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   completionFlags.IMAGES_ARE_MOVED = false;
@@ -18,6 +28,9 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   // move images over
   fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
     if (err) throw err;
+
+    makeFaviconIco({ dir, timestamp })
+
     log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
     completionFlags.IMAGES_ARE_MOVED = true;
     buildEvents.emit(BUILD_EVENTS.imagesMoved);
@@ -36,4 +49,5 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
     if (err) throw err;
     log(`${timestamp.stamp()} moveTxt(): ${'DONE'.bold.green}`);
   });
+
 };

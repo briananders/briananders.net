@@ -83,7 +83,6 @@ const shapePalette = document.querySelector('.shape-palette');
 let currentColor = colors[0];
 let diameter = strokeSlider.value;
 let canDraw = false;
-let isSliding = false;
 let shape = 'circle';
 
 function setCanvasDimensions() {

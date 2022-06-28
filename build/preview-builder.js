@@ -45,7 +45,7 @@ function watchForPreviewReady({ buildEvents, completionFlags }) {
 }
 
 module.exports = (configs) => {
-  const { dir, buildEvents } = configs;
+  const { dir } = configs;
 
   watchForPreviewReady(configs);
 

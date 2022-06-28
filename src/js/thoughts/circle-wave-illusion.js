@@ -8,7 +8,7 @@ ready.document(() => {
   const getSliderValue = () => {
     const value = Number(slider.value);
     circleContainer.style.setProperty('--duration', `${value}s`);
-  }
+  };
 
   triggerButton.addEventListener('click', () => {
     circleContainer.classList.toggle('animate');
