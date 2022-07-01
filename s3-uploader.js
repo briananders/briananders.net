@@ -85,7 +85,7 @@ const getCacheControl = (fileName) => {
     case '.html.gz':
       return 'no-cache,no-store';
     default:
-      return 'max-age=2592000,public';
+      return 'max-age=15552000,public';
   }
 };
 
