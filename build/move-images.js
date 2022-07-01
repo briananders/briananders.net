@@ -25,7 +25,7 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   completionFlags.IMAGES_ARE_MOVED = false;
   completionFlags.VIDEOS_ARE_MOVED = false;
 
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} moveImages()`);
   log(`${timestamp.stamp()} moveVideos()`);

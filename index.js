@@ -11,20 +11,20 @@ const dir = require('./build/constants/directories')(__dirname);
 
 /* //////////////////////////// local packages ////////////////////////////// */
 
-const timestamp = require(`${dir.build}timestamp`);
+const timestamp = require(`${dir.build}helpers/timestamp`);
 const production = require(`${dir.build}production`);
 
-const bundleEJS = require(`${dir.build}bundle-ejs`);
-const bundleJS = require(`${dir.build}bundle-js`);
-const bundleSCSS = require(`${dir.build}bundle-scss`);
-const clean = require(`${dir.build}clean`);
+const bundleEJS = require(`${dir.build}bundlers/bundle-ejs`);
+const bundleJS = require(`${dir.build}bundlers/bundle-js`);
+const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
+const clean = require(`${dir.build}helpers/clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const { convertAllToWebp } = require(`${dir.build}convert-to-webp`);
-const optimizeSvgs = require(`${dir.build}optimize-svgs`);
+const { convertAllToWebp } = require(`${dir.build}optimize/convert-to-webp`);
+const optimizeSvgs = require(`${dir.build}optimize/optimize-svgs`);
 const moveImages = require(`${dir.build}move-images`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
-const sitemap = require(`${dir.build}sitemap`);
+const sitemap = require(`${dir.build}bundlers/sitemap`);
 
 const completionFlagsSource = require(`${dir.build}constants/completion-flags`);
 const BUILD_EVENTS = require(`${dir.build}constants/build-events`);

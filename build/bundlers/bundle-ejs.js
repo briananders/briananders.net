@@ -10,7 +10,7 @@ const notifier = require('node-notifier');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 const { log } = console;
 
@@ -108,7 +108,7 @@ module.exports = async function bundleEJS({
   dir, buildEvents, pageMappingData, debug,
 }) {
   const siteData = require(`${dir.build}site-data`)(dir);
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
   const production = require(`${dir.build}production`);
 

@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const htmlMinify = require('html-minifier');
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 const { log } = console;
 
@@ -11,7 +11,7 @@ module.exports = function minifyHTML({
 }) {
   completionFlags.HTML_IS_MINIFIED = false;
 
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} minifyHTML()`);
 

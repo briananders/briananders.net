@@ -3,10 +3,10 @@ const glob = require('glob');
 const { existsSync } = require('fs-extra');
 const { log } = console;
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 function done({ dir, completionFlags, buildEvents }) {
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
   log(`${timestamp.stamp()} convertToWebp(): ${'DONE'.bold.green}`);
   completionFlags.IMAGES_TO_WEBP = true;
   buildEvents.emit(BUILD_EVENTS.imagesConverted);
@@ -15,7 +15,7 @@ function done({ dir, completionFlags, buildEvents }) {
 function convertToWebp(sourceImage, {
   dir, completionFlags, debug, buildEvents,
 }) {
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
   
   if(!existsSync(sourceImage)) {
     log(`${timestamp.stamp()} convertToWebp(): ${'CANCELLED'.bold.yellow} not conversion candidates`);
@@ -45,7 +45,7 @@ function convertAllToWebp({
 
   completionFlags.IMAGES_TO_WEBP = false;
   let processed = 0;
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} convertToWebp()`);
 

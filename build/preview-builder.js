@@ -2,13 +2,13 @@ const chokidar = require('chokidar');
 
 const { log } = console;
 
-const timestamp = require('./timestamp');
+const timestamp = require('./helpers/timestamp');
 const BUILD_EVENTS = require('./constants/build-events');
-const bundleJS = require('./bundle-js');
-const bundleSCSS = require('./bundle-scss');
+const bundleJS = require('./bundlers/bundle-js');
+const bundleSCSS = require('./bundlers/bundle-scss');
 const compilePageMappingData = require('./page-mapping-data');
-const optimizeSvgs = require('./optimize-svgs');
-const { convertToWebp } = require('./convert-to-webp');
+const optimizeSvgs = require('./optimize/optimize-svgs');
+const { convertToWebp } = require('./optimize/convert-to-webp');
 
 function watchForPreviewReady({ buildEvents, completionFlags }) {
   const eventsToWatch = {

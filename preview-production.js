@@ -10,7 +10,7 @@ const dir = {
   jsOutputPath: `${__dirname}/package/scripts/`,
 };
 
-const timestamp = require(`${dir.build}timestamp`);
+const timestamp = require(`${dir.build}helpers/timestamp`);
 const express = require('express');
 const serve = require('express-static');
 const app = express();

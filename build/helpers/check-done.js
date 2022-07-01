@@ -1,5 +1,5 @@
 module.exports = function checkDone({ dir, debug, completionFlags }) {
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   const { log } = console;
 
@@ -18,7 +18,7 @@ module.exports = function checkDone({ dir, debug, completionFlags }) {
   log(`${timestamp.stamp()} completionFlags.SITE_MAP          : ${completionFlags.SITE_MAP.toString().bold.green}`);
   log(`${timestamp.stamp()} completionFlags.GZIP              : ${completionFlags.GZIP.toString().bold.green}`);
 
-  require(`${dir.build}exit-message`)();
+  require(`${dir.build}helpers/exit-message`)();
 
   process.exit();
 };

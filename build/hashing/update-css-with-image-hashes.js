@@ -1,14 +1,14 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 const { log } = console;
 
 module.exports = function updateCSSwithImageHashes({
   dir, buildEvents, hashingFileNameList, debug,
 }) {
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} hashingUpdateCSS()`);
 

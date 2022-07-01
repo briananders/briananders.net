@@ -1,5 +1,5 @@
 module.exports = {
-  assetHashCssListed: 'asset-hash-css-listed',
+  assetHashCssListed: 'asset-hashing/hash-css-listed',
   assetHashImagesListed: 'asset-hash-images-listed',
   assetHashJsListed: 'asset-hash-js-listed',
   faviconIcoMade: 'favicon-ico-made',

@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 const { log } = console;
 
@@ -12,7 +12,7 @@ module.exports = function assetHashing({
   completionFlags.ASSET_HASH.IMAGES = false;
   completionFlags.ASSET_HASH.JS = false;
 
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   if (!completionFlags.JS_IS_MINIFIED
       || !completionFlags.CSS_IS_MINIFIED

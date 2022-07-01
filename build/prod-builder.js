@@ -1,11 +1,11 @@
-const assetHashing = require('./asset-hashing');
-const checkDone = require('./check-done');
-const finishHashing = require('./finish-hashing');
-const gzipFiles = require('./gzip-files');
-const hashCSS = require('./hash-css');
-const minifyHTML = require('./minify-html');
-const minifyJS = require('./minify-js');
-const updateCSSwithImageHashes = require('./update-css-with-image-hashes');
+const assetHashing = require('./hashing/asset-hashing');
+const checkDone = require('./helpers/check-done');
+const finishHashing = require('./hashing/finish-hashing');
+const gzipFiles = require('./optimize/gzip-files');
+const hashCSS = require('./hashing/hash-css');
+const minifyHTML = require('./optimize/minify-html');
+const minifyJS = require('./optimize/minify-js');
+const updateCSSwithImageHashes = require('./hashing/update-css-with-image-hashes');
 
 const BUILD_EVENTS = require('./constants/build-events');
 

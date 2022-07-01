@@ -6,7 +6,7 @@ const path = require('path');
 const CleanCSS = require('clean-css');
 const notifier = require('node-notifier');
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 const { log } = console;
 
@@ -15,7 +15,7 @@ module.exports = function bundleSCSS({
 }) {
   completionFlags.CSS_IS_MINIFIED = false;
 
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
   const production = require(`${dir.build}production`);
 
   log(`${timestamp.stamp()} bundleSCSS()`);

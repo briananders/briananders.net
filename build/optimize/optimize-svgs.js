@@ -3,14 +3,14 @@ const glob = require('glob');
 const { optimize } = require('svgo');
 const { readFileSync, writeFile } = require('fs-extra');
 
-const BUILD_EVENTS = require('./constants/build-events');
+const BUILD_EVENTS = require('../constants/build-events');
 
 module.exports = function optimizeSvgs({
   dir, completionFlags, debug, buildEvents,
 }) {
   completionFlags.SVG_OPTIMIZATION = false;
   let processed = 0;
-  const timestamp = require(`${dir.build}timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} optimizeSvgs()`);
   const svgGlob = glob.sync(`${dir.src}images/**/*.svg`);
