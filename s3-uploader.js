@@ -77,6 +77,18 @@ const deleteS3Files = (fileList) => {
   return deletePromise;
 };
 
+const getCacheControl = (fileName) => {
+  const extn = path.extname(fileName);
+
+  switch (extn) {
+    case '.html':
+    case '.html.gz':
+      return 'no-cache,no-store';
+    default:
+      return 'max-age=2592000,public';
+  }
+};
+
 const uploadFile = (fileName, index, fileList) => {
   if (!(index % 10)) {
     console.log(`${index}/${fileList.length}: ${Math.floor((index / fileList.length) * 100)}%`);
@@ -94,7 +106,7 @@ const uploadFile = (fileName, index, fileList) => {
       ContentType: getContentType(fileName),
       ACL: 'public-read',
       Expires: '2034-01-01T00:00:00Z',
-      CacheControl: 'max-age=2592000,public',
+      CacheControl: getCacheControl(fileName),
       MetadataDirective: 'REPLACE',
     }, (err, uploadData) => {
       if (err) reject(err);
