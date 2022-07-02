@@ -139,7 +139,7 @@ module.exports = (dir, pageMappingData) => ({
   getFileContents(src) {
     const { getSVG } = require(`${dir.build}optimize/optimize-svgs`);
 
-    if (/\.svg$/.test(src)) return getSVG(path.join(dir.src, src));
+    if (path.extname(src) === '.svg') return getSVG(path.join(dir.src, src));
     return fs.readFileSync(path.join(dir.src, src)).toString();
   },
 

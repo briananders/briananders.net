@@ -1,5 +1,6 @@
 const webp = require('webp-converter');
 const glob = require('glob');
+const path = require('path');
 const { existsSync } = require('fs-extra');
 const { log } = console;
 
@@ -15,11 +16,12 @@ function convertToWebp(sourceImage, {
   dir, completionFlags, debug, buildEvents,
 }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
+  const extn = path.extname(sourceImage);
 
   if (!existsSync(sourceImage)) {
     log(`${timestamp.stamp()} convertToWebp(): ${'CANCELLED'.bold.yellow} not conversion candidates`);
     return;
-  } if (!/\.(png|jpg)$/.test(sourceImage)) {
+  } if (!['.jpg', '.png'].includes(extn)) {
     log(`${timestamp.stamp()} convertToWebp(): ${'CANCELLED'.bold.yellow} not conversion candidates`);
     return;
   }
