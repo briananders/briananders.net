@@ -1,11 +1,10 @@
 const glob = require('glob');
 const matter = require('gray-matter');
 
-const BUILD_EVENTS = require('./constants/build-events');
-
 const { log } = console;
 
 module.exports = ({ dir, buildEvents, pageMappingData }) => {
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
 

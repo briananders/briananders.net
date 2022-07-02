@@ -1,16 +1,15 @@
-const assetHashing = require('./hashing/asset-hashing');
-const checkDone = require('./helpers/check-done');
-const finishHashing = require('./hashing/finish-hashing');
-const gzipFiles = require('./optimize/gzip-files');
-const hashCSS = require('./hashing/hash-css');
-const minifyHTML = require('./optimize/minify-html');
-const minifyJS = require('./optimize/minify-js');
-const updateCSSwithImageHashes = require('./hashing/update-css-with-image-hashes');
-
-const BUILD_EVENTS = require('./constants/build-events');
-
 module.exports = (configs) => {
-  const { buildEvents } = configs;
+  const { buildEvents, dir } = configs;
+
+  const assetHashing = require(`${dir.build}hashing/asset-hashing`);
+  const checkDone = require(`${dir.build}helpers/check-done`);
+  const finishHashing = require(`${dir.build}hashing/finish-hashing`);
+  const gzipFiles = require(`${dir.build}optimize/gzip-files`);
+  const hashCSS = require(`${dir.build}hashing/hash-css`);
+  const minifyHTML = require(`${dir.build}optimize/minify-html`);
+  const minifyJS = require(`${dir.build}optimize/minify-js`);
+  const updateCSSwithImageHashes = require(`${dir.build}hashing/update-css-with-image-hashes`);
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
 
   buildEvents.on(BUILD_EVENTS.assetHashCssListed, finishHashing.bind(this, configs));
   buildEvents.on(BUILD_EVENTS.assetHashImagesListed, () => {

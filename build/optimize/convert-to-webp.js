@@ -3,9 +3,8 @@ const glob = require('glob');
 const { existsSync } = require('fs-extra');
 const { log } = console;
 
-const BUILD_EVENTS = require('../constants/build-events');
-
 function done({ dir, completionFlags, buildEvents }) {
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
   log(`${timestamp.stamp()} convertToWebp(): ${'DONE'.bold.green}`);
   completionFlags.IMAGES_TO_WEBP = true;
@@ -16,11 +15,11 @@ function convertToWebp(sourceImage, {
   dir, completionFlags, debug, buildEvents,
 }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
-  
-  if(!existsSync(sourceImage)) {
+
+  if (!existsSync(sourceImage)) {
     log(`${timestamp.stamp()} convertToWebp(): ${'CANCELLED'.bold.yellow} not conversion candidates`);
     return;
-  } else if (!/\.(png|jpg)$/.test(sourceImage)) {
+  } if (!/\.(png|jpg)$/.test(sourceImage)) {
     log(`${timestamp.stamp()} convertToWebp(): ${'CANCELLED'.bold.yellow} not conversion candidates`);
     return;
   }
@@ -30,11 +29,10 @@ function convertToWebp(sourceImage, {
 
   log(`${timestamp.stamp()} convertToWebp()`);
 
-
   const webpImage = sourceImage.substring(0, sourceImage.lastIndexOf('.'));
   const result = webp.cwebp(sourceImage, `${webpImage}.webp`);
   result.then(done.bind(this, {
-    dir, completionFlags, debug, buildEvents
+    dir, completionFlags, debug, buildEvents,
   }));
 }
 

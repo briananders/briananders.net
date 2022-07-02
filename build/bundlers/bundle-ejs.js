@@ -10,8 +10,6 @@ const notifier = require('node-notifier');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
-const BUILD_EVENTS = require('../constants/build-events');
-
 const { log } = console;
 
 function handleTemplateError(e) {
@@ -107,6 +105,7 @@ async function renderTemplate({
 module.exports = async function bundleEJS({
   dir, buildEvents, pageMappingData, debug,
 }) {
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const siteData = require(`${dir.build}constants/site-data`)(dir);
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);

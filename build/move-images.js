@@ -2,13 +2,12 @@ const fs = require('fs-extra');
 const copy = require('copy');
 const pngToIco = require('png-to-ico');
 
-const BUILD_EVENTS = require('./constants/build-events');
-
 const { log, error } = console;
 
 function makeFaviconIco({
   dir, timestamp, completionFlags, buildEvents,
 }) {
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   log(`${timestamp.stamp()} makeFaviconIco()`);
   completionFlags.FAVICON_ICO = false;
   pngToIco(`${dir.src}images/favicon_base.png`)
@@ -25,6 +24,7 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   completionFlags.IMAGES_ARE_MOVED = false;
   completionFlags.VIDEOS_ARE_MOVED = false;
 
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} moveImages()`);

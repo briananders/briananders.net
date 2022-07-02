@@ -2,13 +2,12 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const UglifyJS = require('uglify-js');
 
-const BUILD_EVENTS = require('../constants/build-events');
-
 const { log } = console;
 
 module.exports = function minifyJS({ dir, completionFlags, buildEvents }) {
   completionFlags.JS_IS_MINIFIED = false;
 
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} minifyJS()`);

@@ -1,8 +1,6 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 
-const BUILD_EVENTS = require('../constants/build-events');
-
 const { log } = console;
 
 module.exports = function finishHashing({
@@ -10,6 +8,7 @@ module.exports = function finishHashing({
 }) {
   completionFlags.ASSET_HASH.DONE = false;
 
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} finishHashing()`);

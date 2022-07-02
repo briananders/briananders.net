@@ -2,8 +2,6 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const XXHash = require('xxhash');
 
-const BUILD_EVENTS = require('../constants/build-events');
-
 const { log } = console;
 
 module.exports = function hashCSS({
@@ -11,6 +9,7 @@ module.exports = function hashCSS({
 }) {
   completionFlags.ASSET_HASH.CSS = false;
 
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
   log(`${timestamp.stamp()} assetHashing().css`);
