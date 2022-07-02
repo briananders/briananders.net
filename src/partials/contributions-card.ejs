@@ -1,7 +1,7 @@
 <%
   const { description, image, title, links } = locals;
 %>
-<div class="card" data-card-id="<%- title.toLowerCase().replace(/\W+/g, '-') %>">
+<div class="card" data-card-id="<%- dasherize(title.toLowerCase()) %>">
   <%- lazyImage({ src: image }) %>
   <h3><%- title %></h3>
   <p class="description"><%- description %></p>

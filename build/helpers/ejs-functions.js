@@ -4,6 +4,7 @@ const hljs = require('highlight.js');
 const merge = require('merge');
 const sizeOf = require('image-size');
 const path = require('path');
+const { camelize, dasherize } = require("underscore.string");
 
 function squeakyClean(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -118,9 +119,9 @@ module.exports = (dir, pageMappingData) => ({
     </div>`;
   },
 
-  dasherize: (str) => str.replace(/[A-Z]/g, (char, index) => (index !== 0 ? '-' : '') + char.toLowerCase()),
+  dasherize: (str) => dasherize(str),
 
-  camelize: (str) => str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase())).replace(/\s+/g, ''),
+  camelize: (str) => camelize(str, true),
 
   link(str, locals) {
     if (!locals.href) {
