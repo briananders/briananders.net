@@ -1,6 +1,12 @@
+<% const imageString = img({
+      src: '/images/logo.svg',
+      alt: 'Brian Anders logo',
+      width: '200',
+      height: '68',
+    }) %>
 <nav class="nav main" role="navigation" aria-label="Main navigation">
   <div class="content">
-    <%- link(`<img src="/images/logo.svg" alt="Brian Anders logo" width="200" height="68" />`, {
+    <%- link(imageString, {
       href: '/',
       class: 'brand',
       'aria-label': 'Brian Anders home page',
@@ -15,16 +21,15 @@
         role: 'menuitem',
       }) %>
       <%
-        var basePages = getChildPages('');
-        for(var i = 0; i < basePages.length; i++) {
-          var page = basePages[i];
+        let basePages = getChildPages('');
+        basePages.forEach(({ url, data }) => {
       %>
-        <%- link(page.data.title, {
-          href: `/${page.url}`,
+        <%- link(data.title, {
+          href: `/${url}`,
           class: 'nav-link',
           role: 'menuitem',
         }) %>
-      <% } %>
+      <% }); %>
     </div>
   </div>
 </nav>

@@ -3,7 +3,32 @@ const glob = require('glob');
 const { optimize } = require('svgo');
 const { readFileSync, writeFile } = require('fs-extra');
 
-module.exports = function optimizeSvgs({
+const plugins = [
+  {
+    name: 'preset-default',
+    params: {
+      overrides: {
+        removeViewBox: false,
+        cleanupIDs: false,
+        removeDoctype: false,
+      },
+    },
+  }
+];
+
+function getSVG(path) {
+
+  const svgString = readFileSync(path);
+
+  const { data } = optimize(svgString, {
+    path,
+    plugins,
+  });
+
+  return data;
+};
+
+function optimizeSvgs({
   dir, completionFlags, debug, buildEvents,
 }) {
   completionFlags.SVG_OPTIMIZATION = false;
@@ -21,18 +46,7 @@ module.exports = function optimizeSvgs({
 
     const { data } = optimize(svgString, {
       path,
-      plugins: [
-        {
-          name: 'preset-default',
-          params: {
-            overrides: {
-              removeViewBox: false,
-              cleanupIDs: false,
-              removeDoctype: false,
-            },
-          },
-        }
-      ],
+      plugins,
     });
 
     writeFile(path, data, (e) => {
@@ -48,3 +62,9 @@ module.exports = function optimizeSvgs({
     });
   });
 };
+
+
+module.exports = {
+  getSVG,
+  optimizeSvgs,
+}

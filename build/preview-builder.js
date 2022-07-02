@@ -56,7 +56,7 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const optimizeSvgs = require(`${dir.build}optimize/optimize-svgs`);
+  const { optimizeSvgs } = require(`${dir.build}optimize/optimize-svgs`);
   const { convertToWebp } = require(`${dir.build}optimize/convert-to-webp`);
 
   watchForPreviewReady(configs);
