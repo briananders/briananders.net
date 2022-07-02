@@ -1,12 +1,15 @@
 const fs = require('fs-extra');
 const copy = require('copy');
+const glob = require('glob');
+const path = require('path');
 const pngToIco = require('png-to-ico');
 
 const { log, error } = console;
 
 function makeFaviconIco({
-  dir, timestamp, completionFlags, buildEvents,
+  dir, completionFlags, buildEvents,
 }) {
+  const timestamp = require(`${dir.build}helpers/timestamp`);
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   log(`${timestamp.stamp()} makeFaviconIco()`);
   completionFlags.FAVICON_ICO = false;
@@ -14,13 +17,67 @@ function makeFaviconIco({
     .then((buffer) => {
       fs.writeFileSync(`${dir.package}favicon.ico`, buffer);
       log(`${timestamp.stamp()} makeFaviconIco(): ${'MOVED'.bold.green}`);
-      completionFlags.FAVICON_ICO = true;
-      buildEvents.emit(BUILD_EVENTS.faviconIcoMade);
     })
     .catch(error);
 }
 
-module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
+function moveImages({ dir, completionFlags, buildEvents }) {
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
+  const { webpCandidates, images } = require(`${dir.build}constants/file-formats`);
+  const { optimizeSvg } = require(`${dir.build}optimize/optimize-svgs`);
+  const convertToWebp = require(`${dir.build}optimize/convert-to-webp`);
+
+  function checkDone(processed, maximum) {
+    if (processed >= maximum) {
+      log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
+      completionFlags.IMAGES_ARE_MOVED = true;
+      buildEvents.emit(BUILD_EVENTS.imagesMoved);
+    }
+  }
+
+  fs.removeSync(`${dir.package}images/`);
+
+  fs.mkdirpSync(`${dir.package}images/`);
+
+  makeFaviconIco({ dir, completionFlags, buildEvents });
+
+  const imagesGlob = glob.sync(`${dir.src}images/**/*.{${images.join(',')}}`);
+  let processed = 0;
+
+  for (let i = 0; i < imagesGlob.length; i++) {
+    const imagePath = imagesGlob[i];
+    const extn = path.extname(imagePath);
+    const destination = imagePath.replace(dir.src, dir.package);
+
+    fs.mkdirpSync(path.dirname(destination));
+
+    if (extn === '.svg') {
+      // move optimized svg
+      optimizeSvg(imagePath, { dir });
+      processed++;
+      log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+      checkDone(processed, imagesGlob.length);
+    } else if (webpCandidates.includes(extn.substring(1))) {
+      // move file and move webp file
+      convertToWebp(imagePath, { dir }).then(() => {
+        fs.copyFile(imagePath, destination);
+        processed++;
+        log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+        checkDone(processed, imagesGlob.length);
+      });
+    } else {
+      // move file
+      fs.copyFile(imagePath, destination);
+      processed++;
+      log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+      checkDone(processed, imagesGlob.length);
+    }
+  }
+}
+
+module.exports = ({ dir, completionFlags, buildEvents }) => {
   completionFlags.IMAGES_ARE_MOVED = false;
   completionFlags.VIDEOS_ARE_MOVED = false;
 
@@ -31,19 +88,7 @@ module.exports = function moveImages({ dir, completionFlags, buildEvents }) {
   log(`${timestamp.stamp()} moveVideos()`);
   log(`${timestamp.stamp()} moveTxt()`);
 
-  fs.removeSync(`${dir.package}images/`);
-  // move images over
-  fs.copy(`${dir.src}images/`, `${dir.package}images/`, (err) => {
-    if (err) throw err;
-
-    makeFaviconIco({
-      dir, timestamp, completionFlags, buildEvents,
-    });
-
-    log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
-    completionFlags.IMAGES_ARE_MOVED = true;
-    buildEvents.emit(BUILD_EVENTS.imagesMoved);
-  });
+  moveImages({ dir, completionFlags, buildEvents });
 
   fs.removeSync(`${dir.package}videos/`);
   // move videos over

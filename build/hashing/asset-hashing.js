@@ -12,6 +12,7 @@ module.exports = function assetHashing({
 
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const timestamp = require(`${dir.build}helpers/timestamp`);
+  const { images, videos } = require(`${dir.build}constants/file-formats`);
 
   if (!completionFlags.JS_IS_MINIFIED
       || !completionFlags.CSS_IS_MINIFIED
@@ -30,7 +31,7 @@ module.exports = function assetHashing({
   }
 
   const jsGlob = glob.sync(`${dir.package}**/*.js`);
-  const assetGlob = glob.sync(`${dir.package}{images,videos}/**/*.{png,svg,jpg,jpeg,webp,webm,mp4}`);
+  const assetGlob = glob.sync(`${dir.package}{images,videos}/**/*.{${[...images, ...videos].join(',')}}`);
 
   let processedJs = 0;
   jsGlob.forEach((file, index, array) => {

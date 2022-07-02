@@ -11,9 +11,6 @@ module.exports = {
     DONE: false,
   },
   SITE_MAP: false,
-  SVG_OPTIMIZATION: false,
   GZIP: false,
   PREVIEW_READY: false,
-  IMAGES_TO_WEBP: false,
-  FAVICON_ICO: false,
 };

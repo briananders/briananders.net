@@ -11,8 +11,6 @@ function watchForPreviewReady({ buildEvents, completionFlags, dir }) {
     templatesMoved: false,
     stylesMoved: false,
     imagesMoved: false,
-    svgsOptimized: false,
-    faviconIcoMade: false,
   };
 
   function check() {
@@ -40,14 +38,6 @@ function watchForPreviewReady({ buildEvents, completionFlags, dir }) {
     eventsToWatch.imagesMoved = true;
     check();
   });
-  buildEvents.on(BUILD_EVENTS.faviconIcoMade, () => {
-    eventsToWatch.faviconIcoMade = true;
-    check();
-  });
-  buildEvents.on(BUILD_EVENTS.svgsOptimized, () => {
-    eventsToWatch.svgsOptimized = true;
-    check();
-  });
 }
 
 module.exports = (configs) => {
@@ -57,8 +47,8 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const { optimizeSvgs } = require(`${dir.build}optimize/optimize-svgs`);
-  const { convertToWebp } = require(`${dir.build}optimize/convert-to-webp`);
+  const { optimizeSvg } = require(`${dir.build}optimize/optimize-svgs`);
+  const convertToWebp = require(`${dir.build}optimize/convert-to-webp`);
 
   watchForPreviewReady(configs);
 
@@ -83,7 +73,7 @@ module.exports = (configs) => {
         compilePageMappingData(configs);
         break;
       case filePath.includes(`${dir.src}images/`) && (extn === '.svg'):
-        optimizeSvgs(configs);
+        optimizeSvg(filePath, configs);
         break;
       case filePath.includes(`${dir.src}images/`): // Other images
         convertToWebp(filePath, configs);

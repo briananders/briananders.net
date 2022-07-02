@@ -1,7 +1,8 @@
 const { log } = console;
 const glob = require('glob');
+const path = require('path');
 const { optimize } = require('svgo');
-const { readFileSync, writeFile } = require('fs-extra');
+const { readFileSync, writeFile, mkdirpSync } = require('fs-extra');
 
 const plugins = [
   {
@@ -28,43 +29,24 @@ function getSVG(path) {
   return data;
 };
 
-function optimizeSvgs({
-  dir, completionFlags, debug, buildEvents,
-}) {
-  completionFlags.SVG_OPTIMIZATION = false;
+function optimizeSvg(filePath, { dir }) {
+  const svgString = readFileSync(filePath);
+  const destination = filePath.replace(dir.src, dir.package);
 
-  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
-  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const { data } = optimize(svgString, {
+    path: filePath,
+    plugins,
+  });
 
-  let processed = 0;
+  mkdirpSync(path.dirname(destination));
 
-  log(`${timestamp.stamp()} optimizeSvgs()`);
-  const svgGlob = glob.sync(`${dir.src}images/**/*.svg`);
-
-  svgGlob.forEach((path, index, array) => {
-    const svgString = readFileSync(path);
-
-    const { data } = optimize(svgString, {
-      path,
-      plugins,
-    });
-
-    writeFile(path, data, (e) => {
-      if (e) throw e;
-      if (debug) log(`${timestamp.stamp()} ${'SUCCESS'.bold.green} - Compressed SVG - ${path.split(/images/)[1]}`);
-      processed++;
-
-      if (processed === array.length) {
-        log(`${timestamp.stamp()} optimizeSvgs(): ${'DONE'.bold.green}`);
-        completionFlags.SVG_OPTIMIZATION = true;
-        buildEvents.emit(BUILD_EVENTS.svgsOptimized);
-      }
-    });
+  writeFile(destination, data, (e) => {
+    if (e) throw e;
   });
 };
 
 
 module.exports = {
   getSVG,
-  optimizeSvgs,
+  optimizeSvg,
 }

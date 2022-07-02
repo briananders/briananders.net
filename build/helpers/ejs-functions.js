@@ -79,7 +79,7 @@ module.exports = (dir, pageMappingData) => ({
     if (!src) {
       throw new Error('img is missing src attribute');
     }
-    const dimensions = sizeOf(path.join(dir.src, src));
+    const dimensions = sizeOf(path.join(dir.package, src));
     return `<img src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
   },
 
@@ -91,7 +91,7 @@ module.exports = (dir, pageMappingData) => ({
     //   case /\.svg$/.test(src):
     //   case /\.webp$/.test(src):
     // }
-    const dimensions = sizeOf(path.join(dir.src, src));
+    const dimensions = sizeOf(path.join(dir.package, src));
     return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
   },
 
@@ -99,8 +99,8 @@ module.exports = (dir, pageMappingData) => ({
     if (!srcs) {
       throw new Error('lazyVideo is missing srcs attribute');
     }
-    const desktopDimensions = sizeOf(path.join(dir.src, placeholders.desktop));
-    const mobileDimensions = sizeOf(path.join(dir.src, placeholders.mobile));
+    const desktopDimensions = sizeOf(path.join(dir.package, placeholders.desktop));
+    const mobileDimensions = sizeOf(path.join(dir.package, placeholders.mobile));
     return `
     <div class="video-container" style="padding-top: ${(desktopDimensions.height / desktopDimensions.width) * 100}%; --aspect-ratio: ${desktopDimensions.height / desktopDimensions.width};">
       <video lazy ${attributes.join(' ')}

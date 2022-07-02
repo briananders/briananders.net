@@ -19,8 +19,6 @@ const bundleJS = require(`${dir.build}bundlers/bundle-js`);
 const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
 const clean = require(`${dir.build}helpers/clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const { convertAllToWebp } = require(`${dir.build}optimize/convert-to-webp`);
-const { optimizeSvgs } = require(`${dir.build}optimize/optimize-svgs`);
 const moveImages = require(`${dir.build}move-images`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
@@ -50,21 +48,9 @@ const configs = {
   pageMappingData,
 };
 
-function srcImagesReady(configs) {
-  const { completionFlags } = configs;
-
-  if (completionFlags.SVG_OPTIMIZATION && completionFlags.IMAGES_TO_WEBP) {
-    moveImages(configs);
-  }
-}
-
 /* ////////////////////////////// event listeners /////////////////////////// */
 
-buildEvents.on(BUILD_EVENTS.imagesConverted, compilePageMappingData.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.imagesConverted, bundleEJS.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.imagesConverted, srcImagesReady.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.svgsOptimized, srcImagesReady.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, bundleEJS.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.imagesMoved, bundleEJS.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
 
@@ -86,8 +72,7 @@ clean(configs).then(() => {
   compilePageMappingData(configs);
   bundleJS(configs);
   bundleSCSS(configs);
-  convertAllToWebp(configs);
-  optimizeSvgs(configs);
+  moveImages(configs);
 });
 
 if (!production) {
@@ -95,6 +80,5 @@ if (!production) {
 
   const server = app.listen(3000, () => {
     log(`${timestamp.stamp()} server is running at http://localhost:%s`, server.address().port);
-    // log('If on chrostini, run `hostname -I` to get the localhost IP address');
   });
 }
