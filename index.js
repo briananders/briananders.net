@@ -12,7 +12,7 @@ const dir = require('./build/constants/directories')(__dirname);
 /* //////////////////////////// local packages ////////////////////////////// */
 
 const timestamp = require(`${dir.build}helpers/timestamp`);
-const production = require(`${dir.build}production`);
+const production = require(`${dir.build}helpers/production`);
 
 const bundleEJS = require(`${dir.build}bundlers/bundle-ejs`);
 const bundleJS = require(`${dir.build}bundlers/bundle-js`);

@@ -107,10 +107,10 @@ async function renderTemplate({
 module.exports = async function bundleEJS({
   dir, buildEvents, pageMappingData, debug,
 }) {
-  const siteData = require(`${dir.build}site-data`)(dir);
+  const siteData = require(`${dir.build}constants/site-data`)(dir);
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const templateGlob = glob.sync(`${dir.src}templates/**/[^_]*.ejs`);
-  const production = require(`${dir.build}production`);
+  const production = require(`${dir.build}helpers/production`);
 
   log(`${timestamp.stamp()} bundleEJS()`);
 
@@ -119,7 +119,7 @@ module.exports = async function bundleEJS({
   for (let index = 0; index < templateGlob.length; index++) {
     const templatePath = templateGlob[index];
     if (debug) log(`${timestamp.stamp()} ${'REQUEST'.magenta} - Compiling Template - ${templatePath.split(/templates/)[1]}`);
-    const ejsFunctions = require(`${dir.build}ejs-functions`)(dir, pageMappingData);
+    const ejsFunctions = require(`${dir.build}helpers/ejs-functions`)(dir, pageMappingData);
     const ejsOptions = {
       compileDebug: true,
       filename: templatePath,

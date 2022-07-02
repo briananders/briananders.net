@@ -9,7 +9,7 @@ const dir = {
   package: `${__dirname}/package/`,
 };
 
-const production = require(`${dir.build}production`);
+const production = require(`${dir.build}helpers/production`);
 
 const awsCreds = {
   accessKeyId: process.env.AWS_ACCESS_KEY,

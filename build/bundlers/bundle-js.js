@@ -15,7 +15,7 @@ const { log } = console;
 
 module.exports = function bundleJS({ dir, buildEvents, debug }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
-  const production = require(`${dir.build}production`);
+  const production = require(`${dir.build}helpers/production`);
 
   const scriptGlob = glob.sync(`${dir.src}js/**/[^_]*.js`);
   let processed = 0;

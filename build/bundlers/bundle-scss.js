@@ -16,7 +16,7 @@ module.exports = function bundleSCSS({
   completionFlags.CSS_IS_MINIFIED = false;
 
   const timestamp = require(`${dir.build}helpers/timestamp`);
-  const production = require(`${dir.build}production`);
+  const production = require(`${dir.build}helpers/production`);
 
   log(`${timestamp.stamp()} bundleSCSS()`);
   const stylesGlob = glob.sync(`${dir.src}**/**/[^_]*.scss`);
