@@ -19,7 +19,7 @@ const bundleJS = require(`${dir.build}bundlers/bundle-js`);
 const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
 const clean = require(`${dir.build}helpers/clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const moveImages = require(`${dir.build}move-images`);
+const { moveAssets } = require(`${dir.build}move-images`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
 const sitemap = require(`${dir.build}bundlers/sitemap`);
@@ -83,7 +83,7 @@ clean(configs).then(() => {
   compilePageMappingData(configs);
   bundleJS(configs);
   bundleSCSS(configs);
-  moveImages(configs);
+  moveAssets(configs);
 });
 
 if (!production) {

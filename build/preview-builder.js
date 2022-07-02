@@ -47,8 +47,7 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const { optimizeSvg } = require(`${dir.build}optimize/optimize-svgs`);
-  const convertToWebp = require(`${dir.build}optimize/convert-to-webp`);
+  const { moveImage } = require(`${dir.build}move-images`);
 
   watchForPreviewReady(configs);
 
@@ -72,11 +71,8 @@ module.exports = (configs) => {
       case filePath.includes(`${dir.src}layout/`):
         compilePageMappingData(configs);
         break;
-      case filePath.includes(`${dir.src}images/`) && (extn === '.svg'):
-        optimizeSvg(filePath, configs);
-        break;
-      case filePath.includes(`${dir.src}images/`): // Other images
-        convertToWebp(filePath, configs);
+      case filePath.includes(`${dir.src}images/`):
+        moveImage(filePath, configs);
         break;
       default:
     }
