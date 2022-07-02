@@ -7,7 +7,7 @@ const pngToIco = require('png-to-ico');
 const { log, error } = console;
 
 function makeFaviconIco({
-  dir, completionFlags, buildEvents,
+  dir, completionFlags, buildEvents, debug
 }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
@@ -21,8 +21,7 @@ function makeFaviconIco({
     .catch(error);
 }
 
-function moveImages({ dir, completionFlags, buildEvents }) {
-
+function moveImages({ dir, completionFlags, buildEvents, debug }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const { webpCandidates, images } = require(`${dir.build}constants/file-formats`);
@@ -57,27 +56,27 @@ function moveImages({ dir, completionFlags, buildEvents }) {
       // move optimized svg
       optimizeSvg(imagePath, { dir });
       processed++;
-      log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+      if (debug) log(`${processed}/${imagesGlob.length}: ${imagePath}`);
       checkDone(processed, imagesGlob.length);
     } else if (webpCandidates.includes(extn.substring(1))) {
       // move file and move webp file
       convertToWebp(imagePath, { dir }).then(() => {
         fs.copyFile(imagePath, destination);
         processed++;
-        log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+        if (debug) log(`${processed}/${imagesGlob.length}: ${imagePath}`);
         checkDone(processed, imagesGlob.length);
       });
     } else {
       // move file
       fs.copyFile(imagePath, destination);
       processed++;
-      log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+      if (debug) log(`${processed}/${imagesGlob.length}: ${imagePath}`);
       checkDone(processed, imagesGlob.length);
     }
   }
 }
 
-module.exports = ({ dir, completionFlags, buildEvents }) => {
+module.exports = ({ dir, completionFlags, buildEvents, debug }) => {
   completionFlags.IMAGES_ARE_MOVED = false;
   completionFlags.VIDEOS_ARE_MOVED = false;
 
@@ -88,7 +87,7 @@ module.exports = ({ dir, completionFlags, buildEvents }) => {
   log(`${timestamp.stamp()} moveVideos()`);
   log(`${timestamp.stamp()} moveTxt()`);
 
-  moveImages({ dir, completionFlags, buildEvents });
+  moveImages({ dir, completionFlags, buildEvents, debug });
 
   fs.removeSync(`${dir.package}videos/`);
   // move videos over
@@ -100,7 +99,7 @@ module.exports = ({ dir, completionFlags, buildEvents }) => {
   });
 
   // move humans and robots text files
-  copy(`${dir.src}*.txt`, `${dir.package}`, (err) => {
+  copy(`${dir.src}*.txt`, dir.package, (err) => {
     if (err) throw err;
     log(`${timestamp.stamp()} moveTxt(): ${'DONE'.bold.green}`);
   });

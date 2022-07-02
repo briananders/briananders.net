@@ -50,7 +50,18 @@ const configs = {
 
 /* ////////////////////////////// event listeners /////////////////////////// */
 
-buildEvents.on(BUILD_EVENTS.imagesMoved, bundleEJS.bind(this, configs));
+function shouldBundleEjs(configs) {
+  const { completionFlags } = configs;
+
+  if (completionFlags.IMAGES_ARE_MOVED &&
+      completionFlags.VIDEOS_ARE_MOVED) {
+    bundleEJS(configs);
+  }
+}
+
+buildEvents.on(BUILD_EVENTS.videosMoved, shouldBundleEjs.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.imagesMoved, shouldBundleEjs.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, shouldBundleEjs.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
 
