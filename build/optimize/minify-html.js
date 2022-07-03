@@ -35,6 +35,8 @@ module.exports = function minifyHTML({
         removeComments: true,
         sortClassName: true,
         useShortDoctype: true,
+        quoteCharacter: '"',
+        preserveLineBreaks: false,
       });
 
       fs.writeFile(htmlFileName, minifiedHtml, (err) => {
