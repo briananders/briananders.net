@@ -105,6 +105,12 @@ function getCacheControl(fileName) {
   switch (extn) {
     case '.html':
     case '.html.gz':
+    case '.xml':
+    case '.xml.gz':
+    case '.json':
+    case '.json.gz':
+    case '.txt':
+    case '.txt.gz':
       return 'no-cache,no-store';
     default:
       return 'max-age=15552000,public';
@@ -175,6 +181,8 @@ const alwaysSwapFiles = (fileName) => [
   /\.html\.gz$/,
   /\.xml$/,
   /\.xml\.gz$/,
+  /\.json$/,
+  /\.json\.gz$/,
   /\.txt$/,
   /\.ico$/
 ].filter((regex) => regex.test(fileName)).length;
