@@ -71,7 +71,7 @@ module.exports = (dir, pageMappingData) => ({
       ? hljs.highlight(block, { language: locals.language }).value
       : hljs.highlightAuto(block).value;
     return `
-      <div class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></div>
+      <pre class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></pre>
     `;
   },
 

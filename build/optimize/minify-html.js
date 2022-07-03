@@ -25,19 +25,21 @@ module.exports = function minifyHTML({
 
       const minifiedHtml = htmlMinify.minify(data.toString(), {
         caseSensitive: true,
-        collapseWhitespace: false,
+        collapseWhitespace: true,
         conservativeCollapse: true,
         html5: true,
         keepClosingSlash: true,
         minifyCSS: true,
         minifyJS: true,
+        preserveLineBreaks: false,
+        quoteCharacter: '"',
         removeAttributeQuotes: true,
         removeComments: true,
         sortClassName: true,
         useShortDoctype: true,
-        quoteCharacter: '"',
-        preserveLineBreaks: false,
       });
+
+      // add more minifiers
 
       fs.writeFile(htmlFileName, minifiedHtml, (err) => {
         if (err) throw err;
