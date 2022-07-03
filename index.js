@@ -19,10 +19,10 @@ const bundleJS = require(`${dir.build}bundlers/bundle-js`);
 const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
 const clean = require(`${dir.build}helpers/clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const { moveAssets } = require(`${dir.build}move-images`);
+const { moveAssets } = require(`${dir.build}move-assets`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
-const sitemap = require(`${dir.build}bundlers/sitemap`);
+const compileSitemap = require(`${dir.build}bundlers/sitemap`);
 
 const completionFlagsSource = require(`${dir.build}constants/completion-flags`);
 const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
@@ -62,7 +62,7 @@ function shouldBundleEjs(configs) {
 buildEvents.on(BUILD_EVENTS.videosMoved, shouldBundleEjs.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.imagesMoved, shouldBundleEjs.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, shouldBundleEjs.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, compileSitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
 
 if (!production) {

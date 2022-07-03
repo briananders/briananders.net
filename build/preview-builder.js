@@ -47,7 +47,7 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const { moveImage, moveVideo, moveTxtFile } = require(`${dir.build}move-images`);
+  const { moveOneImage, moveOneVideo, moveOneTxtFile } = require(`${dir.build}move-assets`);
 
   watchForPreviewReady(configs);
 
@@ -72,13 +72,13 @@ module.exports = (configs) => {
         compilePageMappingData(configs);
         break;
       case filePath.includes(`${dir.src}images/`):
-        moveImage(filePath, configs);
+        moveOneImage(filePath, configs);
         break;
       case filePath.includes(`${dir.src}videos/`):
-        moveVideo(filePath, configs);
+        moveOneVideo(filePath, configs);
         break;
       case path.extname(filePath) === '.txt':
-        moveTxtFile(filePath, configs);
+        moveOneTxtFile(filePath, configs);
         break;
       default:
     }

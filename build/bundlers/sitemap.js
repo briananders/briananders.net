@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 
 const { log } = console;
 
-module.exports = function sitemap({
+module.exports = function compileSitemap({
   dir, completionFlags, buildEvents, pageMappingData,
 }) {
   completionFlags.SITE_MAP = false;
@@ -15,13 +15,13 @@ module.exports = function sitemap({
 
   function checkForDone() {
     if (doneCount >= 2) {
-      log(`${timestamp.stamp()} sitemap(): ${'DONE'.bold.green}`);
+      log(`${timestamp.stamp()} compileSitemap(): ${'DONE'.bold.green}`);
       completionFlags.SITE_MAP = true;
       buildEvents.emit(BUILD_EVENTS.sitemapDone);
     }
   }
 
-  log(`${timestamp.stamp()} sitemap()`);
+  log(`${timestamp.stamp()} compileSitemap()`);
   ejs.renderFile(`${dir.src}sitemap.json.ejs`, {
     pages: pageMappingData,
     siteData,

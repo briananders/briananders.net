@@ -26,7 +26,7 @@ function deletePackageFile(srcPath, { dir }) {
   fs.removeSync(destPath);
 }
 
-function moveImage(imagePath, configs, callback = () => {}) {
+function moveOneImage(imagePath, configs, callback = () => {}) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
@@ -49,7 +49,7 @@ function moveImage(imagePath, configs, callback = () => {}) {
   }
 
   fs.mkdirpSync(path.dirname(destination));
-  if(debug) log(`${timestamp.stamp()}: moveImage(${imagePath})`);
+  if(debug) log(`${timestamp.stamp()}: moveOneImage(${imagePath})`);
 
   if (extn === '.svg') {
     // move optimized svg
@@ -68,7 +68,7 @@ function moveImage(imagePath, configs, callback = () => {}) {
   }
 }
 
-function moveImages(configs) {
+function moveAllImages(configs) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
@@ -78,11 +78,11 @@ function moveImages(configs) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
   completionFlags.IMAGES_ARE_MOVED = false;
-  log(`${timestamp.stamp()} moveImages()`);
+  log(`${timestamp.stamp()} moveAllImages()`);
 
   function checkDone(processed, maximum) {
     if (processed >= maximum) {
-      log(`${timestamp.stamp()} moveImages(): ${'DONE'.bold.green}`);
+      log(`${timestamp.stamp()} moveAllImages(): ${'DONE'.bold.green}`);
       completionFlags.IMAGES_ARE_MOVED = true;
       buildEvents.emit(BUILD_EVENTS.imagesMoved);
     }
@@ -98,7 +98,7 @@ function moveImages(configs) {
 
   for (let i = 0; i < imagesGlob.length; i++) {
     const imagePath = imagesGlob[i];
-    moveImage(imagePath, configs, () => {
+    moveOneImage(imagePath, configs, () => {
       processed++;
       if (debug) log(`${timestamp.stamp()}: ${processed}/${imagesGlob.length}: ${imagePath}`);
       checkDone(processed, imagesGlob.length);
@@ -106,7 +106,7 @@ function moveImages(configs) {
   }
 }
 
-function moveVideo(videoPath, configs, callback = () => {}) {
+function moveOneVideo(videoPath, configs, callback = () => {}) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
@@ -123,7 +123,7 @@ function moveVideo(videoPath, configs, callback = () => {}) {
     return callback();
   }
 
-  if(debug) log(`${timestamp.stamp()}: moveVideo(${videoPath})`);
+  if(debug) log(`${timestamp.stamp()}: moveOneVideo(${videoPath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(videoPath, destination);
@@ -131,7 +131,7 @@ function moveVideo(videoPath, configs, callback = () => {}) {
   return callback();
 }
 
-function moveVideos(configs) {
+function moveAllVideos(configs) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
@@ -141,11 +141,11 @@ function moveVideos(configs) {
   const { videos } = require(`${dir.build}constants/file-formats`);
 
   completionFlags.VIDEOS_ARE_MOVED = false;
-  log(`${timestamp.stamp()} moveVideos()`);
+  log(`${timestamp.stamp()} moveAllVideos()`);
 
   function checkDone(processed, maximum) {
     if (processed >= maximum) {
-      log(`${timestamp.stamp()} moveVideos(): ${'DONE'.bold.green}`);
+      log(`${timestamp.stamp()} moveAllVideos(): ${'DONE'.bold.green}`);
       completionFlags.VIDEOS_ARE_MOVED = true;
       buildEvents.emit(BUILD_EVENTS.videosMoved);
     }
@@ -158,7 +158,7 @@ function moveVideos(configs) {
 
   for (let i = 0; i < videoGlob.length; i++) {
     const videoPath = videoGlob[i];
-    moveImage(videoPath, configs, () => {
+    moveOneImage(videoPath, configs, () => {
       processed++;
       if (debug) log(`${timestamp.stamp()}: ${processed}/${videoGlob.length}: ${videoPath}`);
       checkDone(processed, videoGlob.length);
@@ -166,7 +166,7 @@ function moveVideos(configs) {
   }
 }
 
-function moveTxtFile(filePath, configs, callback = () => {}) {
+function moveOneTxtFile(filePath, configs, callback = () => {}) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
@@ -183,7 +183,7 @@ function moveTxtFile(filePath, configs, callback = () => {}) {
     return callback();
   }
 
-  if(debug) log(`${timestamp.stamp()}: moveTxtFile(${filePath})`);
+  if(debug) log(`${timestamp.stamp()}: moveOneTxtFile(${filePath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(filePath, destination);
@@ -191,18 +191,18 @@ function moveTxtFile(filePath, configs, callback = () => {}) {
   return callback();
 }
 
-function moveTxtFiles(configs) {
+function moveAllTxtFiles(configs) {
   const {
     dir, completionFlags, buildEvents, debug,
   } = configs;
 
   const timestamp = require(`${dir.build}helpers/timestamp`);
 
-  log(`${timestamp.stamp()} moveTxtFiles()`);
+  log(`${timestamp.stamp()} moveAllTxtFiles()`);
 
   function checkDone(processed, maximum) {
     if (processed >= maximum) {
-      log(`${timestamp.stamp()} moveTxtFiles(): ${'DONE'.bold.green}`);
+      log(`${timestamp.stamp()} moveAllTxtFiles(): ${'DONE'.bold.green}`);
     }
   }
 
@@ -211,7 +211,7 @@ function moveTxtFiles(configs) {
 
   for (let i = 0; i < txtGlob.length; i++) {
     const filePath = txtGlob[i];
-    moveImage(filePath, configs, () => {
+    moveOneImage(filePath, configs, () => {
       processed++;
       if (debug) log(`${timestamp.stamp()}: ${processed}/${txtGlob.length}: ${filePath}`);
       checkDone(processed, txtGlob.length);
@@ -221,12 +221,12 @@ function moveTxtFiles(configs) {
 
 module.exports = {
   moveAssets: (configs) => {
-    moveImages(configs);
-    moveVideos(configs);
-    moveTxtFiles(configs);
+    moveAllImages(configs);
+    moveAllVideos(configs);
+    moveAllTxtFiles(configs);
   },
 
-  moveImage,
-  moveVideo,
-  moveTxtFile,
+  moveOneImage,
+  moveOneVideo,
+  moveOneTxtFile,
 };
