@@ -207,5 +207,3 @@ getS3Objects().then((data) => {
 
   console.log('Run `blc https://briananders.net -ro` to check for broken links');
 });
-
-// invalidateCloudFront();
