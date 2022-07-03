@@ -1,5 +1,4 @@
 const fs = require('fs-extra');
-const copy = require('copy');
 const glob = require('glob');
 const path = require('path');
 const pngToIco = require('png-to-ico');
@@ -7,10 +6,9 @@ const pngToIco = require('png-to-ico');
 const { log, error } = console;
 
 function makeFaviconIco({
-  dir, completionFlags, buildEvents, debug,
+  dir, completionFlags,
 }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
-  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   log(`${timestamp.stamp()} makeFaviconIco()`);
   completionFlags.FAVICON_ICO = false;
   pngToIco(`${dir.src}images/favicon_base.png`)
@@ -28,7 +26,7 @@ function deletePackageFile(srcPath, { dir }) {
 
 function moveOneImage(imagePath, configs, callback = () => {}) {
   const {
-    dir, completionFlags, buildEvents, debug,
+    dir, debug,
   } = configs;
 
   const { webpCandidates } = require(`${dir.build}constants/file-formats`);
@@ -49,7 +47,7 @@ function moveOneImage(imagePath, configs, callback = () => {}) {
   }
 
   fs.mkdirpSync(path.dirname(destination));
-  if(debug) log(`${timestamp.stamp()}: moveOneImage(${imagePath})`);
+  if (debug) log(`${timestamp.stamp()}: moveOneImage(${imagePath})`);
 
   if (extn === '.svg') {
     // move optimized svg
@@ -88,7 +86,6 @@ function moveAllImages(configs) {
     }
   }
 
-  // fs.removeSync(`${dir.package}images/`);
   fs.mkdirpSync(`${dir.package}images/`);
 
   makeFaviconIco({ dir, completionFlags, buildEvents });
@@ -108,7 +105,7 @@ function moveAllImages(configs) {
 
 function moveOneVideo(videoPath, configs, callback = () => {}) {
   const {
-    dir, completionFlags, buildEvents, debug,
+    dir, debug,
   } = configs;
 
   const timestamp = require(`${dir.build}helpers/timestamp`);
@@ -123,7 +120,7 @@ function moveOneVideo(videoPath, configs, callback = () => {}) {
     return callback();
   }
 
-  if(debug) log(`${timestamp.stamp()}: moveOneVideo(${videoPath})`);
+  if (debug) log(`${timestamp.stamp()}: moveOneVideo(${videoPath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(videoPath, destination);
@@ -168,7 +165,7 @@ function moveAllVideos(configs) {
 
 function moveOneTxtFile(filePath, configs, callback = () => {}) {
   const {
-    dir, completionFlags, buildEvents, debug,
+    dir, debug,
   } = configs;
 
   const timestamp = require(`${dir.build}helpers/timestamp`);
@@ -183,7 +180,7 @@ function moveOneTxtFile(filePath, configs, callback = () => {}) {
     return callback();
   }
 
-  if(debug) log(`${timestamp.stamp()}: moveOneTxtFile(${filePath})`);
+  if (debug) log(`${timestamp.stamp()}: moveOneTxtFile(${filePath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(filePath, destination);
@@ -193,7 +190,7 @@ function moveOneTxtFile(filePath, configs, callback = () => {}) {
 
 function moveAllTxtFiles(configs) {
   const {
-    dir, completionFlags, buildEvents, debug,
+    dir, debug,
   } = configs;
 
   const timestamp = require(`${dir.build}helpers/timestamp`);

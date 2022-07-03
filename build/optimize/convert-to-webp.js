@@ -1,5 +1,4 @@
 const webp = require('webp-converter');
-const glob = require('glob');
 const path = require('path');
 const { log } = console;
 
@@ -17,8 +16,8 @@ function convertToWebp(sourceImage, { dir }) {
   webp.grant_permission();
 
   const destinationFileName = sourceImage.replace(dir.src, dir.package);
-  debugger;
   const result = webp.cwebp(sourceImage, `${destinationFileName.substring(0, destinationFileName.lastIndexOf('.'))}.webp`);
+
   return result;
 }
 

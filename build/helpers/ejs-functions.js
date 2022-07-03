@@ -4,7 +4,7 @@ const hljs = require('highlight.js');
 const merge = require('merge');
 const sizeOf = require('image-size');
 const path = require('path');
-const { camelize, dasherize } = require("underscore.string");
+const { camelize, dasherize } = require('underscore.string');
 
 function squeakyClean(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -75,7 +75,9 @@ module.exports = (dir, pageMappingData) => ({
     `;
   },
 
-  img({ src, alt = '', classes = [], width, height } = {}) {
+  img({
+    src, alt = '', classes = [], width, height,
+  } = {}) {
     if (!src) {
       throw new Error('img is missing src attribute');
     }
@@ -83,14 +85,12 @@ module.exports = (dir, pageMappingData) => ({
     return `<img src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
   },
 
-  lazyImage({ src, alt = '', classes = [], width, height } = {}) {
+  lazyImage({
+    src, alt = '', classes = [], width, height,
+  } = {}) {
     if (!src) {
       throw new Error('lazyImage is missing src attribute');
     }
-    // switch(true) {
-    //   case /\.svg$/.test(src):
-    //   case /\.webp$/.test(src):
-    // }
     const dimensions = sizeOf(path.join(dir.package, src));
     return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
   },

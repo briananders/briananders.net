@@ -77,7 +77,7 @@ module.exports = (configs) => {
       case filePath.includes(`${dir.src}videos/`):
         moveOneVideo(filePath, configs);
         break;
-      case path.extname(filePath) === '.txt':
+      case extn === '.txt':
         moveOneTxtFile(filePath, configs);
         break;
       default:

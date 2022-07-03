@@ -1,5 +1,3 @@
-const { log } = console;
-const glob = require('glob');
 const path = require('path');
 const { optimize } = require('svgo');
 const { readFileSync, writeFile, mkdirpSync } = require('fs-extra');
@@ -17,17 +15,16 @@ const plugins = [
   }
 ];
 
-function getSVG(path) {
-
-  const svgString = readFileSync(path);
+function getSVG(filePath) {
+  const svgString = readFileSync(filePath);
 
   const { data } = optimize(svgString, {
-    path,
+    path: filePath,
     plugins,
   });
 
   return data;
-};
+}
 
 function optimizeSvg(filePath, { dir }) {
   const svgString = readFileSync(filePath);
@@ -43,10 +40,9 @@ function optimizeSvg(filePath, { dir }) {
   writeFile(destination, data, (e) => {
     if (e) throw e;
   });
-};
-
+}
 
 module.exports = {
   getSVG,
   optimizeSvg,
-}
+};
