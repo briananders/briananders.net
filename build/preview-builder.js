@@ -47,7 +47,7 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const { moveImage } = require(`${dir.build}move-images`);
+  const { moveImage, moveVideo, moveTxtFile } = require(`${dir.build}move-images`);
 
   watchForPreviewReady(configs);
 
@@ -73,6 +73,12 @@ module.exports = (configs) => {
         break;
       case filePath.includes(`${dir.src}images/`):
         moveImage(filePath, configs);
+        break;
+      case filePath.includes(`${dir.src}videos/`):
+        moveVideo(filePath, configs);
+        break;
+      case path.extname(filePath) === '.txt':
+        moveTxtFile(filePath, configs);
         break;
       default:
     }

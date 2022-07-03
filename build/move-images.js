@@ -7,7 +7,7 @@ const pngToIco = require('png-to-ico');
 const { log, error } = console;
 
 function makeFaviconIco({
-  dir, completionFlags, buildEvents, debug
+  dir, completionFlags, buildEvents, debug,
 }) {
   const timestamp = require(`${dir.build}helpers/timestamp`);
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
@@ -27,31 +27,35 @@ function deletePackageFile(srcPath, { dir }) {
 }
 
 function moveImage(imagePath, configs, callback = () => {}) {
-  const { dir, completionFlags, buildEvents, debug } = configs;
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
 
   const { webpCandidates } = require(`${dir.build}constants/file-formats`);
   const { optimizeSvg } = require(`${dir.build}optimize/optimize-svgs`);
   const convertToWebp = require(`${dir.build}optimize/convert-to-webp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
 
   const extn = path.extname(imagePath);
   const destination = imagePath.replace(dir.src, dir.package);
 
   if (!fs.existsSync(imagePath)) {
-    log(`${imagePath} does not exist`);
-    deletePackageFile(imagePath, configs);
+    log(`${timestamp.stamp()}: ${imagePath} does not exist`);
+    deletePackageFile(destination, configs);
     return callback();
-  } else if (fs.lstatSync(imagePath).isDirectory() ) {
-    log(`${imagePath} is a directory`);
+  } if (fs.lstatSync(imagePath).isDirectory()) {
+    log(`${timestamp.stamp()}: ${imagePath} is a directory`);
     return callback();
   }
 
   fs.mkdirpSync(path.dirname(destination));
+  if(debug) log(`${timestamp.stamp()}: moveImage(${imagePath})`);
 
   if (extn === '.svg') {
     // move optimized svg
     optimizeSvg(imagePath, { dir });
     return callback();
-  } else if (webpCandidates.includes(extn.substring(1))) {
+  } if (webpCandidates.includes(extn.substring(1))) {
     // move file and move webp file
     convertToWebp(imagePath, { dir }).then(() => {
       fs.copyFile(imagePath, destination);
@@ -65,11 +69,16 @@ function moveImage(imagePath, configs, callback = () => {}) {
 }
 
 function moveImages(configs) {
-  const { dir, completionFlags, buildEvents, debug } = configs;
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
 
-  const timestamp = require(`${dir.build}helpers/timestamp`);
   const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
   const { images } = require(`${dir.build}constants/file-formats`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+
+  completionFlags.IMAGES_ARE_MOVED = false;
+  log(`${timestamp.stamp()} moveImages()`);
 
   function checkDone(processed, maximum) {
     if (processed >= maximum) {
@@ -91,42 +100,133 @@ function moveImages(configs) {
     const imagePath = imagesGlob[i];
     moveImage(imagePath, configs, () => {
       processed++;
-      if (debug) log(`${processed}/${imagesGlob.length}: ${imagePath}`);
+      if (debug) log(`${timestamp.stamp()}: ${processed}/${imagesGlob.length}: ${imagePath}`);
       checkDone(processed, imagesGlob.length);
     });
   }
 }
 
-module.exports = {
-  moveAssets: ({ dir, completionFlags, buildEvents, debug }) => {
-    completionFlags.IMAGES_ARE_MOVED = false;
-    completionFlags.VIDEOS_ARE_MOVED = false;
+function moveVideo(videoPath, configs, callback = () => {}) {
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
 
-    const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
-    const timestamp = require(`${dir.build}helpers/timestamp`);
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const destination = videoPath.replace(dir.src, dir.package);
 
-    log(`${timestamp.stamp()} moveImages()`);
-    log(`${timestamp.stamp()} moveVideos()`);
-    log(`${timestamp.stamp()} moveTxt()`);
+  if (!fs.existsSync(videoPath)) {
+    log(`${timestamp.stamp()}: ${videoPath} does not exist`);
+    deletePackageFile(destination, configs);
+    return callback();
+  } if (fs.lstatSync(videoPath).isDirectory()) {
+    log(`${timestamp.stamp()}: ${videoPath} is a directory`);
+    return callback();
+  }
 
-    moveImages({ dir, completionFlags, buildEvents, debug });
+  if(debug) log(`${timestamp.stamp()}: moveVideo(${videoPath})`);
 
-    fs.removeSync(`${dir.package}videos/`);
-    // move videos over
-    fs.copy(`${dir.src}videos/`, `${dir.package}videos/`, (err) => {
-      if (err) throw err;
+  fs.mkdirpSync(path.dirname(destination));
+  fs.copyFile(videoPath, destination);
+
+  return callback();
+}
+
+function moveVideos(configs) {
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
+  const { videos } = require(`${dir.build}constants/file-formats`);
+
+  completionFlags.VIDEOS_ARE_MOVED = false;
+  log(`${timestamp.stamp()} moveVideos()`);
+
+  function checkDone(processed, maximum) {
+    if (processed >= maximum) {
       log(`${timestamp.stamp()} moveVideos(): ${'DONE'.bold.green}`);
       completionFlags.VIDEOS_ARE_MOVED = true;
       buildEvents.emit(BUILD_EVENTS.videosMoved);
-    });
+    }
+  }
 
-    // move humans and robots text files
-    copy(`${dir.src}*.txt`, dir.package, (err) => {
-      if (err) throw err;
-      log(`${timestamp.stamp()} moveTxt(): ${'DONE'.bold.green}`);
+  fs.mkdirpSync(`${dir.package}videos/`);
+
+  const videoGlob = glob.sync(`${dir.src}videos/**/*.{${videos.join(',')}}`);
+  let processed = 0;
+
+  for (let i = 0; i < videoGlob.length; i++) {
+    const videoPath = videoGlob[i];
+    moveImage(videoPath, configs, () => {
+      processed++;
+      if (debug) log(`${timestamp.stamp()}: ${processed}/${videoGlob.length}: ${videoPath}`);
+      checkDone(processed, videoGlob.length);
     });
+  }
+}
+
+function moveTxtFile(filePath, configs, callback = () => {}) {
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const destination = filePath.replace(dir.src, dir.package);
+
+  if (!fs.existsSync(filePath)) {
+    log(`${timestamp.stamp()}: ${filePath} does not exist`);
+    deletePackageFile(destination, configs);
+    return callback();
+  } if (fs.lstatSync(filePath).isDirectory()) {
+    log(`${timestamp.stamp()}: ${filePath} is a directory`);
+    return callback();
+  }
+
+  if(debug) log(`${timestamp.stamp()}: moveTxtFile(${filePath})`);
+
+  fs.mkdirpSync(path.dirname(destination));
+  fs.copyFile(filePath, destination);
+
+  return callback();
+}
+
+function moveTxtFiles(configs) {
+  const {
+    dir, completionFlags, buildEvents, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+
+  log(`${timestamp.stamp()} moveTxtFiles()`);
+
+  function checkDone(processed, maximum) {
+    if (processed >= maximum) {
+      log(`${timestamp.stamp()} moveTxtFiles(): ${'DONE'.bold.green}`);
+    }
+  }
+
+  const txtGlob = glob.sync(`${dir.src}*.txt`);
+  let processed = 0;
+
+  for (let i = 0; i < txtGlob.length; i++) {
+    const filePath = txtGlob[i];
+    moveImage(filePath, configs, () => {
+      processed++;
+      if (debug) log(`${timestamp.stamp()}: ${processed}/${txtGlob.length}: ${filePath}`);
+      checkDone(processed, txtGlob.length);
+    });
+  }
+}
+
+module.exports = {
+  moveAssets: (configs) => {
+    moveImages(configs);
+    moveVideos(configs);
+    moveTxtFiles(configs);
   },
 
   moveImage,
+  moveVideo,
+  moveTxtFile,
 };
-
