@@ -23,26 +23,48 @@ const bucketName = (production) ? 'www.briananders.net' : 'staging.briananders.n
 
 const getContentType = (fileName) => {
   const extn = path.extname(fileName);
+  const xtn = extn.substring(1);
 
   switch (extn) {
-    case '.html':
-      return 'text/html';
-    case '.css':
-      return 'text/css';
-    case '.js':
-      return 'application/javascript';
+    case '.json':
+    case '.zip':
+      return `application/${xtn}`;
     case '.png':
-    case '.jpg':
+    case '.webp':
     case '.gif':
-      return `image/${extn}`;
+      return `image/${xtn}`;
+    case '.mpeg':
+    case '.webm':
+    case '.mp4':
+      return `video/${xtn}`;
+    case '.jpg':
+    case '.jpeg':
+      return 'image/jpeg';
+    case '.html':
+    case '.htm':
+      return 'text/html; charset=UTF-8';
+    case '.txt':
+      return 'text/plain; charset=UTF-8';
+    case '.xml':
+      return 'application/xml; charset=UTF-8';
+    case '.css':
+      return 'text/css; charset=UTF-8';
+    case '.js':
+      return 'text/javascript; charset=UTF-8';
     case '.svg':
       return 'image/svg+xml';
+    case '.gz':
+      return 'application/gzip';
+    case '.ico':
+      return 'image/vnd.microsoft.icon';
+    case '.mp3':
+      return 'audio/mpeg';
     default:
       return 'application/octet-stream';
   }
 };
 
-const getS3Objects = () => {
+function getS3Objects() {
   const uploadPromise = new Promise((resolve, reject) => {
     s3.listObjectsV2({
       Bucket: bucketName,
@@ -56,7 +78,7 @@ const getS3Objects = () => {
   return uploadPromise;
 };
 
-const deleteS3Files = (fileList) => {
+function deleteS3Files(fileList) {
   const deletePromise = new Promise((resolve, reject) => {
     if (fileList.length === 0) {
       resolve([]);
@@ -77,7 +99,7 @@ const deleteS3Files = (fileList) => {
   return deletePromise;
 };
 
-const getCacheControl = (fileName) => {
+function getCacheControl(fileName) {
   const extn = path.extname(fileName);
 
   switch (extn) {
@@ -89,7 +111,7 @@ const getCacheControl = (fileName) => {
   }
 };
 
-const uploadFile = (fileName, index, fileList) => {
+function uploadFile(fileName, index, fileList) {
   if (!(index % 10)) {
     console.log(`${index}/${fileList.length}: ${Math.floor((index / fileList.length) * 100)}%`);
   }
@@ -120,13 +142,13 @@ const uploadFile = (fileName, index, fileList) => {
   return uploadPromise;
 };
 
-const uploadFiles = (fileList) => {
+function uploadFiles(fileList) {
   fs.chmodSync(dir.package, '0755');
 
   return Promise.all(fileList.map(uploadFile));
 };
 
-const invalidateCloudFront = () => {
+function invalidateCloudFront() {
   console.log('Invalidate Cache');
 
   const params = {
