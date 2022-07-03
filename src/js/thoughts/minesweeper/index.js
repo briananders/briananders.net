@@ -1,3 +1,5 @@
+const ready = require('../../_modules/document-ready');
+
 const eventKeys = {
   reRender: 're-render',
   isPlaying: 'is-playing',
@@ -360,7 +362,7 @@ function reset() {
 // document.body.addEventListener(eventKeys.isPlaying, () => {
 // });
 
-(function minesweeper() {
+ready.document(() => {
   document.body.addEventListener(eventKeys.gameOver, renderGameOver);
   document.body.addEventListener(eventKeys.reRender, updateFlagCount);
   document.body.addEventListener(eventKeys.reRender, countUnrevealed);
@@ -370,4 +372,4 @@ function reset() {
   watchTableFirstClick();
 
   reset();
-}());
+});

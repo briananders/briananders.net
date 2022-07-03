@@ -1,10 +1,12 @@
-(function colorCanvas() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   const steps = 256; // squares per color spectrum
   const squareMax = 256;
   const blueSlider = document.getElementById('blue-slider');
   const canvas = document.getElementById('canvas');
   const context = canvas.getContext('2d');
-  let canSlide = false;
+  // let canSlide = false;
   let blue;
 
   blueSlider.setAttribute('step', squareMax / steps);
@@ -46,23 +48,24 @@
       blue = newBlue;
       drawLoop(blue);
     }
-    if (canSlide) window.requestAnimationFrame(updateSlider);
+    // if (canSlide) window.requestAnimationFrame(updateSlider);
   }
 
-  function slideOn() {
-    canSlide = true;
-    updateSlider();
-  }
+  // function slideOn() {
+  //   canSlide = true;
+  //   updateSlider();
+  // }
 
-  function slideOff() {
-    canSlide = false;
-  }
+  // function slideOff() {
+  //   canSlide = false;
+  // }
 
-  blueSlider.addEventListener('mousedown', slideOn);
-  blueSlider.addEventListener('touchstart', slideOn);
-  blueSlider.addEventListener('mouseup', slideOff);
-  blueSlider.addEventListener('touchend', slideOff);
+  // blueSlider.addEventListener('mousedown', slideOn);
+  // blueSlider.addEventListener('touchstart', slideOn);
+  // blueSlider.addEventListener('mouseup', slideOff);
+  // blueSlider.addEventListener('touchend', slideOff);
+  blueSlider.addEventListener('input', updateSlider);
 
   setCanvasDimensions();
   updateSlider();
-}());
+});

@@ -1,4 +1,6 @@
-(function init() {
+const ready = require('../../_modules/document-ready');
+
+ready.document(() => {
   const copy = require('copy-to-clipboard');
 
   const { table } = require('../../_modules/log');
@@ -51,7 +53,7 @@
 
     lines.forEach((lineElement) => {
       const inputs = Array.from(lineElement.querySelectorAll('input[type=text]'));
-      const [lineWord, lineNumber] = lineElement.id.split(DASH);
+      const [, lineNumber] = lineElement.id.split(DASH);
 
       const isFull = (inputs.filter((input) => input.value.length).length === 5);
       lineFull[Number(lineNumber)] = isFull;
@@ -97,6 +99,7 @@
       } else if (state === STATES.CORRECT) {
         closeLetters.push(value);
         if (correctLetters[letterIndex] && correctLetters[letterIndex] !== value) {
+          // eslint-disable-next-line no-alert
           alert(`It looks like you have two letters marked for the same position: ${value} and ${correctLetters[letterIndex]}`);
         }
         correctLetters[letterIndex] = value;
@@ -112,7 +115,7 @@
   }
 
   function resetLetter(textInput) {
-    const [letterWord, lineNumber, letterNumber] = textInput.id.split(DASH);
+    const [, lineNumber, letterNumber] = textInput.id.split(DASH);
 
     const closeCheckbox = document.getElementById(`${STATES.CLOSE}-${lineNumber}-${letterNumber}`);
     const correctCheckbox = document.getElementById(`${STATES.CORRECT}-${lineNumber}-${letterNumber}`);
@@ -195,6 +198,7 @@
     switch (key) {
       case KEYS.BACKSPACE:
         resetLetter(srcElement);
+        // eslint-disable-next-line no-fallthrough
       case KEYS.ARROW_LEFT:
         previousInput(srcElement);
         evt.preventDefault();
@@ -242,4 +246,4 @@
 
   initEventListeners();
   checkLinesFull();
-}());
+});

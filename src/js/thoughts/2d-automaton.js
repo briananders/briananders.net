@@ -1,181 +1,185 @@
-/** globals window */
+const ready = require('../_modules/document-ready');
+const windowResize = require('../_modules/window-resize');
+
+const canvas = document.getElementById('canvas');
+const ruleInput = document.getElementById('rule');
+const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
+const playInput = document.getElementById('play');
+const randomStartInput = document.getElementById('random-start');
+const canvasContext = canvas.getContext('2d');
 
 let nowPlane;
 let thenPlane;
 
-(function automaton() {
-  const canvas = document.getElementById('canvas');
-  const ruleInput = document.getElementById('rule');
-  const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
-  const playInput = document.getElementById('play');
-  const randomStartInput = document.getElementById('random-start');
-  const canvasContext = canvas.getContext('2d');
+let rule;
+let ruleString;
+let cellWidth;
+let play = true;
+let randomStart = false;
+let stepArray = [];
+playInput.checked = true;
 
-  let rule;
-  let ruleString;
-  let cellWidth;
-  let play = true;
-  let randomStart = false;
-  let stepArray = [];
+const MIN = 0;
+const MAX = 65535;
 
-  const MIN = 0;
-  const MAX = 65535;
+const FILL_STYLE = '#ffffff';
+const WIDTH = 256;
+const FPS = 1000 / 15;
 
-  const FILL_STYLE = '#ffffff';
-  const WIDTH = 256;
-  const FPS = 1000 / 15;
+let date;
+canvasContext.fillStyle = FILL_STYLE;
 
-  let date;
+function resetPlane() {
+  const returnArray = new Array(WIDTH);
+  for (let i = 0; i < WIDTH; i++) {
+    returnArray[i] = new Array(WIDTH).fill(0);
+  }
+  return returnArray;
+}
 
-  function resetPlane() {
-    const returnArray = new Array(WIDTH);
-    for (let i = 0; i < WIDTH; i++) {
-      returnArray[i] = new Array(WIDTH).fill(0);
+function setup10110Array() {
+  const CHECK = '10110';
+  const returnArray = [];
+
+  for (let i = MIN; i < MAX; i++) {
+    const currBinary = i.toString(2);
+    if (currBinary.substr(currBinary.length - 5) === CHECK) {
+      returnArray.push(i);
     }
-    return returnArray;
   }
 
-  function setup10110Array() {
-    const CHECK = '10110';
-    const returnArray = [];
+  return returnArray;
+}
 
-    for (let i = MIN; i < MAX; i++) {
-      const currBinary = i.toString(2);
-      if (currBinary.substr(currBinary.length - 5) === CHECK) {
-        returnArray.push(i);
+function calculate(x, y) {
+  // get parent 3 values
+  let binary = '';
+  [
+    [0, -1],
+    [1, 0],
+    [0, 1],
+    [-1, 0]
+  ].forEach(([xVal, yVal]) => {
+    // add width and mod width to account for array overflow
+    binary += nowPlane[(x + xVal + WIDTH) % WIDTH][(y + yVal + WIDTH) % WIDTH];
+  });
+
+  // convert to decimal
+  const ruleIndex = parseInt(binary, 2);
+
+  thenPlane[x][y] = Number(ruleString.charAt(ruleIndex));
+}
+
+function drawPlane() {
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  nowPlane.forEach((row, rIndex) => {
+    row.forEach((col, cIndex) => {
+      calculate(rIndex, cIndex);
+
+      if (col) {
+        canvasContext.fillStyle = FILL_STYLE;
+        canvasContext.strokeStyle = FILL_STYLE;
+        canvasContext.fillRect(
+          cellWidth * rIndex,
+          cellWidth * cIndex,
+          cellWidth,
+          cellWidth
+        );
       }
-    }
-
-    return returnArray;
-  }
-
-  function calculate(x, y) {
-    // get parent 3 values
-    let binary = '';
-    [
-      [0, -1],
-      [1, 0],
-      [0, 1],
-      [-1, 0]
-    ].forEach(([xVal, yVal]) => {
-      // add width and mod width to account for array overflow
-      binary += nowPlane[(x + xVal + WIDTH) % WIDTH][(y + yVal + WIDTH) % WIDTH];
     });
+  });
+  nowPlane = thenPlane;
+  thenPlane = resetPlane();
+}
 
-    // convert to decimal
-    const ruleIndex = parseInt(binary, 2);
-
-    thenPlane[x][y] = Number(ruleString.charAt(ruleIndex));
+function run(checkDate, then) {
+  if (checkDate !== date) {
+    return;
   }
 
-  function drawPlane() {
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    nowPlane.forEach((row, rIndex) => {
+  if (then + FPS < Date.now() && (play || then === 0)) {
+    drawPlane();
+    then = Date.now();
+  }
+
+  window.requestAnimationFrame(() => {
+    run(checkDate, then);
+  });
+}
+
+function reverse(str) {
+  let retString = '';
+  for (let i = 0; i < str.length; i++) {
+    retString = str.charAt(i) + retString;
+  }
+  return retString;
+}
+
+function setupFirstPlane() {
+  const plane = resetPlane();
+  const half = Math.floor(WIDTH / 2);
+  if (randomStart) {
+    plane.forEach((row, rIndex) => {
       row.forEach((col, cIndex) => {
-        calculate(rIndex, cIndex);
-
-        if (col) {
-          canvasContext.fillStyle = FILL_STYLE;
-          canvasContext.strokeStyle = FILL_STYLE;
-          canvasContext.fillRect(
-            cellWidth * rIndex,
-            cellWidth * cIndex,
-            cellWidth,
-            cellWidth
-          );
-        }
+        plane[rIndex][cIndex] = Math.round(Math.random());
       });
     });
-    // thenPlane;
-    thenPlane = resetPlane();
+  } else {
+    plane[half][half] = 1;
   }
+  nowPlane = plane;
+}
 
-  function run(checkDate, then) {
-    if (checkDate !== date) {
-      return;
-    }
+function reset() {
+  const rect = canvas.getClientRects()[0];
+  cellWidth = rect.width / WIDTH;
+  canvas.width = rect.width;
+  canvas.height = rect.width;
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  rule = Number(ruleInput.value);
+  ruleString = `000000000000000000000${rule.toString(2)}`; // leading zeros on binary rule
+  ruleString = ruleString.substr(ruleString.length - 8); // must be 8 characters long
+  ruleString = reverse(ruleString);
 
-    if (then + FPS < Date.now() && (play || then === 0)) {
-      drawPlane();
-      then = Date.now();
-    }
+  thenPlane = resetPlane();
+  setupFirstPlane();
+  date = Date.now();
+  run(date, 0);
+}
 
-    window.requestAnimationFrame(() => {
-      run(checkDate, then);
-    });
-  }
+function addEventListeners() {
+  windowResize(reset);
 
-  function reverse(str) {
-    let retString = '';
-    for (let i = 0; i < str.length; i++) {
-      retString = str.charAt(i) + retString;
-    }
-    return retString;
-  }
+  ruleInput.addEventListener('change', reset);
+  playInput.addEventListener('change', () => {
+    play = playInput.checked;
+  });
 
-  function setupFirstPlane() {
-    const plane = resetPlane();
-    const half = Math.floor(WIDTH / 2);
-    if (randomStart) {
-      plane.forEach((row, rIndex) => {
-        row.forEach((col, cIndex) => {
-          plane[rIndex][cIndex] = Math.round(Math.random());
-        });
-      });
-    } else {
-      plane[half][half] = 1;
-    }
-    nowPlane = plane;
-  }
+  randomStartInput.addEventListener('change', () => {
+    randomStart = randomStartInput.checked;
+    reset();
+  });
 
-  function reset() {
-    const rect = canvas.getClientRects()[0];
-    cellWidth = rect.width / WIDTH;
-    canvas.width = rect.width;
-    canvas.height = rect.width;
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    rule = Number(ruleInput.value);
-    ruleString = `000000000000000000000${rule.toString(2)}`; // leading zeros on binary rule
-    ruleString = ruleString.substr(ruleString.length - 8); // must be 8 characters long
-    ruleString = reverse(ruleString);
+  ruleArrows.forEach((arrow) => {
+    arrow.addEventListener('click', () => {
+      const iterator = Number(arrow.value);
+      let newRule = rule + iterator;
 
-    thenPlane = resetPlane();
-    setupFirstPlane();
-    date = Date.now();
-    run(date, 0);
-  }
+      while (
+        !stepArray.includes(newRule)
+          && (newRule > MIN && newRule < MAX)
+      ) {
+        newRule += iterator;
+      }
 
-  function addEventListeners() {
-    ruleInput.addEventListener('change', reset);
-    window.addEventListener('resize', reset);
-    window.addEventListener('onorientationchange', reset);
-    playInput.addEventListener('change', () => {
-      play = playInput.checked;
-    });
-    randomStartInput.addEventListener('change', () => {
-      randomStart = randomStartInput.checked;
+      ruleInput.value = newRule;
       reset();
     });
-    ruleArrows.forEach((arrow) => {
-      arrow.addEventListener('click', () => {
-        const iterator = Number(arrow.value);
-        let newRule = rule + iterator;
+  });
+}
 
-        while (
-          !stepArray.includes(newRule)
-          && (newRule > MIN && newRule < MAX)
-        ) {
-          newRule += iterator;
-        }
-
-        ruleInput.value = newRule;
-        reset();
-      });
-    });
-  }
-
-  playInput.checked = true;
+ready.document(() => {
   reset(); // setup
   addEventListeners();
   stepArray = setup10110Array();
-}());
+});

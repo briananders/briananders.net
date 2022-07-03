@@ -8,14 +8,15 @@
     "clean": "rm -rf node_modules tmp dist && npm cache clean --force",
     "debug:start": "node index.js --verbose",
     "debug:build": "NODE_ENV=production node index.js --verbose",
+    "inspect:build": "NODE_ENV=production node inspect index.js --verbose",
+    "inspect:start": "node inspect index.js --verbose",
     "deploy": "NODE_ENV=production node s3-uploader.js",
     "lint:build": "npx eslint build/** --fix",
     "lint:src": "npx eslint src/js/** --fix",
     "preview-production": "node preview-production.js",
     "scaffold": "node scaffold.js",
     "stage": "node s3-uploader.js",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -68,7 +69,10 @@
     "merge": "^2.1.1",
     "node-notifier": "^10.0.1",
     "node-sass": "^7.0.1",
+    "png-to-ico": "^2.1.4",
+    "svgo": "^2.8.0",
     "uglify-js": "^3.15.1",
+    "underscore.string": "^3.3.6",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0",

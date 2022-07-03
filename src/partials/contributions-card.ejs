@@ -1,0 +1,19 @@
+<%
+  const { description, image, title, links } = locals;
+%>
+<div class="card" data-card-id="<%- dasherize(title.toLowerCase()) %>">
+  <%- lazyImage({ src: image }) %>
+  <h3><%- title %></h3>
+  <p class="description"><%- description %></p>
+  <div class="links">
+    <% links.forEach(({ label, url, path, className='', dataVideoId }) => { %>
+      <% if (url) { %>
+        <%- externalLink(label, { href: url, 'class': `link ${className}` }); %>
+      <% } else if (path) { %>
+        <%- link(label, { href: path, 'class': `link ${className}` }); %>
+      <% } else { %>
+        <button class="<%- `link ${className}` %>" <%- (dataVideoId) ? `data-video-id="${dataVideoId}"` : '' %> ><%- label %></button>
+      <% } %>
+    <% }); %>
+  </div>
+</div>

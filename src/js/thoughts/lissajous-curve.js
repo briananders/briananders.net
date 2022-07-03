@@ -1,4 +1,6 @@
-(function lissajousCurve() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   function setupCanvas(query) {
     const canvas = document.querySelector(query);
     canvas.width = 1000;
@@ -14,7 +16,7 @@
   const byLine = document.querySelector('.by-line');
   const bStepElement = document.querySelector('#b-step');
 
-  const [mainContext] = setupCanvas('#lissajous-curve');
+  const [, mainContext] = setupCanvas('#lissajous-curve');
 
   let aCircumferencePosition = 27; // circumference out of 360
   let bCircumferencePosition = 27; // circumference out of 360
@@ -71,7 +73,7 @@
     /*
         Where r is the radius, cx,cy the origin, and a the angle.
 
-        That's pretty easy to adapt into any language with basic trig functions.
+        That’s pretty easy to adapt into any language with basic trig functions.
         Note that most languages will use radians for the angle in trig functions,
         so rather than cycling through 0..360 degrees,
         you're cycling through 0..2PI radians.
@@ -175,4 +177,4 @@
   bStepElement.addEventListener('change', reset);
 
   runLoop();
-}());
+});

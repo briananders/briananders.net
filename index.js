@@ -11,21 +11,20 @@ const dir = require('./build/constants/directories')(__dirname);
 
 /* //////////////////////////// local packages ////////////////////////////// */
 
-const timestamp = require(`${dir.build}timestamp`);
-const production = require(`${dir.build}production`);
+const timestamp = require(`${dir.build}helpers/timestamp`);
+const production = require(`${dir.build}helpers/production`);
 
-const bundleEJS = require(`${dir.build}bundle-ejs`);
-const bundleJS = require(`${dir.build}bundle-js`);
-const bundleSCSS = require(`${dir.build}bundle-scss`);
-const clean = require(`${dir.build}clean`);
+const bundleEJS = require(`${dir.build}bundlers/bundle-ejs`);
+const bundleJS = require(`${dir.build}bundlers/bundle-js`);
+const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
+const clean = require(`${dir.build}helpers/clean`);
 const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-const convertToWebp = require(`${dir.build}convert-to-webp`);
-const moveImages = require(`${dir.build}move-images`);
+const { moveAssets } = require(`${dir.build}move-assets`);
 const previewBuilder = require(`${dir.build}preview-builder`);
 const prodBuilder = require(`${dir.build}prod-builder`);
-const sitemap = require(`${dir.build}sitemap`);
+const compileSitemap = require(`${dir.build}bundlers/sitemap`);
 
-const completionFlags = require(`${dir.build}constants/completion-flags`);
+const completionFlagsSource = require(`${dir.build}constants/completion-flags`);
 const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
 
 /* ///////////////////////////// local variables //////////////////////////// */
@@ -42,7 +41,7 @@ const pageMappingData = [];
 const configs = {
   BUILD_EVENTS,
   buildEvents,
-  completionFlags,
+  completionFlags: completionFlagsSource,
   debug,
   dir,
   hashingFileNameList,
@@ -51,11 +50,19 @@ const configs = {
 
 /* ////////////////////////////// event listeners /////////////////////////// */
 
-buildEvents.on(BUILD_EVENTS.imagesConverted, compilePageMappingData.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.imagesConverted, bundleEJS.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.imagesConverted, moveImages.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, bundleEJS.bind(this, configs));
-buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, sitemap.bind(this, configs));
+function shouldBundleEjs(configs) {
+  const { completionFlags } = configs;
+
+  if (completionFlags.IMAGES_ARE_MOVED &&
+      completionFlags.VIDEOS_ARE_MOVED) {
+    bundleEJS(configs);
+  }
+}
+
+buildEvents.on(BUILD_EVENTS.videosMoved, shouldBundleEjs.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.imagesMoved, shouldBundleEjs.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, shouldBundleEjs.bind(this, configs));
+buildEvents.on(BUILD_EVENTS.pageMappingDataCompiled, compileSitemap.bind(this, configs));
 buildEvents.on(BUILD_EVENTS.previewReady, log.bind(this, `${timestamp.stamp()} ${'Preview Ready'.green.bold}`));
 
 if (!production) {
@@ -76,14 +83,13 @@ clean(configs).then(() => {
   compilePageMappingData(configs);
   bundleJS(configs);
   bundleSCSS(configs);
-  convertToWebp(configs);
+  moveAssets(configs);
 });
 
 if (!production) {
   app.use(serve(dir.package));
 
   const server = app.listen(3000, () => {
-    log(`${timestamp.stamp()} server is running at %s`, server.address().port);
-    // log('If on chrostini, run `hostname -I` to get the localhost IP address');
+    log(`${timestamp.stamp()} server is running at http://localhost:%s`, server.address().port);
   });
 }
