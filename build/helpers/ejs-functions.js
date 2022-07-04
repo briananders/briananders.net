@@ -65,13 +65,13 @@ module.exports = (dir, pageMappingData) => ({
     return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
   },
 
-  code(block, locals = { class: '', style: '', language: '' }) {
+  code(block, locals = {}) {
     // https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md
-    const highlightedCode = (locals.language)
+    const highlightedCode = (locals.language !== undefined)
       ? hljs.highlight(block, { language: locals.language }).value
       : hljs.highlightAuto(block).value;
     return `
-      <pre class="code-container ${locals.class}" style="${locals.style}"><code>${highlightedCode}</code></pre>
+      <pre class="code-container ${locals.class || ''}" style="${locals.style || ''}"><code>${highlightedCode}</code></pre>
     `;
   },
 
