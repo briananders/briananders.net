@@ -10,7 +10,7 @@
     grid-gap: $s1 / 2;
     grid-gap: $s3;
 
-    @include pallette--base;
+    @include palette--base;
 
     &.album {
       grid-template-columns: 1fr 100px;
@@ -36,18 +36,18 @@
     bar {
       display: block;
       height: $s2;
-      background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      background-color: var(--primary-color-dark);
       margin-top: $s1;
       transition-property: background-color;
       transition-duration: $transition-speed;
-      transition-timing-function: ease;
+      transition-timing-function: $transition-timing;
     }
 
     img {
       width: 100px;
       height: 100px;
       transform: scale(1);
-      transition: transform $transition-speed ease;
+      transition: transform $transition-speed $transition-timing;
     }
   }
 

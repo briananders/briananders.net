@@ -10,8 +10,9 @@ code {
   max-width: 100%;
   text-align: left;
   margin: auto;
-  color: $pallette--primary-color-text--white;
+  color: $palette--primary-color-text--white;
 }
+
 
 .code-container {
   @include font-size;
@@ -23,7 +24,7 @@ code {
   position: relative;
   text-align: center;
   display: flex;
-  border: 2px solid var(--primary-color, #{$pallette--primary-color});
+  border: 2px solid var(--primary-color);
 
   &::before,
   &::after {
@@ -36,20 +37,20 @@ code {
 
   &::before {
     left: 0px;
-    background: linear-gradient(to left, rgba($pallette--primary-text-color--dark, 0), rgba($pallette--primary-text-color--dark, 1));
+    background: linear-gradient(to left, rgba($palette--primary-text-color--dark, 0), rgba($palette--primary-text-color--dark, 1));
   }
   &::after {
     right: 0px;
-    background: linear-gradient(to right, rgba($pallette--primary-text-color--dark, 0), rgba($pallette--primary-text-color--dark, 1));
+    background: linear-gradient(to right, rgba($palette--primary-text-color--dark, 0), rgba($palette--primary-text-color--dark, 1));
   }
 }
 
 var {
   font-family: courier;
   display: inline-block;
-  border: 1px solid $pallette--divider-color;
+  border: 1px solid $palette--divider-color;
   border-radius: 4px;
   padding: 0 0.5rem;
   background-color: transparent;
-  color: $pallette--primary-color-text--white;
+  color: $palette--primary-color-text--white;
 }

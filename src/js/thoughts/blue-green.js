@@ -1,4 +1,7 @@
-(function blueGreen() {
+const noAnimations = require('../_modules/no-animations');
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   const {
     floor, min, max, random,
   } = Math;
@@ -130,6 +133,8 @@
     updateColors();
   });
 
-  reset();
-  updateColors();
-}());
+  if (!noAnimations.areAnimationsDisabled) {
+    reset();
+    updateColors();
+  }
+});

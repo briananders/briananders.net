@@ -1,6 +1,7 @@
 const YoutubeModal = require('./_modules/youtube-modal');
+const ready = require('./_modules/document-ready');
 
-(function init() {
+ready.document(() => {
   const youtubeModal = new YoutubeModal();
   youtubeModal.init();
-}());
+});

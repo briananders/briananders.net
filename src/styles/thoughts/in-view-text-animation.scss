@@ -3,7 +3,7 @@
 .thoughts.in-view-text-animation {
   .the-test {
     h1, h2, h3, h4, h5, h6, p {
-      transition: opacity 500ms ease, transform 500ms ease;
+      transition: opacity $transition-speed $transition-timing, transform $transition-speed $transition-timing;
 
       &[in-view=false],
       &:not([in-view]) {

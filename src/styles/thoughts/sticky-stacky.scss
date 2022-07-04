@@ -11,7 +11,7 @@
   > *.default-styles {
     width: 100%;
     padding: $s1 $s2;
-    @include pallette--header;
+    @include palette--header;
     text-align: center;
   }
 
@@ -22,7 +22,7 @@
       position: absolute;
       top: 100%;
       height: $s2;
-      background: linear-gradient(to bottom, rgba($pallette--primary-text-color--dark, 0.3), transparent);
+      background: linear-gradient(to bottom, rgba($palette--primary-text-color--dark, 0.3), transparent);
       left: 0;
       right: 0;
     }

@@ -1,0 +1,58 @@
+section.contributions {
+  .deck {
+    display: grid;
+    gap: $s10;
+  }
+  .card {
+    padding: $s2;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "image"
+      "title"
+      "description"
+      "links";
+    column-gap: $s10;
+
+    @include mq($medium) {
+      grid-template-columns: css-min(25%, 200px) 1fr;
+      grid-template-areas:
+        "image title"
+        "image description"
+        "image links";
+    }
+
+    img {
+      grid-area: image;
+      width: 100%;
+      margin-top: 9px;
+
+      @include mq-max($medium) {
+        width: css-min(100%, 200px);
+        margin: 0 auto #{$s4};
+      }
+    }
+
+    h3 {
+      text-align: left;
+      grid-area: title;
+      margin-bottom: $s1;
+    }
+
+    p {
+      grid-area: description;
+      margin-bottom: $s1;
+    }
+
+    .links {
+      grid-area: links;
+      line-height: 1.7;
+
+      a {
+        line-height: 27px;
+      }
+    }
+  }
+}

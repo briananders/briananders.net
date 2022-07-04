@@ -1,32 +1,35 @@
 <div class="sticky-container">
   <nav class="nav main" role="navigation" aria-label="Main navigation">
     <div class="content">
-      <%- link(`<img src="/images/logo.svg" alt="Brian Anders logo" width="200" height="68" />`, {
+    <%- link(img({
+      src: '/images/logo.svg',
+      alt: 'Brian Anders logo',
+      width: '200',
+      height: '68',
+    }), {
+      href: '/',
+      class: 'brand',
+      'aria-label': 'Brian Anders home page',
+    }) %>
+    <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
+      Menu
+    </button>
+    <div aria-hidden="true" role="menu" id="nav-tray">
+      <%- link('Main', {
         href: '/',
-        class: 'brand',
-        'aria-label': 'Brian Anders home page',
+        class: 'nav-link',
+        role: 'menuitem',
       }) %>
-      <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
-        Menu
-      </button>
-      <div aria-hidden="true" role="menu" id="nav-tray">
-        <%- link('Main', {
-          href: '/',
+      <%
+        let basePages = getChildPages('');
+        basePages.forEach(({ url, data }) => {
+      %>
+        <%- link(data.title, {
+          href: `/${url}`,
           class: 'nav-link',
           role: 'menuitem',
         }) %>
-        <%
-          var basePages = getChildPages('');
-          for(var i = 0; i < basePages.length; i++) {
-            var page = basePages[i];
-        %>
-          <%- link(page.data.title, {
-            href: `/${page.url}`,
-            class: 'nav-link',
-            role: 'menuitem',
-          }) %>
-        <% } %>
-      </div>
+      <% }); %>
     </div>
   </nav>
 </div>

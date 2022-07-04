@@ -13,7 +13,7 @@ nav.main {
   transition-property: opacity;
   z-index: 5;
   width: 100%;
-  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+  background-color: var(--primary-color-dark);
 
   a,
   a:visited,
@@ -27,13 +27,13 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $nav-height;
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+    background-color: var(--primary-color-dark);
 
     &::after {
       display: block;
       content: "";
       position: absolute;
-      background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      background-color: var(--primary-color-dark);
       top: 0;
       bottom: 0;
       left: 100%;
@@ -43,7 +43,7 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    color: $pallette--primary-color-text--white;
+    color: $palette--primary-color-text--white;
     font-weight: $regular;
     padding: 4px 8px;
     box-shadow: 0 0 0 1px $color--white;
@@ -64,8 +64,8 @@ nav.main {
     right: $s2;
     transition-property: transform;
     transition-duration: $transition-speed;
-    transition-timing-function: ease;
-    background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+    transition-timing-function: $transition-timing;
+    background-color: var(--primary-color-dark);
     box-shadow: 0 0 0 1px $color--white;
 
     &.slide-down {
@@ -91,7 +91,7 @@ nav.main {
       border-bottom-color: $color--white;
     }
     &::after {
-      border-bottom-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      border-bottom-color: var(--primary-color-dark);
       transform: translateY(2px);
     }
   }
@@ -105,7 +105,7 @@ nav.main {
   .link {
     @include font-size;
     font-family: $sans-serif;
-    color: var(--primary-color-text, #{$pallette--primary-color-text--white});
+    color: var(--primary-color-text, #{$palette--primary-color-text--white});
 
     &.brand {
       width: auto;

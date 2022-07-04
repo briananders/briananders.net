@@ -1,4 +1,7 @@
-(function automaton() {
+const ready = require('../_modules/document-ready');
+const windowResize = require('../_modules/window-resize');
+
+ready.document(() => {
   const canvas = document.getElementById('canvas');
   const ruleInput = document.getElementById('rule');
   const ruleArrows = document.querySelectorAll('#rule-up-and-down button');
@@ -127,8 +130,7 @@
   function addEventListeners() {
     ruleInput.addEventListener('change', reset);
     heightInput.addEventListener('change', reset);
-    window.addEventListener('resize', reset);
-    window.addEventListener('onorientationchange', reset);
+    windowResize(reset.bind(this));
     playInput.addEventListener('change', () => {
       play = playInput.checked;
     });
@@ -157,4 +159,4 @@
 
   reset(); // setup
   addEventListeners();
-}());
+});
