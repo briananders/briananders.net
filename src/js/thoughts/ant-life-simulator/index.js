@@ -1,4 +1,3 @@
-const { log } = require('../../_modules/log');
 const ready = require('../../_modules/document-ready');
 
 const Board = require('./_board');

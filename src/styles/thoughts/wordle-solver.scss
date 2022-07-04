@@ -2,15 +2,15 @@
 
 @mixin close {
   background: yellow;
-  color: $pallette--primary-text-color--dark;
+  color: $palette--primary-text-color--dark;
 }
 @mixin correct {
   background: green;
-  color: $pallette--primary-color-text--white;
+  color: $palette--primary-color-text--white;
 }
 @mixin wrong {
   background: black;
-  color: $pallette--primary-color-text--white;
+  color: $palette--primary-color-text--white;
 }
 
 @keyframes copied-click {
@@ -31,7 +31,7 @@
 .board {
   overflow: hidden;
   padding: 0 $s1;
-  transition: height 200ms ease;
+  transition: height $transition-speed $transition-timing;
 }
 
 #options {
@@ -55,8 +55,8 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: var(--accent-color, #{$pallette--accent-color});
-      color: $pallette--primary-text-color--dark;
+      background: var(--accent-color);
+      color: $palette--primary-text-color--dark;
       @include font-size(2);
       display: flex;
       align-items: center;
@@ -67,7 +67,7 @@
     &.animate::before {
       animation-duration: 1500ms;
       animation-iteration-count: 1;
-      animation-timing-function: ease;
+      animation-timing-function: $transition-timing;
       animation-name: copied-click;
     }
   }

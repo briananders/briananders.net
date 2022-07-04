@@ -52,7 +52,9 @@
 <meta itemprop="isFamilyFriendly"                  content="true"/>
 
 <meta itemprop="author"                            content="<%- locals.author %>"/>
-<meta itemprop="datePublished"                     content="<%- locals.date %>"/>
+<% if (locals.date) { %>
+  <meta itemprop="datePublished"                     content="<%- `${locals.date.getFullYear()}-${('00' + (locals.date.getMonth() + 1)).slice(-2)}-${('00' + locals.date.getDate()).slice(-2)}` %>"/>
+<% } %>
 <meta itemprop="publisher"                         content="<%- locals.author %>"/>
 
 <% if(locals.robots === false) { %>

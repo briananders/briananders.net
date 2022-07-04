@@ -1,6 +1,6 @@
 ---
 title: "All Hex colors"
-description: "I wanted to create a way to show all of the rgb colors that can be represented by rgb. So, I did. Here's a rectangle with a slider that shows every color."
+description: "I wanted to create a way to show all of the rgb colors that can be represented by rgb. So, I did. Here’s a rectangle with a slider that shows every color."
 date: 2018-08-02
 priority: 0.8
 layout: base
@@ -22,6 +22,13 @@ scripts:
 <section>
   <div class="content">
     <canvas id="canvas"></canvas>
-    <input id='blue-slider' type="range" min="0" max="255" value="0" step="1" aria-label="Blue value">
+
+    <div class="form">
+      <button id="play-pause" class="link">
+        <%- img({ src: '/images/icons/play.svg', classes: ['play'] }) %>
+        <%- img({ src: '/images/icons/pause.svg', classes: ['pause'] }) %>
+      </button>
+      <input id='blue-slider' type="range" min="0" max="255" value="0" step="1" aria-label="Blue value">
+    </div>
   </div>
 </section>

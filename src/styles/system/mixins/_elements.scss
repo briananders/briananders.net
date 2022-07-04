@@ -7,14 +7,14 @@
   @include type--regular-serif;
   @include font-size;
   overflow-x: hidden;
-  @include pallette--base;
+  @include palette--base;
 }
 
 @mixin selection {
   ::selection,
   ::-moz-selection {
     text-shadow: none;
-    @include pallette--base--inverted;
+    @include palette--base--inverted;
   }
 }
 
@@ -58,7 +58,7 @@
     transition-duration: $transition-speed;
     z-index: 1000;
 
-    box-shadow: 0 0 0 2px var(--primary-color-text, #{$pallette--primary-color-text--white});
+    box-shadow: 0 0 0 2px var(--primary-color-text, #{$palette--primary-color-text--white});
   }
 
   &:hover::after {
@@ -67,13 +67,13 @@
 }
 
 @mixin inline-link {
-  padding: 0 $s1;
+  padding: 2px $s1 0px;
   display: inline-block;
   text-decoration: none;
   position: relative;
 
   &:not(.block) {
-    @include pallette--primary;
+    @include palette--primary;
   }
 
   &::before {
@@ -94,7 +94,7 @@
   padding: 0 $s1;
   display: inline-block;
   text-decoration: none;
-  @include pallette--base;
+  @include palette--base;
 
   &:focus {
     background-color: $color--grey-800 !important;
@@ -106,17 +106,17 @@
   text-decoration: none;
   @include interactive-outline;
   transition-duration: $transition-speed;
-  transition-timing-function: ease;
+  transition-timing-function: $transition-timing;
   @include link-hover;
   @include link-focus;
 }
 
 @mixin interactive-outline {
-  outline-color: var(--accent-color, #{$pallette--accent-color});
+  outline-color: var(--accent-color);
 }
 
 @mixin interactive-border {
-  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
+  border: 2px solid var(--primary-color-dark);
 }
 
 @mixin button {
@@ -128,8 +128,8 @@
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
-  color: $pallette--primary-color-text--white;
-  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
+  color: $palette--primary-color-text--white;
+  border: 2px solid var(--primary-color-dark);
   background-color: transparent;
 
   &::before {
@@ -192,8 +192,8 @@
   margin-bottom: $s6;
   @include font-size(3);
   background-color: transparent;
-  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-  color: $pallette--primary-color-text--white;
+  border: 2px solid var(--primary-color-dark);
+  color: $palette--primary-color-text--white;
 
   p {
     &:last-of-type {

@@ -91,7 +91,7 @@ select {
   @include button-select;
 
   &:hover {
-    box-shadow: 0 0 0 #{$s1} $pallette--primary-text-color--dark,
+    box-shadow: 0 0 0 #{$s1} $palette--primary-text-color--dark,
     0 0 0 #{$s1 + 2px} $color--white;
   }
 }
@@ -161,7 +161,7 @@ input[type=checkbox] {
   width: $s4;
 
   &:focus {
-    box-shadow: inset 0 0 0 3px var(--primary-color-text, #{$pallette--primary-color-text--white});
+    box-shadow: inset 0 0 0 3px var(--primary-color-text, #{$palette--primary-color-text--white});
   }
 
   /* toggle in label designing */
@@ -171,13 +171,13 @@ input[type=checkbox] {
     display: inline-block;
     width: $s8;
     height: $s3;
-    background-color: var(--primary-color-text, #{$pallette--primary-color-text--white});
+    background-color: var(--primary-color-text, #{$palette--primary-color-text--white});
     border-radius: $s2;
     border: none;
 
     &:focus {
       box-shadow: none;
-      background-color: var(--primary-color-text, #{$pallette--primary-color-text--white}) !important;
+      background-color: var(--primary-color-text, #{$palette--primary-color-text--white}) !important;
     }
 
     /* After slide changes */
@@ -187,7 +187,7 @@ input[type=checkbox] {
       width: $s4;
       height: $s4;
       border-radius: $s2;
-      background-color: var(--accent-color, #{$pallette--accent-color});
+      background-color: var(--accent-color);
       top: -#{$s1 / 2};
       left:-#{$s1 / 2};
       transition: left $transition-speed, background-color $transition-speed;
@@ -196,7 +196,7 @@ input[type=checkbox] {
 
     /* Checkbox checked toggle label bg color */
     &:checked {
-      background-color: var(--accent-color, #{$pallette--accent-color});
+      background-color: var(--accent-color);
 
       /* Checkbox checked effect */
       &::before {
@@ -204,7 +204,7 @@ input[type=checkbox] {
       }
 
       &:focus {
-        background-color: var(--accent-color, #{$pallette--accent-color}) !important;
+        background-color: var(--accent-color, #{$palette--accent-color}) !important;
       }
     }
   }

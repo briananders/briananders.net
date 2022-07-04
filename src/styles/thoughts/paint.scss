@@ -7,7 +7,7 @@ canvas {
   background-color: white;
 }
 
-.shape-pallette {
+.shape-palette {
   display: none;
 }
 
@@ -18,7 +18,7 @@ main-stroke {
   border: 1px solid;
 }
 
-.color-pallette {
+.color-palette {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(8, 36px);
@@ -46,7 +46,7 @@ main-stroke {
   }
 }
 
-.stroke-size-pallette {
+.stroke-size-palette {
   display: flex;
   justify-content: center;
 }

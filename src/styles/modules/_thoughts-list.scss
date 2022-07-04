@@ -28,7 +28,7 @@
     flex-flow: column;
     padding: $s3;
     border-radius: $border-radius;
-    border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
+    border: 2px solid var(--primary-color-dark);
     margin: 0;
   }
 }

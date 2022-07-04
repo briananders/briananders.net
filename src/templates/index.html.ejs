@@ -20,14 +20,17 @@ scripts:
   <div class="content">
     <header>
       <h2>
-        <%- noWidows("Who am I?"); %>
+        <%- noWidows('Who am I?'); %>
       </h2>
     </header>
     <p>
-      I am a Staff UX Engineer at <%- externalLink("Google", { href: "https://google.com" }) %>. From 2013 to 2018, I worked on <%- externalLink("nest.com", { href: "https://nest.com" }) %>. Since 2018 I have been working on the <%- externalLink("Google Store", { href: "https://store.google.com" }) %>; building and enhancing the web experience.
+      I am a Staff UX Engineer at <%- externalLink('Google', { href: 'https://google.com' }) %>. From 2013 to 2018, I worked on <%- externalLink('nest.com', { href: 'https://nest.com' }) %>. Since 2018 I have been working on the <%- externalLink('Google Store', { href: 'https://store.google.com' }) %>; building and enhancing the web experience.
     </p>
     <p>
       Outside of work, I listen to music, play some instruments, camp, and more or less try to enjoy the life I lead.
+    </p>
+    <p>
+      Two current areas of activity that excite me right now are my new podcast about Batman that I cohost with <%- externalLink('Alex Cash', { href: 'http://alexcash.com' }) %>, called <%- externalLink('Bat Lessons', { href: locals.batLessons }) %>, and a <%- externalLink('YouTube channel', { href: locals.coyoteDrums.youtube }) %> for my drum covers, called <%- link('Coyote Drums', { href: locals.coyoteDrums.path }) %>.
     </p>
     <p>
       You can find him on the internet in some other places.
@@ -38,9 +41,9 @@ scripts:
           { copy: 'LinkedIn', url: locals.linkedin, },
         ].map(item => externalLink(item.copy, {
           href: item.url,
-          itemprop: "url",
-          target: "blank",
-          rel: "noopener",
+          itemprop: 'url',
+          target: 'blank',
+          rel: 'noopener',
         }));
       %>
       <%- contactLinks.join(', ') %>.
@@ -49,19 +52,75 @@ scripts:
 </section>
 
 
+<section class="contributions">
+  <div class="content">
+    <h2><%- noWidows('Contributions to the internet.'); %></h2>
+    <div class="deck">
+    <%
+      const model = [
+        {
+          title: "Google Store",
+          image: "/images/experience/google-store.svg",
+          description: "Since 2018, I have been working on improving the customer experience across the Google Hardware Store e-commerce experience. My focus areas are new product launches, product pages, accessibility, site performance, SEO, and overall product quality.",
+          links: [
+            {
+              label: "Google Store",
+              url: "https://store.google.com",
+            }
+          ]
+        }, {
+          title: "Podcast: Bat Lessons",
+          image: "/images/experience/contributions/batlessons.webp",
+          description: `My friend ${externalLink('Alex Cash', { href: 'http://alexcash.com' })} and I have started a podcast together about Batman; the context around the development of the character, the history of the character, and the impact that our world had on theirs. Check it out!`,
+          links: [
+            {
+              label: "Podcast site",
+              url: locals.batLessons,
+            }
+          ]
+        }, {
+          title: "YouTube: Coyote Drums",
+          image: "/images/coyote-drums/logo.svg",
+          description: "I have a YouTube channel where I post recordings of me playing the drums over music. I hope to compose my own music someday.",
+          links: [
+            {
+              label: "Main Site",
+              path: locals.coyoteDrums.path,
+            }, {
+              label: "YouTube Channel",
+              url: locals.coyoteDrums.youtube,
+            }
+          ]
+        },
+      ]
+      model.forEach(({ description, image, title, links }) => {
+    %>
+        <%- partial('contributions-card', Object.assign(locals, { description, image, title, links })) %>
+      <% }); %>
+    </div>
+  </div>
+  <div class="content center">
+    <%- link('More experience', {
+      href: '/experience/',
+      class: 'button mega-button',
+    }) %>
+  </div>
+</section>
+
+
 <section class="thoughts">
   <div class="content">
     <header>
       <h2>
-        <%- noWidows("I have thoughts. Here are some recent ones."); %>
+        <%- noWidows('I have thoughts. Here are some recent ones.'); %>
       </h2>
     </header>
   </div>
   <%- partial('thoughts-list', Object.assign(locals, { thoughtCount: 6 })) %>
   <div class="content center">
     <%- link('More thoughts', {
-      href: "/thoughts/",
-      class: "button mega-button",
+      href: '/thoughts/',
+      class: 'button mega-button',
     }) %>
   </div>
 </section>
@@ -71,57 +130,22 @@ scripts:
   <div class="content">
     <header>
       <h2>
-        <%- noWidows("What I have been listening to."); %>
+        <%- noWidows('What I have been listening to.'); %>
       </h2>
       <p>
-        <%- noWidows("Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here are some of the albums that I've been listening to recently."); %>
+        <%- noWidows("Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here are some of the albums that I’ve been listening to recently."); %>
       </p>
     </header>
-    <div class='last-fm-module p' data-type="albums" src="/images/thoughts/last-fm/default.webp">
+    <div class="last-fm-module p" data-type="albums" src="/images/thoughts/last-fm/default.webp">
       <% for (let i = 0; i < 4; i++) { %>
         <%- defaultLastFMModule() %>
       <% } %>
     </div>
     <div class="center">
-    <%- link('More music details', {
-      href: "/thoughts/last-fm/",
-      class: "button mega-button",
-    }) %>
-    </div>
-  </div>
-</section>
-
-
-<section>
-  <div class="content">
-    <header>
-      <h2>
-        <%- noWidows("What I've been screaming into the abyss."); %>
-      </h2>
-      <p class="center p-margin">
-        &#61;&#61;&gt;
-        <%- externalLink(`@${locals.twitterHandle}`, {
-          href: `${locals.twitter}?ref_src=twsrc%5Etfw`
-        }) %>
-        &lt;&#61;&#61;
-      </p>
-    </header>
-    <div class="p">
-      <%- externalLink(`Tweets by @${locals.twitterHandle}`, {
-        class: "twitter-timeline",
-        href: `${locals.twitter}?ref_src=twsrc%5Etfw`,
-        'data-height': "800",
-        'data-theme': "light",
+      <%- link('More music details', {
+        href: '/thoughts/last-fm/',
+        class: 'button mega-button',
       }) %>
     </div>
   </div>
-  <script>
-    (function() {
-      const timelineElement = document.querySelector('.twitter-timeline[data-theme]');
-      if(matchMedia('(prefers-color-scheme: dark)').matches) {
-        timelineElement.dataset.theme = 'dark';
-      }
-    })();
-  </script>
-  <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </section>

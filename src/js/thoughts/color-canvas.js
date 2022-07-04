@@ -1,11 +1,15 @@
-(function colorCanvas() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   const steps = 256; // squares per color spectrum
   const squareMax = 256;
   const blueSlider = document.getElementById('blue-slider');
+  const playButton = document.getElementById('play-pause');
   const canvas = document.getElementById('canvas');
   const context = canvas.getContext('2d');
-  let canSlide = false;
   let blue;
+  let playing = false;
+  let direction = 1;
 
   blueSlider.setAttribute('step', squareMax / steps);
   blueSlider.setAttribute('max', squareMax);
@@ -46,23 +50,32 @@
       blue = newBlue;
       drawLoop(blue);
     }
-    if (canSlide) window.requestAnimationFrame(updateSlider);
   }
 
-  function slideOn() {
-    canSlide = true;
+  function play() {
+    if (!playing) return;
+    const sliderValue = Number(blueSlider.value);
+
+    blueSlider.value = sliderValue + direction;
     updateSlider();
+
+    if (Number(blueSlider.value) <= 0 || Number(blueSlider.value) >= squareMax) {
+      direction = 0 - direction;
+    }
+
+    window.requestAnimationFrame(play);
   }
 
-  function slideOff() {
-    canSlide = false;
+  function playPause() {
+    playButton.classList.toggle('play');
+    playing = !playing;
+
+    play();
   }
 
-  blueSlider.addEventListener('mousedown', slideOn);
-  blueSlider.addEventListener('touchstart', slideOn);
-  blueSlider.addEventListener('mouseup', slideOff);
-  blueSlider.addEventListener('touchend', slideOff);
+  blueSlider.addEventListener('input', updateSlider);
+  playButton.addEventListener('click', playPause);
 
   setCanvasDimensions();
   updateSlider();
-}());
+});

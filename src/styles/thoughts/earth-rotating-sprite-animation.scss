@@ -12,10 +12,10 @@ $frame-height: $sprite-height / $y-max;
 #frame-container {
   width: round($frame-width) + 2px;
   height: round($frame-height) + 2px;
-  --background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite.web');
+  --background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite.webp');
   margin: auto;
   border-radius: 100%;
-  transition-duration: 10ms;
+  transition-duration: 1ms;
 
   @for $frame from 0 to ($y-max * $x-max) {
     &[data-number="#{$frame}"] {

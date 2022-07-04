@@ -71,8 +71,9 @@
     overflow: hidden;
     user-select: none;
     margin-bottom: 0;
+    border-radius: 0;
 
-    background-image: url('/images/thoughts/minesweeper/sprite.webp');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     background-size: 920%;
     image-rendering: pixelated;
@@ -124,13 +125,14 @@
     transition: none;
     display: block;
     float: left;
-    background-image: url('/images/thoughts/minesweeper/sprite.webp');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     background-size: 1100%;
     image-rendering: pixelated;
     width: 39px;
     height: 67px;
     background-position-y: 55.5%;
+    border-radius: 0;
 
     @for $i from 0 through 9 {
       &[data-number="#{$i}"] {
@@ -144,7 +146,7 @@
     width: 52px;
     height: 52px;
     display: block;
-    background-image: url('/images/thoughts/minesweeper/sprite.webp');
+    background-image: url('/images/thoughts/minesweeper/sprite.png');
     background-repeat: no-repeat;
     image-rendering: pixelated;
     padding: 0;

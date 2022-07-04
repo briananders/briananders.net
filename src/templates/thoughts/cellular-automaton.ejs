@@ -1,6 +1,6 @@
 ---
 title: "Elementary Cellular Automaton"
-description: "If you've ever heard of Conway's The Game of Life, you may already have an idea of what this is. If not, now worries, it's not that crazy of a concept."
+description: "If you've ever heard of Conway’s The Game of Life, you may already have an idea of what this is. If not, now worries, it’s not that crazy of a concept."
 date: 2018-02-23
 priority: 0.8
 pageClasses:
@@ -39,15 +39,15 @@ scripts:
   </p>
   <ol>
     <li>Each "world" (or Automaton) starts with a single dark cell. I position it in the center.</li>
-    <li>Each cell's color, is decided by the 3 cells immediately above it</li>
-    <li>The key to each world's evolution is in the "rule"</li>
+    <li>Each cell’s color, is decided by the 3 cells immediately above it</li>
+    <li>The key to each world’s evolution is in the “rule”</li>
   </ol>
   <p>
-    Now let's unpack what that means.
+    Now let’s unpack what that means.
   </p>
 
   <p>
-    Each cell's color, is decided by the 3 cells immediately above it, in the shape of a capital T. Those three "parents" form a 3 digit binary sequence. 0 is white and 1 is black. There are 8 possible combinations of white and black values in a string of length 3.
+    Each cell’s color, is decided by the 3 cells immediately above it, in the shape of a capital T. Those three "parents" form a 3 digit binary sequence. 0 is white and 1 is black. There are 8 possible combinations of white and black values in a string of length 3.
   </p>
   <ol>
     <li>000</li>
@@ -65,7 +65,7 @@ scripts:
   </p>
 
   <p>
-    So a cell looks at its parents and uses their coloring as a look-up value against the main rule. If your parents are 101, you will select the 5th value from the right on the main rule's binary value. If it is a 1, the cell is black. Otherwise, it is white.
+    So a cell looks at its parents and uses their coloring as a look-up value against the main rule. If your parents are 101, you will select the 5th value from the right on the main rule’s binary value. If it is a 1, the cell is black. Otherwise, it is white.
   </p>
 
   <p>

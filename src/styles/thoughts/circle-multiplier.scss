@@ -10,12 +10,12 @@
   }
 
   #pause-button.paused {
-    color: $pallette--primary-color-text--white;
-    background-color: $pallette--primary-text-color--dark;
+    color: $palette--primary-color-text--white;
+    background-color: $palette--primary-text-color--dark;
   }
 
   #clear-button {
-    color: $pallette--primary-color-text--white;
+    color: $palette--primary-color-text--white;
     background-color: darken($color: red, $amount: 15);
 
     &:hover,

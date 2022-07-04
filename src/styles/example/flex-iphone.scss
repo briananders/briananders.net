@@ -26,13 +26,6 @@ main, dock {
 }
 dock {
   justify-content: space-evenly;
-
-  app {
-    animation-name: jiggle;
-    animation-timing-function: linear;
-    animation-duration: 500ms;
-    animation-iteration-count: infinite;
-  }
 }
 app {
   margin: 2vw;

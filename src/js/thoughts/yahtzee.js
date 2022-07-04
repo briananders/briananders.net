@@ -1,4 +1,6 @@
-(function yahtzee() {
+const ready = require('../_modules/document-ready');
+
+ready.document(() => {
   const rollElement = document.getElementById('roll');
   const diceElement = document.getElementById('dice');
   const die0Element = document.getElementById('die-0');
@@ -462,4 +464,4 @@
 
   attachEventListeners();
   resetRollCount();
-}());
+});

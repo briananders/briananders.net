@@ -1,6 +1,7 @@
 const itemApi = require('./_modules/last-fm/item-api');
+const ready = require('./_modules/document-ready');
 
-(function homepage() {
+ready.document(() => {
   itemApi.init({
     count: 4,
     description: false,
@@ -18,4 +19,4 @@ const itemApi = require('./_modules/last-fm/item-api');
       return data.topalbums.album;
     },
   });
-}());
+});

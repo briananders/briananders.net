@@ -17,10 +17,10 @@
     background-position: center;
 
     &[data-value="ant"] {
-      background-color: $pallette--primary-color-text--white;
+      background-color: $palette--primary-color-text--white;
     }
     &[data-value="anteater"] {
-      background-color: $pallette--primary-color-dark;
+      background-color: $palette--primary-color-dark;
     }
   }
 }
@@ -30,7 +30,7 @@
   width: 100%;
 }
 .overlay {
-  background-color: rgba($pallette--primary-color-text--white, 0.4);
+  background-color: rgba($palette--primary-color-text--white, 0.4);
   width: css-min(100vh, 100vw, var(--window-height));
   height: css-min(100vh, 100vw, var(--window-height));
   margin: auto;
@@ -40,10 +40,10 @@
   align-items: center;
   clip-path: circle(100% at center);
 
-  transition: clip-path 500ms ease;
+  transition: clip-path $transition-speed $transition-timing;
 
   button {
-    background-color: $pallette--primary-color-dark;
+    background-color: $palette--primary-color-dark;
   }
 
   &.hidden {
@@ -64,13 +64,13 @@
 
   span {
     display: block;
-    transition: width 300ms linear;
+    transition: width $transition-speed linear;
 
     &#ants-bar {
-      background-color: $pallette--primary-color-text--white;
+      background-color: $palette--primary-color-text--white;
     }
     &#ant-eaters-bar {
-      background-color: $pallette--primary-color-dark;
+      background-color: $palette--primary-color-dark;
     }
   }
 }

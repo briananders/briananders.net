@@ -1,6 +1,7 @@
 const { log } = require('../_modules/log');
+const ready = require('../_modules/document-ready');
 
-(function uniqueStars() {
+ready.document(() => {
   const scrollTo = require('../_modules/scroll-to');
 
   const nInput = document.getElementById('n');
@@ -47,7 +48,7 @@ const { log } = require('../_modules/log');
       /*
         Where r is the radius, cx,cy the origin, and a the angle.
 
-        That's pretty easy to adapt into any language with basic trig functions.
+        That’s pretty easy to adapt into any language with basic trig functions.
         Note that most languages will use radians for the angle in trig functions,
         so rather than cycling through 0..360 degrees,
         you're cycling through 0..2PI radians.
@@ -198,4 +199,4 @@ const { log } = require('../_modules/log');
 
   addEventListeners();
   go();
-}());
+});

@@ -11,7 +11,7 @@ main.thoughts.how-to-match {
     margin-bottom: $s6;
   }
   .tall {
-    border-top: $s3 solid var(--accent-color, #{$pallette--accent-color});
+    border-top: $s3 solid var(--accent-color);
   }
   .column-1,
   .column-3 {
@@ -26,7 +26,7 @@ main.thoughts.how-to-match {
     padding-bottom: 99999px;
     margin-bottom: -99999px;
     float: left;
-    color: $pallette--primary-color-text--white;
+    color: $palette--primary-color-text--white;
   }
   .example-1 .column-1,
   .example-1 .column-2 {
