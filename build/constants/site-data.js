@@ -21,7 +21,7 @@ module.exports = (dir) => {
     coyoteDrums: {
       youtube: 'https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw',
       path: '/coyote-drums',
-    }
+    },
     batLessons: 'https://batlessons.com',
     goodReads: 'https://www.goodreads.com/user/show/26461993-brian-anders',
     imdb: 'https://www.imdb.com/user/ur23740510/',
