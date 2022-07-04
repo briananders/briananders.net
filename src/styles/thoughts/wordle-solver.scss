@@ -31,7 +31,7 @@
 .board {
   overflow: hidden;
   padding: 0 $s1;
-  transition: height 200ms ease;
+  transition: height $transition-speed $transition-timing;
 }
 
 #options {
@@ -55,7 +55,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: var(--accent-color, #{$palette--accent-color});
+      background: var(--accent-color);
       color: $palette--primary-text-color--dark;
       @include font-size(2);
       display: flex;
@@ -67,7 +67,7 @@
     &.animate::before {
       animation-duration: 1500ms;
       animation-iteration-count: 1;
-      animation-timing-function: ease;
+      animation-timing-function: $transition-timing;
       animation-name: copied-click;
     }
   }

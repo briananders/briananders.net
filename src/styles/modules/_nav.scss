@@ -12,7 +12,7 @@ nav.main {
   z-index: 5;
   position: fixed;
   width: 100%;
-  background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+  background-color: var(--primary-color-dark);
 
   &.shadow,
   #nav-tray {
@@ -31,13 +31,13 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $nav-height;
-    background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+    background-color: var(--primary-color-dark);
 
     &::after {
       display: block;
       content: "";
       position: absolute;
-      background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+      background-color: var(--primary-color-dark);
       top: 0;
       bottom: 0;
       left: 100%;
@@ -68,8 +68,8 @@ nav.main {
     right: $s2;
     transition-property: transform;
     transition-duration: $transition-speed;
-    transition-timing-function: ease;
-    background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+    transition-timing-function: $transition-timing;
+    background-color: var(--primary-color-dark);
     box-shadow: 0 0 0 1px $color--white;
 
     &.slide-down {
@@ -95,7 +95,7 @@ nav.main {
       border-bottom-color: $color--white;
     }
     &::after {
-      border-bottom-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+      border-bottom-color: var(--primary-color-dark);
       transform: translateY(2px);
     }
   }

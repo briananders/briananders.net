@@ -40,7 +40,7 @@
   align-items: center;
   clip-path: circle(100% at center);
 
-  transition: clip-path 500ms ease;
+  transition: clip-path $transition-speed $transition-timing;
 
   button {
     background-color: $palette--primary-color-dark;
@@ -64,7 +64,7 @@
 
   span {
     display: block;
-    transition: width 300ms linear;
+    transition: width $transition-speed linear;
 
     &#ants-bar {
       background-color: $palette--primary-color-text--white;

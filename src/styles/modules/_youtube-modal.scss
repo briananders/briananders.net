@@ -19,11 +19,11 @@ html.youtube-modal-open body {
 
 .youtube-modal-close,
 .youtube-modal-container {
-  transition: opacity 300ms ease, top 300ms ease;
+  transition: opacity $transition-speed $transition-timing, top $transition-speed $transition-timing;
 }
 
 .youtube-modal-overlay {
-  transition: opacity 300ms ease;
+  transition: opacity $transition-speed $transition-timing;
 }
 
 html.youtube-modal-open {

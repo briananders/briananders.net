@@ -11,7 +11,7 @@ main.thoughts.how-to-match {
     margin-bottom: $s6;
   }
   .tall {
-    border-top: $s3 solid var(--accent-color, #{$palette--accent-color});
+    border-top: $s3 solid var(--accent-color);
   }
   .column-1,
   .column-3 {

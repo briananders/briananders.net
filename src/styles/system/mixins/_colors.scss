@@ -12,15 +12,10 @@
 
 @mixin palette--primary {
   color: $palette--primary-color-text--white;
-  background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+  background-color: var(--primary-color-dark);
 }
 
 @mixin palette--primary--active {
   color: $palette--primary-color-text--white;
-  background-color: var(--primary-color, #{$palette--primary-color});
-}
-
-@mixin palette--secondary {
-  // color: $palette--primary-color-text--white;
-  // background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+  background-color: var(--primary-color);
 }
