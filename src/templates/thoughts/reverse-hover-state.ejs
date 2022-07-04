@@ -1,15 +1,13 @@
 ---
-title: "How to change the style of elements when a different element gets the mouse hover"
-description: ""
-date: 2022-06-10
+title: "CSS Only: How do you change the style of the elements you're NOT hovering over?"
+description: "This one is kind of a finicky CSS trick, but the solution is pretty simple."
+date: 2022-07-03
 priority: 0.8
 pageClasses:
   - 'thoughts reverse-hover-state'
 layout: base
 styles:
   - 'main'
-  - 'thoughts/reverse-hover-state'
-scripts:
   - 'thoughts/reverse-hover-state'
 ---
 
@@ -48,13 +46,16 @@ scripts:
 }
 .container:hover .card {
   /* unique-style */
+  opacity: 0.2;
 }
 .card {
   pointer-events: all;
   /* default-style */
+  opacity: 1;
 }
 .container:hover .card:hover {
   /* default-style */
+  opacity: 1;
 }`, { language: 'css' }); %>
   </div>
 </section>

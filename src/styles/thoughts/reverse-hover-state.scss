@@ -13,27 +13,22 @@
     display: block;
     width: 100px;
     height: 100px;
-    background-color: var(--accent-color, #{$pallette--accent-color});
+    background-color: var(--accent-color);
     margin: $s2;
     pointer-events: all;
 
-    border-radius: 0%;
     opacity: 1;
-    transition-property: opacity, border-radius, background-color;
-    transition-duration: 500ms;
-    transition-timing-function: ease;
+    transition-property: opacity;
+    transition-duration: $transition-speed;
+    transition-timing-function: $transition-timing;
   }
 
   &:hover {
     card {
-      opacity: 0.5;
-      border-radius: 100%;
-      background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+      opacity: 0.2;
 
       &:hover {
         opacity: 1;
-        border-radius: 0%;
-        background-color: var(--accent-color, #{$pallette--accent-color});
       }
     }
   }
