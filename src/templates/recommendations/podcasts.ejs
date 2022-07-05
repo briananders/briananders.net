@@ -12,7 +12,7 @@ styles:
 ---
 
 
-<article class="content" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="container" itemscope itemtype="http://schema.org/BlogPosting">
   <blockquote>
     <p>A podcast is an episodic series of digital audio files which a user can subscribe to so that new episodes are automatically downloaded via web syndication to the user's own local computer, mobile application, or portable media player.</p>
     <p>The word arose as a portmanteau of "iPod" (a brand of media player) and "broadcast". Thus, the files distributed are in audio format, but may sometimes include other file formats such as PDF or ePub. Videos which are shared following a podcast model are called video podcasts or vodcasts.</p>
@@ -110,29 +110,34 @@ styles:
         imgUrl: '/images/recommendations/podcasts/the-end-of-the-world.webp',
         url: 'https://www.iheart.com/podcast/105-the-end-of-the-world-with-30006093/',
         description: `Josh Clark of Stuff You Should Know presents a 10-episode deep dive that explores the future of humanity, and finds dangers we have never encountered before, lurking just ahead of us in time. And if we humans are alone in the universe, if we don't survive intelligent, life dies out with us too.`,
+      }, {
+        name: 'Bat Lessons',
+        imgUrl: '/images/experience/contributions/batlessons.webp',
+        url: 'https://batlessons.com',
+        description: `My friend ${externalLink('Alex Cash', { href: 'http://alexcash.com' })} and I have started a podcast together about Batman; the context around the development of the character, the history of the character, and the impact that our world had on theirs. Check it out!`,
       },
     ];
 
     podcasts.forEach(podcast => {
   %>
     <section>
-      <%- externalLink(lazyImage({
+      <%- lazyImage({
         src: podcast.imgUrl,
         alt: `${podcast.name} cover art`,
         classString: 'cover',
-        }), {
-          href: podcast.url,
-          class: 'cover-link'
         }) %>
       <div class="details">
-        <h2 class="h4">
-          <%- externalLink(podcast.name, {
-            href: podcast.url,
-          }) %>
+        <h2 class="h3">
+          <%- podcast.name %>
         </h2>
-        <p>
+        <p class="description">
           <%- podcast.description %>
         </p>
+        <div class="links">
+          <%- externalLink('Podcast site', {
+            href: podcast.url,
+          }) %>
+        </div>
       </div>
     </section>
   <% }); %>

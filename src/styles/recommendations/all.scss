@@ -1,39 +1,62 @@
 @import "system/utilities";
 
 .section-container {
-  display: flex;
-  flex-wrap: wrap;
-  @include paragraph;
+  display: grid;
+  gap: $s10;
 
-  a.cover-link {
-    max-width: 150px;
+  img {
+    grid-area: image;
+    width: 100%;
+    margin-top: 9px;
     padding: 0;
     background: none;
-  }
 
-  img.cover {
-    max-width: 150px;
-    display: block;
-  }
-
-  p.year {
-    margin-bottom: $s2;
+    @include mq-max($medium) {
+      width: css-min(100%, 200px);
+      margin: 0 auto #{$s4};
+    }
   }
 
   section {
+    padding: $s2;
+    text-align: left;
     display: grid;
     grid-template-columns: 1fr;
-    align-items: start;
-    gap: $s2;
-    width: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "image"
+      "title"
+      "description"
+      "links";
+    column-gap: $s10;
+    margin-bottom: 0;
 
     @include mq($medium) {
-      grid-template-columns: css-max(150px, percentage(150/720)) 1fr;
-      gap: $s4;
+      grid-template-columns: css-min(25%, 200px) 1fr;
+      grid-template-areas:
+        "image title"
+        "image description"
+        "image links";
     }
   }
 
   h2 {
     text-align: left;
+    grid-area: title;
+    margin-bottom: $s1;
+  }
+
+  p {
+    grid-area: description;
+    margin-bottom: $s1;
+  }
+
+  .links {
+    grid-area: links;
+    line-height: 1.7;
+
+    a {
+      line-height: 27px;
+    }
   }
 }

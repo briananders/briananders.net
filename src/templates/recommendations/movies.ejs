@@ -14,7 +14,7 @@ styles:
 <p><%- externalLink("My IMDb profile", { href: locals.imdb }) %></p>
 
 
-<article itemscope itemtype="http://schema.org/BlogPosting">
+<article itemscope itemtype="http://schema.org/BlogPosting" class="container">
 
   <div class="section-container">
   <%
@@ -449,24 +449,23 @@ styles:
     sortedMovies.forEach(movie => {
   %>
     <section>
-      <%- externalLink(lazyImage({
+      <%- lazyImage({
         src: movie.imageSrc,
         alt: `${movie.name} movie poster`,
         classString: 'cover',
-        }), {
-          href: `https://www.imdb.com/title/${movie.imdb.id}`,
-          class: 'cover-link',
         }) %>
       <div class="details">
-        <h2 class="h4">
-          <%- externalLink(movie.name, {
-            href: `https://www.imdb.com/title/${movie.imdb.id}`,
-          }) %>
+        <h2 class="h3">
+          <%- movie.name %> (<%- movie.imdb.year %>)
         </h2>
-        <p class="year"><%- movie.imdb.year %></p>
-        <p>
+        <p class="description">
           <%- movie.description %>
         </p>
+        <div class="links">
+          <%- externalLink('IMDb Page', {
+            href: `https://www.imdb.com/title/${movie.imdb.id}`,
+          }) %>
+        </div>
       </div>
     </section>
   <% }); %>
