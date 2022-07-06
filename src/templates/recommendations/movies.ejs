@@ -11,7 +11,7 @@ styles:
   - 'recommendations/movies'
 ---
 
-<p><%- externalLink("My IMDb profile", { href: locals.imdb }) %></p>
+<p><%- externalLink("My IMDb profile", { href: locals.imdb }); %></p>
 
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="container">
@@ -453,7 +453,7 @@ styles:
         src: movie.imageSrc,
         alt: `${movie.name} movie poster`,
         classString: 'cover',
-        }) %>
+        }); %>
       <div class="details">
         <h2 class="h3">
           <%- movie.name %> (<%- movie.imdb.year %>)
@@ -464,7 +464,7 @@ styles:
         <div class="links">
           <%- externalLink('IMDb Page', {
             href: `https://www.imdb.com/title/${movie.imdb.id}`,
-          }) %>
+          }); %>
         </div>
       </div>
     </section>
