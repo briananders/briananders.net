@@ -9,7 +9,7 @@
       href: '/',
       class: 'brand',
       'aria-label': 'Brian Anders home page',
-    }) %>
+    }); %>
     <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
       Menu
     </button>
@@ -18,7 +18,7 @@
         href: '/',
         class: 'nav-link',
         role: 'menuitem',
-      }) %>
+      }); %>
       <%
         let basePages = getChildPages('');
         basePages.forEach(({ url, data }) => {
@@ -27,7 +27,7 @@
           href: `/${url}`,
           class: 'nav-link',
           role: 'menuitem',
-        }) %>
+        }); %>
       <% }); %>
     </div>
   </div>

@@ -37,7 +37,7 @@ scripts:
   <h2>Top Albums</h2>
   <div class='last-fm-module p' data-type="albums" src="/images/thoughts/last-fm/default.webp">
     <% for (let i = 0; i < 10; i++) { %>
-      <%- defaultLastFMModule() %>
+      <%- defaultLastFMModule(); %>
     <% } %>
   </div>
 </section>
@@ -46,7 +46,7 @@ scripts:
   <h2>Top Artists</h2>
   <div class='last-fm-module p' data-type="artists">
     <% for (let i = 0; i < 10; i++) { %>
-      <%- defaultLastFMModule(false) %>
+      <%- defaultLastFMModule(false); %>
     <% } %>
   </div>
 </section>

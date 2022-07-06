@@ -166,13 +166,13 @@ function updateColor() {
 }
 
 function updateStroke() {
-  mainStroke.dataset.stroke = Number(diameter);
+  mainStroke.dataset.stroke = diameter;
   mainStroke.querySelector('span').innerHTML = `${diameter}px`;
   mainStroke.setAttribute('style', `--stroke: ${diameter}px`);
 }
 
 function updateSlider() {
-  diameter = strokeSlider.value;
+  diameter = Number(escape(strokeSlider.value));
   updateStroke();
 }
 
