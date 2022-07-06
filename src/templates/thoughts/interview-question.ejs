@@ -27,7 +27,7 @@ styles:
       classes: ['block-center', 'block', 'p'], 
       src: "/images/thoughts/interview-question/ios7-on-iphone4.webp", 
       alt: "Screen capture of iPhone 4 with iOS 7 installed" 
-    }) %>
+    }); %>
     <p>
       I say up front, "You don’t need to look up anything. I can answer any question you will need to solve this. I am your Google. Ask me anything."
     </p>
@@ -63,7 +63,7 @@ styles:
     <app><name>name</name></app>
     <app><name>name</name></app>
   </dock>
-</phone>`) %>
+</phone>`); %>
   </div>
 </section>
 
@@ -162,7 +162,7 @@ styles:
 phone, main, dock, app, name {
   display: block;
   box-sizing: border-box;
-}`) %>
+}`); %>
   </div>
 </section>
 
@@ -231,13 +231,13 @@ app {
      Other apps will stack up behind nicely */
   margin-left: 4%;
   margin-top: 4%;
-}`) %>
+}`); %>
     <ul class="p">
       <li>
-        <%- link("Proof of concept", { href: "/example/float-no-vws-iphone/" }) %>
+        <%- link("Proof of concept", { href: "/example/float-no-vws-iphone/" }); %>
       </li>
       <li>
-        <%- externalLink("Float MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Web/CSS/float" }) %>
+        <%- externalLink("Float MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Web/CSS/float" }); %>
       </li>
     </ul>
   </div>
@@ -290,10 +290,10 @@ app {
   height: 20vw;
 
   margin: 2vw;
-}`) %>
+}`); %>
     <ul>
-      <li><%- link("Proof of concept", { href: "/example/float-iphone/" }) %></li>
-      <li><%- externalLink("Viewport Width unit (vw) W3C reference", { href: "https://www.w3.org/TR/css-values-4/#vw" }) %></li>
+      <li><%- link("Proof of concept", { href: "/example/float-iphone/" }); %></li>
+      <li><%- externalLink("Viewport Width unit (vw) W3C reference", { href: "https://www.w3.org/TR/css-values-4/#vw" }); %></li>
     </ul>
   </div>
 </section>
@@ -346,10 +346,10 @@ app {
   width: 20vw;
   height: 20vw;
   margin: 2vw;
-}`) %>
+}`); %>
     <ul>
-      <li><%- link("Proof of concept", { href: "/example/flex-iphone/"}) %></li>
-      <li><%- externalLink("Flexbox MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Glossary/Flexbox"}) %></li>
+      <li><%- link("Proof of concept", { href: "/example/flex-iphone/"}); %></li>
+      <li><%- externalLink("Flexbox MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Glossary/Flexbox"}); %></li>
     </ul>
   </div>
 </section>
@@ -401,10 +401,10 @@ app {
   border-radius: 20%;
   /* We don’t need to set the height or width.
      The grid handles it */
-}`) %>
+}`); %>
     <ul>
-      <li><%- link("Proof of concept", { href: "/example/grid-iphone/" }) %></li>
-      <li><%- externalLink("CSS Grid MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid" }) %></li>
+      <li><%- link("Proof of concept", { href: "/example/grid-iphone/" }); %></li>
+      <li><%- externalLink("CSS Grid MDN reference", { href: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid" }); %></li>
     </ul>
   </div>
 </section>
