@@ -13,8 +13,39 @@ canvas {
 }
 
 input {
+  display: block;
+  flex-grow: 1;
+}
+
+.form {
+  display: flex;
   max-width: $squareSize + px;
   margin: $s10 auto 0;
-  display: block;
-  width: 90%;
+  align-items: center;
+}
+
+#play-pause {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  padding-top: 0;
+
+  img {
+    border-radius: 0;
+  }
+
+  &.play {
+    .play {
+      display: none;
+    }
+  }
+
+  &:not(.play) {
+    .pause {
+      display: none;
+    }
+  }
 }

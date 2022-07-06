@@ -16,7 +16,7 @@ styles:
     <p>A podcast is an episodic series of digital audio files which a user can subscribe to so that new episodes are automatically downloaded via web syndication to the user’s own local computer, mobile application, or portable media player.</p>
     <p>The word arose as a portmanteau of "iPod" (a brand of media player) and "broadcast". Thus, the files distributed are in audio format, but may sometimes include other file formats such as PDF or ePub. Videos which are shared following a podcast model are called video podcasts or vodcasts.</p>
     <cite>
-      <%- externalLink('Wikipedia.org', { href: 'https://en.wikipedia.org/wiki/Podcast' }) %>
+      <%- externalLink('Wikipedia.org', { href: 'https://en.wikipedia.org/wiki/Podcast' }); %>
     </cite>
   </blockquote>
 
@@ -88,7 +88,7 @@ styles:
   %>
     <section id="<%- podcast.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(); %>">
       <header>
-        <%- lazyImage({ src: podcast.imgUrl, alt: podcast.name, classes: ['podcast-cover'] }) %>
+        <%- lazyImage({ src: podcast.imgUrl, alt: podcast.name, classes: ['podcast-cover'] }); %>
         <h2><%- podcast.name %></h2>
       </header>
       <p>
@@ -105,7 +105,7 @@ styles:
           href: podcast.url,
           target: 'blank',
           rel: 'noopener',
-        }) %>
+        }); %>
 
         <% if (podcast.wiki) { %>
           and
@@ -114,7 +114,7 @@ styles:
             href: podcast.wiki,
             target: 'blank',
             rel: 'noopener',
-          }) %>
+          }); %>
         <% } %>
       </p>
     </section>

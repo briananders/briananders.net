@@ -172,7 +172,7 @@ function updateStroke() {
 }
 
 function updateSlider() {
-  diameter = strokeSlider.value;
+  diameter = Number(escape(strokeSlider.value));
   updateStroke();
 }
 
