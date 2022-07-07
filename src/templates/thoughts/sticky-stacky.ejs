@@ -29,7 +29,7 @@ styles:
     <p>
       <%- lazyImage({
         src: '/images/thoughts/sticky-stacky/architecture.svg',
-      }) %>
+      }); %>
     </p>
   </div>
 </section>
@@ -42,7 +42,7 @@ styles:
   <div class="content">
     <%- code(`<div class="sticky-container">
   <nav>Sticky Nav Element</nav>
-</div>`, { language: 'html' }) %>
+</div>`, { language: 'html' }); %>
   </div>
 </section>
 
@@ -52,7 +52,7 @@ styles:
 
 <section>
   <div class="content">
-    <%- code(getFileContents('/styles/modules/_sticky-stacky.scss'), { language: 'css' }) %>
+    <%- code(getFileContents('/styles/modules/_sticky-stacky.scss'), { language: 'css' }); %>
   </div>
 </section>
 
@@ -62,7 +62,7 @@ styles:
 
 <section>
   <div class="content">
-    <%- code(getFileContents('/js/_modules/sticky-stacky.js'), { language: 'javascript' }) %>
+    <%- code(getFileContents('/js/_modules/sticky-stacky.js'), { language: 'javascript' }); %>
   </div>
 </section>
 </section>
