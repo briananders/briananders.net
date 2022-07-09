@@ -19,3 +19,8 @@
   color: $palette--primary-color-text--white;
   background-color: var(--primary-color);
 }
+
+@mixin palette--header {
+  color: $palette--primary-color-text--white;
+  background-color: var(--primary-color-dark, #{$palette--primary-color-dark});
+}

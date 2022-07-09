@@ -1,3 +1,5 @@
+@import "../thoughts/sticky-stacky";
+
 $nav-height: $s11;
 
 html {
@@ -10,14 +12,8 @@ nav.main {
   margin: 0;
   transition-property: opacity;
   z-index: 5;
-  position: fixed;
   width: 100%;
   background-color: var(--primary-color-dark);
-
-  &.shadow,
-  #nav-tray {
-    box-shadow: 0 0 $s2 $palette--primary-text-color--dark;
-  }
 
   a,
   a:visited,

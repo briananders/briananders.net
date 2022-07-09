@@ -2,6 +2,7 @@ const analytics = require('./_modules/analytics');
 const lazyLoader = require('./_modules/lazy-loader');
 const noAnimations = require('./_modules/no-animations');
 const ready = require('./_modules/document-ready');
+const stickyStack = require('./_modules/sticky-stacky');
 const windowResize = require('./_modules/window-resize');
 
 function setupNavEvents() {
@@ -53,20 +54,20 @@ function setUpSkipNav() {
   });
 }
 
-function navScrollWatcher() {
-  const mainNav = document.querySelector('nav.main');
+  // function navScrollWatcher() {
+  //   const mainNav = document.querySelector('nav.main');
 
-  const checkScrollDepth = () => {
-    if (window.scrollY <= 0) {
-      mainNav.classList.remove('shadow');
-    } else {
-      mainNav.classList.add('shadow');
-    }
-  };
+  //   const checkScrollDepth = () => {
+  //     if (window.scrollY <= 0) {
+  //       mainNav.classList.remove('shadow');
+  //     } else {
+  //       mainNav.classList.add('shadow');
+  //     }
+  //   };
 
-  window.addEventListener('scroll', checkScrollDepth);
-  checkScrollDepth();
-}
+  //   window.addEventListener('scroll', checkScrollDepth);
+  //   checkScrollDepth();
+  // }
 
 function testForTouch() {
   if ('ontouchstart' in document.documentElement) {
@@ -107,11 +108,12 @@ ready.document(() => {
   preventFormSubmit();
   setupNavEvents(analytics);
   testForTouch();
-  navScrollWatcher();
+  // navScrollWatcher();
   setMainMinHeight();
   setUpSkipNav();
   noAnimations.initBodyClass();
 
   lazyLoader.init();
   analytics.watchElements();
+  stickyStack.init();
 });
