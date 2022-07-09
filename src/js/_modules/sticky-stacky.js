@@ -60,6 +60,11 @@ class StickyStacky {
   }
 }
 
+
+
+
+
+
 /**
  * class StickyController global controller for StickyStacky elements
  */
@@ -176,6 +181,9 @@ class StickyController {
     setTimeout(this.#update.bind(this), 100);
   }
 }
+
+
+
 
 
 /*
