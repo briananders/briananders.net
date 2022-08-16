@@ -1,6 +1,6 @@
 ---
-title: 'Vertically center align siblings'
-description: 'Aligning elements vertically within a container in a flexible CSS-only way can often be an annoying challenge. There are a bunch of ways to do it. Here are a few.'
+title: 'Vertically center sibling elements'
+description: 'Aligning elements vertically within a container in a flexible CSS-only way, can often be an annoying challenge. There are several ways to do it. Here are 5 common options, ordered from oldest to newest.'
 date: 2021-04-30
 priority: 0.8
 pageClasses:
@@ -16,23 +16,87 @@ scripts:
 
 <%
   const mockContent1 = `  <h3>Fusce et ipsum mauris.</h3>
-      <p>Vestibulum a nulla euismod, elementum mi a, ultrices ipsum. Integer dolor mauris, pharetra nec sollicitudin non, tincidunt a tellus.</p>
+      <p>Vestibulum a nulla euismod.</p>
       <button class="button">More text</button>`;
   const mockContent2 = `  <h3>Fusce blandit tempor ullamcorper.</h3>
-      <p>Nullam urna purus, placerat fermentum sodales feugiat, feugiat nec risus. Integer tincidunt, sem nec vestibulum consequat, massa diam tristique risus, mattis venenatis velit quam at velit.</p>
+      <p>Nullam urna purus, placerat fermentum sodales feugiat.</p>
       <button class="button">More text</button>`;
   const mockContent3 = `  <h3>Nam eget magna dolor.</h3>
-      <p>Integer eu est est. Sed ornare et magna at sagittis. Phasellus faucibus, orci nec volutpat volutpat, lacus nisl vulputate sapien, sit amet elementum diam velit sed nunc. In sagittis malesuada ipsum, vel dignissim metus commodo quis. Integer varius vel erat non pharetra. Cras vestibulum, urna vitae condimentum lacinia, ex elit consectetur sapien, non suscipit dui elit non orci.</p>
+      <p>Integer eu est est.</p>
       <button class="button">More text</button>`;
   const mockContent = [mockContent1, mockContent2, mockContent3];
+
+  const defaultMarkup = `<div class="row">
+  <div class="cell">
+    Contents...
+  </div>
+  <div class="cell">
+    Contents...
+  </div>
+  <div class="cell">
+    Contents...
+  </div>
+</div>`;
 %>
 
 
 <section class="table-element">
   <div class="container">
     <header>
-      <h2>&lt;table&gt;</h2>
+      <h2>1. Use a &lt;table&gt; element</h2>
     </header>
+
+    <p>
+      This may seem like a blast from the past for many people. The table element is the way that websites would do vertical alignment back in the Internet Explorer 6 days. This still works today, but has drawbacks. For instance, tables aren't very responsive. In certain circumstances, this may be a good option to call upon.
+    </p>
+
+    <p>
+      Start by using the standard <%- externalLink('table', { href: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table' }); %>, <%- externalLink('table row', { href: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr' }); %>, and <%- externalLink('table data cell', { href: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td' }); %> elements. Then, the only CSS required is to set the table data cell <%- externalLink('vertical-align property', { href: 'https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align' }); %> to "middle".
+    </p>
+
+    <p>
+      <%- externalLink('MDN table element documentation', {
+        href: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table',
+      }); %>
+    </p>
+
+    <header>
+      <h3>The markup</h3>
+    </header>
+
+  <%-
+    code(`<table>
+  <tr>
+    <td>
+      Contents...
+    </td>
+    <td>
+      Contents...
+    </td>
+    <td>
+      Contents...
+    </td>
+  </tr>
+</table>`, { language: 'html' });
+  %>
+
+    <header>
+      <h3>The styles</h3>
+    </header>
+  <%-
+    code(`td {
+  vertical-align: middle;
+}`, { language: 'scss' });
+  %>
+
+    <header>
+      <h3>Proof of concept</h3>
+    </header>
+
+    <p>
+      See how it behaves here. Click on any of the "more text" buttons to add more text to the box copy. Adding more text is a good way to change which cell is the tallest. This shows that the order is irrelevant to keeping the the cells vertically centered.
+    </p>
+    
     <scroller>
       <table>
         <tr>
@@ -43,32 +107,6 @@ scripts:
       </table>
     </scroller>
 
-    <header>
-      <h3>HTML</h3>
-    </header>
-  <%-
-    code(`<table class="container">
-  <tr>
-    <td>
-    ${mockContent.join(`
-    </td>
-    <td>
-    `)}
-    </td>
-  </tr>
-</table>`);
-  %>
-
-
-    <header>
-      <h3>CSS</h3>
-    </header>
-  <%-
-    code(`td {
-  vertical-align: middle;
-}`);
-  %>
-
   </div>
 </section>
 
@@ -76,45 +114,52 @@ scripts:
 <section class="display-table">
   <div class="container">
     <header>
-      <h2>display: table;</h2>
+      <h2>2. Emulate the &lt;table&gt; element with CSS</h2>
     </header>
-    <scroller>
-      <div class="table">
-        <row>
-          <cell>
-            <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</cell><cell>'); %>
-          </cell>
-        </row>
-      </div>
-    </scroller>
+
+    <p>
+      A more modern take on the <table> element, using the display property to apply table styling to your markup improves responsiveness. Using the display property, set the appropriate elements to use "table-row" and "table-cell". Then, like for the table example above, set the table cell <%- externalLink('vertical-align property', { href: 'https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align' }); %> property to "middle".
+    </p>
 
     <header>
-      <h3>HTML</h3>
+      <h3>The markup</h3>
     </header>
+
   <%-
-    code(`<row>
-  <cell>
-  ${mockContent.join(`
-  </cell>
-  <cell>
-  `).replace(/      /g,'    ')}
-  </cell>
-</row>`);
+    code(defaultMarkup, { language: 'html' });
   %>
 
-
     <header>
-      <h3>CSS</h3>
+      <h3>The styles</h3>
     </header>
+
   <%-
-    code(`row {
+    code(`.row {
   display: table-row;
 }
-cell {
+.cell {
   display: table-cell;
   vertical-align: middle;
-}`);
+}`, { language: 'scss' });
   %>
+
+    <header>
+      <h3>Proof of concept</h3>
+    </header>
+
+    <p>
+      See how it behaves here. Click on any of the "more text" buttons to add more text to the box copy. Adding more text is a good way to change which cell is the tallest. This shows that the order is irrelevant to keeping the the cells vertically centered.
+    </p>
+
+    <scroller>
+      <div class="table">
+        <div class="row">
+          <div class="cell">
+            <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</div><div class="cell">'); %>
+          </div>
+        </div>
+      </div>
+    </scroller>
 
   </div>
 </section>
@@ -123,46 +168,53 @@ cell {
 <section class="inline-block">
   <div class="container">
     <header>
-      <h2>display: inline-block;</h2>
+      <h2>3. Use inline-block display styles</h2>
     </header>
-    <scroller>
-      <row>
-        <cell>
-          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</cell><cell>'); %>
-        </cell>
-      </row>
-    </scroller>
+
+    <p>
+      explanation
+    </p>
 
     <header>
-      <h3>HTML</h3>
+      <h3>The markup</h3>
     </header>
+
   <%-
-    code(`<row>
-  <cell>
-  ${mockContent.join(`
-  </cell>
-  <cell>
-  `).replace(/      /g,'    ')}
-  </cell>
-</row>`);
+    code(defaultMarkup, { language: 'html' });
   %>
 
-
     <header>
-      <h3>CSS</h3>
+      <h3>The styles</h3>
     </header>
+
   <%-
-    code(`row {
+    code(`.row {
   white-space: nowrap;
   display: block;
 }
-cell {
+.cell {
   display: inline-block;
   vertical-align: middle;
   width: 33.33333%;
   white-space: normal;
-}`);
+}`, { language: 'scss' });
   %>
+
+    <header>
+      <h3>Proof of concept</h3>
+    </header>
+
+    <p>
+      See how it behaves here. Click on any of the "more text" buttons to add more text to the box copy. Adding more text is a good way to change which cell is the tallest. This shows that the order is irrelevant to keeping the the cells vertically centered.
+    </p>
+
+    <scroller>
+      <div class="row">
+        <div class="cell">
+          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</div><div class="cell">'); %>
+        </div>
+      </div>
+    </scroller>
 
   </div>
 </section>
@@ -171,41 +223,47 @@ cell {
 <section class="flex">
   <div class="container">
     <header>
-      <h2>display: flex;</h2>
+      <h2>4. Use CSS Flexbox</h2>
     </header>
-    <scroller>
-      <row>
-        <cell>
-          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</cell><cell>'); %>
-        </cell>
-      </row>
-    </scroller>
-
+    
+    <p>
+      https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+    </p>
 
     <header>
-      <h3>HTML</h3>
+      <h3>The markup</h3>
     </header>
+
   <%-
-    code(`<row>
-  <cell>
-  ${mockContent.join(`
-  </cell>
-  <cell>
-  `).replace(/      /g,'    ')}
-  </cell>
-</row>`);
+    code(defaultMarkup, { language: 'html' });
   %>
 
-
     <header>
-      <h3>CSS</h3>
+      <h3>The styles</h3>
     </header>
+
   <%-
-    code(`row {
+    code(`.row {
   display: flex;
   align-items: center;
-}`);
+}`, { language: 'scss' });
   %>
+
+    <header>
+      <h3>Proof of concept</h3>
+    </header>
+
+    <p>
+      See how it behaves here. Click on any of the "more text" buttons to add more text to the box copy. Adding more text is a good way to change which cell is the tallest. This shows that the order is irrelevant to keeping the the cells vertically centered.
+    </p>
+
+    <scroller>
+      <div class="row">
+        <div class="cell">
+          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</div><div class="cell">'); %>
+        </div>
+      </div>
+    </scroller>
 
   </div>
 </section>
@@ -214,42 +272,48 @@ cell {
 <section class="grid">
   <div class="container">
     <header>
-      <h2>display: grid;</h2>
+      <h2>5. Use CSS Grid</h2>
     </header>
-    <scroller>
-      <row>
-        <cell>
-          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</cell><cell>'); %>
-        </cell>
-      </row>
-    </scroller>
 
+    <p>
+      https://developer.mozilla.org/en-US/docs/Web/CSS/grid
+    </p>
 
     <header>
-      <h3>HTML</h3>
+      <h3>The markup</h3>
     </header>
+
   <%-
-    code(`<row>
-  <cell>
-  ${mockContent.join(`
-  </cell>
-  <cell>
-  `).replace(/      /g,'    ')}
-  </cell>
-</row>`);
+    code(defaultMarkup, { language: 'html' });
   %>
 
-
     <header>
-      <h3>CSS</h3>
+      <h3>The styles</h3>
     </header>
+
   <%-
-    code(`row {
+    code(`.row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-}`);
+}`, { language: 'scss' });
   %>
+
+    <header>
+      <h3>Proof of concept</h3>
+    </header>
+
+    <p>
+      See how it behaves here. Click on any of the "more text" buttons to add more text to the box copy. Adding more text is a good way to change which cell is the tallest. This shows that the order is irrelevant to keeping the the cells vertically centered.
+    </p>
+
+    <scroller>
+      <div class="row">
+        <div class="cell">
+          <%- mockContent.map((mock) => `<div class="shadow">${mock}</div>`).join('</div><div class="cell">'); %>
+        </div>
+      </div>
+    </scroller>
 
   </div>
 </section>
