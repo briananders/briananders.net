@@ -75,6 +75,8 @@
 
 <% const fontApi = 'https://fonts.googleapis.com/css?family=Roboto:100,200,300,500|Source+Serif+Pro&display=swap'; %>
 
+<meta name="theme-color" content="#212121">
+
 <link rel="preload" media="all" href="<%- fontApi %>" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style">
 <% locals.styles.forEach((path) => { %>
   <% if(path === 'main') { %>

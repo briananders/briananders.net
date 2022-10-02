@@ -27,6 +27,12 @@
       }
 
       document.documentElement.classList.add(palette);
+
+      window.requestAnimationFrame(() => {
+        var paletteHex = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+        paletteHex = paletteHex.replace(/\s/g, '');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', paletteHex);
+      });
     }
     setSitePalette();
   </script>
