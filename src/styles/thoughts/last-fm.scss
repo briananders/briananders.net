@@ -36,7 +36,7 @@
     bar {
       display: block;
       height: $s2;
-      background-color: var(--primary-color-dark);
+      background-color: $palette--primary-color-dark;
       margin-top: $s1;
       transition-property: background-color;
       transition-duration: $transition-speed;

@@ -199,7 +199,7 @@ input[type=checkbox] {
       width: $s4;
       height: $s4;
       border-radius: $s2;
-      background-color: var(--accent-color);
+      background-color: $palette--accent-color;
       top: -#{$s1 / 2};
       left:-#{$s1 / 2};
       transition: left $transition-speed, background-color $transition-speed;
@@ -208,7 +208,7 @@ input[type=checkbox] {
 
     /* Checkbox checked toggle label bg color */
     &:checked {
-      background-color: var(--accent-color);
+      background-color: $palette--accent-color;
 
       /* Checkbox checked effect */
       &::before {

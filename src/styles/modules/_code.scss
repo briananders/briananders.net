@@ -24,7 +24,7 @@ code {
   position: relative;
   text-align: center;
   display: flex;
-  border: 2px solid var(--primary-color);
+  border: 2px solid $palette--primary-color;
 
   &::before,
   &::after {

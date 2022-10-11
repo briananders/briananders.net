@@ -13,7 +13,7 @@ nav.main {
   transition-property: opacity;
   z-index: 5;
   width: 100%;
-  background-color: var(--primary-color-dark);
+  background-color: $palette--primary-color-dark;
 
   a,
   a:visited,
@@ -27,13 +27,13 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $nav-height;
-    background-color: var(--primary-color-dark);
+    background-color: $palette--primary-color-dark;
 
     &::after {
       display: block;
       content: "";
       position: absolute;
-      background-color: var(--primary-color-dark);
+      background-color: $palette--primary-color-dark;
       top: 0;
       bottom: 0;
       left: 100%;
@@ -65,7 +65,7 @@ nav.main {
     transition-property: transform;
     transition-duration: $transition-speed;
     transition-timing-function: $transition-timing;
-    background-color: var(--primary-color-dark);
+    background-color: $palette--primary-color-dark;
     box-shadow: 0 0 0 1px $color--white;
 
     &.slide-down {
@@ -91,7 +91,7 @@ nav.main {
       border-bottom-color: $color--white;
     }
     &::after {
-      border-bottom-color: var(--primary-color-dark);
+      border-bottom-color: $palette--primary-color-dark;
       transform: translateY(2px);
     }
   }

@@ -12,12 +12,12 @@
 
 @mixin palette--primary {
   color: $palette--primary-color-text--white;
-  background-color: var(--primary-color-dark);
+  background-color: $palette--primary-color-dark;
 }
 
 @mixin palette--primary--active {
   color: $palette--primary-color-text--white;
-  background-color: var(--primary-color);
+  background-color: $palette--primary-color;
 }
 
 @mixin palette--header {

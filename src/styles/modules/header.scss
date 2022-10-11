@@ -5,7 +5,7 @@
 
 header.main-header {
   @include font-size;
-  background-color: var(--primary-color-dark);
+  background-color: $palette--primary-color-dark;
   margin-bottom: $s6;
   padding: $s1 0;
   color: $palette--primary-color-text--white;

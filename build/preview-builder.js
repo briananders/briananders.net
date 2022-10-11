@@ -47,7 +47,9 @@ module.exports = (configs) => {
   const bundleJS = require(`${dir.build}bundlers/bundle-js`);
   const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
   const compilePageMappingData = require(`${dir.build}page-mapping-data`);
-  const { moveOneImage, moveOneVideo, moveOneTxtFile, moveOneDownload } = require(`${dir.build}move-assets`);
+  const {
+    moveOneImage, moveOneVideo, moveOneTxtFile, moveOneDownload,
+  } = require(`${dir.build}move-assets`);
 
   watchForPreviewReady(configs);
 
