@@ -6,7 +6,7 @@ $palette--primary-text-color--dark:   $color--grey-900;
 $palette--secondary-text-color: $color--grey-600;
 $palette--divider-color:        $color--grey-400;
 
-$palette--primary-color-dark: $color--green-800;
-$palette--primary-color: $color--green-600;
-$palette--primary-color-light: $color--green-100;
-$palette--accent-color: $color--red-a200;
+$palette--primary-color-dark: darken($color--orange-900, 5);
+$palette--primary-color: $color--orange-800;
+$palette--primary-color-light: $color--orange-100;
+$palette--accent-color: $color--green-a200;

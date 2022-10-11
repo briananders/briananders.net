@@ -5,10 +5,9 @@
 
 header.main-header {
   @include font-size;
-  background-color: $palette--primary-color-dark;
+  @include palette--base;
   margin-bottom: $s6;
   padding: $s1 0;
-  color: $palette--primary-color-text--white;
 
   .name {
     @include font-size(7);

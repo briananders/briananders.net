@@ -3,8 +3,9 @@
 footer {
   padding: $s6 0;
   margin-top: $section-spacer;
+  border-top: 4px solid $palette--primary-color-dark;
 
-  @include palette--primary;
+  @include palette--base;
 
   ul {
     display: grid;

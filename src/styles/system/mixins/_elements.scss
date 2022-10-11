@@ -58,7 +58,7 @@
     transition-duration: $transition-speed;
     z-index: 1000;
 
-    box-shadow: 0 0 0 2px var(--primary-color-text, #{$palette--primary-color-text--white});
+    box-shadow: 0 0 2px 1px white, 0 0 0 4px $palette--primary-color-dark;
   }
 
   &:hover::after {
