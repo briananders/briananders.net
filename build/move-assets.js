@@ -216,14 +216,71 @@ function moveAllTxtFiles(configs) {
   }
 }
 
+function moveOneDownload(filePath, configs, callback = () => {}) {
+  const {
+    dir, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const destination = filePath.replace(dir.src, dir.package);
+
+  if (!fs.existsSync(filePath)) {
+    log(`${timestamp.stamp()}: ${filePath} does not exist`);
+    deletePackageFile(destination, configs);
+    return callback();
+  } if (fs.lstatSync(filePath).isDirectory()) {
+    log(`${timestamp.stamp()}: ${filePath} is a directory`);
+    return callback();
+  }
+
+  if (debug) log(`${timestamp.stamp()}: moveOneDownload(${filePath})`);
+
+  fs.mkdirpSync(path.dirname(destination));
+  fs.copyFile(filePath, destination);
+
+  return callback();
+}
+
+function moveAllDownloads(configs) {
+  const {
+    dir, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+
+  log(`${timestamp.stamp()} moveAllDownloads()`);
+
+  function checkDone(processed, maximum) {
+    if (processed >= maximum) {
+      log(`${timestamp.stamp()} moveAllDownloads(): ${'DONE'.bold.green}`);
+    }
+  }
+
+  fs.mkdirpSync(`${dir.package}videos/`);
+
+  const downloadsGlob = glob.sync(`${dir.src}downloads/**`);
+  let processed = 0;
+
+  for (let i = 0; i < downloadsGlob.length; i++) {
+    const filePath = downloadsGlob[i];
+    moveOneImage(filePath, configs, () => {
+      processed++;
+      if (debug) log(`${timestamp.stamp()}: ${processed}/${downloadsGlob.length}: ${filePath}`);
+      checkDone(processed, downloadsGlob.length);
+    });
+  }
+}
+
 module.exports = {
   moveAssets: (configs) => {
     moveAllImages(configs);
     moveAllVideos(configs);
     moveAllTxtFiles(configs);
+    moveAllDownloads(configs);
   },
 
+  moveOneDownload,
   moveOneImage,
-  moveOneVideo,
   moveOneTxtFile,
+  moveOneVideo,
 };
