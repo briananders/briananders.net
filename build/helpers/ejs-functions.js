@@ -62,7 +62,7 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   noWidows(str) {
-    return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
+    return str.replace(/\s([^\s]+)$/, '&nbsp;$1').replace(/_/g, ' ');
   },
 
   code(block, locals = {}) {
