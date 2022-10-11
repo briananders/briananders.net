@@ -10,7 +10,6 @@ header.main-header {
   padding: $s1 0;
 
   .name {
-    @include font-size(7);
     margin: auto;
 
     @include mq($medium) {
