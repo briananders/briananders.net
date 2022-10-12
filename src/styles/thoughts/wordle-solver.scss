@@ -75,10 +75,14 @@
 
 .line {
   display: grid;
-  grid-template-columns: repeat(5, #{$s10});
+  grid-template-columns: repeat(5, 60px);
   justify-content: center;
   align-items: center;
   padding: $s2 0;
+
+  @include mq-max(375px) {
+    grid-template-columns: repeat(5, 58px);
+  }
 
   fieldset {
     display: grid;
