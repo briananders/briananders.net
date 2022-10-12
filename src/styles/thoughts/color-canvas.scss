@@ -6,7 +6,7 @@ canvas {
   width: $squareSize + px;
   height: $squareSize + px;
   margin: auto;
-  border: 1px solid;
+  border: 2px solid $palette--divider-color;
   max-width: 90vw;
   max-height: 90vw;
   display: block;

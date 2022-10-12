@@ -12,26 +12,28 @@
     overflow-x: auto;
     margin-top: $s6;
     margin-bottom: $s6;
-    border: 1px solid;
+    border: 2px solid $palette--divider-color;
   }
 
   td {
     vertical-align: middle;
 
     &:nth-child(1) {
-      padding-right: $s4;
-    }
-    &:nth-child(2) {
-      padding-left: $s2;
       padding-right: $s2;
     }
+    &:nth-child(2) {
+      padding-left: $s1;
+      padding-right: $s1;
+    }
     &:nth-child(3) {
-      padding-left: $s4;
+      padding-left: $s2;
     }
   }
 
   .shadow {
-    border: 1px solid;
+    border: 1px solid $palette--divider-color;
+    padding: $s2;
+    padding-bottom: $s2;
     text-align: center;
   }
 
@@ -71,14 +73,14 @@
   .display-table, .inline-block, .flex {
     cell {
       &:nth-child(1) {
-        padding-right: $s4;
-      }
-      &:nth-child(2) {
-        padding-left: $s2;
         padding-right: $s2;
       }
+      &:nth-child(2) {
+        padding-left: $s1;
+        padding-right: $s1;
+      }
       &:nth-child(3) {
-        padding-left: $s4;
+        padding-left: $s2;
       }
     }
   }
@@ -88,7 +90,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      grid-gap: $s6;
+      grid-gap: $s3;
     }
   }
 }

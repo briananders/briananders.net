@@ -127,7 +127,9 @@ module.exports = (dir, pageMappingData) => ({
     if (!locals.href) {
       throw new Error('externalLink is missing href attribute');
     }
-    locals.class = `${locals.class || ''} link`;
+    if(!/button/.test(locals.class)) {
+      locals.class = `${locals.class || ''} link`;
+    }
     return `<a itemprop="url"
     ${Object.keys(locals).map((attr) => `${attr}="${locals[attr]}"`).join(' ')}>${str}</a>`;
   },

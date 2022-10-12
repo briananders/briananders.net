@@ -7,7 +7,7 @@
   width: css-min(100vh, 100vw, var(--window-height));
   height: css-min(100vh, 100vw, var(--window-height));
   margin: auto;
-  border: 1px solid;
+  border: 2px solid $palette--divider-color;
 
   div {
     border-radius: 100%;
@@ -17,7 +17,7 @@
     background-position: center;
 
     &[data-value="ant"] {
-      background-color: $palette--primary-color-text--white;
+      background-color: $palette--primary-white;
     }
     &[data-value="anteater"] {
       background-color: $palette--primary-color-dark;
@@ -30,7 +30,7 @@
   width: 100%;
 }
 .overlay {
-  background-color: rgba($palette--primary-color-text--white, 0.4);
+  background-color: rgba($palette--primary-white, 0.4);
   width: css-min(100vh, 100vw, var(--window-height));
   height: css-min(100vh, 100vw, var(--window-height));
   margin: auto;
@@ -54,7 +54,7 @@
 .score-bar {
   height: 40px;
   display: flex;
-  border: 1px solid;
+  border: 2px solid $palette--divider-color;
   margin-bottom: $paragraph-bottom;
   width: css-min(100vh, 100vw, var(--window-height), 100%);
   margin-left: auto;
@@ -67,7 +67,7 @@
     transition: width $transition-speed linear;
 
     &#ants-bar {
-      background-color: $palette--primary-color-text--white;
+      background-color: $palette--primary-white;
     }
     &#ant-eaters-bar {
       background-color: $palette--primary-color-dark;

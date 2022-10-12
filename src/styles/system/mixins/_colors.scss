@@ -1,26 +1,25 @@
 @import "../variables/all";
 
 @mixin palette--base {
-  background-color: $palette--primary-text-color--dark;
-  color: $palette--primary-color-text--white;
+  background-color: $palette--primary-grey;
+  color: $palette--primary-white;
 }
 
 @mixin palette--base--inverted {
-  background-color: $color--white;
-  color: $palette--primary-text-color--dark;
+  background-color: $palette--primary-white;
+  color: $palette--primary-grey;
 }
 
 @mixin palette--primary {
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
   background-color: $palette--primary-color-dark;
-}
-
-@mixin palette--primary--active {
-  color: $palette--primary-color-text--white;
-  background-color: $palette--primary-color;
 }
 
 @mixin palette--header {
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
   background-color: $palette--primary-color-dark;
+}
+
+@mixin orange-gradient {
+  background: linear-gradient(to left, $palette--primary-color-light, $palette--primary-color-dark);
 }

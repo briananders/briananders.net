@@ -49,7 +49,7 @@ html.youtube-modal-open {
   z-index: 100000;
   left: 50%;
   top: 100%;
-  background-color: $palette--primary-text-color--dark;
+  background-color: $palette--primary-grey;
   transform: translate(-50%, -50%);
 
   iframe {
@@ -75,5 +75,5 @@ html.youtube-modal-open {
   top: -100px;
   right: 10px;
   @include button;
-  background-color: $palette--primary-text-color--dark;
+  background-color: $palette--primary-grey;
 }

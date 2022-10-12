@@ -1,12 +1,11 @@
 @import "./colors";
 
 
-$palette--primary-color-text--white:   $color--white;
-$palette--primary-text-color--dark:   $color--grey-900;
-$palette--secondary-text-color: $color--grey-600;
-$palette--divider-color:        $color--grey-400;
+$palette--primary-white:  $color--white;
+$palette--primary-grey:   $color--grey-900;
+$palette--secondary-grey: $color--grey-600;
+$palette--divider-color:  $color--yellow-900;
 
-$palette--primary-color-dark: darken($color--orange-900, 5);
-$palette--primary-color: $color--orange-800;
-$palette--primary-color-light: $color--orange-100;
-$palette--accent-color: $color--green-a200;
+$palette--primary-color-dark:  darken($color--orange-900, 5);
+$palette--primary-color-light: $color--yellow-900;
+$palette--accent-color:        $color--green-a200;

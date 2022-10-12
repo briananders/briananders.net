@@ -13,8 +13,18 @@ nav.main {
   transition-property: opacity;
   z-index: 5;
   width: 100%;
+  position: relative;
   @include palette--base;
-  border-bottom: 4px solid $palette--primary-color-dark;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    @include orange-gradient;
+  }
 
   a,
   a:visited,
@@ -44,10 +54,10 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    color: $palette--primary-color-text--white;
+    color: $palette--primary-white;
     font-weight: $regular;
     padding: 4px 8px;
-    box-shadow: 0 0 0 1px $color--white;
+    box-shadow: 0 0 0 1px $palette--primary-color-light;
     border-color: transparent;
 
     &::before {
@@ -67,7 +77,8 @@ nav.main {
     transition-duration: $transition-speed;
     transition-timing-function: $transition-timing;
     @include palette--base;
-    box-shadow: 0 0 0 1px $color--white;
+    box-shadow: 0 0 0 1px $palette--primary-color-light;
+    padding: $s1;
 
     &.slide-down {
       transform: rotate(0deg);
@@ -89,10 +100,10 @@ nav.main {
       border-width: $s2;
       border-radius: 0;
       border-color: transparent;
-      border-bottom-color: $color--white;
+      border-bottom-color: $palette--primary-color-light;
     }
     &::after {
-      border-bottom-color: $palette--primary-text-color--dark;
+      border-bottom-color: $palette--primary-grey;
       transform: translateY(2px);
     }
   }
@@ -106,7 +117,7 @@ nav.main {
   .link {
     @include font-size;
     font-family: $sans-serif;
-    color: $palette--primary-color-text--white;
+    color: $palette--primary-white;
 
     &.brand {
       width: auto;

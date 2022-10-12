@@ -101,11 +101,11 @@ $rotation-time-step: $rotation-duration / $rotation-steps;
     border-width: $circle-border-width;
     border-style: solid;
 
-    border-top-color: $palette--primary-text-color--dark;
-    border-left-color: $palette--primary-text-color--dark;
+    border-top-color: $palette--primary-grey;
+    border-left-color: $palette--primary-grey;
 
-    border-right-color: $palette--primary-color-text--white;
-    border-bottom-color: $palette--primary-color-text--white;
+    border-right-color: $palette--primary-white;
+    border-bottom-color: $palette--primary-white;
 
   }
 

@@ -36,7 +36,7 @@
   transition-property: color, background-color;
 
   &:focus {
-    color: $color--white;
+    color: $palette--primary-white;
     background-color: $color--grey-800 !important;
   }
 }
@@ -58,7 +58,7 @@
     transition-duration: $transition-speed;
     z-index: 1000;
 
-    box-shadow: 0 0 2px 1px white, 0 0 0 4px $palette--primary-color-dark;
+    box-shadow: 0 0 0 1px white, 0 0 0 4px $palette--primary-color-dark;
   }
 
   &:hover::after {
@@ -128,7 +128,7 @@
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
   border: 2px solid $palette--primary-color-dark;
   background-color: transparent;
 
@@ -194,7 +194,7 @@
   @include font-size(3);
   background-color: transparent;
   border: 2px solid $palette--primary-color-dark;
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
 
   p {
     &:last-of-type {
