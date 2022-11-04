@@ -19,7 +19,7 @@ module.exports = (dir) => {
     github: 'https://github.com/briananders',
     linkedin: 'https://www.linkedin.com/in/andersbrian/',
     coyoteDrums: {
-      youtube: 'https://www.youtube.com/channel/UCZb-TrkZEXWCxDl88JtGtMw',
+      youtube: 'https://www.youtube.com/@coyote_drums',
       path: '/coyote-drums',
     },
     batLessons: 'https://batlessons.com',
