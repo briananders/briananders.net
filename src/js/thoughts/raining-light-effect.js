@@ -4,6 +4,7 @@ const COLOR = (a) => `rgba(255,255,255,${a})`;
 const RADIUS = 6;
 const PADDING = 2;
 const TAIL_LENGTH = 13;
+const FPS = 1000/30;
 const lanes = [];
 let extraPadding = 0;
 let maxHeight = 0;
@@ -18,6 +19,7 @@ function RainDrop({
   context,
 }) {
   let index = 0;
+  let finishIndex = 0;
   const length = randomLength();
   const radius = RADIUS;
   const lane = LANE;
@@ -37,31 +39,48 @@ function RainDrop({
 
   function draw({
     lane,
-    index,
+    drawIndex,
+    fade=0,
   }) {
     clearLane();
 
     context.beginPath();
 
     for (let i = 0; i < TAIL_LENGTH; i++) {
-      const y = dropY(index - i);
+      const y = dropY(drawIndex - i);
       context.arc(middleOfTheLane, y - i, RADIUS, 0, 2 * Math.PI, false);
-      context.fillStyle = COLOR(1 - ((1 / TAIL_LENGTH) * i));
+      context.fillStyle = COLOR(1 - ((1 / TAIL_LENGTH) * i) - fade);
       context.fill();
     }
 
     context.closePath();
   }
 
-  function animate() {
-    index++;
-    draw({ lane, index });
+  function finish() {
+    finishIndex++;
 
-    if (index >= length) {
+    draw({ 
+      lane, 
+      drawIndex: index, 
+      fade: (1 / TAIL_LENGTH) * finishIndex, 
+    });
+
+    if (finishIndex >= TAIL_LENGTH) {
       lanes[lane] = undefined;
       clearLane();
     } else {
-      setTimeout(animate, 1000 / 30);
+      setTimeout(finish, FPS);
+    }
+  }
+
+  function animate() {
+    index++;
+    draw({ lane, drawIndex: index });
+
+    if (index >= length) {
+      finish();
+    } else {
+      setTimeout(animate, FPS);
     }
   }
 
@@ -90,7 +109,7 @@ ready.document(() => {
       });
     }
 
-    setTimeout(loop, 1000 / 24);
+    setTimeout(loop, FPS);
   }
 
   loop();
