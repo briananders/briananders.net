@@ -1,0 +1,10 @@
+@import "system/utilities";
+
+#canvas {
+  width: 90vw;
+  height: 80vh;
+  border: 2px solid $palette--divider-color;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
