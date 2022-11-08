@@ -2,7 +2,7 @@ const ready = require('../_modules/document-ready');
 const windowResize = require('../_modules/window-resize');
 
 const COLOR = (a) => `rgba(255,255,255,${a})`;
-const RADIUS = 6;
+const RADIUS = 4;
 const PADDING = 2;
 const TAIL_LENGTH = 13;
 const FPS = 1000/30;
@@ -116,7 +116,7 @@ ready.document(() => {
   windowResize(() => {
     canvas.width = canvas.clientWidth * 2;
     canvas.height = canvas.clientHeight * 2;
-    
+
     dropLanes = ((canvas.width - PADDING) / ((RADIUS * 2) + PADDING)) - 1;
     extraPadding = (canvas.width - PADDING) % ((RADIUS * 2) + PADDING);
     maxHeight = ((canvas.height - extraPadding - PADDING) / ((RADIUS * 2) + PADDING)) - 1;

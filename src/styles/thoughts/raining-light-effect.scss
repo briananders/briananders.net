@@ -1,7 +1,7 @@
 @import "system/utilities";
 
 #canvas {
-  width: 90vw;
+  width: css-min(90vw, $content-max-width);
   height: 80vh;
   border: 2px solid $palette--divider-color;
   display: block;
