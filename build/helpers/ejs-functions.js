@@ -2,6 +2,7 @@ const ejs = require('ejs');
 const fs = require('fs');
 const hljs = require('highlight.js');
 const merge = require('merge');
+const sass = require('node-sass');
 const sizeOf = require('image-size');
 const path = require('path');
 const { camelize, dasherize } = require('underscore.string');
@@ -165,4 +166,13 @@ module.exports = (dir, pageMappingData) => ({
         <span>Loading album cover</span>
       ` : ''}
     </span>`,
+
+  inlineScss(src) {
+    const fileData = fs.readFileSync(path.join(dir.src, src)).toString();
+    const results = sass.renderSync({
+      data: fileData,
+      includePaths: [`${dir.src}styles/`, dir.nodeModules],
+    });
+    return results.css;
+  },
 });

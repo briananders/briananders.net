@@ -256,14 +256,14 @@ function moveAllDownloads(configs) {
     }
   }
 
-  fs.mkdirpSync(`${dir.package}videos/`);
+  fs.mkdirpSync(`${dir.package}downloads/`);
 
   const downloadsGlob = glob.sync(`${dir.src}downloads/**`);
   let processed = 0;
 
   for (let i = 0; i < downloadsGlob.length; i++) {
     const filePath = downloadsGlob[i];
-    moveOneImage(filePath, configs, () => {
+    moveOneDownload(filePath, configs, () => {
       processed++;
       if (debug) log(`${timestamp.stamp()}: ${processed}/${downloadsGlob.length}: ${filePath}`);
       checkDone(processed, downloadsGlob.length);
