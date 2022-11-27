@@ -1,12 +1,7 @@
 <div class="sticky-container">
   <nav class="nav main sticky-stacky" role="navigation" aria-label="Main navigation">
     <div class="content">
-    <%- link(img({
-      src: '/images/logo.svg',
-      alt: 'Brian Anders logo',
-      width: '200',
-      height: '68',
-    }), {
+    <%- link(getFileContents('/images/logo.svg'), {
       href: '/',
       class: 'brand',
       'aria-label': 'Brian Anders home page',

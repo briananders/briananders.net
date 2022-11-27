@@ -126,6 +126,11 @@ nav.main {
       justify-content: flex-start;
       align-items: middle;
       @include palette--base;
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
