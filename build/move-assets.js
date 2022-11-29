@@ -38,16 +38,16 @@ function moveOneImage(imagePath, configs, callback = () => {}) {
   const destination = imagePath.replace(dir.src, dir.package);
 
   if (!fs.existsSync(imagePath)) {
-    log(`${timestamp.stamp()}: ${imagePath} does not exist`);
+    log(`${timestamp.stamp()} ${imagePath} does not exist`);
     deletePackageFile(destination, configs);
     return callback();
   } if (fs.lstatSync(imagePath).isDirectory()) {
-    log(`${timestamp.stamp()}: ${imagePath} is a directory`);
+    log(`${timestamp.stamp()} ${imagePath} is a directory 1`);
     return callback();
   }
 
   fs.mkdirpSync(path.dirname(destination));
-  if (debug) log(`${timestamp.stamp()}: moveOneImage(${imagePath})`);
+  if (debug) log(`${timestamp.stamp()} moveOneImage(${imagePath})`);
 
   if (extn === '.svg') {
     // move optimized svg
@@ -97,7 +97,7 @@ function moveAllImages(configs) {
     const imagePath = imagesGlob[i];
     moveOneImage(imagePath, configs, () => {
       processed++;
-      if (debug) log(`${timestamp.stamp()}: ${processed}/${imagesGlob.length}: ${imagePath}`);
+      if (debug) log(`${timestamp.stamp()} ${processed}/${imagesGlob.length}: ${imagePath}`);
       checkDone(processed, imagesGlob.length);
     });
   }
@@ -112,15 +112,15 @@ function moveOneVideo(videoPath, configs, callback = () => {}) {
   const destination = videoPath.replace(dir.src, dir.package);
 
   if (!fs.existsSync(videoPath)) {
-    log(`${timestamp.stamp()}: ${videoPath} does not exist`);
+    log(`${timestamp.stamp()} ${videoPath} does not exist`);
     deletePackageFile(destination, configs);
     return callback();
   } if (fs.lstatSync(videoPath).isDirectory()) {
-    log(`${timestamp.stamp()}: ${videoPath} is a directory`);
+    log(`${timestamp.stamp()} ${videoPath} is a directory 2`);
     return callback();
   }
 
-  if (debug) log(`${timestamp.stamp()}: moveOneVideo(${videoPath})`);
+  if (debug) log(`${timestamp.stamp()} moveOneVideo(${videoPath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(videoPath, destination);
@@ -157,7 +157,7 @@ function moveAllVideos(configs) {
     const videoPath = videoGlob[i];
     moveOneImage(videoPath, configs, () => {
       processed++;
-      if (debug) log(`${timestamp.stamp()}: ${processed}/${videoGlob.length}: ${videoPath}`);
+      if (debug) log(`${timestamp.stamp()} ${processed}/${videoGlob.length}: ${videoPath}`);
       checkDone(processed, videoGlob.length);
     });
   }
@@ -172,15 +172,15 @@ function moveOneTxtFile(filePath, configs, callback = () => {}) {
   const destination = filePath.replace(dir.src, dir.package);
 
   if (!fs.existsSync(filePath)) {
-    log(`${timestamp.stamp()}: ${filePath} does not exist`);
+    log(`${timestamp.stamp()} ${filePath} does not exist`);
     deletePackageFile(destination, configs);
     return callback();
   } if (fs.lstatSync(filePath).isDirectory()) {
-    log(`${timestamp.stamp()}: ${filePath} is a directory`);
+    log(`${timestamp.stamp()} ${filePath} is a directory 3`);
     return callback();
   }
 
-  if (debug) log(`${timestamp.stamp()}: moveOneTxtFile(${filePath})`);
+  if (debug) log(`${timestamp.stamp()} moveOneTxtFile(${filePath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(filePath, destination);
@@ -210,7 +210,7 @@ function moveAllTxtFiles(configs) {
     const filePath = txtGlob[i];
     moveOneImage(filePath, configs, () => {
       processed++;
-      if (debug) log(`${timestamp.stamp()}: ${processed}/${txtGlob.length}: ${filePath}`);
+      if (debug) log(`${timestamp.stamp()} ${processed}/${txtGlob.length}: ${filePath}`);
       checkDone(processed, txtGlob.length);
     });
   }
@@ -225,15 +225,15 @@ function moveOneDownload(filePath, configs, callback = () => {}) {
   const destination = filePath.replace(dir.src, dir.package);
 
   if (!fs.existsSync(filePath)) {
-    log(`${timestamp.stamp()}: ${filePath} does not exist`);
+    log(`${timestamp.stamp()} ${filePath} does not exist`);
     deletePackageFile(destination, configs);
     return callback();
   } if (fs.lstatSync(filePath).isDirectory()) {
-    log(`${timestamp.stamp()}: ${filePath} is a directory`);
+    log(`${timestamp.stamp()} ${filePath} is a directory 4`);
     return callback();
   }
 
-  if (debug) log(`${timestamp.stamp()}: moveOneDownload(${filePath})`);
+  if (debug) log(`${timestamp.stamp()} moveOneDownload(${filePath})`);
 
   fs.mkdirpSync(path.dirname(destination));
   fs.copyFile(filePath, destination);
@@ -265,7 +265,7 @@ function moveAllDownloads(configs) {
     const filePath = downloadsGlob[i];
     moveOneDownload(filePath, configs, () => {
       processed++;
-      if (debug) log(`${timestamp.stamp()}: ${processed}/${downloadsGlob.length}: ${filePath}`);
+      if (debug) log(`${timestamp.stamp()} ${processed}/${downloadsGlob.length}: ${filePath}`);
       checkDone(processed, downloadsGlob.length);
     });
   }
