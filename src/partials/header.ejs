@@ -1,4 +1,4 @@
-<style><%- inlineScss('/styles/modules/header.scss'); %></style>
+<%- partial('head/styles', {...locals, path: 'modules/header' }); %>
 
 <div id="skip-nav" tabindex="-1" data-state=inactive>
   <button>Skip navigation</button>

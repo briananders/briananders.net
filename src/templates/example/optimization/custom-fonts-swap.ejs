@@ -1,0 +1,19 @@
+---
+title: "Optimization Experiment: Custom Fonts Swap"
+description: ""
+date: 2022-11-27
+priority: 0.8
+layout: empty
+styles:
+  - 'main'
+  - 'coyote-drums'
+scripts:
+  - 'coyote-drums'
+---
+
+
+<%- partial('example/optimizations', {
+  ...locals,
+  customFonts: true,
+  customFontsSwap: true,
+}); %>

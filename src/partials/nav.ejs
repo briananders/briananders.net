@@ -1,11 +1,28 @@
+<%
+  const inlineSVGs = locals.inlineSVGs || false;
+%>
+
 <div class="sticky-container">
   <nav class="nav main sticky-stacky" role="navigation" aria-label="Main navigation">
     <div class="content">
-    <%- link(getFileContents('/images/logo.svg'), {
-      href: '/',
-      class: 'brand',
-      'aria-label': 'Brian Anders home page',
-    }); %>
+    <% if (inlineSVGs) { %>
+      <%- link(getFileContents('/images/logo.svg'), {
+        href: '/',
+        class: 'brand',
+        'aria-label': 'Brian Anders home page',
+      }); %>
+    <% } else { %>
+      <%- link(img({
+        src: '/images/logo.svg',
+        alt: 'Brian Anders logo',
+        width: '200',
+        height: '68',
+      }), {
+        href: '/',
+        class: 'brand',
+        'aria-label': 'Brian Anders home page',
+      }); %>
+    <% } %>
     <button id="activate-menu" class="menu link" aria-expanded="false" aria-controls="nav-tray">
       Menu
     </button>

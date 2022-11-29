@@ -1,0 +1,19 @@
+---
+title: "Optimization Experiment: SVGs and Styles"
+description: ""
+date: 2022-11-27
+priority: 0.8
+layout: empty
+styles:
+  - 'main'
+  - 'coyote-drums'
+scripts:
+  - 'coyote-drums'
+---
+
+
+<%- partial('example/optimizations', {
+  ...locals,
+  inlineStyles: true,
+  inlineSVGs: true,
+}); %>

@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope" itemtype="https://schema.org/WebPage">
 <head>
-  <%- partial('meta', locals); %>
+  <%- partial('head/meta', locals); %>
+
+  <%- partial('head/fonts', {
+    customFontsDeferred: true,
+    customFontsSwap: true,
+  }); %>
+  
+  <% locals.styles.forEach((path) => { %>
+    <%- partial('head/styles', { ...locals, path }); %>
+  <% }); %>
   <script>
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       var string = msg.toLowerCase();

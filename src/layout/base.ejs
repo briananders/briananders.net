@@ -2,7 +2,6 @@
 layout: blank
 ---
 
-
 <style>
   html {
     background-color: #212121;
@@ -10,17 +9,13 @@ layout: blank
   }
 </style>
 
-<script src="/scripts/all.js" async defer></script>
-<%
-  if(locals.scripts) {
-    locals.scripts.forEach((path) => { %>
-  <script src="/scripts/<%- path %>.js" async defer></script>
-<%
-    });
-  }
-%>
+<%- partial('head/scripts', locals); %>
 
-<%- partial('header', locals); %>
+<%- partial('header', {
+  ...locals,
+  inlineStyles: true,
+  inlineSVGs: true,
+}); %>
 
 <main class="<%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
   <% if (locals.description && !locals.homepage) { %>
