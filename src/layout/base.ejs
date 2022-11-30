@@ -25,4 +25,4 @@ layout: blank
 
 </main>
 
-<%- partial('footer', locals); %>
+<%- partial('footer', { ...locals, deferStyles: true }); %>

@@ -9,7 +9,7 @@
   }); %>
   
   <% locals.styles.forEach((path) => { %>
-    <%- partial('head/styles', { ...locals, path }); %>
+    <%- partial('head/styles', { ...locals, path, deferStyles: true, }); %>
   <% }); %>
   <script>
     window.onerror = function (msg, url, lineNo, columnNo, error) {
