@@ -1,0 +1,20 @@
+---
+title: "Optimization Experiment: Inline SVGs + Custom Fonts"
+description: ""
+date: 2022-11-27
+priority: 0.8
+layout: empty
+robots: false
+styles:
+  - 'main'
+  - 'coyote-drums'
+scripts:
+  - 'coyote-drums'
+---
+
+
+<%- partial('example/optimizations', {
+  ...locals,
+  customFonts: true,
+  inlineSVGs: true,
+}); %>

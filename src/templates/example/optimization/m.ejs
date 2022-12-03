@@ -1,9 +1,10 @@
 ---
-title: "Optimization Experiment: Inline Styles"
+title: "Optimization Experiment: Custom Fonts + Custom Fonts Deferred"
 description: ""
 date: 2022-11-27
 priority: 0.8
 layout: empty
+robots: false
 styles:
   - 'main'
   - 'coyote-drums'
@@ -14,5 +15,6 @@ scripts:
 
 <%- partial('example/optimizations', {
   ...locals,
-  inlineStyles: true,
+  customFonts: true,
+  customFontsDeferred: true,
 }); %>

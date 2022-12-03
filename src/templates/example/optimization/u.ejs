@@ -1,9 +1,10 @@
 ---
-title: "Optimization Experiment: Inline SVGs"
+title: "Optimization Experiment: Inline Styles + Custom Fonts + Custom Fonts Swap"
 description: ""
 date: 2022-11-27
 priority: 0.8
 layout: empty
+robots: false
 styles:
   - 'main'
   - 'coyote-drums'
@@ -14,5 +15,7 @@ scripts:
 
 <%- partial('example/optimizations', {
   ...locals,
-  inlineSVGs: true,
+  customFonts: true,
+  customFontsSwap: true,
+  inlineStyles: true,
 }); %>
