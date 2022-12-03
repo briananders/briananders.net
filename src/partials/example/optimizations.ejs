@@ -16,6 +16,8 @@
   <% locals.styles.forEach((path) => { %>
     <%- partial('head/styles', { ...locals, path }); %>
   <% }); %>
+
+  <%- partial('head/styles', { ...locals, path: 'example/optimization' }); %>
 </head>
 <body>
 
