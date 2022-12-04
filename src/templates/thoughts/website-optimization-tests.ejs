@@ -1,0 +1,566 @@
+---
+title: "Website Optimization Testing"
+description: "There are a few important levers"
+date: 2022-12-03
+priority: 0.8
+pageClasses:
+  - 'thoughts website-optimization-tests'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/website-optimization-tests'
+scripts:
+  - 'thoughts/website-optimization-tests'
+---
+
+
+
+
+
+<section>
+  <header class="container">
+    <h2>
+      The Results
+    </h2>
+  </header>
+
+  <div class="container">
+    <form>
+      <div>
+        Styles
+        <label><input type="radio" name="styles" value="inline" /> Inline Styles </label>
+        <label><input type="radio" name="styles" value="deferred" /> Deferred Styles </label>
+        <label><input type="radio" name="styles" value="linked" checked /> Linked - Render Blocking Styles </label>
+      </div>
+      <div>
+        SVGs
+        <label><input type="radio" name="svgs" value="inline" /> Inline </label>
+        <label><input type="radio" name="svgs" value="linked" checked /> Linked </label>
+      </div>
+      <div>
+        Custom Fonts
+        <label><input type="radio" name="fonts" value="none" checked /> None </label>
+        <label><input type="radio" name="fonts" value="linked" /> Linked - Render Blocking </label>
+        <label><input type="radio" name="fonts" value="deferred" /> Linked - Deferred </label>
+        <label><input type="radio" name="fonts" value="swap" /> Linked - Swap </label>
+      </div>
+    </form>
+
+    <table>
+      <tr>
+        <th>Test Page</th>
+        <th>Pagespeed Insights</th>
+        <th>Mobile</th>
+        <th>Desktop</th>
+      </tr>
+      <tr>
+        <td>
+          <%- link('Control', { 
+            href: '/example/optimization/a/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/a/'
+          }) %>
+        </td>  
+        <td>98</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles', { 
+            href: '/example/optimization/b/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/b/'
+          }) %>
+        </td>  
+        <td>97</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles', { 
+            href: '/example/optimization/c/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/c/'
+          }) %>
+        </td>  
+        <td>98</td>  
+        <td>100</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline SVGs', { 
+            href: '/example/optimization/d/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/d/'
+          }) %>
+        </td>  
+        <td>98</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Inline SVGs', { 
+            href: '/example/optimization/e/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/e/'
+          }) %>
+        </td>  
+        <td>85</td>  
+        <td>85</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Inline SVGs', { 
+            href: '/example/optimization/f/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/f/'
+          }) %>
+        </td>  
+        <td>99</td>  
+        <td>100</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Custom Fonts', { 
+            href: '/example/optimization/g/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/g/'
+          }) %>
+        </td>  
+        <td>92</td>  
+        <td>97</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Custom Fonts', { 
+            href: '/example/optimization/h/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/h/'
+          }) %>
+        </td>  
+        <td>90</td>  
+        <td>87</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Custom Fonts', { 
+            href: '/example/optimization/i/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/i/'
+          }) %>
+        </td>  
+        <td>91</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline SVGs + Custom Fonts', { 
+            href: '/example/optimization/j/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/j/'
+          }) %>
+        </td>  
+        <td>89</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Inline SVGs + Custom Fonts', { 
+            href: '/example/optimization/k/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/k/'
+          }) %>
+        </td>  
+        <td>76</td>  
+        <td>84</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Inline SVGs + Custom Fonts', { 
+            href: '/example/optimization/l/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/l/'
+          }) %>
+        </td>  
+        <td>90</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/m/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/m/'
+          }) %>
+        </td>  
+        <td>92</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/n/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/n/'
+          }) %>
+        </td>  
+        <td>89</td>  
+        <td>87</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/o/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/o/'
+          }) %>
+        </td>  
+        <td>81</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline SVGs + Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/p/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/p/'
+          }) %>
+        </td>  
+        <td>87</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/q/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/q/'
+          }) %>
+        </td>  
+        <td>84</td>  
+        <td>84</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Deferred', { 
+            href: '/example/optimization/r/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/r/'
+          }) %>
+        </td>  
+        <td>95</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Custom Fonts + Custom Fonts Swap', { 
+            href: '/example/optimization/s/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/s/'
+          }) %>
+        </td>  
+        <td>91</td>  
+        <td>98</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Custom Fonts + Custom Fonts Swap', { 
+            href: '/example/optimization/t/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/t/'
+          }) %>
+        </td>  
+        <td>82</td>  
+        <td>86</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Custom Fonts + Custom Fonts Swap', { 
+          href: '/example/optimization/u/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/u/'
+          }) %>
+        </td>  
+        <td>89</td>  
+        <td>99</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline SVGs + Custom Fonts + Custom Fonts Swap', { 
+          href: '/example/optimization/v/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/v/'
+          }) %>
+        </td>  
+        <td>90</td>  
+        <td>97</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap', { 
+          href: '/example/optimization/w/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/w/'
+          }) %>
+        </td>  
+        <td>77</td>  
+        <td>84</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap', { 
+          href: '/example/optimization/x/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/x/'
+          }) %>
+        </td>  
+        <td>89</td>  
+        <td>98</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/y/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/y/'
+          }) %>
+        </td>  
+        <td>88</td>  
+        <td>98</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/z/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/z/'
+          }) %>
+        </td>  
+        <td>89</td>  
+        <td>87</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/aa/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/aa/'
+          }) %>
+        </td> 9
+        <td>0</td>  
+        <td>98</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/ab/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/ab/'
+          }) %>
+        </td> 8
+        <td>5</td>  
+        <td>98</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/ac/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/ac/'
+          }) %>
+        </td> 8
+        <td>1</td>  
+        <td>85</td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          <%- link('Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred', { 
+          href: '/example/optimization/ad/', 
+          }); %>
+        </td>
+        <td>
+          <%- externalLink('Pagespeed Insights', {
+            href: 'https://pagespeed.web.dev/report?url=https://briananders.net/example/optimization/ad/'
+          }) %>
+        </td> 9
+        <td>4</td>  
+        <td>99</td>
+      </tr>
+
+    </table>
+  </div>
+</section>
