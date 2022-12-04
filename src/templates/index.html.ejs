@@ -9,11 +9,12 @@ pageClasses:
 layout: base
 styles:
   - 'main'
-  - 'homepage'
 scripts:
   - 'homepage'
 ---
 
+
+<%- partial('head/styles', {...locals, path: 'homepage', inlineStyles: true, }) %>
 
 
 <section class="intro">
