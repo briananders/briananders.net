@@ -8,10 +8,12 @@ pageClasses:
 layout: base
 styles:
   - 'main'
-  - 'coyote-drums'
 scripts:
   - 'coyote-drums'
 ---
+
+
+<%- partial('head/styles', {...locals, path: 'coyote-drums', inlineStyles: true, }) %>
 
 <div class="coyote-drums-logo container">
   <style>
