@@ -1,5 +1,18 @@
 @import "system/utilities";
 
-table {
+#table {
   text-align: left;
+
+  row {
+    display: block;
+    padding: $s1;
+
+    &:nth-child(even) {
+      background-color: $color--grey-800;
+    }
+  }
+
+  cell {
+
+  }
 }
