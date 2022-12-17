@@ -147,6 +147,8 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   defaultLastFMModule: (albums = true) => `
+    <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin />
+
     <span class="item ${albums ? 'album' : 'artist'}">
       <span class="info">
         ${albums ? `
