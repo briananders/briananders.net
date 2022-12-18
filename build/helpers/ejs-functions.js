@@ -93,7 +93,10 @@ module.exports = (dir, pageMappingData) => ({
       throw new Error('lazyImage is missing src attribute');
     }
     const dimensions = sizeOf(path.join(dir.package, src));
-    return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
+    return `
+      <link rel="preload" href="${src}" as="image" />
+      <img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />
+    `;
   },
 
   lazyVideo({ srcs, placeholders, attributes = ['autoplay', 'muted', 'loop', 'playsinline'] } = {}) {
@@ -102,7 +105,10 @@ module.exports = (dir, pageMappingData) => ({
     }
     const desktopDimensions = sizeOf(path.join(dir.package, placeholders.desktop));
     const mobileDimensions = sizeOf(path.join(dir.package, placeholders.mobile));
+    const videoType = path.extname(srcs.mobile).replace('.', '');
     return `
+    <link rel="preload" href="${srcs.mobile}" as="video" type="video/${videoType}" />
+    <link rel="preload" href="${srcs.desktop}" as="video" type="video/${videoType}" />
     <div class="video-container" style="padding-top: ${(desktopDimensions.height / desktopDimensions.width) * 100}%; --aspect-ratio: ${desktopDimensions.height / desktopDimensions.width};">
       <video lazy ${attributes.join(' ')}
         data-mobile-width="${mobileDimensions.width}"
@@ -115,7 +121,7 @@ module.exports = (dir, pageMappingData) => ({
         <source
           data-mobile-src="${srcs.mobile}"
           data-desktop-src="${srcs.desktop}"
-        type="video/mp4">
+        type="video/${videoType}">
       </video>
     </div>`;
   },
@@ -147,8 +153,6 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   defaultLastFMModule: (albums = true) => `
-    <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin />
-
     <span class="item ${albums ? 'album' : 'artist'}">
       <span class="info">
         ${albums ? `
