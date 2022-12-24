@@ -67,6 +67,7 @@ module.exports = (configs) => {
         break;
       case filePath.includes(`${dir.src}styles/`):
         bundleSCSS(configs);
+        compilePageMappingData(configs);
         break;
       case filePath.includes(`${dir.src}templates/`):
       case filePath.includes(`${dir.src}partials/`):

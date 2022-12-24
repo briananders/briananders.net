@@ -11,7 +11,6 @@ $frame-height: $sprite-height / $y-max;
 #frame-container {
   width: round($frame-width);
   height: round($frame-height);
-  --background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite-color.webp');
   margin: auto;
   border-radius: 100%;
 
