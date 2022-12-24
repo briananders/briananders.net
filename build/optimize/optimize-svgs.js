@@ -8,11 +8,10 @@ const plugins = [
     params: {
       overrides: {
         removeViewBox: false,
-        cleanupIDs: false,
         removeDoctype: false,
       },
     },
-  }
+  },
 ];
 
 function getSVG(filePath) {

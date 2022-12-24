@@ -4,18 +4,18 @@
 
   canvas {
     width: 100vw;
-    border: 1px solid gray;
+    border: 2px solid $palette--divider-color;
     box-sizing: border-box;
     height: calc(100vh - 66px);
   }
 
   #pause-button.paused {
-    color: $palette--primary-color-text--white;
-    background-color: $palette--primary-text-color--dark;
+    color: $palette--primary-white;
+    background-color: $palette--primary-grey;
   }
 
   #clear-button {
-    color: $palette--primary-color-text--white;
+    color: $palette--primary-white;
     background-color: darken($color: red, $amount: 15);
 
     &:hover,

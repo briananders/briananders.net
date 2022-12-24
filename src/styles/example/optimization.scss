@@ -1,0 +1,5 @@
+@import "system/utilities";
+
+header.main-header h1.content.name {
+  @include font-size(3);
+}

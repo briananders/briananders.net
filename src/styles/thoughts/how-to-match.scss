@@ -2,16 +2,16 @@
 
 
 main.thoughts.how-to-match {
-  @import "../modules/code";
+  @import "modules/code";
 
   .example-container {
     overflow: hidden;
     @include font-size(3);
-    border: 1px solid;
+    border: 2px solid $palette--divider-color;
     margin-bottom: $s6;
   }
   .tall {
-    border-top: $s3 solid var(--accent-color);
+    border-top: $s3 solid $palette--accent-color;
   }
   .column-1,
   .column-3 {
@@ -26,7 +26,7 @@ main.thoughts.how-to-match {
     padding-bottom: 99999px;
     margin-bottom: -99999px;
     float: left;
-    color: $palette--primary-color-text--white;
+    color: $palette--primary-white;
   }
   .example-1 .column-1,
   .example-1 .column-2 {

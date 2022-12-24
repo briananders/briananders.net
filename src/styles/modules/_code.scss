@@ -10,7 +10,7 @@ code {
   max-width: 100%;
   text-align: left;
   margin: auto;
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
 }
 
 
@@ -24,7 +24,7 @@ code {
   position: relative;
   text-align: center;
   display: flex;
-  border: 2px solid var(--primary-color);
+  border: 2px solid $palette--divider-color;
 
   &::before,
   &::after {
@@ -37,11 +37,11 @@ code {
 
   &::before {
     left: 0px;
-    background: linear-gradient(to left, rgba($palette--primary-text-color--dark, 0), rgba($palette--primary-text-color--dark, 1));
+    background: linear-gradient(to left, rgba($palette--primary-grey, 0), rgba($palette--primary-grey, 1));
   }
   &::after {
     right: 0px;
-    background: linear-gradient(to right, rgba($palette--primary-text-color--dark, 0), rgba($palette--primary-text-color--dark, 1));
+    background: linear-gradient(to right, rgba($palette--primary-grey, 0), rgba($palette--primary-grey, 1));
   }
 }
 
@@ -52,5 +52,5 @@ var {
   border-radius: 4px;
   padding: 0 0.5rem;
   background-color: transparent;
-  color: $palette--primary-color-text--white;
+  color: $palette--primary-white;
 }

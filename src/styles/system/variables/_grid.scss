@@ -1,6 +1,6 @@
-@import "./defaults";
-@import "./spaces";
-@import "./viewports";
+@import "system/variables/defaults";
+@import "system/variables/spaces";
+@import "system/variables/viewports";
 
 $grid--gutter: percentage($s3/$large);
 $grid--column: percentage($s10/$large);

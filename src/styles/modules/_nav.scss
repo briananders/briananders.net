@@ -1,4 +1,4 @@
-@import "../thoughts/sticky-stacky";
+@import "modules/sticky-stacky";
 
 $nav-height: $s11;
 
@@ -7,13 +7,37 @@ html {
   --window-height: calc(100vh - #{$nav-height});
 }
 
+#nav-overlay {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  &.visible {
+    display: block;
+  }
+}
+
 nav.main {
   border-radius: 0;
   margin: 0;
   transition-property: opacity;
   z-index: 5;
   width: 100%;
-  background-color: var(--primary-color-dark);
+  position: relative;
+  @include palette--base;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    @include orange-gradient;
+  }
 
   a,
   a:visited,
@@ -27,13 +51,13 @@ nav.main {
     display: flex;
     justify-content: space-between;
     min-height: $nav-height;
-    background-color: var(--primary-color-dark);
+    @include palette--base;
 
     &::after {
       display: block;
       content: "";
       position: absolute;
-      background-color: var(--primary-color-dark);
+      @include palette--base;
       top: 0;
       bottom: 0;
       left: 100%;
@@ -43,10 +67,10 @@ nav.main {
   .menu {
     display: block;
     background-color: transparent;
-    color: $palette--primary-color-text--white;
+    color: $palette--primary-white;
     font-weight: $regular;
     padding: 4px 8px;
-    box-shadow: 0 0 0 1px $color--white;
+    box-shadow: 0 0 0 1px $palette--primary-color-light;
     border-color: transparent;
 
     &::before {
@@ -65,8 +89,9 @@ nav.main {
     transition-property: transform;
     transition-duration: $transition-speed;
     transition-timing-function: $transition-timing;
-    background-color: var(--primary-color-dark);
-    box-shadow: 0 0 0 1px $color--white;
+    @include palette--base;
+    box-shadow: 0 0 0 1px $palette--primary-color-light;
+    padding: $s1;
 
     &.slide-down {
       transform: rotate(0deg);
@@ -76,23 +101,31 @@ nav.main {
       right: $s5;
     }
 
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
+    #top-triangle {
+      &,
+      &::after {
+        position: absolute;
+        width: $s4;
+        height: $s4;
+        border-style: solid;
+        border-width: $s2;
+        border-radius: 0;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+      }
+
+      &::after {
+        content: '';
+        left: -12px;
+        top: -12px;
+        border-bottom-color: $palette--primary-grey;
+        transform: translateY(2px);
+      }
+
       top: -$s4;
       right: 20px;
-      width: $s4;
-      height: $s4;
-      border-style: solid;
-      border-width: $s2;
-      border-radius: 0;
-      border-color: transparent;
-      border-bottom-color: $color--white;
-    }
-    &::after {
-      border-bottom-color: var(--primary-color-dark);
-      transform: translateY(2px);
+      border-bottom-color: $palette--primary-color-light;
     }
   }
 
@@ -105,7 +138,7 @@ nav.main {
   .link {
     @include font-size;
     font-family: $sans-serif;
-    color: var(--primary-color-text, #{$palette--primary-color-text--white});
+    color: $palette--primary-white;
 
     &.brand {
       width: auto;
@@ -113,6 +146,17 @@ nav.main {
       display: flex;
       justify-content: flex-start;
       align-items: middle;
+      @include palette--base;
+
+      &::after {
+        top: 4px;
+        height: calc(100% - 8px);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }

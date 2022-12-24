@@ -8,12 +8,23 @@ pageClasses:
 layout: base
 styles:
   - 'main'
-  - 'coyote-drums'
 scripts:
   - 'coyote-drums'
 ---
 
+
+<%- partial('head/styles', {...locals, path: 'coyote-drums', inlineStyles: true, }) %>
+
 <div class="coyote-drums-logo container">
+  <style>
+    .coyote-drums .coyote-drums-logo {
+      width: min(100%, 400px);
+    }
+    .coyote-drums .coyote-drums-logo svg {
+      width: 100%;
+      height: auto;
+    }
+  </style>
   <%- getFileContents('/images/coyote-drums/logo.svg'); %>
 </div>
 

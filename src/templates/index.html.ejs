@@ -9,11 +9,12 @@ pageClasses:
 layout: base
 styles:
   - 'main'
-  - 'homepage'
 scripts:
   - 'homepage'
 ---
 
+
+<%- partial('head/styles', {...locals, path: 'homepage', inlineStyles: true, }) %>
 
 
 <section class="intro">
@@ -33,18 +34,14 @@ scripts:
       <%- noWidows(`I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.`); %>
     </p>
     <p>
-      You can find him on the internet in some other places.
+      You can find me on the internet in some other places.
       <% const contactLinks = [
-          { copy: 'Twitter', url: locals.twitter, },
-          { copy: 'Last.fm', url: locals.lastfm, },
-          { copy: 'Github', url: locals.github, },
-          { copy: 'LinkedIn', url: locals.linkedin, },
-        ].map(item => externalLink(item.copy, {
-          href: item.url,
-          itemprop: 'url',
-          target: 'blank',
-          rel: 'noopener',
-        }));
+          { copy: 'Twitter', href: locals.twitter, },
+          { copy: 'Last.fm', href: locals.lastfm, },
+          { copy: 'Github', href: locals.github, },
+          { copy: 'LinkedIn', href: locals.linkedin, },
+          { copy: 'Mastodon', href: locals.mastodon, rel: 'me' },
+        ].map(item => externalLink(item.copy, item));
       %>
       <%- contactLinks.join(', '); %>.
     </p>
@@ -136,6 +133,7 @@ scripts:
         <%- noWidows('Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here is some of the music that I’ve been listening to recently.'); %>
       </p>
     </header>
+    <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin />
     <div class="last-fm-module p" data-type="albums" src="/images/thoughts/last-fm/default.webp">
       <% for (let i = 0; i < 4; i++) { %>
         <%- defaultLastFMModule(); %>

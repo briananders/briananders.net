@@ -1,0 +1,23 @@
+---
+title: "Optimization Experiment: Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred"
+description: ""
+date: 2022-11-27
+priority: 0.8
+layout: empty
+robots: false
+styles:
+  - 'main'
+  - 'coyote-drums'
+scripts:
+  - 'coyote-drums'
+---
+
+
+<%- partial('example/optimizations', {
+  ...locals,
+  customFonts: true,
+  customFontsDeferred: true,
+  customFontsSwap: true,
+  deferStyles: true,
+  inlineSVGs: true,
+}); %>

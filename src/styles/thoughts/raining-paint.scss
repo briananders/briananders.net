@@ -4,7 +4,7 @@
 canvas {
   width: 100vw;
   height: calc(100vh - 100px);
-  border: 1px solid;
+  border: 2px solid $palette--divider-color;
 }
 
 form {

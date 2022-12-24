@@ -1,46 +1,15 @@
 @import "system/utilities";
-@import "../modules/youtube-modal";
-@import "../modules/contributions";
+@import "modules/youtube-modal";
+@import "modules/contributions";
 
+.experience-content {
+  position: relative;
+  @include margin-center;
+  padding: 0 $s2;
+  max-width: 624px;
+}
 
 section {
-  &.google-store {
-    h2[lazy] {
-      background-color: #FFFFFF;
-      --background-image: url('/images/experience/google-store.svg');
-    }
-  }
-  &.nest {
-    h2[lazy] {
-      background-color: #00afd8;
-      --background-image: url('/images/experience/nest.svg');
-    }
-  }
-  &.principal {
-    h2[lazy] {
-      background-color: #FFFFFF;
-      --background-image: url('/images/experience/principal.svg');
-    }
-  }
-  &.smith {
-    h2[lazy] {
-      background-color: #fafafa;
-      --background-image: url('/images/experience/smith.svg');
-    }
-  }
-  &.graceland {
-    h2[lazy] {
-      background-color: #FFFFFF;
-      --background-image: url('/images/experience/graceland.svg');
-    }
-  }
-  &.anders-crane {
-    h2[lazy] {
-      background-color: #F5B547;
-      --background-image: url('/images/experience/anders.svg');
-    }
-  }
-
   h2[lazy] {
     width: 100%;
     height: 0;

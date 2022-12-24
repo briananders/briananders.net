@@ -14,10 +14,10 @@ scripts:
 <section>
   <div class="content">
     <p>
-      The setup is pretty basic. I have an event listener on the html element for mousemove. Using that event I can see how far you moved your mouse (<var>event.movementX</var>). I add that number to an existing counter. Sprinkle on some math (below) and you have the current frame. Easy peasy.
+      The setup is pretty basic. I have an event listener on document scroll. Using that event I can see how far you have scrolled (<var>window.scrollY</var>). I add that number to an existing counter. Sprinkle on some math (below) and you have the current frame. Easy peasy.
     </p>
     <p>
-      The sprite that I'm using has 4 rows and 12 columns. So I had to add in the math for wrapping around from position <var>0, 11</var> to <var>1, 0</var>. That’s why I use <var>$sprite-height</var> and <var>$frame-height</var> below.
+      The sprite that I'm using has 16 rows and 16 columns. So I had to add in the math for wrapping around from position <var>0, 15</var> to <var>1, 0</var>. That’s why I use <var>$sprite-height</var> and <var>$frame-height</var> below.
     </p>
   </div>
 </section>
@@ -28,9 +28,12 @@ scripts:
     <h2>
       Demo
     </h2>
-    <div lazy data-lazy-style="background-image: var(--background-image);" id="frame-container" data-number="0"></div>
+    <div lazy
+      style="--background-image: url('/images/thoughts/earth-rotating-sprite-animation/earth-sprite-color.webp');"
+      data-lazy-style="background-image: var(--background-image);"
+      id="frame-container"
+      data-number="0"></div>
   </div>
-  <input id='frame-slider' type="range" min="0" max="47" value="0" step="1" aria-label="Animation frame selector">
 </section>
 
 
@@ -88,14 +91,26 @@ scripts:
       JavaScript
     </h2>
     <p>
-      There’s almost nothing going on here. Set an event listener on the html element for mousemove. In the caught event, find the horizontal movement using <var>movementX</var>. Add that to the existing frame number and add a large multiple of <var>numberOfFrames</var> to account for negative numbers (you don’t want a negative frame number). Then, find the modulus of that number to get a final frame number between zero and the maximum number of frames. Finally, set that number to the container’s data attribute, and let the CSS do the rendering work.
+      There’s almost nothing going on here. Set an event listener on the document for scroll. In the caught event, find the scroll movement using <var>scrollY</var>. Add that to the existing frame number and add a large multiple of <var>numberOfFrames</var> to account for negative numbers (you don’t want a negative frame number). Then, find the modulus of that number to get a final frame number between zero and the maximum number of frames. Finally, set that number to the container’s data attribute, and let the CSS do the rendering work.
     </p>
     <%- code(`const frameContainer = document.getElementById('frame-container');
-const numberOfFrames = 48;
+const numberOfFrames = 16 * 16;
 let number = 0;
-document.documentElement.addEventListener('mousemove', (event) => {
-  number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
+let lastKnownScrollPosition = 0;
+
+function updateEarth(value) {
+  number = ((number + value) + (numberOfFrames * 100)) % numberOfFrames;
   frameContainer.dataset.number = number;
+}
+
+document.addEventListener('scroll', (event) => {
+  const scrollPosition = Math.floor(window.scrollY);
+  const movementY = scrollPosition - lastKnownScrollPosition;
+  lastKnownScrollPosition = scrollPosition;
+
+  window.requestAnimationFrame(() => {
+    updateEarth(movementY);
+  });
 });`); %>
   </div>
 </section>

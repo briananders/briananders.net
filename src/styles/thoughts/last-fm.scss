@@ -36,11 +36,11 @@
     bar {
       display: block;
       height: $s2;
-      background-color: var(--primary-color-dark);
       margin-top: $s1;
       transition-property: background-color;
       transition-duration: $transition-speed;
       transition-timing-function: $transition-timing;
+      @include orange-gradient;
     }
 
     img {

@@ -2,29 +2,22 @@ const ready = require('../_modules/document-ready');
 
 ready.document(() => {
   const frameContainer = document.getElementById('frame-container');
-  const numberOfFrames = 48;
+  const numberOfFrames = 16 * 16;
   let number = 0;
-  const frameSlider = document.getElementById('frame-slider');
-  // let canSlide = false;
+  let lastKnownScrollPosition = 0;
 
-  function animate() {
-    frameContainer.dataset.number = Number(frameSlider.value);
-    // if (canSlide) window.requestAnimationFrame(animate);
+  function updateEarth(value) {
+    number = ((number + value) + (numberOfFrames * 100)) % numberOfFrames;
+    frameContainer.dataset.number = number;
   }
 
-  // frameSlider.addEventListener('touchstart', () => {
-  //   canSlide = true;
-  //   animate();
-  // });
+  document.addEventListener('scroll', (event) => {
+    const scrollPosition = Math.floor(window.scrollY);
+    const movementY = Math.abs(scrollPosition - lastKnownScrollPosition);
+    lastKnownScrollPosition = scrollPosition;
 
-  // frameSlider.addEventListener('touchend', () => {
-  //   canSlide = false;
-  // });
-
-  frameSlider.addEventListener('input', animate);
-
-  document.documentElement.addEventListener('mousemove', (event) => {
-    number = ((number + event.movementX) + (numberOfFrames * 100)) % numberOfFrames;
-    frameContainer.dataset.number = number;
+    window.requestAnimationFrame(() => {
+      updateEarth(movementY);
+    });
   });
 });

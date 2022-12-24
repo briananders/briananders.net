@@ -2,6 +2,7 @@ const ejs = require('ejs');
 const fs = require('fs');
 const hljs = require('highlight.js');
 const merge = require('merge');
+const sass = require('node-sass');
 const sizeOf = require('image-size');
 const path = require('path');
 const { camelize, dasherize } = require('underscore.string');
@@ -62,7 +63,7 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   noWidows(str) {
-    return str.replace(/\s([^\s]+)$/, '&nbsp;$1');
+    return str.replace(/\s([^\s]+)$/, '&nbsp;$1').replace(/_/g, ' ');
   },
 
   code(block, locals = {}) {
@@ -92,7 +93,10 @@ module.exports = (dir, pageMappingData) => ({
       throw new Error('lazyImage is missing src attribute');
     }
     const dimensions = sizeOf(path.join(dir.package, src));
-    return `<img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />`;
+    return `
+      <link rel="preload" href="${src}" as="image" />
+      <img lazy src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || dimensions.width} ${height || dimensions.height}'%3E%3C/svg%3E" data-src="${src}" alt="${alt}" height="${height || dimensions.height}" width="${width || dimensions.width}" ${classes.length ? `class="${classes.join(' ')}"` : ''} />
+    `;
   },
 
   lazyVideo({ srcs, placeholders, attributes = ['autoplay', 'muted', 'loop', 'playsinline'] } = {}) {
@@ -101,7 +105,10 @@ module.exports = (dir, pageMappingData) => ({
     }
     const desktopDimensions = sizeOf(path.join(dir.package, placeholders.desktop));
     const mobileDimensions = sizeOf(path.join(dir.package, placeholders.mobile));
+    const videoType = path.extname(srcs.mobile).replace('.', '');
     return `
+    <link rel="preload" href="${srcs.mobile}" as="video" type="video/${videoType}" />
+    <link rel="preload" href="${srcs.desktop}" as="video" type="video/${videoType}" />
     <div class="video-container" style="padding-top: ${(desktopDimensions.height / desktopDimensions.width) * 100}%; --aspect-ratio: ${desktopDimensions.height / desktopDimensions.width};">
       <video lazy ${attributes.join(' ')}
         data-mobile-width="${mobileDimensions.width}"
@@ -114,7 +121,7 @@ module.exports = (dir, pageMappingData) => ({
         <source
           data-mobile-src="${srcs.mobile}"
           data-desktop-src="${srcs.desktop}"
-        type="video/mp4">
+        type="video/${videoType}">
       </video>
     </div>`;
   },
@@ -127,13 +134,15 @@ module.exports = (dir, pageMappingData) => ({
     if (!locals.href) {
       throw new Error('externalLink is missing href attribute');
     }
-    locals.class = `${locals.class || ''} link`;
+    if(!/button/.test(locals.class)) {
+      locals.class = `${locals.class || ''} link`;
+    }
     return `<a itemprop="url"
     ${Object.keys(locals).map((attr) => `${attr}="${locals[attr]}"`).join(' ')}>${str}</a>`;
   },
 
   externalLink(str, locals) {
-    return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
+    return this.link(str, merge({ rel: 'noopener', target: 'blank' }, locals));
   },
 
   getFileContents(src) {
@@ -163,4 +172,13 @@ module.exports = (dir, pageMappingData) => ({
         <span>Loading album cover</span>
       ` : ''}
     </span>`,
+
+  inlineScss(src) {
+    const fileData = fs.readFileSync(path.join(dir.src, src)).toString();
+    const results = sass.renderSync({
+      data: fileData,
+      includePaths: [`${dir.src}styles/`, dir.nodeModules],
+    });
+    return results.css;
+  },
 });
