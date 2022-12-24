@@ -1,0 +1,80 @@
+---
+title: "Wordscapes Solver"
+description: "Sometimes I play the game Wordscapes on my phone or tablet, and I think to myself that the making a solver would not be that hard. Here's what I've come up with."
+date: 2022-12-24
+priority: 0.8
+pageClasses:
+  - 'thoughts wordscapes-solver'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/wordscapes-solver'
+scripts:
+  - 'thoughts/wordscapes-solver'
+---
+
+<div class="container section">
+  <p>
+    <%- noWidows(`The dictionary that I am using does include a copy of Webster's English dictionary, as noted below it is the 2009 version provided by the Gutenberg project and has known errors and omissions. Finally, Wordscapes ignores some valid words from the dictionary. As such, the results provided here should cover all of the answers in the game, but may include some words that the game will reject.`); %>
+  </p>
+</div>
+
+<section>
+  <div class="container">
+    <header>
+      <h2>
+        <%- noWidows('What are the letters?'); %>
+      </h2>
+    </header>
+
+    <form id="form" class="p">
+
+      <input type="text" id="input" />
+
+      <button id="button" >Solve</button>
+
+    </form>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <header>
+      <h2>
+        <%- noWidows('The calculated results'); %>
+      </h2>
+    </header>
+
+    <div id="results" class="p">
+      
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <header>
+      <h2>
+        <%- noWidows('Citations'); %>
+      </h2>
+    </header>
+    <ol class="p">
+      <li>
+        Wordscapes: 
+        <%- externalLink('Google Play Store', {
+          href: 'https://play.google.com/store/apps/details?id=com.peoplefun.wordcross&hl=en_US&gl=US',
+        }); %>
+        <%- externalLink('Apple App Store', {
+          href: 'https://apps.apple.com/us/app/wordscapes/id1207472156',
+        }); %>
+      </li>
+      <li>
+        Dictionary: <%- externalLink('Github', {
+          href: 'https://github.com/matthewreagan/WebstersEnglishDictionary',
+        }); %>
+      </li>
+    </ol>
+  </div>
+</section>
