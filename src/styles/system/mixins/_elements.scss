@@ -49,10 +49,10 @@
     content: "";
     position: absolute;
     border-radius: $border-radius;
-    left: -$s1;
-    top: -$s1;
-    width: calc(100% + #{$s2});
-    height: calc(100% + #{$s2});
+    left: -3px;
+    top: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
     opacity: 0;
     transition-property: opacity;
     transition-duration: $transition-speed;

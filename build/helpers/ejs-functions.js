@@ -142,7 +142,7 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   externalLink(str, locals) {
-    return this.link(str, merge(locals, { rel: 'noopener', target: 'blank' }));
+    return this.link(str, merge({ rel: 'noopener', target: 'blank' }, locals));
   },
 
   getFileContents(src) {

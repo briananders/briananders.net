@@ -9,11 +9,11 @@
     <style><%- inlineScss('/styles/main.scss'); %></style>
   <% } else { %>
     <link rel="preload" media="all" href="/styles/<%- path %>.css" lazyload onload="this.onload=null;this.rel='stylesheet'" as="style" />
-  <% } %>
 
-  <noscript>
-    <link rel="stylesheet" media="all" href="/styles/<%- path %>.css" />
-  </noscript>
+    <noscript>
+      <link rel="stylesheet" media="all" href="/styles/<%- path %>.css" />
+    </noscript>
+  <% } %>
 <% } else if (inlineStyles) { %>
   <style><%- inlineScss(`/styles/${path}.scss`); %></style>
 <% } else { %>
