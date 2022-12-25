@@ -5,7 +5,6 @@ ready.document(() => {
 
   const { table } = require('../../_modules/log');
 
-  const dictionary = require('./five-letter-words');
   const Matcher = require('./matcher');
 
   const boardElement = document.getElementById('board');
@@ -44,6 +43,19 @@ ready.document(() => {
   const DASH = '-';
 
   const isLetter = (value) => /[a-zA-Z]/.test(value);
+
+  /// ////////////// get dictionary
+
+  let dictionary;
+
+  function reqListener() {
+    dictionary = JSON.parse(this.responseText);
+  }
+
+  const req = new XMLHttpRequest();
+  req.addEventListener('load', reqListener);
+  req.open('GET', '/data/five-letter-words.json');
+  req.send();
 
   /// ////////////// functions
 
