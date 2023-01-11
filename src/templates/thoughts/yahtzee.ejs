@@ -13,16 +13,57 @@ scripts:
   - 'thoughts/yahtzee'
 ---
 
-<div class="content">
-  <p>
-    I play a Yahtzee knock off on my phone, and it is clearly making adjustments because there are levels of difficulty. I like creating games (check out <%- link('minesweeper', { href: '/thoughts/minesweeper/' }); %>) and this one seemed like a fun challenge. It’s a dice game, and my focus was on getting the logic down. So, enjoy!
-  </p>
-  <p>
-    According to <%- externalLink("Wikipedia", { href: "https://en.wikipedia.org/wiki/Yahtzee" }); %>, Yahtzee is owned by <%- externalLink("Hasbro", { href: "https://shop.hasbro.com/en-us" }); %> and they have an
-    <%- externalLink("Android app", { href: "https://play.google.com/store/apps/details?id=com.scopely.yux&hl=en_US&gl=US" }); %> and an
-    <%- externalLink("iOS app", { href: "https://apps.apple.com/us/app/yahtzee-with-buddies-dice/id1206967173" }); %>. Check out a higher quality gaming experience there.
-  </p>
-</div>
+<section>
+  <div class="content">
+    <p>
+      I play a Yahtzee knock off on my phone, and it is clearly making adjustments because there are levels of difficulty. I like creating games (check out <%- link('minesweeper', { href: '/thoughts/minesweeper/' }); %>) and this one seemed like a fun challenge. It’s a dice game, and my focus was on getting the logic down. So, enjoy!
+    </p>
+    <p>
+      According to <%- externalLink("Wikipedia", { href: "https://en.wikipedia.org/wiki/Yahtzee" }); %>, Yahtzee is owned by <%- externalLink("Hasbro", { href: "https://shop.hasbro.com/en-us" }); %> and they have an
+      <%- externalLink("Android app", { href: "https://play.google.com/store/apps/details?id=com.scopely.yux&hl=en_US&gl=US" }); %> and an
+      <%- externalLink("iOS app", { href: "https://apps.apple.com/us/app/yahtzee-with-buddies-dice/id1206967173" }); %>. Check out a higher quality gaming experience there.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="content">
+    <h2>How to play</h2>
+    <p>Yahtzee is a dice game played with five six-sided dice. The objective of the game is to score points by rolling certain combinations of the dice. The game is played with a scorecard, with a separate section for each combination.</p>
+
+    <ol>
+      <li>The first step is to roll all five dice. You can roll them as many times as you want, but you must set aside at least one die after each roll. This means that you cannot roll all five dice again after the first roll.</li>
+      <li>After the first roll, you can set aside any dice that you want to keep and roll the remaining dice again.</li>
+      <li>After the second roll, you must again set aside at least one die and you can roll the remaining dice again, if any.</li>
+      <li>After the third roll, you must set aside any remaining dice and cannot roll again.</li>
+      <li>After the third roll, you must choose one of the sections on the scorecard to fill in with your roll. For example, you might score your roll as "three of a kind" if you have rolled three dice with the same number. Each combination can only be filled once in the game, so choose wisely.</li>
+      <li>Once you have filled in a section on the scorecard, your turn is over, and it's the next player's turn.</li>
+      <li>The game ends when all thirteen sections of the scorecard have been filled in.</li>
+      <li>The player with the highest total score at the end of the game wins.</li>
+    </ol>
+
+    <p>Some possible combinations are:</p>
+
+    <ul class="default">
+      <li>Three of a kind: Sum of all the dice if three of them have the same value.</li>
+      <li>Four of a kind: Sum of all the dice if four of them have the same value.</li>
+      <li>Small Straight: 30 points if a player rolls 1-2-3-4-5 or 2-3-4-5-6 in any order.</li>
+      <li>Large Straight: 40 points if a player rolls 1-2-3-4-5 or 2-3-4-5-6 in order.</li>
+      <li>Full House: 25 points, if a player rolls two of one number, three of another number.</li>
+      <li>Yahtzee: 50 points, if all five dice have the same value</li>
+      <li>Chance: Sum of all the dice</li>
+      <li>Bonus: Extra 35 points if the single totals are greater than 62</li>
+    </ul>
+
+    <p>
+      Scoring combination are many and different based on the version of the game.
+    </p>
+
+    <p>A score over 200 is considered good and above 250 is considered very good. However, it really depends on the competitive level of the players and the scoring rule that been agreed upon before the game.</p>
+
+    <p>It's important to remember, Yahtzee is a game of luck, so the outcome can be very different each time you play.</p>
+  </div>
+</section>
 
 <div class="content game-container">
   <button type=button id=roll data-rolls-left=3 class="button">Roll</button>
@@ -36,66 +77,66 @@ scripts:
   <div id=score-board data-rolls-left=3>
     <div class="column">
       <div id=ones>
-        <label title="Groups of Ones">Ones</label>
+        <label>Ones</label>
         <button type=button class=score>0</button>
       </div>
       <div id=twos>
-        <label title="Groups of Twos">Twos</label>
+        <label>Twos</label>
         <button type=button class=score>0</button>
       </div>
       <div id=threes>
-        <label title="Groups of Threes">Threes</label>
+        <label>Threes</label>
         <button type=button class=score>0</button>
       </div>
       <div id=fours>
-        <label title="Groups of Fours">Fours</label>
+        <label>Fours</label>
         <button type=button class=score>0</button>
       </div>
       <div id=fives>
-        <label title="Groups of Fives">Fives</label>
+        <label>Fives</label>
         <button type=button class=score>0</button>
       </div>
       <div id=sixes>
-        <label title="Groups of Sixes">Sixes</label>
+        <label>Sixes</label>
         <button type=button class=score>0</button>
       </div>
       <div id=kind-total>
-        <label title="Total of the above">Total</label>
+        <label>Total</label>
         <div class=score>0</div>
       </div>
       <div id=bonus>
-        <label title="Extra 35 points if totals are greater than 62">Bonus</label>
+        <label>Bonus</label>
         <div class=score>0</div>
       </div>
     </div>
 
     <div class="column">
       <div id=three-kind>
-        <label title="3 or more of the same number">Three of a kind</label>
+        <label>Three of a kind</label>
         <button type=button class=score>0</button>
       </div>
       <div id=four-kind>
-        <label title="4 or more of the same number">Four of a kind</label>
+        <label>Four of a kind</label>
         <button type=button class=score>0</button>
       </div>
       <div id=small-straight>
-        <label title="4 sequential numbers">Small Straight</label>
+        <label>Small Straight</label>
         <button type=button class=score>0</button>
       </div>
       <div id=large-straight>
-        <label title="5 sequential numbers">Large Straight</label>
+        <label>Large Straight</label>
         <button type=button class=score>0</button>
       </div>
       <div id=full-house>
-        <label title="2 of one number, 3 of another number">Full House</label>
+        <label>Full House</label>
         <button type=button class=score>0</button>
       </div>
       <div id=wild>
-        <label title="Any combination">Wild</label>
+        <label>Chance</label>
         <button type=button class=score>0</button>
       </div>
       <div id=yahtzee>
-        <label title="5 of the same number">Yahtzee</label>
+        <label>Yahtzee</label>
         <button type=button class=score>0</button>
       </div>
     </div>
