@@ -2,12 +2,22 @@ const yearTemplate = document.createElement("year-template");
 yearTemplate.innerHTML = `
 <style>
   slot {
-    font-size: 22px;
     display: inline-block;
-    margin-right: 6px;
-    margin-left: 6px;
-    position: relative;
-    top: 2px;
+    border: 1px solid #f57f17;
+    border-radius: 4px;
+    padding: 0 6px;
+    height: 22px;
+    line-height: 24px;
+    font-size: 18px;
+    width: 50px;
+    text-align: center;
+  }
+  select {
+    position: absolute;
+    left: 39px;
+    width: 65px;
+    height: 25px;
+    opacity: 0;
   }
   button {
     appearance: none;
@@ -35,6 +45,7 @@ yearTemplate.innerHTML = `
   <button id="back">&#9204;</button>
   <slot>2022</slot>
   <button id="next">&#9205;</button>
+  <select id="dropdown"></select>
 </div>
 `;
 
@@ -52,6 +63,7 @@ class YearSelector extends HTMLElement {
 
     this.backButton = shadow.getElementById('back');
     this.nextButton = shadow.getElementById('next');
+    this.selectElement = shadow.getElementById('dropdown');
     this.initEventListeners();
     this.update();
   }
@@ -112,11 +124,30 @@ class YearSelector extends HTMLElement {
     } else {
       this.backButton.removeAttribute('disabled');
     }
+
+    this.updateSelect();
+  }
+
+  updateSelect() {
+    this.selectElement.innerHTML = "";
+    for (let i = this.max; i >= this.min; i--) {
+      const optionElement = document.createElement('option');
+      optionElement.value = i;
+      optionElement.innerText = i;
+      this.selectElement.append(optionElement);
+    }
+    this.selectElement.value = this.value;
+  }
+
+  selectChanged() {
+    this.value = Number(this.selectElement.value);
+    this.update();
   }
 
   initEventListeners() {
     this.nextButton.addEventListener('click', this.next.bind(this));
     this.backButton.addEventListener('click', this.back.bind(this));
+    this.selectElement.addEventListener('change', this.selectChanged.bind(this));
   }
 }
 

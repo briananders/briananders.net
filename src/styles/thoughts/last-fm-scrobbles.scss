@@ -8,9 +8,20 @@
   margin: auto;
 }
 
+p {
+  @include paragraph-margin;
+}
+
+.resources {
+  a {
+    margin-bottom: 4px;
+  }
+}
+
 year-selector {
   display: block;
-  height: 28px;
+  min-height: 28px;
+  position: relative;
 }
 
 album-listing,

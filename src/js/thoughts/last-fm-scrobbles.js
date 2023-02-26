@@ -50,11 +50,13 @@ ready.document(() => {
         albumElement.setAttribute('artist', album.artist);
         albumElement.setAttribute('count', album.count);
         albumElement.setAttribute('max', maxAlbum);
+        albumElement.setAttribute('img', album.img);
         albumElement.innerText = album.name;
 
         artistElement.setAttribute('name', artist.name);
         artistElement.setAttribute('count', artist.count);
         artistElement.setAttribute('max', maxArtist);
+        artistElement.setAttribute('img', artist.img);
         artistElement.innerText = artist.name;
       }
 

@@ -40,7 +40,7 @@ artistTemplate.innerHTML = `
   </a>
 `;
 
-const attributes = ["name", "count", "max"];
+const attributes = ["name", "count", "max", 'img'];
 
 class ArtistListing extends HTMLElement {
   constructor() {
@@ -67,9 +67,12 @@ class ArtistListing extends HTMLElement {
     }
     if (name === "name") {
       const imgElement = this.shadowRoot.querySelector('img');
-      imgElement.setAttribute('src', `/images/last-fm/artist/${newValue.replace(/\s/g,'-').toLowerCase()}.webp`);
       imgElement.setAttribute('alt', newValue);
       this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/music/${newValue.replace(/\s/g, '+')}`);
+    }
+    if (name === "img") {
+      const imgElement = this.shadowRoot.querySelector('img');
+      imgElement.setAttribute('src', newValue);
     }
   }
 

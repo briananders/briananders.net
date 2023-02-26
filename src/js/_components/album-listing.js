@@ -44,7 +44,7 @@ albumTemplate.innerHTML = `
   </a>
 `;
 
-const attributes = ["name", "artist", "count", "max"];
+const attributes = ["name", "artist", "count", "max", 'img'];
 
 class AlbumListing extends HTMLElement {
   constructor() {
@@ -78,9 +78,11 @@ class AlbumListing extends HTMLElement {
       this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/music/${artistName.replace(/\s/g, '+')}/${albumName.replace(/\s/g, '+')}`);
 
       const imgElement = this.shadowRoot.querySelector('img');
-      const fileName = `${artistName.replace(/\s/g, '-')}+${albumName.replace(/\s/g, '-')}`.toLowerCase().replace('-/-', '-').replace(/(\.|\?|:|\&)/g, '');
-      imgElement.setAttribute('src', `/images/last-fm/album/${fileName}.webp`);
       imgElement.setAttribute('alt', albumName);
+    }
+    if (name === "img") {
+      const imgElement = this.shadowRoot.querySelector('img');
+      imgElement.setAttribute('src', newValue);
     }
   }
 

@@ -51,24 +51,3 @@ scripts:
     <% } %>
   </div>
 </section>
-
-<section class="content">
-  <h2>Resources</h2>
-  <%- externalLink("My Last FM profile", {
-    href: "https://www.last.fm/user/iBrianAnders"
-  }); %>
-
-  <%
-    const years = [];
-    for (let i = 2013; i <= (new Date).getFullYear(); i++) {
-      years.push(i);
-    }
-    years.forEach((year) => {
-  %>
-    <%- externalLink(`${year} Scrobbles`, {
-      href: `https://www.last.fm/user/iBrianAnders/library/artists?from=${year}-01-01&rangetype=year`
-    }); %>
-  <%
-    });
-   %>
-</section>
