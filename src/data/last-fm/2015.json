@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2015-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2015-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Billy Joel",
+      "img": "",
+      "count": 1408
+    },
+    {
+      "name": "George Harrison",
+      "img": "",
+      "count": 927
+    },
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 674
+    },
+    {
+      "name": "The Beach Boys",
+      "img": "",
+      "count": 671
+    },
+    {
+      "name": "Brian Wilson",
+      "img": "",
+      "count": 373
+    },
+    {
+      "name": "Muse",
+      "img": "",
+      "count": 313
+    },
+    {
+      "name": "Fall Out Boy",
+      "img": "",
+      "count": 287
+    },
+    {
+      "name": "My Chemical Romance",
+      "img": "",
+      "count": 277
+    },
+    {
+      "name": "John Lennon",
+      "img": "",
+      "count": 273
+    },
+    {
+      "name": "Bruce Springsteen",
+      "img": "",
+      "count": 262
+    }
+  ],
+  "albums": [
+    {
+      "name": "All Things Must Pass",
+      "artist": "George Harrison",
+      "img": "",
+      "count": 547
+    },
+    {
+      "name": "Pet Sounds",
+      "artist": "The Beach Boys",
+      "img": "",
+      "count": 473
+    },
+    {
+      "name": "SMiLE",
+      "artist": "Brian Wilson",
+      "img": "",
+      "count": 353
+    },
+    {
+      "name": "The Essential Billy Joel",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 182
+    },
+    {
+      "name": "Heavy Fruit",
+      "artist": "He Is Legend",
+      "img": "",
+      "count": 169
+    },
+    {
+      "name": "The Black Parade",
+      "artist": "My Chemical Romance",
+      "img": "",
+      "count": 162
+    },
+    {
+      "name": "American Beauty / American Psycho",
+      "artist": "Fall Out Boy",
+      "img": "",
+      "count": 160
+    },
+    {
+      "name": "Glass Houses",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 151
+    },
+    {
+      "name": "An Innocent Man",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 145
+    },
+    {
+      "name": "Hungry Ghosts",
+      "artist": "OK Go",
+      "img": "",
+      "count": 140
+    }
+  ]
+}

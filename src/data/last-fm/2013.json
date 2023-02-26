@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2013-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2013-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Red Hot Chili Peppers",
+      "img": "",
+      "count": 2109
+    },
+    {
+      "name": "The Used",
+      "img": "",
+      "count": 1761
+    },
+    {
+      "name": "Queens of the Stone Age",
+      "img": "",
+      "count": 1311
+    },
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 1177
+    },
+    {
+      "name": "Muse",
+      "img": "",
+      "count": 1112
+    },
+    {
+      "name": "Panic! at the Disco",
+      "img": "",
+      "count": 775
+    },
+    {
+      "name": "The Strokes",
+      "img": "",
+      "count": 727
+    },
+    {
+      "name": "Fall Out Boy",
+      "img": "",
+      "count": 641
+    },
+    {
+      "name": "Emery",
+      "img": "",
+      "count": 625
+    },
+    {
+      "name": "blink-182",
+      "img": "",
+      "count": 568
+    }
+  ],
+  "albums": [
+    {
+      "name": "Stadium Arcadium",
+      "artist": "Red Hot Chili Peppers",
+      "img": "",
+      "count": 1393
+    },
+    {
+      "name": "Vulnerable",
+      "artist": "The Used",
+      "img": "",
+      "count": 772
+    },
+    {
+      "name": "Let It Be",
+      "artist": "The Beatles",
+      "img": "",
+      "count": 641
+    },
+    {
+      "name": "Artwork",
+      "artist": "The Used",
+      "img": "",
+      "count": 634
+    },
+    {
+      "name": "The 2nd Law",
+      "artist": "Muse",
+      "img": "",
+      "count": 607
+    },
+    {
+      "name": "Volcano",
+      "artist": "Gatsby's American Dream",
+      "img": "",
+      "count": 494
+    },
+    {
+      "name": "Vices & Virtues",
+      "artist": "Panic! at the Disco",
+      "img": "",
+      "count": 383
+    },
+    {
+      "name": "Save Rock and Roll",
+      "artist": "Fall Out Boy",
+      "img": "",
+      "count": 370
+    },
+    {
+      "name": "Songs for the Deaf",
+      "artist": "Queens of the Stone Age",
+      "img": "",
+      "count": 324
+    },
+    {
+      "name": "Rated R",
+      "artist": "Queens of the Stone Age",
+      "img": "",
+      "count": 322
+    }
+  ]
+}

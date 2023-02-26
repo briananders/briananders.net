@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2018-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2018-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Pink Floyd",
+      "img": "",
+      "count": 1130
+    },
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 1100
+    },
+    {
+      "name": "The Beach Boys",
+      "img": "",
+      "count": 439
+    },
+    {
+      "name": "Electric Light Orchestra",
+      "img": "",
+      "count": 332
+    },
+    {
+      "name": "John Lennon",
+      "img": "",
+      "count": 311
+    },
+    {
+      "name": "Panic! at the Disco",
+      "img": "",
+      "count": 271
+    },
+    {
+      "name": "Fall Out Boy",
+      "img": "",
+      "count": 262
+    },
+    {
+      "name": "Led Zeppelin",
+      "img": "",
+      "count": 240
+    },
+    {
+      "name": "Underoath",
+      "img": "",
+      "count": 227
+    },
+    {
+      "name": "Emery",
+      "img": "",
+      "count": 222
+    }
+  ],
+  "albums": [
+    {
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 427
+    },
+    {
+      "name": "The Beatles",
+      "artist": "The Beatles",
+      "img": "",
+      "count": 339
+    },
+    {
+      "name": "The Wall",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 306
+    },
+    {
+      "name": "The Best Of Pink Floyd: A Foot In The Door",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 229
+    },
+    {
+      "name": "Pray for the Wicked",
+      "artist": "Panic! at the Disco",
+      "img": "",
+      "count": 220
+    },
+    {
+      "name": "50 Big Ones",
+      "artist": "The Beach Boys",
+      "img": "",
+      "count": 215
+    },
+    {
+      "name": "M A N I A",
+      "artist": "Fall Out Boy",
+      "img": "",
+      "count": 189
+    },
+    {
+      "name": "Eve",
+      "artist": "Emery",
+      "img": "",
+      "count": 177
+    },
+    {
+      "name": "50th Anniversary Collection",
+      "artist": "Neil Diamond",
+      "img": "",
+      "count": 151
+    },
+    {
+      "name": "All Over the World: The Very Best of ELO",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 148
+    }
+  ]
+}

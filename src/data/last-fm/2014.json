@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2014-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2014-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Billy Joel",
+      "img": "",
+      "count": 377
+    },
+    {
+      "name": "Elton John",
+      "img": "",
+      "count": 297
+    },
+    {
+      "name": "John Williams",
+      "img": "",
+      "count": 235
+    },
+    {
+      "name": "Fall Out Boy",
+      "img": "",
+      "count": 198
+    },
+    {
+      "name": "Every Time I Die",
+      "img": "",
+      "count": 186
+    },
+    {
+      "name": "Simon & Garfunkel",
+      "img": "",
+      "count": 182
+    },
+    {
+      "name": "He Is Legend",
+      "img": "",
+      "count": 177
+    },
+    {
+      "name": "Muse",
+      "img": "",
+      "count": 166
+    },
+    {
+      "name": "Ben Folds",
+      "img": "",
+      "count": 156
+    },
+    {
+      "name": "OK Go",
+      "img": "",
+      "count": 154
+    }
+  ],
+  "albums": [
+    {
+      "name": "The Greatest Hits 1970-2002",
+      "artist": "Elton John",
+      "img": "",
+      "count": 188
+    },
+    {
+      "name": "Hesitant Alien",
+      "artist": "Gerard Way",
+      "img": "",
+      "count": 127
+    },
+    {
+      "name": "Heavy Fruit",
+      "artist": "He Is Legend",
+      "img": "",
+      "count": 126
+    },
+    {
+      "name": "The Essential Billy Joel",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 116
+    },
+    {
+      "name": "Folie à deux",
+      "artist": "Fall Out Boy",
+      "img": "",
+      "count": 116
+    },
+    {
+      "name": "Hungry Ghosts",
+      "artist": "OK Go",
+      "img": "",
+      "count": 77
+    },
+    {
+      "name": "Indie Cindy",
+      "artist": "Pixies",
+      "img": "",
+      "count": 77
+    },
+    {
+      "name": "The Best Of",
+      "artist": "Simon & Garfunkel",
+      "img": "",
+      "count": 76
+    },
+    {
+      "name": "Greatest Hits",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 68
+    },
+    {
+      "name": "My Lives",
+      "artist": "Billy Joel",
+      "img": "",
+      "count": 67
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2019-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2019-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Pink Floyd",
+      "img": "",
+      "count": 1284
+    },
+    {
+      "name": "David Bowie",
+      "img": "",
+      "count": 456
+    },
+    {
+      "name": "Paul McCartney",
+      "img": "",
+      "count": 451
+    },
+    {
+      "name": "Electric Light Orchestra",
+      "img": "",
+      "count": 423
+    },
+    {
+      "name": "Neil Diamond",
+      "img": "",
+      "count": 410
+    },
+    {
+      "name": "Pixies",
+      "img": "",
+      "count": 406
+    },
+    {
+      "name": "Supertramp",
+      "img": "",
+      "count": 400
+    },
+    {
+      "name": "Bad Religion",
+      "img": "",
+      "count": 368
+    },
+    {
+      "name": "He Is Legend",
+      "img": "",
+      "count": 356
+    },
+    {
+      "name": "blink-182",
+      "img": "",
+      "count": 336
+    }
+  ],
+  "albums": [
+    {
+      "name": "Hamilton",
+      "artist": "Various Artists",
+      "img": "",
+      "count": 499
+    },
+    {
+      "name": "The Wall",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 411
+    },
+    {
+      "name": "50th Anniversary Collection",
+      "artist": "Neil Diamond",
+      "img": "",
+      "count": 373
+    },
+    {
+      "name": "Legacy",
+      "artist": "David Bowie",
+      "img": "",
+      "count": 250
+    },
+    {
+      "name": "The Essential Paul Simon",
+      "artist": "Paul Simon",
+      "img": "",
+      "count": 246
+    },
+    {
+      "name": "Greatest Hits",
+      "artist": "Fleetwood Mac",
+      "img": "",
+      "count": 219
+    },
+    {
+      "name": "Breakfast in America",
+      "artist": "Supertramp",
+      "img": "",
+      "count": 214
+    },
+    {
+      "name": "The Final Cut",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 208
+    },
+    {
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 204
+    },
+    {
+      "name": "Egypt Station",
+      "artist": "Paul McCartney",
+      "img": "",
+      "count": 191
+    }
+  ]
+}

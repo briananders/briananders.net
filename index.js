@@ -87,6 +87,20 @@ clean(configs).then(() => {
 });
 
 if (!production) {
+  const livereload = require("livereload");
+  const connectLivereload = require("connect-livereload");
+
+  // open livereload high port and start to watch public directory for changes
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.watch(dir.package);
+
+  // ping browser on Express boot, once browser has reconnected and handshaken
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  });
+
   app.use(serve(dir.package));
 
   const server = app.listen(3000, () => {

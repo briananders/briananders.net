@@ -1,0 +1,46 @@
+---
+title: "Last.fm Scrobble History"
+description: "After doing some scrobble comparisons, I decided that it would be fun to make a basic interactive interface with a local JSON API. I am also using native web components for the listing."
+date: 2023-02-17
+priority: 0.8
+pageClasses:
+  - 'thoughts last-fm-scrobbles'
+layout: base
+styles:
+  - 'main'
+  - 'thoughts/last-fm-scrobbles'
+scripts:
+  - 'thoughts/last-fm-scrobbles'
+---
+
+<div class="p">
+  <year-selector id="year-selector" min="2013" max="2022" value="2022"></year-selector>
+</div>
+
+<section>
+  <div class="container">
+    <h2>Artists</h2>
+    <div id="artists" class="p">
+      <% for (let i = 0; i < 10; i++) { %>
+        <artist-listing></artist-listing>
+      <% } %>
+      <div class="center">
+        <%- externalLink("More", { href: "#", class: "button more" }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Albums</h2>
+    <div id="albums">
+      <% for (let i = 0; i < 10; i++) { %>
+        <album-listing></album-listing>
+      <% } %>
+      <div class="center">
+        <%- externalLink("More", { href: "#", class: "button more" }) %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2022-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2022-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 1958
+    },
+    {
+      "name": "Red Hot Chili Peppers",
+      "img": "",
+      "count": 1818
+    },
+    {
+      "name": "Bad Religion",
+      "img": "",
+      "count": 1587
+    },
+    {
+      "name": "Pink Floyd",
+      "img": "",
+      "count": 1412
+    },
+    {
+      "name": "He Is Legend",
+      "img": "",
+      "count": 1143
+    },
+    {
+      "name": "Electric Light Orchestra",
+      "img": "",
+      "count": 1003
+    },
+    {
+      "name": "Underoath",
+      "img": "",
+      "count": 916
+    },
+    {
+      "name": "Emery",
+      "img": "",
+      "count": 879
+    },
+    {
+      "name": "Coheed and Cambria",
+      "img": "",
+      "count": 831
+    },
+    {
+      "name": "Bring Me the Horizon",
+      "img": "",
+      "count": 818
+    }
+  ],
+  "albums": [
+    {
+      "name": "The Wall",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 581
+    },
+    {
+      "name": "Voyeurist",
+      "artist": "Underoath",
+      "img": "",
+      "count": 371
+    },
+    {
+      "name": "amo",
+      "artist": "Bring Me the Horizon",
+      "img": "",
+      "count": 303
+    },
+    {
+      "name": "Past Lives",
+      "artist": "L.S. Dunes",
+      "img": "",
+      "count": 298
+    },
+    {
+      "name": "Abbey Road",
+      "artist": "The Beatles",
+      "img": "",
+      "count": 258
+    },
+    {
+      "name": "Out of the Blue",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 250
+    },
+    {
+      "name": "Blood Sugar Sex Magik",
+      "artist": "Red Hot Chili Peppers",
+      "img": "",
+      "count": 250
+    },
+    {
+      "name": "Vaxis II: A Window of the Waking Mind",
+      "artist": "Coheed and Cambria",
+      "img": "",
+      "count": 249
+    },
+    {
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 245
+    },
+    {
+      "name": "Breakfast in America",
+      "artist": "Supertramp",
+      "img": "",
+      "count": 244
+    }
+  ]
+}

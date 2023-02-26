@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2017-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2017-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 2278
+    },
+    {
+      "name": "Electric Light Orchestra",
+      "img": "",
+      "count": 949
+    },
+    {
+      "name": "Neil Diamond",
+      "img": "",
+      "count": 925
+    },
+    {
+      "name": "Alkaline Trio",
+      "img": "",
+      "count": 800
+    },
+    {
+      "name": "Queens of the Stone Age",
+      "img": "",
+      "count": 581
+    },
+    {
+      "name": "John Lennon",
+      "img": "",
+      "count": 430
+    },
+    {
+      "name": "Elton John",
+      "img": "",
+      "count": 339
+    },
+    {
+      "name": "Paul McCartney",
+      "img": "",
+      "count": 337
+    },
+    {
+      "name": "Emery",
+      "img": "",
+      "count": 309
+    },
+    {
+      "name": "George Harrison",
+      "img": "",
+      "count": 254
+    }
+  ],
+  "albums": [
+    {
+      "name": "50th Anniversary Collection",
+      "artist": "Neil Diamond",
+      "img": "",
+      "count": 647
+    },
+    {
+      "name": "All Over the World: The Very Best of ELO",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 573
+    },
+    {
+      "name": "The Beatles",
+      "artist": "The Beatles",
+      "img": "",
+      "count": 516
+    },
+    {
+      "name": "Live at the BBC",
+      "artist": "The Beatles",
+      "img": "",
+      "count": 310
+    },
+    {
+      "name": "Villains",
+      "artist": "Queens of the Stone Age",
+      "img": "",
+      "count": 292
+    },
+    {
+      "name": "Good Mourning",
+      "artist": "Alkaline Trio",
+      "img": "",
+      "count": 233
+    },
+    {
+      "name": "Agony & Irony",
+      "artist": "Alkaline Trio",
+      "img": "",
+      "count": 210
+    },
+    {
+      "name": "All-Time Greatest Hits",
+      "artist": "Neil Diamond",
+      "img": "",
+      "count": 209
+    },
+    {
+      "name": "The Knife",
+      "artist": "Goldfinger",
+      "img": "",
+      "count": 198
+    },
+    {
+      "name": "Time",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 191
+    }
+  ]
+}

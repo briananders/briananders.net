@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2021-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2021-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "Electric Light Orchestra",
+      "img": "",
+      "count": 1010
+    },
+    {
+      "name": "Pink Floyd",
+      "img": "",
+      "count": 685
+    },
+    {
+      "name": "Paul McCartney",
+      "img": "",
+      "count": 510
+    },
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 454
+    },
+    {
+      "name": "Underoath",
+      "img": "",
+      "count": 432
+    },
+    {
+      "name": "Bad Religion",
+      "img": "",
+      "count": 424
+    },
+    {
+      "name": "The Used",
+      "img": "",
+      "count": 375
+    },
+    {
+      "name": "Atreyu",
+      "img": "",
+      "count": 341
+    },
+    {
+      "name": "He Is Legend",
+      "img": "",
+      "count": 311
+    },
+    {
+      "name": "Senses Fail",
+      "img": "",
+      "count": 277
+    }
+  ],
+  "albums": [
+    {
+      "name": "The Wall",
+      "artist": "Pink Floyd",
+      "img": "",
+      "count": 247
+    },
+    {
+      "name": "Baptize",
+      "artist": "Atreyu",
+      "img": "",
+      "count": 233
+    },
+    {
+      "name": "Out of the Blue",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 223
+    },
+    {
+      "name": "Voyeurist",
+      "artist": "Underoath",
+      "img": "",
+      "count": 219
+    },
+    {
+      "name": "Heartwork",
+      "artist": "The Used",
+      "img": "",
+      "count": 190
+    },
+    {
+      "name": "Pure McCartney",
+      "artist": "Paul McCartney",
+      "img": "",
+      "count": 178
+    },
+    {
+      "name": "Is This the Life We Really Want?",
+      "artist": "Roger Waters",
+      "img": "",
+      "count": 173
+    },
+    {
+      "name": "amo",
+      "artist": "Bring Me the Horizon",
+      "img": "",
+      "count": 143
+    },
+    {
+      "name": "Secret Messages",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 138
+    },
+    {
+      "name": "Eldorado",
+      "artist": "Electric Light Orchestra",
+      "img": "",
+      "count": 135
+    }
+  ]
+}

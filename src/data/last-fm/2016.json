@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2016-01-01&rangetype=year",
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2016-01-01&rangetype=year"
+  },
+  "artists": [
+    {
+      "name": "The Last Shadow Puppets",
+      "img": "",
+      "count": 1998
+    },
+    {
+      "name": "The Millennium",
+      "img": "",
+      "count": 761
+    },
+    {
+      "name": "The Beatles",
+      "img": "",
+      "count": 664
+    },
+    {
+      "name": "Gerard Way",
+      "img": "",
+      "count": 550
+    },
+    {
+      "name": "The Beach Boys",
+      "img": "",
+      "count": 386
+    },
+    {
+      "name": "Billy Joel",
+      "img": "",
+      "count": 358
+    },
+    {
+      "name": "John Lennon",
+      "img": "",
+      "count": 340
+    },
+    {
+      "name": "My Chemical Romance",
+      "img": "",
+      "count": 313
+    },
+    {
+      "name": "Panic! at the Disco",
+      "img": "",
+      "count": 305
+    },
+    {
+      "name": "George Harrison",
+      "img": "",
+      "count": 300
+    }
+  ],
+  "albums": [
+    {
+      "name": "The Age of the Understatement",
+      "artist": "The Last Shadow Puppets",
+      "img": "",
+      "count": 1185
+    },
+    {
+      "name": "Everything You've Come to Expect",
+      "artist": "The Last Shadow Puppets",
+      "img": "",
+      "count": 778
+    },
+    {
+      "name": "Begin",
+      "artist": "The Millennium",
+      "img": "",
+      "count": 750
+    },
+    {
+      "name": "Hesitant Alien",
+      "artist": "Gerard Way",
+      "img": "",
+      "count": 550
+    },
+    {
+      "name": "Pet Sounds",
+      "artist": "The Beach Boys",
+      "img": "",
+      "count": 337
+    },
+    {
+      "name": "Danger Days: The True Lives of the Fabulous Killjoys",
+      "artist": "My Chemical Romance",
+      "img": "",
+      "count": 308
+    },
+    {
+      "name": "Death of a Bachelor",
+      "artist": "Panic! at the Disco",
+      "img": "",
+      "count": 181
+    },
+    {
+      "name": "SMiLE",
+      "artist": "Brian Wilson",
+      "img": "",
+      "count": 118
+    },
+    {
+      "name": "Pure McCartney",
+      "artist": "Paul McCartney",
+      "img": "",
+      "count": 117
+    },
+    {
+      "name": "The Best Of",
+      "artist": "Simon & Garfunkel",
+      "img": "",
+      "count": 115
+    }
+  ]
+}
