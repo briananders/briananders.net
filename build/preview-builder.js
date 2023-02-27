@@ -83,6 +83,7 @@ module.exports = (configs) => {
       case filePath.includes(`${dir.src}downloads/`):
         moveOneDownload(filePath, configs);
         break;
+      case filePath.includes(`${dir.src}data/`):
       case extn === '.txt':
         moveOneTxtFile(filePath, configs);
         break;
