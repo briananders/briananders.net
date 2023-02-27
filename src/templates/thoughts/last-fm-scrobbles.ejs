@@ -58,23 +58,32 @@ scripts:
   </div>
 </section>
 
-<section class="content resources">
-  <h2>Resources</h2>
-  <%- externalLink("My Last FM profile", {
-    href: "https://www.last.fm/user/iBrianAnders"
-  }); %>
+<section class="resources">
+  <div class="container">
+    <h2>Resources</h2>
 
-  <%
-    const years = [];
-    for (let i = (new Date).getFullYear(); i >= 2013; i--) {
-      years.push(i);
-    }
-    years.forEach((year) => {
-  %>
-    <%- externalLink(`${year} Scrobbles`, {
-      href: `https://www.last.fm/user/iBrianAnders/library/artists?from=${year}-01-01&rangetype=year`
-    }); %>
-  <%
-    });
-   %>
+    <ul>
+      <li>
+        <%- externalLink("My Last FM profile", {
+          href: "https://www.last.fm/user/iBrianAnders"
+        }); %>
+      </li>
+
+      <%
+        const years = [];
+        for (let i = (new Date).getFullYear(); i >= 2013; i--) {
+          years.push(i);
+        }
+        years.forEach((year) => {
+      %>
+        <li>
+          <%-
+            externalLink(`${year} Scrobbles`, {
+              href: `https://www.last.fm/user/iBrianAnders/library/artists?from=${year}-01-01&rangetype=year`
+            });
+          %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
 </section>
