@@ -166,7 +166,7 @@ function updateColor() {
 }
 
 function updateStroke() {
-  mainStroke.dataset.stroke = diameter;
+  mainStroke.dataset.stroke = Number(diameter);
   mainStroke.querySelector('span').innerHTML = `${diameter}px`;
   mainStroke.setAttribute('style', `--stroke: ${diameter}px`);
 }
