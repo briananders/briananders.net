@@ -208,10 +208,38 @@ function moveAllTxtFiles(configs) {
 
   for (let i = 0; i < txtGlob.length; i++) {
     const filePath = txtGlob[i];
-    moveOneImage(filePath, configs, () => {
+    moveOneTxtFile(filePath, configs, () => {
       processed++;
       if (debug) log(`${timestamp.stamp()} ${processed}/${txtGlob.length}: ${filePath}`);
       checkDone(processed, txtGlob.length);
+    });
+  }
+}
+
+function moveJSONFiles(configs) {
+  const {
+    dir, debug,
+  } = configs;
+
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+
+  log(`${timestamp.stamp()} moveJSONFiles()`);
+
+  function checkDone(processed, maximum) {
+    if (processed >= maximum) {
+      log(`${timestamp.stamp()} moveJSONFiles(): ${'DONE'.bold.green}`);
+    }
+  }
+
+  const jsonGlob = glob.sync(`${dir.src}data/**/*.json`);
+  let processed = 0;
+
+  for (let i = 0; i < jsonGlob.length; i++) {
+    const filePath = jsonGlob[i];
+    moveOneTxtFile(filePath, configs, () => {
+      processed++;
+      if (debug) log(`${timestamp.stamp()} ${processed}/${jsonGlob.length}: ${filePath}`);
+      checkDone(processed, jsonGlob.length);
     });
   }
 }
@@ -277,6 +305,7 @@ module.exports = {
     moveAllVideos(configs);
     moveAllTxtFiles(configs);
     moveAllDownloads(configs);
+    moveJSONFiles(configs);
   },
 
   moveOneDownload,

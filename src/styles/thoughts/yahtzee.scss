@@ -1,5 +1,10 @@
 @import "system/utilities";
 
+ul li {
+  list-style: disc;
+  margin-left: $s4;
+}
+
 .thoughts.yahtzee {
   display: grid;
   align-items: center;
@@ -63,23 +68,6 @@
   .locked button {
     pointer-events: none !important;
     border-color: transparent !important;
-  }
-
-  label {
-    &:hover::before,
-    &:focus::before {
-      content: attr(title);
-      position: absolute;
-      font-size: 50%;
-      top: 0;
-      left: 0;
-      background-color: $palette--primary-grey;
-      color: $palette--primary-white;
-      max-width: 100%;
-      border: 2px solid $palette--primary-color-dark;
-      border-radius: $s1;
-      padding: 0 $s1;
-    }
   }
 
   #score-board {

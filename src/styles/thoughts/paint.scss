@@ -5,6 +5,7 @@ canvas {
   border: 2px solid $palette--divider-color;
   height: calc(90vh - 66px);
   background-color: white;
+  cursor: crosshair;
 }
 
 .shape-palette {

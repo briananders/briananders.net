@@ -14,7 +14,7 @@ module.exports = function gzipFiles({
 
   log(`${timestamp.stamp()} gzip()`);
 
-  const overallGlob = glob.sync(`${dir.package}**/*.+(html|xml|css|js)`);
+  const overallGlob = glob.sync(`${dir.package}**/*.+(html|xml|css|js|txt|json)`);
 
   let processed = 0;
   if (debug) log(`overallGlob: ${overallGlob.length} \n\n ${overallGlob} \n`);

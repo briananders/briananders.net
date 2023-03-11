@@ -116,7 +116,7 @@
 }
 
 @mixin interactive-border {
-  border: 2px solid $palette--primary-color-dark;
+  border: 2px solid $palette--divider-color;;
 }
 
 @mixin button {
@@ -129,7 +129,7 @@
   font-weight: $bold;
   transition-property: background-color;
   color: $palette--primary-white;
-  border: 2px solid $palette--primary-color-dark;
+  border: 2px solid $palette--divider-color;
   background-color: transparent;
 
   &::before {
@@ -193,7 +193,7 @@
   margin-bottom: $s6;
   @include font-size(3);
   background-color: transparent;
-  border: 2px solid $palette--primary-color-dark;
+  border: 2px solid $palette--divider-color;;
   color: $palette--primary-white;
 
   p {
