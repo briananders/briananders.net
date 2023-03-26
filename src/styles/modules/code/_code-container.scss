@@ -1,0 +1,30 @@
+.code-container {
+  @include font-size;
+  max-width: $grid--copy-max-width;
+  margin: auto auto $s6;
+  margin-bottom: $s6;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  display: flex;
+  border: 2px solid $palette--divider-color;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: $s5;
+  }
+
+  &::before {
+    left: 0px;
+    background: linear-gradient(to left, rgba($palette--primary-grey, 0), rgba($palette--primary-grey, 1));
+  }
+  &::after {
+    right: 0px;
+    background: linear-gradient(to right, rgba($palette--primary-grey, 0), rgba($palette--primary-grey, 1));
+  }
+}

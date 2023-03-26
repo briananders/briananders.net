@@ -1,0 +1,48 @@
+@import "system/utilities";
+@import "modules/code/var";
+@import "modules/code/code-container";
+
+.thoughts.browser-and-device-diagnostics {
+  input {
+    width: 100%;
+    margin: $s2 auto;
+  }
+
+  #error {
+    color: $palette--error;
+    opacity: 0;
+    transition: opacity $transition-speed $transition-timing;
+    font-family: $sans-serif;
+    font-weight: $bold;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  code {
+    @include font-size;
+    @include paragraph;
+    border: 2px solid $palette--divider-color;
+    display: block;
+    font-family: monospace;
+    margin-bottom: $s6;
+    margin: auto auto $s6;
+    max-width: $grid--copy-max-width;
+    padding: $s4;
+    text-align: left;
+    word-wrap: break-word;
+
+    ul {
+      margin-left: $s4;
+    }
+
+    li {
+      margin-bottom: unset;
+    }
+
+    .key {
+      color: $palette--primary-color-light;
+    }
+  }
+}
