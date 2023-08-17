@@ -46,22 +46,24 @@ scripts:
     </h2>
   </header>
   <div class="container social-profiles">
-    <%- externalLink(`
-        <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/instagram-icon.svg' })}</span>
-        <span role="heading" aria-level="3" class="h4">Instagram</span>
-        <span class="h5">@coyote.drums</span>
-      `, {
-        class: "link social-profile",
-        href: "https://www.instagram.com/coyote.drums/"
-    }); %>
-    <%- externalLink(`
-        <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/youtube-icon.svg' })}</span>
-        <span role="heading" aria-level="3" class="h4">Youtube</span>
-        <span class="h5">Coyote Drums</span>
-      `, {
-        class: "link social-profile",
-        href: locals.coyoteDrums.youtube,
-    }); %>
+    <%-
+      [
+        { copy: 'Instagram',    handle:locals.instagramHandle,           href: locals.instagram           },
+        { copy: 'Mastodon',     handle:locals.mastodonHandle,            href: locals.mastodon            },
+        { copy: 'Twitter',      handle:locals.twitterHandle,             href: locals.twitter             },
+        { copy: 'YouTube',      handle:locals.coyoteDrums.youtubeHandle, href: locals.coyoteDrums.youtube },
+      ].map(({copy, handle, href}) => {
+        const src = `/images/coyote-drums/${copy.toLowerCase()}-icon.svg`;
+        return externalLink(`
+          <span class="social-icon">${lazyImage({ src })}</span>
+          <span role="heading" aria-level="3" class="h4">${copy}</span>
+          <span class="h5">@${handle}</span>
+        `, {
+          class: "link social-profile",
+          href
+        })
+      }).join("");
+    %>
   </div>
 </section>
 

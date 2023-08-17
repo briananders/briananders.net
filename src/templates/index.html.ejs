@@ -36,11 +36,13 @@ scripts:
     <p>
       You can find me on the internet in some other places.
       <% const contactLinks = [
-          { copy: 'Twitter', href: locals.twitter, },
-          { copy: 'Last.fm', href: locals.lastfm, },
-          { copy: 'Github', href: locals.github, },
-          { copy: 'LinkedIn', href: locals.linkedin, },
-          { copy: 'Mastodon', href: locals.mastodon, rel: 'me' },
+          { copy: 'Github',    href: locals.github,    },
+          { copy: 'Instagram', href: locals.instagram, },
+          { copy: 'Last.fm',   href: locals.lastfm,    },
+          { copy: 'LinkedIn',  href: locals.linkedin,  },
+          { copy: 'Mastodon',  href: locals.mastodon,  rel: 'me' },
+          { copy: 'Twitter',   href: locals.twitter,   },
+          { copy: 'YouTube',   href: locals.coyoteDrums.youtube, },
         ].map(item => externalLink(item.copy, item));
       %>
       <%- contactLinks.join(', '); %>.

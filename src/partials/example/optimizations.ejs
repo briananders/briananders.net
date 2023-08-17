@@ -45,12 +45,15 @@
         <p>
           You can find me on the internet in some other places.
           <% const contactLinks = [
-              { copy: 'Twitter', url: locals.twitter, },
-              { copy: 'Last.fm', url: locals.lastfm, },
-              { copy: 'Github', url: locals.github, },
-              { copy: 'LinkedIn', url: locals.linkedin, },
+              { copy: 'Github',    href: locals.github,   },
+              { copy: 'Instagram', href: locals.instagram },
+              { copy: 'Last.fm',   href: locals.lastfm,   },
+              { copy: 'LinkedIn',  href: locals.linkedin, },
+              { copy: 'Mastodon',  href: locals.mastodon, },
+              { copy: 'Twitter',   href: locals.twitter,  },
+              { copy: 'YouTube',   href: locals.coyoteDrums.youtube, },
             ].map(item => externalLink(item.copy, {
-              href: item.url,
+              href: item.href,
               itemprop: 'url',
               target: 'blank',
               rel: 'noopener',
