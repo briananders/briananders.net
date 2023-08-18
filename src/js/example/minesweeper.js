@@ -1,4 +1,5 @@
-const ready = require('../../_modules/document-ready');
+const ready = require('../_modules/document-ready');
+let urlParams = new URLSearchParams(window.location.search);
 
 const eventKeys = {
   reRender: 're-render',
@@ -65,6 +66,8 @@ function MineSquare([row, column], element) {
   this.value = 0;
   this.row = row;
   this.column = column;
+
+  let abc;
 
   this.updateClasses = () => {
     if (this.hasFlag) {
@@ -155,6 +158,12 @@ function MineSquare([row, column], element) {
 
   addEventListeners();
   document.body.addEventListener(eventKeys.gameOver, removeListeners);
+
+  this.destroy = () => {
+    removeListeners();
+    document.body.removeEventListener(eventKeys.gameOver, removeListeners);
+    element.remove();
+  };
 }
 
 function getNeighbors([row, column]) {
@@ -203,8 +212,19 @@ function revealAround([row, column]) {
   });
 }
 
+function difficultyChanged() {
+  const newDifficulty = difficultyElement.value.toString();
+  urlParams = new URLSearchParams(window.location.search);
+  urlParams.set('difficulty', newDifficulty);
+  history.pushState('', '', `?${urlParams.toString()}`);
+  window.top.postMessage(`difficulty=${newDifficulty}`, '*');
+}
+
 function watchHeaderElements() {
-  difficultyElement.addEventListener('change', reset);
+  difficultyElement.addEventListener('change', () => {
+    difficultyChanged();
+    reset();
+  });
   faceElement.addEventListener('click', reset);
   faceElement.addEventListener('mousedown', addOFace);
   faceElement.addEventListener('mouseup', removeOFace);
@@ -317,7 +337,7 @@ function runLoop() {
       updateTimeElements();
       time.date = Date.now();
     }
-    setTimeout(runLoop, 250);
+    setTimeout(runLoop, 200);
   }
 }
 
@@ -337,12 +357,22 @@ function play() {
   document.body.dispatchEvent(events.isPlaying);
 }
 
+function destroyGame() {
+  for(let i = 0; i < game.length; i++) {
+    for(let j = 0; j < game[i].length; j++) {
+      game[i][j].destroy();
+      game[i][j] = undefined;
+    }
+  }
+}
+
 function reset() {
+  destroyGame();
+  game = [];
   time.value = 0;
   time.date = undefined;
   mines.flagCount = 0;
   mines.minesMinusFlags = 0;
-  game = [];
   state.hasWon = false;
   state.gameOver = false;
   state.isPlaying = false;
@@ -355,21 +385,30 @@ function reset() {
   updateFlagElements();
 }
 
-// document.body.addEventListener(eventKeys.gameOver, () => {
-// });
-// document.body.addEventListener(eventKeys.reRender, () => {
-// });
-// document.body.addEventListener(eventKeys.isPlaying, () => {
-// });
-
 ready.document(() => {
   document.body.addEventListener(eventKeys.gameOver, renderGameOver);
   document.body.addEventListener(eventKeys.reRender, updateFlagCount);
   document.body.addEventListener(eventKeys.reRender, countUnrevealed);
   document.body.addEventListener(eventKeys.isPlaying, runLoop);
 
+  // window.addEventListener('message', ({data}) => {
+  //   debugger;
+  //   if (data.indexOf('difficulty') === 0) {
+  //     const [key, value] = data.split('=');
+  //     const newDifficulty = value.toString();
+  //     difficultyElement.value = newDifficulty;
+  //     debugger;
+  //   }
+  // });
+
+  if (urlParams.has('difficulty')) {
+    const difficultyElement = document.querySelector('select[name=difficulty]');
+    difficultyElement.value = urlParams.get('difficulty');
+  }
+
   watchHeaderElements();
   watchTableFirstClick();
 
+  difficultyChanged();
   reset();
 });
