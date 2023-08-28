@@ -31,7 +31,7 @@ module.exports = (dir) => {
     coyoteDrums: {
       youtubeHandle: cdYTHandle,
       youtube: cdYT,
-      path: '/coyote-drums',
+      path: '/drums',
     },
     batLessons: 'https://batlessons.com',
   };

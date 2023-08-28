@@ -25,7 +25,7 @@
 
   <%- partial('header', locals); %>
 
-  <main class="coyote-drums">
+  <main class="drums">
     <section class="intro">
       <div class="container">
         <header>
@@ -65,27 +65,27 @@
     </section>
 
     <% if (inlineSVGs) { %>
-      <div class="coyote-drums-logo container">
+      <div class="drums-logo container">
         <style>
-          .coyote-drums .coyote-drums-logo {
+          .drums .drums-logo {
             width: min(100%, 400px);
           }
-          .coyote-drums .coyote-drums-logo svg {
+          .drums .drums-logo svg {
             width: 100%;
             height: auto;
           }
         </style>
-        <%- getFileContents('/images/coyote-drums/logo.svg'); %>
+        <%- getFileContents('/images/drums/logo.svg'); %>
       </div>
     <% } else { %>
-      <div class="coyote-drums-logo container">
+      <div class="drums-logo container">
         <style>
-          .coyote-drums .coyote-drums-logo {
+          .drums .drums-logo {
             width: min(100%, 400px);
           }
         </style>
         <%- img({
-          src: '/images/coyote-drums/logo.svg',
+          src: '/images/drums/logo.svg',
           alt: 'Coyote Drums logo',
           width: '400',
           height: '400',
@@ -112,7 +112,7 @@
       </header>
       <div class="container social-profiles">
         <%- externalLink(`
-            <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/instagram-icon.svg' })}</span>
+            <span class="social-icon">${lazyImage({ src: '/images/drums/instagram-icon.svg' })}</span>
             <span role="heading" aria-level="3" class="h4">Instagram</span>
             <span class="h5">@coyote.drums</span>
           `, {
@@ -120,7 +120,7 @@
             href: "https://www.instagram.com/coyote.drums/"
         }); %>
         <%- externalLink(`
-            <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/youtube-icon.svg' })}</span>
+            <span class="social-icon">${lazyImage({ src: '/images/drums/youtube-icon.svg' })}</span>
             <span role="heading" aria-level="3" class="h4">Youtube</span>
             <span class="h5">Coyote Drums</span>
           `, {
@@ -138,11 +138,11 @@
       </header>
       <div class="container video-grid playlists">
         <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
-          <%- lazyImage({ src: '/images/coyote-drums/drum-covers.webp' }); %>
+          <%- lazyImage({ src: '/images/drums/drum-covers.webp' }); %>
           Drum Covers
         </button>
         <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
-          <%- lazyImage({ src: '/images/coyote-drums/glow-sticks.webp' }); %>
+          <%- lazyImage({ src: '/images/drums/glow-sticks.webp' }); %>
           Glow Sticks
         </button>
       </div>

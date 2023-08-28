@@ -59,7 +59,7 @@ scripts:
       const model = [
         {
           title: "Google Store",
-          image: "/images/experience/google-store.svg",
+          image: "/images/about/google-store.svg",
           description: "Since 2018, I have been working on improving the user experience on the Google Hardware Store. My main areas of focus are: new product launches, product pages, accessibility, site performance, SEO, and frontend product quality.",
           links: [
             {
@@ -69,7 +69,7 @@ scripts:
           ]
         }, {
           title: "Podcast: Bat Lessons",
-          image: "/images/experience/contributions/batlessons.webp",
+          image: "/images/about/contributions/batlessons.webp",
           description: `My friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })} and I cohost a podcast together about Batman. It focuses on the context around the development of the characters, the history of the Batman universe, and the impact that our world had on it. Check it out!`,
           links: [
             {
@@ -79,7 +79,7 @@ scripts:
           ]
         }, {
           title: "YouTube: Coyote Drums",
-          image: "/images/coyote-drums/logo.svg",
+          image: "/images/drums/logo.svg",
           description: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
           links: [
             {
@@ -100,25 +100,25 @@ scripts:
   </div>
   <div class="content center">
     <%- link('More experience', {
-      href: '/experience/',
+      href: '/about/',
       class: 'button mega-button',
     }); %>
   </div>
 </section>
 
 
-<section class="thoughts">
+<section class="posts">
   <div class="content">
     <header>
       <h2>
-        <%- noWidows('I have thoughts. Here are some recent ones.'); %>
+        <%- noWidows('I have posts. Here are some recent ones.'); %>
       </h2>
     </header>
   </div>
-  <%- partial('thoughts-list', Object.assign(locals, { thoughtCount: 6 })); %>
+  <%- partial('posts-list', Object.assign(locals, { postCount: 6 })); %>
   <div class="content center">
-    <%- link('More thoughts', {
-      href: '/thoughts/',
+    <%- link('More posts', {
+      href: '/posts/',
       class: 'button mega-button',
     }); %>
   </div>
@@ -136,14 +136,14 @@ scripts:
       </p>
     </header>
     <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin />
-    <div class="last-fm-module p" data-type="albums" src="/images/thoughts/last-fm/default.webp">
+    <div class="last-fm-module p" data-type="albums" src="/images/posts/last-fm/default.webp">
       <% for (let i = 0; i < 4; i++) { %>
         <%- defaultLastFMModule(); %>
       <% } %>
     </div>
     <div class="center">
       <%- link('More music details', {
-        href: '/thoughts/last-fm/',
+        href: '/posts/last-fm/',
         class: 'button mega-button',
       }); %>
     </div>
