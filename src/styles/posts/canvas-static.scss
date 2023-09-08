@@ -1,0 +1,18 @@
+@import "system/utilities";
+
+$squareSize: 768;
+
+.posts.canvas-static {
+
+}
+
+canvas {
+  width: $squareSize + px;
+  height: $squareSize + px;
+  margin: auto;
+  border: 2px solid $palette--divider-color;
+  max-width: 90vw;
+  max-height: 90vw;
+  display: block;
+  background-color: #2f2f2f;
+}
