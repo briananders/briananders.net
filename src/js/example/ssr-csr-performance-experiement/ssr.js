@@ -1,4 +1,4 @@
-const ready = require('../_modules/document-ready');
+const ready = require('../../_modules/document-ready');
 
 ready.document(() => {
 

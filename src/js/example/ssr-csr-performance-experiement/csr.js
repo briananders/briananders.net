@@ -1,4 +1,4 @@
-const ready = require('../_modules/document-ready');
+const ready = require('../../_modules/document-ready');
 
 const csrContainer = require('./csr-container');
 const csrSquare = require('./csr-square');
