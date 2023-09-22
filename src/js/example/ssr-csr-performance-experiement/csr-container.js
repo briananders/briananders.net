@@ -11,7 +11,7 @@ class CSRContainer extends HTMLElement {
       }
     </style>
 
-    ${new Array(2000).fill('<csr-square></csr-square>').join('')}`;
+    ${new Array(1000).fill('<csr-square></csr-square>').join('')}`;
   }
 
   static get observedAttributes() {
