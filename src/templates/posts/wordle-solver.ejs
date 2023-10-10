@@ -36,7 +36,7 @@ scripts:
   </div>
 </section>
 
-<section class="content">
+<section class="game-board content">
   <h2>Game Board</h2>
   <p>Update the board below so it matches your current game. Mark each letter as a near miss (🟨) or a hit (🟩).</p>
   <div class="board p" id="board" style="height: 142px;">
@@ -82,23 +82,35 @@ scripts:
             </fieldset>
           </div>
         <% } %>
-        <button
-          class="button"
-          type="button"
-          data-line="line-<%- line %>" >
-          Find matches
-        </button>
       </div>
     <%
       }
     %>
   </div>
+  <button
+    id=submit
+    class="button"
+    type="button">
+    Find matches
+  </button>
+  <button
+    id=clear
+    class=button
+    type=button>
+    Clear
+  </button>
 </section>
 
 <section class="content">
   <h2>Potential Solutions</h2>
   <p>Results: <span id="results-count">-</span></p>
-  <div class="p" id="options">
-
-  </div>
+  <div class="p" id="options"></div>
 </section>
+
+<toast-notification>
+  <div class="container">
+    <div class="nbar">
+      <span>✔️</span> Copied to clipboard
+    </div>
+  </div>
+</toast-notification>

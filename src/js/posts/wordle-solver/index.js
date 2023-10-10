@@ -13,7 +13,9 @@ ready.document(() => {
   const lines = Array.from(boardElement.querySelectorAll('.line'));
   const textInputs = Array.from(boardElement.querySelectorAll('input[type=text'));
   const checkboxes = Array.from(boardElement.querySelectorAll('input[type=radio]'));
-  const submitButtons = Array.from(boardElement.querySelectorAll('button'));
+  const submitButton = document.getElementById('submit');
+  const clearButton = document.getElementById('clear');
+  const toastNotification = document.querySelector('toast-notification');
 
   const breakpoint = matchMedia('(max-width: 500px)');
 
@@ -27,8 +29,10 @@ ready.document(() => {
 
   const EVENTS = {
     KEYDOWN: 'keydown',
+    KEYUP: 'keyup',
     CLICK: 'click',
     CHANGE: 'change',
+    INPUT: 'input',
   };
 
   const KEYS = {
@@ -82,6 +86,27 @@ ready.document(() => {
 
     const lastFullLineElement = lines.filter((line) => Number(line.id.split('-')[1]) === lastFullLine)[0];
     boardElement.style.height = `${lastFullLineElement.offsetHeight * (lastFullLine + 1)}px`;
+  }
+
+  function fillFirstEmptyLine(word) {
+    let firstEmpty;
+    let emptyLineElements;
+
+    lines.forEach((lineElement, index) => {
+      const lineInputs = Array.from(lineElement.querySelectorAll('input[type=text]'));
+      const lineValue = lineInputs.map((input) => {
+        return input.value;
+      }).join('');
+
+      if (lineValue === '' && firstEmpty === undefined) {
+        firstEmpty = index;
+        emptyLineElements = lineInputs;
+      }
+    });
+
+    emptyLineElements.forEach((input, index) => {
+      input.value = word.charAt(index).toUpperCase();
+    });
   }
 
   function hasDoubleLetter(word) {
@@ -139,6 +164,14 @@ ready.document(() => {
     wrongCheckbox.checked = true;
     closeCheckbox.checked = false;
     correctCheckbox.checked = false;
+  }
+
+  function clear() {
+    const inputs = Array.from(boardElement.querySelectorAll('input[type=text]'));
+
+    inputs.forEach(resetLetter);
+
+    checkLinesFull();
   }
 
   function calculate() {
@@ -215,10 +248,9 @@ ready.document(() => {
         previousInput(srcElement);
         evt.preventDefault();
         return;
-      case KEYS.TAB:
       case KEYS.ARROW_RIGHT:
         nextInput(srcElement);
-        evt.preventDefault();
+        // evt.preventDefault();
         return;
       default:
     }
@@ -239,18 +271,19 @@ ready.document(() => {
     textInputs.forEach((input) => {
       input.addEventListener(EVENTS.KEYDOWN, inputKeydown);
     });
-    submitButtons.forEach((button) => {
-      button.addEventListener(EVENTS.CLICK, calculate);
-    });
+    submitButton.addEventListener(EVENTS.CLICK, calculate);
+    clearButton.addEventListener(EVENTS.CLICK, clear);
     checkboxes.forEach((box) => {
       box.addEventListener(EVENTS.CHANGE, checkboxUpdated);
     });
     answersElement.addEventListener(EVENTS.CLICK, ({ target }) => {
       if (target.tagName !== 'SPAN') return;
       copy(target.innerText);
-      target.classList.add('animate');
+
+      toastNotification.classList.add('animate');
+      fillFirstEmptyLine(target.innerText);
       setTimeout(() => {
-        target.classList.remove('animate');
+        toastNotification.classList.remove('animate');
       }, 1500);
     });
     breakpoint.addEventListener('change', checkLinesFull);

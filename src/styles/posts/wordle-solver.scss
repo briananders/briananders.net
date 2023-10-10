@@ -86,26 +86,16 @@
 
   fieldset {
     display: grid;
-    grid-template-columns: $s4 $s4;
+    grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     gap: 2px;
     padding: 4px;
   }
+}
 
-  button {
-    grid-column: span 5;
-    align-self: flex-start;
-  }
-
-  @include mq(500px) {
-    grid-template-columns: repeat(5, #{$s10}) 150px;
-
-    button {
-      margin-left: $s2;
-      grid-column: unset;
-    }
-  }
+.game-board {
+  text-align: center;
 }
 
 fieldset {
@@ -167,5 +157,31 @@ input.letter {
   }
   &[data-state="correct"] {
     @include correct;
+  }
+}
+
+toast-notification {
+  position: fixed;
+  bottom: -100px;
+  right: 0;
+  display: block;
+  width: 100%;
+  opacity: 0;
+  z-index: 10;
+  transition-property: bottom, opacity;
+  transition-duration: $transition-speed;
+  transition-timing-function: $transition-timing;
+
+  &.animate {
+    opacity: 1;
+    bottom: 0px;
+  }
+
+  .nbar {
+    display: inline-block;
+    background: $palette--accent-color;
+    color: $palette--primary-grey;
+    padding: $s2 $s4;
+    margin-bottom: $s2;
   }
 }
