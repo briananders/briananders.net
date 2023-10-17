@@ -17,7 +17,13 @@ ul li {
 
     label {
       padding: 0;
+      min-width: 120px;
     }
+  }
+
+  button,
+  .button {
+    margin: unset;
   }
 
   #roll {
@@ -53,6 +59,7 @@ ul li {
       @include button;
       height: 37px;
       padding: 0 $s2;
+      margin: unset;
     }
   }
 
@@ -73,7 +80,7 @@ ul li {
   #score-board {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $s2;
+    grid-gap: $s10;
 
     @include mq($medium) {
       grid-template-columns: 1fr 1fr;
@@ -92,6 +99,7 @@ ul li {
       justify-content: space-between;
       margin-bottom: $s1;
       position: relative;
+      align-items: center;
     }
   }
   .score {
@@ -102,6 +110,7 @@ ul li {
     display: inline-block;
     padding: 0 $s3;
     font-family: $sans-serif;
+    margin: unset;
   }
 
   #total {
@@ -109,7 +118,7 @@ ul li {
     justify-content: space-between;
 
     @include mq($medium) {
-      width: calc(50% - #{$s1});
+      width: calc(50% - #{$s5});
     }
   }
 

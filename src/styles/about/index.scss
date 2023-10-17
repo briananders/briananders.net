@@ -48,7 +48,6 @@ section.resources {
   }
   li {
     display: block;
-    margin-bottom: $s2;
-    margin-right: $s2;
+    margin: unset;
   }
 }
