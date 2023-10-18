@@ -1,0 +1,45 @@
+@import "system/utilities";
+
+$squareSize: 768;
+
+.posts.canvas-static {
+
+}
+
+canvas {
+  width: $squareSize + px;
+  height: $squareSize + px;
+  margin: auto;
+  border: 2px solid $palette--divider-color;
+  max-width: 90vw;
+  max-height: 90vw;
+  display: block;
+  background-color: #2f2f2f;
+}
+
+#graph {
+  width: $squareSize + px;
+  max-width: 90vw;
+  display: block;
+  height: auto;
+  overflow: hidden;
+  margin: 0 auto;
+
+  column {
+    display: block;
+    background: white;
+    float: left;
+    min-height: 1px;
+  }
+  span {
+    color: black;
+    transform: rotate(90deg);
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: css-min(1vw, 8px);
+    font-size: css-min(3.5vw, 18px);
+    height: css-min(3.7vw, 32px);
+    line-height: css-min(3.7vw, 32px);
+  }
+}

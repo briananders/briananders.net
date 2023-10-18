@@ -1,0 +1,19 @@
+@import "system/utilities";
+
+
+iframe#minesweeper-iframe {
+  width: 100vw;
+  height: calc(100vw + 160px);
+
+  &[data-difficulty=beginner] {
+    max-height: 560px;
+  }
+
+  &[data-difficulty=intermediate] {
+    max-height: 960px;
+  }
+
+  &[data-difficulty=expert] {
+    max-height: 1360px;
+  }
+}

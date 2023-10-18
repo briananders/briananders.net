@@ -1,18 +1,16 @@
-@import "../system/utilities";
+@import "system/utilities";
 
-@import "./nav";
-@import "./skip-nav";
+@import "modules/nav";
+@import "modules/skip-nav";
 
 header.main-header {
   @include font-size;
-  margin-top: $s11;
-  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+  @include palette--base;
   margin-bottom: $s6;
+  margin-top: $s2;
   padding: $s1 0;
-  color: $pallette--primary-color-text;
 
   .name {
-    @include font-size(7);
     margin: auto;
 
     @include mq($medium) {

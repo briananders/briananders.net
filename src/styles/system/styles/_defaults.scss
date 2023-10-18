@@ -1,5 +1,6 @@
 * {
-  transition-timing-function: ease;
+  transition-timing-function: $transition-timing;
+  border-radius: $border-radius;
 
   &,
   &::before,

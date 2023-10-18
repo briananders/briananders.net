@@ -1,4 +1,4 @@
-@import "../utilities";
+@import "system/utilities";
 
 i {
   @include italic;
@@ -39,7 +39,12 @@ p {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @include type--headings;
 
   a,
@@ -99,11 +104,8 @@ select {
   @include button-select;
 
   &:hover {
-    box-shadow: 0 0 0 #{$s1} $color--white, 0 0 0 #{$s1 + 2px} $pallette--primary-text-color;
-
-    @include dark-mode {
-      box-shadow: 0 0 0 #{$s1} $pallette--primary-text-color, 0 0 0 #{$s1 + 2px} $color--white;
-    }
+    box-shadow: 0 0 0 #{$s1} $palette--primary-grey,
+    0 0 0 #{$s1 + 2px} $palette--primary-color-dark;
   }
 }
 
@@ -172,10 +174,51 @@ input[type=checkbox] {
   width: $s4;
 
   &:focus {
-    box-shadow: inset 0 0 0 3px var(--primary-text-color, #{$pallette--primary-text-color});
+    box-shadow: inset 0 0 0 3px $palette--primary-white
+  };
 
-    @include dark-mode {
-      box-shadow: inset 0 0 0 3px var(--primary-color-text, #{$pallette--primary-color-text});
+  /* toggle in label designing */
+  &.toggle {
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    width: $s8;
+    height: $s3;
+    background-color: $palette--primary-white;
+    border-radius: $s2;
+    border: none;
+
+    &:focus {
+      box-shadow: none;
+      background-color: $palette--primary-white !important;
+    }
+
+    /* After slide changes */
+    &::before {
+      content: '';
+      position: absolute;
+      width: $s4;
+      height: $s4;
+      border-radius: $s2;
+      background-color: $palette--accent-color;
+      top: -#{$s1 / 2};
+      left:-#{$s1 / 2};
+      transition: left $transition-speed, background-color $transition-speed;
+      box-shadow: 0 0 $s1 $color--grey-900;
+    }
+
+    /* Checkbox checked toggle label bg color */
+    &:checked {
+      background-color: $palette--accent-color;
+
+      /* Checkbox checked effect */
+      &::before {
+        left: calc(100% - #{$s4 - ($s1 / 2)});
+      }
+
+      &:focus {
+        background-color: $palette--accent-color !important;
+      }
     }
   }
 }

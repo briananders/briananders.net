@@ -1,4 +1,4 @@
-@import "../variables/all";
+@import "system/variables/all";
 
 @mixin html {
   min-height: 100%;
@@ -7,14 +7,14 @@
   @include type--regular-serif;
   @include font-size;
   overflow-x: hidden;
-  @include pallette--base;
+  @include palette--base;
 }
 
 @mixin selection {
   ::selection,
   ::-moz-selection {
     text-shadow: none;
-    @include pallette--base--inverted;
+    @include palette--base--inverted;
   }
 }
 
@@ -36,7 +36,7 @@
   transition-property: color, background-color;
 
   &:focus {
-    color: $color--white;
+    color: $palette--primary-white;
     background-color: $color--grey-800 !important;
   }
 }
@@ -49,20 +49,16 @@
     content: "";
     position: absolute;
     border-radius: $border-radius;
-    left: -$s1;
-    top: -$s1;
-    width: calc(100% + #{$s2});
-    height: calc(100% + #{$s2});
+    left: -3px;
+    top: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
     opacity: 0;
     transition-property: opacity;
     transition-duration: $transition-speed;
-    z-index: 1000;
+    z-index: 2;
 
-    box-shadow: 0 0 0 2px var(--primary-text-color, #{$pallette--primary-text-color});
-
-    @include dark-mode {
-      box-shadow: 0 0 0 2px var(--primary-color-text, #{$pallette--primary-color-text});
-    }
+    box-shadow: 0 0 0 1px white, 0 0 0 4px $palette--primary-color-dark;
   }
 
   &:hover::after {
@@ -71,24 +67,37 @@
 }
 
 @mixin inline-link {
-  padding: 0 $s1;
+  padding: 2px $s1 0px;
   display: inline-block;
   text-decoration: none;
-  @include pallette--primary;
+  position: relative;
+
+  &:not(.block) {
+    @include palette--primary;
+  }
+
+  &::before {
+    content: '';
+    min-height: 48px;
+    min-width: 48px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @mixin block-link {
   padding: 0 $s1;
   display: inline-block;
   text-decoration: none;
-  @include pallette--base;
+  @include palette--base;
 
   &:focus {
-    background-color: $color--grey-200 !important;
-
-    @include dark-mode {
-      background-color: $color--grey-800 !important;
-    }
+    background-color: $color--grey-800 !important;
   }
 }
 
@@ -97,38 +106,50 @@
   text-decoration: none;
   @include interactive-outline;
   transition-duration: $transition-speed;
-  transition-timing-function: ease;
+  transition-timing-function: $transition-timing;
   @include link-hover;
   @include link-focus;
 }
 
 @mixin interactive-outline {
-  outline-color: var(--accent-color, #{$pallette--accent-color});
+  outline-color: $palette--accent-color;
 }
 
 @mixin interactive-border {
-  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
+  border: 2px solid $palette--divider-color;;
 }
 
 @mixin button {
   text-align: center;
   display: inline-block;
   padding: $s2 $s6;
+  margin: $s2;
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
   font-weight: $bold;
   transition-property: background-color;
-  color: $pallette--primary-color-text;
-  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
-  border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-
-  @include dark-mode {
-    background-color: transparent;
-  }
+  color: $palette--primary-white;
+  border: 2px solid $palette--divider-color;
+  background-color: transparent;
 
   &::before {
     height: 0;
+  }
+}
+
+@mixin content-width {
+  max-width: $content-max-width;
+  @include margin-center;
+}
+
+@mixin content {
+  @include content-width;
+  position: relative;
+  padding: 0 $s2;
+
+  @include mq($medium) {
+    padding: 0 $s5;
   }
 }
 
@@ -136,7 +157,7 @@
   width: 100%;
   max-width: $grid--copy-max-width;
   @include margin-center;
-  margin-bottom: $s6;
+  margin-bottom: $paragraph-bottom;
   @include font-size(3);
 
   &:last-child {
@@ -147,7 +168,7 @@
 @mixin paragraph-margin {
   &,
   &:last-child {
-    margin-bottom: $s6;
+    margin-bottom: $paragraph-bottom;
   }
 }
 
@@ -172,14 +193,9 @@
   @include margin-center;
   margin-bottom: $s6;
   @include font-size(3);
-  background-color: var(--primary-color-light, #{$pallette--primary-color-light});
-  color: $pallette--primary-text-color;
-
-  @include dark-mode {
-    background-color: transparent;
-    border: 2px solid var(--primary-color-dark, #{$pallette--primary-color-dark});
-    color: $pallette--primary-color-text;
-  }
+  background-color: transparent;
+  border: 2px solid $palette--divider-color;;
+  color: $palette--primary-white;
 
   p {
     &:last-of-type {

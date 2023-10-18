@@ -1,15 +1,11 @@
 const chokidar = require('chokidar');
+const path = require('path');
 
 const { log } = console;
 
-const timestamp = require('./timestamp');
-const BUILD_EVENTS = require('./constants/build-events');
-const bundleJS = require('./bundle-js');
-const bundleSCSS = require('./bundle-scss');
-const compilePageMappingData = require('./page-mapping-data');
-const moveImages = require('./move-images');
+function watchForPreviewReady({ buildEvents, completionFlags, dir }) {
+  const BUILD_EVENTS = require(`${dir.build}constants/build-events`);
 
-function watchForPreviewReady({ buildEvents, completionFlags }) {
   const eventsToWatch = {
     jsMoved: false,
     templatesMoved: false,
@@ -47,36 +43,57 @@ function watchForPreviewReady({ buildEvents, completionFlags }) {
 module.exports = (configs) => {
   const { dir } = configs;
 
+  const timestamp = require(`${dir.build}helpers/timestamp`);
+  const bundleJS = require(`${dir.build}bundlers/bundle-js`);
+  const bundleSCSS = require(`${dir.build}bundlers/bundle-scss`);
+  const compilePageMappingData = require(`${dir.build}page-mapping-data`);
+  const {
+    moveOneImage, moveOneVideo, moveOneTxtFile, moveOneDownload,
+  } = require(`${dir.build}move-assets`);
+
   watchForPreviewReady(configs);
 
-  function update(path) {
-    if (path.includes('.DS_Store')) return;
-    log(`${timestamp.stamp()} ${`File modified: ${path.split('briananders.net')[1]}`.yellow}`);
+  function update(filePath) {
+    if (filePath.includes('.DS_Store')) return;
+    log(`${timestamp.stamp()} ${`File modified: ${filePath.split('briananders.net')[1]}`.yellow}`);
+
+    const extn = path.extname(filePath);
 
     switch (true) {
-      case path.includes('.DS_Store'):
+      case filePath.includes('.DS_Store'):
         break;
-      case path.includes(`${dir.src}js/`):
+      case filePath.includes(`${dir.src}js/`):
         bundleJS(configs);
         break;
-      case path.includes(`${dir.src}styles/`):
+      case filePath.includes(`${dir.src}styles/`):
         bundleSCSS(configs);
-        break;
-      case path.includes(`${dir.src}templates/`):
-      case path.includes(`${dir.src}partials/`):
-      case path.includes(`${dir.src}layout/`):
         compilePageMappingData(configs);
         break;
-      case path.includes(`${dir.src}images/`):
-        moveImages(configs);
+      case filePath.includes(`${dir.src}templates/`):
+      case filePath.includes(`${dir.src}partials/`):
+      case filePath.includes(`${dir.src}layout/`):
+        compilePageMappingData(configs);
+        break;
+      case filePath.includes(`${dir.src}images/`):
+        moveOneImage(filePath, configs);
+        break;
+      case filePath.includes(`${dir.src}videos/`):
+        moveOneVideo(filePath, configs);
+        break;
+      case filePath.includes(`${dir.src}downloads/`):
+        moveOneDownload(filePath, configs);
+        break;
+      case filePath.includes(`${dir.src}data/`):
+      case extn === '.txt':
+        moveOneTxtFile(filePath, configs);
         break;
       default:
     }
   }
 
-  function buildChanged(path) {
-    if (path.includes('.DS_Store')) return;
-    log(`${timestamp.stamp()} ${`Build file modified: ${path.split('briananders.net')[1]}`.bold.red}`);
+  function buildChanged(filePath) {
+    if (filePath.includes('.DS_Store')) return;
+    log(`${timestamp.stamp()} ${`Build file modified: ${filePath.split('briananders.net')[1]}`.bold.red}`);
     process.exit();
   }
 

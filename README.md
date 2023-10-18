@@ -7,14 +7,13 @@ My personal site
 3. Install homebrew dependencies: `brew bundle`
 4. Install node: `nvm install`
 5. Set node version: `nvm use`
-6. Install node dependencies: `yarn`
 
 ## Build the static site
-To build and launch the dev site at [localhost:3000](http://localhost:3000): `yarn start`
+To build and launch the dev site at [localhost:3000](http://localhost:3000): `npm start`
 
 (Stop the server with `Ctrl+C`.)
 
-To build the site for production, compress and gzip files: `yarn build`
+To build the site for production, compress and gzip files: `npm run build`
 
 The site is built into the `/package` folder.
 
@@ -25,6 +24,6 @@ DO NOT SHARE YOUR CREDENTIALS WITH ANYONE.
 
 DO NOT COMMIT THEM TO A PUBLIC REPO.
 
-To deploy to staging: `yarn stage`
+To deploy to staging: `npm run stage`
 
-To deploy to production: `yarn deploy`
+To deploy to production: `npm run deploy`

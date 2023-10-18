@@ -1,4 +1,4 @@
-@import "../variables/all";
+@import "system/variables/all";
 @import "./media-queries";
 
 @mixin font-size($multiplier: 3) {

@@ -1,4 +1,4 @@
-@import "../utilities";
+@import "system/utilities";
 
 .html {
   @include html;
@@ -29,14 +29,7 @@
 
 .content,
 .container {
-  position: relative;
-  max-width: 170 * $s1;
-  @include margin-center;
-  padding: 0 $s2;
-
-  @include mq($medium) {
-    padding: 0 $s5;
-  }
+  @include content;
 }
 
 .button {
@@ -96,4 +89,18 @@
 
 .mega-button {
   @include mega-button;
+}
+
+.video-container {
+  width: 100%;
+  height: 0;
+  position: relative;
+
+  video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

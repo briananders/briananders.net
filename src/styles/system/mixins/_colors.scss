@@ -1,36 +1,25 @@
-@import "../variables/all";
+@import "system/variables/all";
 
-@mixin pallette--base {
-  background-color: $color--white;
-  color: $pallette--primary-text-color;
-
-  @include dark-mode {
-    background-color: $pallette--primary-text-color;
-    color: $pallette--primary-color-text;
-  }
+@mixin palette--base {
+  background-color: $palette--primary-grey;
+  color: $palette--primary-white;
 }
 
-@mixin pallette--base--inverted {
-  background-color: $pallette--primary-text-color;
-  color: $pallette--primary-color-text;
-
-  @include dark-mode {
-    background-color: $color--white;
-    color: $pallette--primary-text-color;
-  }
+@mixin palette--base--inverted {
+  background-color: $palette--primary-white;
+  color: $palette--primary-grey;
 }
 
-@mixin pallette--primary {
-  color: $pallette--primary-color-text;
-  background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+@mixin palette--primary {
+  color: $palette--primary-white;
+  background-color: $palette--primary-color-dark;
 }
 
-@mixin pallette--primary--active {
-  color: $pallette--primary-color-text;
-  background-color: var(--primary-color, #{$pallette--primary-color});
+@mixin palette--header {
+  color: $palette--primary-white;
+  background-color: $palette--primary-color-dark;
 }
 
-@mixin pallette--secondary {
-  // color: $pallette--primary-color-text;
-  // background-color: var(--primary-color-dark, #{$pallette--primary-color-dark});
+@mixin orange-gradient {
+  background: linear-gradient(to left, $palette--primary-color-light, $palette--primary-color-dark);
 }
