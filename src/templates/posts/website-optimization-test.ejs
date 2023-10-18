@@ -1,0 +1,342 @@
+---
+title: "Website Optimization Testing"
+description: "There are a few important levers"
+date: 2022-12-03
+priority: 0.8
+pageClasses:
+  - 'posts website-optimization-test'
+layout: base
+styles:
+  - 'main'
+  - 'posts/website-optimization-test'
+scripts:
+  - 'posts/website-optimization-test'
+---
+
+
+
+<section>
+  <header class="container">
+    <h2>
+      The Results
+    </h2>
+  </header>
+
+
+
+  <div class="container">
+    <form>
+      <div>
+        Styles
+        <select name="styles">
+          <option value="inline" > Inline Styles </option>
+          <option value="deferred" > Deferred Styles </option>
+          <option value="linked" > Linked - Render Blocking Styles </option>
+        </select>
+      </div>
+      <div>
+        SVGs
+        <select name="svgs">
+          <option value="inline" > Inline </option>
+          <option value="linked" > Linked </option>
+        </select>
+      </div>
+      <div>
+        Custom Fonts
+        <select name="fonts">
+          <option value="none"> None </option>
+          <option value="linked" > Linked - Render Blocking </option>
+          <option value="deferred" > Linked - Deferred </option>
+          <option value="swap" > Linked - Swap </option>
+        </select>
+      </div>
+    </form>
+
+
+
+    <div id="table">
+      <row>
+        <cell>Test Page</cell>
+        <cell>Pagespeed Insights</cell>
+        <cell>Mobile</cell>
+        <cell>Desktop</cell>
+      </row>
+
+
+<%
+  const optimizeData = [
+    {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Control',
+      href: '/example/optimization/a/',
+      mobileSpeed: 98,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles',
+      href: '/example/optimization/b/',
+      mobileSpeed: 97,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles',
+      href: '/example/optimization/c/',
+      mobileSpeed: 98,
+      desktopSpeed: 100,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline SVGs',
+      href: '/example/optimization/d/',
+      mobileSpeed: 98,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Inline SVGs',
+      href: '/example/optimization/e/',
+      mobileSpeed: 85,
+      desktopSpeed: 85,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Inline SVGs',
+      href: '/example/optimization/f/',
+      mobileSpeed: 99,
+      desktopSpeed: 100,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Custom Fonts',
+      href: '/example/optimization/g/',
+      mobileSpeed: 92,
+      desktopSpeed: 97,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Custom Fonts',
+      href: '/example/optimization/h/',
+      mobileSpeed: 90,
+      desktopSpeed: 87,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Custom Fonts',
+      href: '/example/optimization/i/',
+      mobileSpeed: 91,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline SVGs + Custom Fonts',
+      href: '/example/optimization/j/',
+      mobileSpeed: 89,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Inline SVGs + Custom Fonts',
+      href: '/example/optimization/k/',
+      mobileSpeed: 76,
+      desktopSpeed: 84,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Inline SVGs + Custom Fonts',
+      href: '/example/optimization/l/',
+      mobileSpeed: 90,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/m/',
+      mobileSpeed: 92,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/n/',
+      mobileSpeed: 89,
+      desktopSpeed: 87,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/o/',
+      mobileSpeed: 81,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline SVGs + Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/p/',
+      mobileSpeed: 87,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/q/',
+      mobileSpeed: 84,
+      desktopSpeed: 84,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Deferred',
+      href: '/example/optimization/r/',
+      mobileSpeed: 95,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/s/',
+      mobileSpeed: 91,
+      desktopSpeed: 98,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/t/',
+      mobileSpeed: 82,
+      desktopSpeed: 86,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/u/',
+      mobileSpeed: 89,
+      desktopSpeed: 99,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline SVGs + Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/v/',
+      mobileSpeed: 90,
+      desktopSpeed: 97,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/w/',
+      mobileSpeed: 77,
+      desktopSpeed: 84,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap',
+      href: '/example/optimization/x/',
+      mobileSpeed: 89,
+      desktopSpeed: 98,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/y/',
+      mobileSpeed: 88,
+      desktopSpeed: 98,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/z/',
+      mobileSpeed: 89,
+      desktopSpeed: 87,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/aa/',
+      mobileSpeed: 90,
+      desktopSpeed: 98,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/ab/',
+      mobileSpeed: 85,
+      desktopSpeed: 98,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Defer Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/ac/',
+      mobileSpeed: 81,
+      desktopSpeed: 85,
+    }, {
+      fonts: "none",
+      svgs: "linked",
+      styles: "linked",
+      title: 'Inline Styles + Inline SVGs + Custom Fonts + Custom Fonts Swap + Custom Fonts Deferred',
+      href: '/example/optimization/ad/',
+      mobileSpeed: 94,
+      desktopSpeed: 99,
+    },
+  ];
+%>
+
+<% optimizeData.forEach((rowData) => { %>
+
+<row>
+  <cell>
+    <%- rowData.title %>
+  </cell>
+  <cell>
+    <%- externalLink('Test it yourself', {
+      href: `https://pagespeed.web.dev/report?url=https://briananders.net${rowData.href}`,
+      'aria-label': 'Test the results yourself using the Pagespeed Insights tool',
+    }) %>
+  </cell>
+  <cell>
+    <%- rowData.mobileSpeed %>
+  </cell>
+  <cell>
+    <%- rowData.desktopSpeed %>
+  </cell>
+</row>
+
+<% }); %>
+
+    </div>
+  </div>
+</section>
+
+
+
+Test it yourself
+Test the results yourself using the Pagespeed Insights tool
+https://pagespeed.web.dev/report?url=https://briananders.net

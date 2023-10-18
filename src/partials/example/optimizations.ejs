@@ -25,7 +25,7 @@
 
   <%- partial('header', locals); %>
 
-  <main class="coyote-drums">
+  <main class="drums">
     <section class="intro">
       <div class="container">
         <header>
@@ -37,7 +37,7 @@
           <%- noWidows(`I am Brian Anders, a Staff UX Engineer at ${externalLink('Google', { href: 'https://google.com' })}. From 2013 to 2018, I worked on ${externalLink('nest.com', { href: 'https://nest.com' })} as a UX Engineer. Since 2018 I have been working on the ${externalLink('Google Store', { href: 'https://store.google.com' })}; building and enhancing the web experience.`); %>
         </p>
         <p>
-          <%- noWidows(`Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'http://alexcash.com' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.coyoteDrums.youtube })}, called ${link('Coyote Drums', { href: locals.coyoteDrums.path })}.`); %>
+          <%- noWidows(`Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.coyoteDrums.youtube })}, called ${link('Coyote Drums', { href: locals.coyoteDrums.path })}.`); %>
         </p>
         <p>
           <%- noWidows(`I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.`); %>
@@ -45,12 +45,15 @@
         <p>
           You can find me on the internet in some other places.
           <% const contactLinks = [
-              { copy: 'Twitter', url: locals.twitter, },
-              { copy: 'Last.fm', url: locals.lastfm, },
-              { copy: 'Github', url: locals.github, },
-              { copy: 'LinkedIn', url: locals.linkedin, },
+              { copy: 'Github',    href: locals.github,   },
+              { copy: 'Instagram', href: locals.instagram },
+              { copy: 'Last.fm',   href: locals.lastfm,   },
+              { copy: 'LinkedIn',  href: locals.linkedin, },
+              { copy: 'Mastodon',  href: locals.mastodon, },
+              { copy: 'Twitter',   href: locals.twitter,  },
+              { copy: 'YouTube',   href: locals.coyoteDrums.youtube, },
             ].map(item => externalLink(item.copy, {
-              href: item.url,
+              href: item.href,
               itemprop: 'url',
               target: 'blank',
               rel: 'noopener',
@@ -62,27 +65,27 @@
     </section>
 
     <% if (inlineSVGs) { %>
-      <div class="coyote-drums-logo container">
+      <div class="drums-logo container">
         <style>
-          .coyote-drums .coyote-drums-logo {
+          .drums .drums-logo {
             width: min(100%, 400px);
           }
-          .coyote-drums .coyote-drums-logo svg {
+          .drums .drums-logo svg {
             width: 100%;
             height: auto;
           }
         </style>
-        <%- getFileContents('/images/coyote-drums/logo.svg'); %>
+        <%- getFileContents('/images/drums/logo.svg'); %>
       </div>
     <% } else { %>
-      <div class="coyote-drums-logo container">
+      <div class="drums-logo container">
         <style>
-          .coyote-drums .coyote-drums-logo {
+          .drums .drums-logo {
             width: min(100%, 400px);
           }
         </style>
         <%- img({
-          src: '/images/coyote-drums/logo.svg',
+          src: '/images/drums/logo.svg',
           alt: 'Coyote Drums logo',
           width: '400',
           height: '400',
@@ -109,7 +112,7 @@
       </header>
       <div class="container social-profiles">
         <%- externalLink(`
-            <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/instagram-icon.svg' })}</span>
+            <span class="social-icon">${lazyImage({ src: '/images/drums/instagram-icon.svg' })}</span>
             <span role="heading" aria-level="3" class="h4">Instagram</span>
             <span class="h5">@coyote.drums</span>
           `, {
@@ -117,7 +120,7 @@
             href: "https://www.instagram.com/coyote.drums/"
         }); %>
         <%- externalLink(`
-            <span class="social-icon">${lazyImage({ src: '/images/coyote-drums/youtube-icon.svg' })}</span>
+            <span class="social-icon">${lazyImage({ src: '/images/drums/youtube-icon.svg' })}</span>
             <span role="heading" aria-level="3" class="h4">Youtube</span>
             <span class="h5">Coyote Drums</span>
           `, {
@@ -135,11 +138,11 @@
       </header>
       <div class="container video-grid playlists">
         <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
-          <%- lazyImage({ src: '/images/coyote-drums/drum-covers.webp' }); %>
+          <%- lazyImage({ src: '/images/drums/drum-covers.webp' }); %>
           Drum Covers
         </button>
         <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
-          <%- lazyImage({ src: '/images/coyote-drums/glow-sticks.webp' }); %>
+          <%- lazyImage({ src: '/images/drums/glow-sticks.webp' }); %>
           Glow Sticks
         </button>
       </div>

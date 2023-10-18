@@ -2,8 +2,8 @@
 @import "./modules/contributions";
 
 main.home {
-  @import "modules/thoughts-list";
-  @import "thoughts/last-fm";
+  @import "modules/posts-list";
+  @import "posts/last-fm";
 
   margin-top: $s10;
 
