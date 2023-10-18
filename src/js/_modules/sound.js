@@ -15,7 +15,7 @@ module.exports = function Sound() {
 
   function runLoop() {
     if (isPlaying) {
-      console.log(frequency);
+      // console.log(frequency);
       // setFrequency(frequency + 5);
       setTimeout(() => {
         runLoop();
@@ -27,7 +27,7 @@ module.exports = function Sound() {
     if (isPlaying) { return; }
     isPlaying = true;
     runLoop();
-    console.info(gain.gain.value);
+    // console.info(gain.gain.value);
     context.resume().then(() => {
       gain.connect(context.destination);
       gain.gain.exponentialRampToValueAtTime(
@@ -37,12 +37,14 @@ module.exports = function Sound() {
   }
 
   function stop() {
-    console.info(gain.gain.value);
+    // console.info(gain.gain.value);
     gain.gain.exponentialRampToValueAtTime(
       0.00001, context.currentTime + 0.04
     );
     setTimeout(() => {
-      gain.disconnect(context.destination);
+      try {
+        gain.disconnect(context.destination);
+      } catch {}
       isPlaying = false;
     }, 200);
   }

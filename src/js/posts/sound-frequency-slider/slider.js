@@ -25,9 +25,10 @@ module.exports = function Slider(parent) {
   function removeMe() {
     sound.stop();
     parent.dispatchEvent(events.removeMeEvent);
+    scope.style.display = 'none';
     setTimeout(() => {
       scope.outerHTML = '';
-    }, 0);
+    }, 250);
   }
 
   function watchSlider() {
@@ -88,18 +89,25 @@ module.exports = function Slider(parent) {
     elements.select = document.createElement('select');
     scope.appendChild(elements.select);
 
+    const optionElements = [];
+
     for (let scale = 0; scale < tones.numberOfScales; scale++) {
       tones.order.forEach((tone) => {
-        const option = document.createElement('option');
-        option.value = tones.hertz[`${tone}${scale}`];
-        option.innerHTML = `${scale} ${tones.labels[tone]} ${labelDashes(`${scale} ${tones.labels[tone]}`, `${tones.hertz[`${tone}${scale}`]}`)} ${tones.hertz[`${tone}${scale}`]}`;
+        const optionElement = document.createElement('option');
+        optionElement.value = tones.hertz[`${tone}${scale}`];
+        optionElement.innerHTML = `${scale} ${tones.labels[tone]} ${labelDashes(`${scale} ${tones.labels[tone]}`, `${tones.hertz[`${tone}${scale}`]}`)} ${tones.hertz[`${tone}${scale}`]}`;
 
         if(`${tone}${scale}` === DEFAULT_TONE) {
-          option.selected = "selected";
+          optionElement.selected = "selected";
         }
-        elements.select.appendChild(option);
+
+        optionElements.push(optionElement);
       });
     }
+
+    optionElements.sort((a, b) => Number(a.value) > Number(b.value) ? -1 : 1).forEach((optionElement) => {
+      elements.select.appendChild(optionElement);
+    });
   }
 
   function runLoop() {

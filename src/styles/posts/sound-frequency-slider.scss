@@ -1,18 +1,22 @@
 @import "system/utilities";
 
+button[value=add] {
+  display: block;
+  margin: auto;
+  margin-bottom: $s6;
+}
+
 .sound-slider {
   text-align: center;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   position: relative;
   padding: $s2;
-  border: 1px solid;
+  border-radius: $border-radius;
+  border: 2px solid $palette--divider-color;
   @include paragraph;
-
-  + .sound-slider {
-    border-top: 1px solid;
-  }
 
   input[type=range] {
     width: 100%;
@@ -23,6 +27,16 @@
   }
 
   button[value=remove] {
+    margin: 0;
+  }
+
+  button[value=play],
+  button[value=pause] {
+    margin: 0;
+
+    span {
+      margin-left: $s1;
+    }
   }
 
   button[value=play] {
