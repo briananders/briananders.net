@@ -20,7 +20,7 @@ function setupNavEvents() {
     navOverlay.classList.add('visible');
 
     setTimeout(() => {
-      navTray.classList.add('slide-down');
+      navTray.classList.add('slide-in');
     }, 100);
   }
 
@@ -29,7 +29,7 @@ function setupNavEvents() {
       category: 'nav',
       action: 'menu close',
     });
-    navTray.classList.remove('slide-down');
+    navTray.classList.remove('slide-in');
     navOverlay.classList.remove('visible');
 
     setTimeout(() => {

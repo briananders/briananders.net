@@ -1,0 +1,52 @@
+@import "system/utilities";
+
+.posts.circle-multiplier {
+
+  canvas {
+    width: 100vw;
+    border: 2px solid $palette--divider-color;
+    box-sizing: border-box;
+    height: calc(100vh - 66px);
+  }
+
+  #pause-button.paused {
+    color: $palette--primary-white;
+    background-color: $palette--primary-grey;
+  }
+
+  #clear-button {
+    color: $palette--primary-white;
+    background-color: darken($color: red, $amount: 15);
+
+    &:hover,
+    &:focus {
+      background-color: darken($color: red, $amount: 30)
+    }
+  }
+
+  form {
+    margin-bottom: $s6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    label {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      padding: unset;
+    }
+
+    input[type=checkbox] {
+      margin-right: $s1;
+    }
+
+    > * {
+      display: block;
+      margin: 0 $s2 $s2;
+    }
+  }
+}

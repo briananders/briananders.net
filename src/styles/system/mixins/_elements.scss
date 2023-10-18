@@ -56,7 +56,7 @@
     opacity: 0;
     transition-property: opacity;
     transition-duration: $transition-speed;
-    z-index: 1000;
+    z-index: 2;
 
     box-shadow: 0 0 0 1px white, 0 0 0 4px $palette--primary-color-dark;
   }
@@ -123,6 +123,7 @@
   text-align: center;
   display: inline-block;
   padding: $s2 $s6;
+  margin: $s2;
   border-radius: $border-radius;
   text-decoration: none;
   font-family: $sans-serif;
