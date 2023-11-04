@@ -14,17 +14,17 @@ styles:
 <article class="content" itemscope itemtype="https://schema.org/BlogPosting">
 
   <p>
-    What I have learned is that you can set your <var>GIT_EDITOR</var> environment variable in a way that accepts the standard git merge message.
+    <%- noWidows(`What I have learned is that you can set your <var>GIT_EDITOR</var> environment variable in a way that accepts the standard git merge message.`) %>
   </p>
 
   <p>
-    In your <var>.bashrc</var> or <var>.zshrc</var>, add this:
+    <%- noWidows(`In your <var>.bashrc</var> or <var>.zshrc</var>, add this:`) %>
   </p>
 
   <%- code(`export GIT_EDITOR='true git commit'`); %>
 
   <p>
-    By exporting this <var>GIT_EDITOR</var> value, you are signalling to the Git prompt: 👍 and commit!
+    <%- noWidows(`By exporting this <var>GIT_EDITOR</var> value, you are signalling to the Git prompt: 👍 and commit!`) %>
   </p>
 
 </article>

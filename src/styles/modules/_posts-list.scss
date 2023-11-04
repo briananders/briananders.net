@@ -8,13 +8,8 @@
   justify-items: stretch;
   margin-bottom: $s6;
 
-  @include mq($medium) {
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: $s6;
-  }
-
-  @include mq($large) {
-    grid-template-columns: repeat(3, 1fr);
+  h3 {
+    text-align: left;
   }
 
   figcaption {
@@ -24,11 +19,11 @@
   }
 
   a {
-    display: flex;
-    flex-flow: column;
+    display: block;
+    width: css-min(100%, 600px);
     padding: $s3;
     border-radius: $border-radius;
     border: 2px solid $palette--divider-color;;
-    margin: 0;
+    margin: 0 auto;
   }
 }

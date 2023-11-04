@@ -2,9 +2,10 @@ section.contributions {
   .deck {
     display: grid;
     gap: $s10;
+    width: css-min(100%, 600px);
+    margin: 0 auto;
   }
   .card {
-    padding: $s2;
     text-align: left;
     display: grid;
     grid-template-columns: 1fr;
@@ -53,6 +54,10 @@ section.contributions {
       a {
         line-height: 27px;
       }
+    }
+
+    button.link {
+      border: none;
     }
   }
 }

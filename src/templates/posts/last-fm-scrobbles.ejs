@@ -14,7 +14,7 @@ scripts:
 ---
 
 <blockquote>
-  <p>To 'scrobble' a song means that when you listen to it, the name of the song is sent to a Web site (for example, Last.fm) and added to your music profile. Here’s how it works: Once you've signed up and downloaded Last.fm, you can scrobble songs you listen to on your computer or iPod automatically.</p>
+  <p><%- noWidows(`To 'scrobble' a song means that when you listen to it, the name of the song is sent to a Web site (for example, Last.fm) and added to your music profile. Here’s how it works: Once you've signed up and downloaded Last.fm, you can scrobble songs you listen to on your computer or iPod automatically.`) %></p>
   <cite>
     <%- externalLink('Netlingo.com', { href: "https://www.netlingo.com/word/scrobble.php" })%>
   </cite>
@@ -22,7 +22,7 @@ scripts:
 
 <div class="container">
   <p>
-    In a <%- link('separate post', { href: '/posts/last-fm' }) %>, you can peruse my top albums and artists for various timeframes, all going back from the present. For example, you can view my top listens from the last 3 months. It's been fascinating to observe how my listening habits have evolved over time, as well as how they've remained consistent.
+    <%- noWidows(`In a ${link('separate post', { href: '/posts/last-fm' })}, you can peruse my top albums and artists for various timeframes, all going back from the present. For example, you can view my top listens from the last 3 months. It's been fascinating to observe how my listening habits have evolved over time, as well as how they've remained consistent.`) %>
   </p>
 </div>
 

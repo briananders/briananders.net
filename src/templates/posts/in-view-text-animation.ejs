@@ -20,7 +20,7 @@ scripts:
       <h2>Instructions</h2>
     </header>
     <p>
-      First, build a basic in-view <%- externalLink("intersection observer", { href: "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" }); %>. This will notify the browser when a given element is within the scroll view.
+      <%- noWidows(`First, build a basic in-view ${externalLink("intersection observer", { href: "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" })}. This will notify the browser when a given element is within the scroll view.`) %>
     </p>
     <%- code(`const inView = (element, callback, options = { rootMargin: '0px 0px 0px 0px' }) => {
   if (window.IntersectionObserver) {
@@ -35,18 +35,24 @@ scripts:
     callback(element, true);
   }
 };`); %>
-    <p>Then, set up some way to change the element’s scope when the observer triggers.</p>
+    <p>
+      <%- noWidows(`Then, set up some way to change the element’s scope when the observer triggers.`) %>
+    </p>
     <%- code(`const inViewOutOfView = (element, isInView) => {
   element.setAttribute('in-view', isInView);
 };`); %>
-    <p>Now, attach the observer function to your desired elements. I chose headings and paragraphs, as you can see.</p>
+    <p>
+      <%- noWidows(`Now, attach the observer function to your desired elements. I chose headings and paragraphs, as you can see.`) %>
+    </p>
     <%- code(`const querySelector = 'h1, h2, h3, h4, h5, h6, p';
 Array.from(document.querySelectorAll(querySelector)).forEach((element) => {
   inView(element, inViewOutOfView, {
     rootMargin: '-70px 0px -20px 0px',
   });
 });`); %>
-    <p>Finally, configure your in-view/out-of-view style changes. And you're good to go.</p>
+    <p>
+      <%- noWidows(`Finally, configure your in-view/out-of-view style changes. And you're good to go.`) %>
+    </p>
     <%- code(`h1, h2, h3, h4, h5, h6, p {
   transition: opacity 300ms ease, transform 300ms ease;
 
@@ -65,110 +71,110 @@ Array.from(document.querySelectorAll(querySelector)).forEach((element) => {
       <h2>The test</h2>
     </header>
     <p>
-      Scroll up and down here, to see the behavior.
+      <%- noWidows(`Scroll up and down here, to see the behavior.`) %>
     </p>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <%- noWidows(`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Sed ut commodo velit.
       Cras enim dui, luctus facilisis laoreet a, auctor vitae nulla.
       Nunc et neque laoreet, euismod turpis a, viverra ipsum.
       Etiam laoreet aliquet tortor quis pretium.
-      Etiam volutpat justo eget eros laoreet ultricies.
+      Etiam volutpat justo eget eros laoreet ultricies.`) %>
     </p>
     <p>
-      Donec tincidunt eros eu tristique gravida.
+      <%- noWidows(`Donec tincidunt eros eu tristique gravida.
       Nullam aliquam elit a lacinia aliquam.
       Integer quis est vel nisl auctor hendrerit vitae sit amet magna.
       In rhoncus tellus nec congue venenatis.
       Nam vitae massa eget mi eleifend viverra vitae quis tellus.
-      Cras venenatis nec justo a rutrum.
+      Cras venenatis nec justo a rutrum.`) %>
     </p>
     <p>
-      Sed vestibulum nisl et odio pretium, in dictum libero fringilla.
+      <%- noWidows(`Sed vestibulum nisl et odio pretium, in dictum libero fringilla.`) %>
     </p>
     <p>
-      Sed facilisis venenatis metus, vitae efficitur lectus dignissim a.
+      <%- noWidows(`Sed facilisis venenatis metus, vitae efficitur lectus dignissim a.`) %>
     </p>
     <p>
-      In tincidunt lacinia mi, eget fringilla ante hendrerit in.
+      <%- noWidows(`In tincidunt lacinia mi, eget fringilla ante hendrerit in.`) %>
     </p>
     <p>
-      Nam viverra mi sit amet arcu interdum, quis suscipit ex commodo.
+      <%- noWidows(`Nam viverra mi sit amet arcu interdum, quis suscipit ex commodo.`) %>
     </p>
     <p>
-      Duis quis odio id felis venenatis commodo.
+      <%- noWidows(`Duis quis odio id felis venenatis commodo.`) %>
     </p>
     <p>
-      Cras sollicitudin, quam non laoreet euismod, risus elit tincidunt nulla, vel ullamcorper neque nibh vel leo.
+      <%- noWidows(`Cras sollicitudin, quam non laoreet euismod, risus elit tincidunt nulla, vel ullamcorper neque nibh vel leo.`) %>
     </p>
     <p>
-      Sed dignissim tincidunt magna sed vestibulum.
+      <%- noWidows(`Sed dignissim tincidunt magna sed vestibulum.`) %>
     </p>
     <p>
-      Curabitur eget leo porta, vehicula tellus non, imperdiet arcu.
+      <%- noWidows(`Curabitur eget leo porta, vehicula tellus non, imperdiet arcu.`) %>
     </p>
     <p>
-      Vivamus quis dolor congue magna consequat vulputate.
+      <%- noWidows(`Vivamus quis dolor congue magna consequat vulputate.`) %>
     </p>
     <p>
-      Aenean scelerisque massa dignissim, egestas dui eu, maximus felis.
+      <%- noWidows(`Aenean scelerisque massa dignissim, egestas dui eu, maximus felis.`) %>
     </p>
     <p>
-      Aliquam aliquet felis sed nibh porta gravida.
+      <%- noWidows(`Aliquam aliquet felis sed nibh porta gravida.`) %>
     </p>
     <p>
-      Nunc eget erat a erat mattis consectetur.
+      <%- noWidows(`Nunc eget erat a erat mattis consectetur.`) %>
     </p>
     <p>
-      Cras id sollicitudin ligula.
+      <%- noWidows(`Cras id sollicitudin ligula.`) %>
     </p>
     <p>
-      Vestibulum facilisis finibus sapien, sed eleifend elit accumsan quis.
+      <%- noWidows(`Vestibulum facilisis finibus sapien, sed eleifend elit accumsan quis.`) %>
     </p>
     <p>
-      Cras commodo congue tellus nec interdum.
+      <%- noWidows(`Cras commodo congue tellus nec interdum.`) %>
     </p>
     <p>
-      Sed laoreet erat in tellus posuere semper.
+      <%- noWidows(`Sed laoreet erat in tellus posuere semper.`) %>
     </p>
     <p>
-      Quisque vitae commodo nisi, a aliquam sem.
+      <%- noWidows(`Quisque vitae commodo nisi, a aliquam sem.`) %>
     </p>
     <p>
-      Suspendisse leo neque, fermentum vel suscipit vitae, suscipit ac leo.
+      <%- noWidows(`Suspendisse leo neque, fermentum vel suscipit vitae, suscipit ac leo.`) %>
     </p>
     <p>
-      Duis tincidunt eget odio quis mollis.
+      <%- noWidows(`Duis tincidunt eget odio quis mollis.`) %>
     </p>
     <p>
-      Aenean eget magna consequat leo sollicitudin sodales.
+      <%- noWidows(`Aenean eget magna consequat leo sollicitudin sodales.`) %>
     </p>
     <p>
-      Sed semper egestas lobortis.
+      <%- noWidows(`Sed semper egestas lobortis.`) %>
     </p>
     <p>
-      Aliquam tincidunt, ex ac porttitor eleifend, metus dolor volutpat elit, eget rutrum nibh justo eu lectus.
+      <%- noWidows(`Aliquam tincidunt, ex ac porttitor eleifend, metus dolor volutpat elit, eget rutrum nibh justo eu lectus.
       Cras pharetra laoreet faucibus.
       Maecenas et auctor mauris, at blandit enim.
       Integer ut enim rutrum, tristique quam id, placerat augue.
-      Ut ac facilisis lacus.
+      Ut ac facilisis lacus.`) %>
     </p>
     <p>
-      Nulla aliquam arcu et ultricies porttitor.
+      <%- noWidows(`Nulla aliquam arcu et ultricies porttitor.`) %>
     </p>
     <p>
-      Maecenas nec elementum dui, ac rutrum sapien.
+      <%- noWidows(`Maecenas nec elementum dui, ac rutrum sapien.`) %>
     </p>
     <p>
-      Integer ac cursus dolor.
+      <%- noWidows(`Integer ac cursus dolor.
       Interdum et malesuada fames ac ante ipsum primis in faucibus.
       Morbi id nisl sed nulla aliquet posuere a id leo.
       Proin nec lacus in ligula aliquet varius.
       Fusce quis sodales odio.
-      Pellentesque suscipit facilisis egestas.
+      Pellentesque suscipit facilisis egestas.`) %>
     </p>
     <p>
-      Integer auctor mollis justo, in volutpat tortor interdum non.
+      <%- noWidows(`Integer auctor mollis justo, in volutpat tortor interdum non.
       Maecenas sit amet nunc tempus, venenatis sem vestibulum, mattis ex.
       Mauris tristique erat sem, ac pulvinar metus tempor ut.
       Nunc nec ullamcorper sem.
@@ -176,19 +182,19 @@ Array.from(document.querySelectorAll(querySelector)).forEach((element) => {
       Sed facilisis nunc sed risus euismod sollicitudin.
       Ut maximus sit amet diam in venenatis.
       Proin non urna eu mauris consequat laoreet.
-      Mauris ac vulputate justo.
+      Mauris ac vulputate justo.`) %>
     </p>
     <p>
-      Pellentesque pretium, sapien eget gravida accumsan, tortor neque rutrum augue, ut dapibus massa nunc iaculis ligula.
+      <%- noWidows(`Pellentesque pretium, sapien eget gravida accumsan, tortor neque rutrum augue, ut dapibus massa nunc iaculis ligula.
       Cras feugiat, tortor eu tincidunt sollicitudin, eros turpis dapibus turpis, ut finibus nisl erat vel leo.
-      Fusce fermentum, tellus non posuere pretium, felis nulla congue mi, non eleifend arcu velit vel metus.
+      Fusce fermentum, tellus non posuere pretium, felis nulla congue mi, non eleifend arcu velit vel metus.`) %>
     </p>
     <p>
-      Nunc dui orci, facilisis in nisi in, semper hendrerit ligula.
+      <%- noWidows(`Nunc dui orci, facilisis in nisi in, semper hendrerit ligula.
       Aenean in leo in velit placerat dignissim sed non turpis.
       Sed lobortis justo lectus, condimentum auctor lorem feugiat sit amet.
       Aliquam nec lorem viverra, fermentum orci at, condimentum ante.
-      Cras pretium enim ut lorem varius aliquet.
+      Cras pretium enim ut lorem varius aliquet.`) %>
     </p>
   </div>
 </section>
@@ -199,7 +205,7 @@ Array.from(document.querySelectorAll(querySelector)).forEach((element) => {
       <h2>Conclusion</h2>
     </header>
     <p>
-      Really popular web design trends don’t have to be complicated. I hope this was helpful, and maybe you learned a trick or two.
+      <%- noWidows(`Really popular web design trends don’t have to be complicated. I hope this was helpful, and maybe you learned a trick or two.`) %>
     </p>
   </div>
 </section>
