@@ -68,20 +68,22 @@ scripts:
 </section>
 
 <section>
-  <header class="container">
-    <h2>
-      Playlists
-    </h2>
-  </header>
-  <div class="container video-grid playlists">
-    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
-      <%- lazyImage({ src: '/images/drums/drum-covers.webp' }); %>
-      Drum Covers
-    </button>
-    <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
-      <%- lazyImage({ src: '/images/drums/glow-sticks.webp' }); %>
-      Glow Sticks
-    </button>
+  <div class="container">
+    <header>
+      <h2>
+        Playlists
+      </h2>
+    </header>
+    <div class="video-grid playlists">
+      <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uORehWMWAOfojlwXGCsUXZw">
+        <%- lazyImage({ src: '/images/drums/drum-covers.webp' }); %>
+        Drum Covers
+      </button>
+      <button class="block link yt-modal-trigger" data-playlist-id="PLetKrknUS6uPieWF-xk2z4-5O6Qknn9B9">
+        <%- lazyImage({ src: '/images/drums/glow-sticks.webp' }); %>
+        Glow Sticks
+      </button>
+    </div>
   </div>
 </section>
 
@@ -162,14 +164,16 @@ scripts:
 %>
 
 <section class="videos">
-  <header class="container">
-    <h2>
-      Videos
-    </h2>
-  </header>
-  <div class="container video-grid">
-    <% videos.forEach(({ artist, title, id }) => { %>
-      <button class="block link yt-modal-trigger" data-video-id="<%- id %>"><%- videoTitle(title, artist); %></button>
-    <% }); %>
+  <div class="container">
+    <header>
+      <h2>
+        Videos
+      </h2>
+    </header>
+    <div class="video-grid">
+      <% videos.forEach(({ artist, title, id }) => { %>
+        <button class="block link yt-modal-trigger" data-video-id="<%- id %>"><%- videoTitle(title, artist); %></button>
+      <% }); %>
+    </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 .code-container {
   @include font-size;
-  max-width: $grid--copy-max-width;
+  @include sixHundred;
   margin: auto auto $s6;
   margin-bottom: $s6;
   max-width: 100%;

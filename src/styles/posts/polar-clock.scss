@@ -3,8 +3,7 @@
 .key {
   display: grid;
   row-gap: 3px;
-  width: css-min(100%, $grid--copy-max-width);
-  @include margin-center;
+  @include sixHundred;
   margin-bottom: $paragraph-bottom;
 
   > div {

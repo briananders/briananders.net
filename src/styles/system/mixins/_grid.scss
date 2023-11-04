@@ -8,3 +8,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+@mixin sixHundred {
+  @include margin-center;
+  width: css-min($grid--copy-max-width, 100%);
+}

@@ -108,15 +108,13 @@ scripts:
 
 
 <section class="posts">
-  <div class="content">
+  <div class="content center">
     <header>
       <h2>
         <%- noWidows('Recent posts.'); %>
       </h2>
     </header>
-  </div>
-  <%- partial('posts-list', Object.assign(locals, { postCount: 6 })); %>
-  <div class="content center">
+    <%- partial('posts-list', Object.assign(locals, { postCount: 6 })); %>
     <%- link('More posts', {
       href: '/posts/',
       class: 'button mega-button',

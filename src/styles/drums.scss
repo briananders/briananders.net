@@ -125,17 +125,15 @@ $aspectRatio: $height / $width;
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
-    max-width: 400px;
+    @include sixHundred;
 
     @include mq(700px) {
       grid-template-columns: repeat(2, 1fr);
-      max-width: unset;
     }
 
-    &:not(.playlists) {
-      @include mq(900px) {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    button {
+      width: css-min(100%, 400px);
+      @include margin-center;
     }
   }
 

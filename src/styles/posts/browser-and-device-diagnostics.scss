@@ -28,7 +28,7 @@
     font-family: monospace;
     margin-bottom: $s6;
     margin: auto auto $s6;
-    max-width: $grid--copy-max-width;
+    @include sixHundred;
     padding: $s4;
     text-align: left;
     word-wrap: break-word;

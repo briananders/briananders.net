@@ -26,8 +26,7 @@ year-selector {
 
 album-listing,
 artist-listing {
-  margin: auto;
-  width: css-min(600px, 100%);
+  @include sixHundred;
   display: block;
   border-radius: $s1;
   margin-bottom: $s2;

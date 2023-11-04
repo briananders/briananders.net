@@ -2,7 +2,7 @@ section.contributions {
   .deck {
     display: grid;
     gap: $s10;
-    width: css-min(100%, 600px);
+    @include sixHundred;
     margin: 0 auto;
   }
   .card {

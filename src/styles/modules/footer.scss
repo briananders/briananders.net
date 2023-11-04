@@ -1,7 +1,7 @@
 @import "system/utilities";
 
 footer {
-  padding: $s6 0;
+  padding: $s6 0 $s2;
   margin-top: $section-spacer;
   @include palette--base;
   position: relative;
@@ -18,7 +18,21 @@ footer {
 
   ul {
     display: grid;
-    grid-gap: $s1;
+    grid-gap: $s2;
+    position: relative;
+  }
+
+  li {
+    margin-bottom: $s1;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .copyright {
+    position: absolute;
+    right: 0;
   }
 
   a {
