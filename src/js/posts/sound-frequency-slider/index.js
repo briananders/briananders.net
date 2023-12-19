@@ -1,4 +1,6 @@
-(function soundSlider() {
+const ready = require('../../_modules/document-ready');
+
+ready.document(() => {
   const Slider = require('./slider');
   const sliders = [];
 
@@ -14,4 +16,4 @@
 
   addEventListeners();
   addAnother();
-}());
+});

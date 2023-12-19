@@ -1,0 +1,13 @@
+@import "system/utilities";
+
+sound-pad {
+  display: block;
+  @include sixHundred;
+}
+
+pad-component {
+  display: block;
+  width: 500px;
+  height: 400px;
+  background-color: blue;
+}
