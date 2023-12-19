@@ -28,7 +28,7 @@ scripts:
       <%- noWidows(`I am Brian Anders, a Staff UX Engineer at ${externalLink('Google', { href: 'https://google.com' })}. From 2013 to 2018, I worked on ${externalLink('nest.com', { href: 'https://web.archive.org/web/20190504202611/https://nest.com/' })} as a UX Engineer. Since 2018 I have been working on the ${externalLink('Google Store', { href: 'https://store.google.com' })}; building and enhancing the web experience.`); %>
     </p>
     <p>
-      <%- `Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.coyoteDrums.youtube })}, called ${link('Coyote Drums', { href: locals.coyoteDrums.path })}.` %>
+      <%- `Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.bandersDrums.youtube })}, called ${link('Banders Drums', { href: locals.bandersDrums.path })}.` %>
     </p>
     <p>
       <%- noWidows(`I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.`); %>
@@ -42,7 +42,7 @@ scripts:
           { copy: 'LinkedIn',  href: locals.linkedin,  },
           { copy: 'Mastodon',  href: locals.mastodon,  rel: 'me' },
           { copy: 'Twitter',   href: locals.twitter,   },
-          { copy: 'YouTube',   href: locals.coyoteDrums.youtube, },
+          { copy: 'YouTube',   href: locals.bandersDrums.youtube, },
         ].map(item => externalLink(item.copy, item));
       %>
       <%- contactLinks.join(', '); %>.
@@ -78,16 +78,16 @@ scripts:
             }
           ]
         }, {
-          title: "YouTube: Coyote Drums",
+          title: "YouTube: Banders Drums",
           image: "/images/drums/logo.svg",
           description: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
           links: [
             {
               label: "Main Site",
-              path: locals.coyoteDrums.path,
+              path: locals.bandersDrums.path,
             }, {
               label: "YouTube Channel",
-              url: locals.coyoteDrums.youtube,
+              url: locals.bandersDrums.youtube,
             }
           ]
         },

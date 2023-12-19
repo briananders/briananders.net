@@ -37,7 +37,7 @@
           <%- noWidows(`I am Brian Anders, a Staff UX Engineer at ${externalLink('Google', { href: 'https://google.com' })}. From 2013 to 2018, I worked on ${externalLink('nest.com', { href: 'https://nest.com' })} as a UX Engineer. Since 2018 I have been working on the ${externalLink('Google Store', { href: 'https://store.google.com' })}; building and enhancing the web experience.`); %>
         </p>
         <p>
-          <%- noWidows(`Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.coyoteDrums.youtube })}, called ${link('Coyote Drums', { href: locals.coyoteDrums.path })}.`); %>
+          <%- noWidows(`Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.bandersDrums.youtube })}, called ${link('Banders Drums', { href: locals.bandersDrums.path })}.`); %>
         </p>
         <p>
           <%- noWidows(`I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.`); %>
@@ -51,7 +51,7 @@
               { copy: 'LinkedIn',  href: locals.linkedin, },
               { copy: 'Mastodon',  href: locals.mastodon, },
               { copy: 'Twitter',   href: locals.twitter,  },
-              { copy: 'YouTube',   href: locals.coyoteDrums.youtube, },
+              { copy: 'YouTube',   href: locals.bandersDrums.youtube, },
             ].map(item => externalLink(item.copy, {
               href: item.href,
               itemprop: 'url',
@@ -86,7 +86,7 @@
         </style>
         <%- img({
           src: '/images/drums/logo.svg',
-          alt: 'Coyote Drums logo',
+          alt: 'Banders Drums logo',
           width: '400',
           height: '400',
         }); %>
@@ -96,7 +96,7 @@
     <section>
       <div class="container">
         <p>
-          <%- noWidows('Coyote Drums is my brand for drum covers. I grew up loving all kinds of rock and punk music. When I was younger, I played in concert band, jazz band, and the orchestra. Over time, I have focused more and more time and energy on playing to the music that I love listening to.'); %>
+          <%- noWidows('Banders Drums is my brand for drum covers. I grew up loving all kinds of rock and punk music. When I was younger, I played in concert band, jazz band, and the orchestra. Over time, I have focused more and more time and energy on playing to the music that I love listening to.'); %>
         </p>
         <p>
           <%- noWidows('Hardcore and emo bands like Emery and Underoath are my favorite to play to. I also play lots of music that features Travis Barker. Someday, I will write my own music, but for now I will continue posting drum cover videos.'); %>
@@ -122,10 +122,10 @@
         <%- externalLink(`
             <span class="social-icon">${lazyImage({ src: '/images/drums/youtube-icon.svg' })}</span>
             <span role="heading" aria-level="3" class="h4">Youtube</span>
-            <span class="h5">Coyote Drums</span>
+            <span class="h5">Banders Drums</span>
           `, {
             class: "link social-profile",
-            href: locals.coyoteDrums.youtube,
+            href: locals.bandersDrums.youtube,
         }); %>
       </div>
     </section>

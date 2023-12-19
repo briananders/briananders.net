@@ -8,7 +8,7 @@ module.exports = (dir) => {
   const mastodon = `https://mastodon.social/@${mastodonHandle}`;
   const twitterHandle = 'imbanders';
   const twitter = `https://twitter.com/${twitterHandle}`;
-  const cdYTHandle = 'coyote_drums';
+  const cdYTHandle = 'bandersdrums';
   const cdYT = `https://www.youtube.com/@${cdYTHandle}`;
 
   return {
@@ -28,7 +28,7 @@ module.exports = (dir) => {
     linkedin: 'https://www.linkedin.com/in/andersbrian/',
     mastodonHandle,
     mastodon,
-    coyoteDrums: {
+    bandersDrums: {
       youtubeHandle: cdYTHandle,
       youtube: cdYT,
       path: '/drums',

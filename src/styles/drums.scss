@@ -35,7 +35,7 @@ $aspectRatio: $height / $width;
     padding-bottom: $s6;
 
     &::after {
-      background-image: url(/images/drums/logo.svg);
+      background-image: url(/images/drums/logo.png);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
@@ -58,26 +58,13 @@ $aspectRatio: $height / $width;
     margin: $s6 auto;
 
     animation-name: logo-hue;
-    animation-duration: 10s;
+    animation-duration: 6s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 
-    #drum {
-      animation-name: logo-rotate;
-      animation-duration: 40s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      transform-origin: center center;
-    }
-
-    svg {
-      width: 100%;
-      height: auto;
-    }
-
     body.no-animations &,
     body.no-animations & #drum {
-      animation-delay: 100s;
+      animation-duration: 100s;
     }
   }
 

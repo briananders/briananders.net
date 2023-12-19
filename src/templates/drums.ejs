@@ -16,22 +16,18 @@ scripts:
 <%- partial('head/styles', {...locals, path: 'drums', inlineStyles: true, }) %>
 
 <div class="drums-logo container">
-  <style>
-    .drums .drums-logo {
-      width: min(100%, 400px);
-    }
-    .drums .drums-logo svg {
-      width: 100%;
-      height: auto;
-    }
-  </style>
-  <%- getFileContents('/images/drums/logo.svg'); %>
+  <%- img({
+    src: '/images/drums/logo.png',
+    alt: 'Banders Drums logo',
+    width: '400',
+    height: '400'
+  }); %>
 </div>
 
 <section>
   <div class="container">
     <p>
-      <%- noWidows('Coyote Drums is my brand for drum covers. I grew up loving all kinds of rock and punk music. When I was younger, I played in concert band, jazz band, and the orchestra. Over time, I have focused more and more time and energy on playing to the music that I love listening to.'); %>
+      <%- noWidows('Banders Drums is my brand for drum covers. I grew up loving all kinds of rock and punk music. When I was younger, I played in concert band, jazz band, and the orchestra. Over time, I have focused more and more time and energy on playing to the music that I love listening to.'); %>
     </p>
     <p>
       <%- noWidows('Hardcore and emo bands like Emery and Underoath are my favorite to play to. I also play lots of music that features Travis Barker. Someday, I will write my own music, but for now I will continue posting drum cover videos.'); %>
@@ -51,7 +47,7 @@ scripts:
         { copy: 'Instagram',    handle:locals.instagramHandle,           href: locals.instagram           },
         { copy: 'Mastodon',     handle:locals.mastodonHandle,            href: locals.mastodon            },
         { copy: 'Twitter',      handle:locals.twitterHandle,             href: locals.twitter             },
-        { copy: 'YouTube',      handle:locals.coyoteDrums.youtubeHandle, href: locals.coyoteDrums.youtube },
+        { copy: 'YouTube',      handle:locals.bandersDrums.youtubeHandle, href: locals.bandersDrums.youtube },
       ].map(({copy, handle, href}) => {
         const src = `/images/drums/${copy.toLowerCase()}-icon.svg`;
         return externalLink(`
