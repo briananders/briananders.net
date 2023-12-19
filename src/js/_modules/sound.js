@@ -36,6 +36,17 @@ module.exports = function Sound(oscillatorType = 'sine') {
     });
   }
 
+  function setVolume(newVolume) {
+    // console.log(`setVolume(${newVolume})`);
+    gain.gain.exponentialRampToValueAtTime(
+      newVolume, context.currentTime + 0.04
+    );
+  }
+
+  function getVolume() {
+    return gain.gain.value;
+  }
+
   function stop() {
     // console.info(gain.gain.value);
     gain.gain.exponentialRampToValueAtTime(
@@ -50,17 +61,30 @@ module.exports = function Sound(oscillatorType = 'sine') {
   }
 
   function setFrequency(newFrequency) {
+    // console.log(`setFrequency(${newFrequency})`);
     frequency = newFrequency;
     oscillator.frequency.setValueAtTime(frequency, context.currentTime); // value in hertz
+  }
+
+  function getFrequency() {
+    return oscillator.frequency.value;
   }
 
   function setType(newType) {
     oscillator.type = newType;
   }
 
+  function getType() {
+    return oscillator.type.toString();
+  }
+
   this.isPlaying = () => isPlaying;
   this.start = start;
   this.stop = stop;
   this.setFrequency = setFrequency;
+  this.getFrequency = getFrequency;
   this.setType = setType;
+  this.getType = getType;
+  this.setVolume = setVolume;
+  this.getVolume = getVolume;
 };
