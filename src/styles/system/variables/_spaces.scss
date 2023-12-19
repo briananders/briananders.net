@@ -24,3 +24,8 @@ $s20: $base-unit * 20;
 $section-spacer: $s20;
 $paragraph-bottom: $s6;
 $content-max-width: 170 * $s1;
+
+
+$full-bleed: $content-max-width;
+$full-width-small: $content-max-width - (2 * $s2);
+$full-width-medium: $content-max-width - (2 * $s5);

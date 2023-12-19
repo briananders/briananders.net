@@ -54,13 +54,19 @@ $aspectRatio: $height / $width;
   }
 
   .drums-logo {
-    width: css-min(100%, 400px);
-    margin: $s6 auto;
+    width: css-min(100%, $full-width-medium);
 
-    animation-name: logo-hue;
-    animation-duration: 6s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    height: 150px;
+    margin: 0 auto $s6;
+    // background: linear-gradient(180deg, $palette--primary-grey, darken($palette--primary-color-dark, 10));
+    background: linear-gradient(90deg, $palette--primary-color-dark, $palette--primary-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: css-min(100%, 400px);
+    }
 
     body.no-animations &,
     body.no-animations & #drum {
