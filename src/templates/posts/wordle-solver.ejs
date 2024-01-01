@@ -57,6 +57,10 @@ scripts:
     <p>
       <%- noWidows(`Please note that the game mechanics might differ a bit from version to version but overall the rules are quite similar.`) %>
     </p>
+
+    <p>
+      <%- link('Check out the post with enhanced strategies', { href: '/posts/wordle-solver-2/' }) %> (and a better algorithm).
+    </p>
   </div>
 </section>
 
@@ -86,6 +90,13 @@ scripts:
               data-letter-number="<%- letter %>"
               data-state="wrong" />
             <fieldset id="lettercolor-<%- line %>-<%- letter %>">
+              <label for="wrong-<%- line %>-<%- letter %>" >
+                <input checked
+                  type="radio"
+                  id="wrong-<%- line %>-<%- letter %>"
+                  name="letter-<%- line %>-<%- letter %>"
+                  data-letter-number="<%- letter %>" />
+              </label>
               <label for="close-<%- line %>-<%- letter %>" >
                 <input
                   type="radio"
@@ -97,13 +108,6 @@ scripts:
                 <input
                   type="radio"
                   id="correct-<%- line %>-<%- letter %>"
-                  name="letter-<%- line %>-<%- letter %>"
-                  data-letter-number="<%- letter %>" />
-              </label>
-              <label for="wrong-<%- line %>-<%- letter %>" >
-                <input checked
-                  type="radio"
-                  id="wrong-<%- line %>-<%- letter %>"
                   name="letter-<%- line %>-<%- letter %>"
                   data-letter-number="<%- letter %>" />
               </label>
