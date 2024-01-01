@@ -186,11 +186,28 @@ ready.document(() => {
     resultsElement.innerText = wordElements.length;
   }
 
-  function getWeightedDictionary({ filteredDictionary, letterFrequencyIndex }) {
+  function getLetterValues(letterFrequency) {
+    let indexValue = 0;
+    let lastValue = 0;
+    const returnObject = {};
+
+    for (let i = letterFrequency.length - 1; i >= 0; i--) {
+      const [letter, currentValue] = letterFrequency[i];
+      if (lastValue < currentValue) {
+        indexValue++;
+      }
+      returnObject[letter] = indexValue;
+      lastValue = indexValue;
+    }
+
+    return returnObject;
+  }
+
+  function getWeightedDictionary({ filteredDictionary, letterValues }) {
     return filteredDictionary.map((word) => {
-      const letterValues = word.toUpperCase().split('').map((letter) => letterFrequencyIndex.indexOf(letter));
-      const filteredValues = letterValues.map((value, index) => ((letterValues.indexOf(value) !== index ? -1 : value)));
-      if (filteredValues.indexOf(-1) === -1) filteredValues.push(200);
+      const wordLetterValues = word.toUpperCase().split('').map((letter) => letterValues[letter]);
+      const filteredValues = wordLetterValues.map((value, index) => ((wordLetterValues.indexOf(value) !== index ? -1 : value)));
+      if (filteredValues.indexOf(-1) === -1) filteredValues.push(100);
       return [word, filteredValues.reduce((partialSum, letterValue) => partialSum + letterValue, 0)];
     });
   }
@@ -216,8 +233,8 @@ ready.document(() => {
     });
 
     const letterFrequency = getLetterFrequency({ filteredDictionary: unusedLetterDictionary });
-    const letterFrequencyIndex = letterFrequency.map((tuple) => tuple[0].toUpperCase()).reverse();
-    const weightedDictionary = getWeightedDictionary({ filteredDictionary: unusedLetterDictionary, letterFrequencyIndex });
+    const letterValues = getLetterValues(letterFrequency);
+    const weightedDictionary = getWeightedDictionary({ filteredDictionary: unusedLetterDictionary, letterValues });
 
     const wordElements = weightedDictionary.sort((a, b) => (a[1] > b[1] ? -1 : 1)).map((wordTuple) => `<span>${titleCase(wordTuple[0])} (${wordTuple[1]})</span>`);
 
@@ -358,8 +375,8 @@ ready.document(() => {
 
     const filteredDictionary = getFilteredDictionary();
     const letterFrequency = getLetterFrequency({ filteredDictionary });
-    const letterFrequencyIndex = letterFrequency.map((tuple) => tuple[0].toUpperCase()).reverse();
-    const weightedDictionary = getWeightedDictionary({ filteredDictionary, letterFrequencyIndex });
+    const letterValues = getLetterValues(letterFrequency);
+    const weightedDictionary = getWeightedDictionary({ filteredDictionary, letterValues });
 
     updateLetterFrequencySection({ letterFrequency });
     updateResultSection({ weightedDictionary });
