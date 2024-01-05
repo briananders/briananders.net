@@ -55,6 +55,7 @@ function moveOneImage(imagePath, configs, callback = () => {}) {
     return callback();
   } if (webpCandidates.includes(extn.substring(1))) {
     // move file and move webp file
+    if (debug) log(`${timestamp.stamp()} convertToWebp(${imagePath}): ${destination}`);
     convertToWebp(imagePath, { dir }).then(() => {
       fs.copyFile(imagePath, destination);
       return callback();

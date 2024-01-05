@@ -8,6 +8,15 @@
   @include font-size;
   overflow-x: hidden;
   @include palette--base;
+
+  --palette--primary-white: #{$palette--primary-white};
+  --palette--primary-grey: #{$palette--primary-grey};
+  --palette--secondary-grey: #{$palette--secondary-grey};
+  --palette--divider-color: #{$palette--divider-color};
+  --palette--error: #{$palette--error};
+  --palette--primary-color-dark: #{$palette--primary-color-dark};
+  --palette--primary-color-light: #{$palette--primary-color-light};
+  --palette--accent-color: #{$palette--accent-color};
 }
 
 @mixin selection {

@@ -1,13 +1,13 @@
 @import "system/variables/all";
 
 @mixin palette--base {
-  background-color: $palette--primary-grey;
   color: $palette--primary-white;
+  background-color: $palette--primary-grey;
 }
 
 @mixin palette--base--inverted {
-  background-color: $palette--primary-white;
   color: $palette--primary-grey;
+  background-color: $palette--primary-white;
 }
 
 @mixin palette--primary {
