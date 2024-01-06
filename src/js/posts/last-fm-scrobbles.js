@@ -26,6 +26,7 @@ function getData(year, callback) {
 ready.document(() => {
   require('../_components/album-listing').init();
   require('../_components/artist-listing').init();
+  require('../_components/year-listing').init();
   require('../_components/year-selector').init();
   const yearSelector = document.getElementById('year-selector');
   const albumsElement = document.getElementById('albums');
