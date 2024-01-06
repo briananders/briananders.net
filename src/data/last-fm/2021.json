@@ -1,7 +1,7 @@
 {
   "sources": {
     "artist": "https://www.last.fm/user/iBrianAnders/library/artists?from=2021-01-01&rangetype=year",
-    "album": "https://www.last.fm/ser/i-brian-anders/library/albums?from=2021-01-01&rangetype=albumahttps://www.last.fm/user/i-brian-anders/library/artists?from=2021-01-01&rangetype=year+{.webpr"
+    "album": "https://www.last.fm/user/iBrianAnders/library/albums?from=2021-01-01&rangetype=year"
   },
   "artists": [
     {
