@@ -26,20 +26,22 @@ scripts:
   </p>
 </div>
 
-<div class="p">
-  <year-selector id="year-selector" min="2013" max="2023" value="2023"></year-selector>
+<div class="container">
+  <div class="year-selector-container">
+    <year-selector id="year-selector" min="2013" max="2023" value="2023"></year-selector>
+  </div>
 </div>
 
 <section>
   <div class="container">
     <h2>Artists</h2>
-    <div id="artists" class="p">
+    <div id="artists">
       <% for (let i = 0; i < 10; i++) { %>
         <artist-listing></artist-listing>
       <% } %>
-      <div class="center">
-        <%- externalLink("More", { href: "#", class: "button more" }) %>
-      </div>
+    </div>
+    <div class="center">
+      <%- externalLink("More", { href: "#", class: "button more artists" }) %>
     </div>
   </div>
 </section>
@@ -51,9 +53,9 @@ scripts:
       <% for (let i = 0; i < 10; i++) { %>
         <album-listing></album-listing>
       <% } %>
-      <div class="center">
-        <%- externalLink("More", { href: "#", class: "button more" }) %>
-      </div>
+    </div>
+    <div class="center">
+      <%- externalLink("More", { href: "#", class: "button more albums" }) %>
     </div>
   </div>
 </section>
@@ -71,7 +73,7 @@ scripts:
       <year-listing year=2017 value=16750 maximum=37568 ></year-listing>
       <year-listing year=2016 value=10785 maximum=37568 ></year-listing>
       <year-listing year=2015 value=13656 maximum=37568 ></year-listing>
-      <year-listing year=2014 value=8797 maximum=37568 ></year-listing>
+      <year-listing year=2014 value=8797  maximum=37568 ></year-listing>
       <year-listing year=2013 value=23652 maximum=37568 ></year-listing>
     </div>
   </div>
@@ -87,22 +89,6 @@ scripts:
           href: "https://www.last.fm/user/iBrianAnders"
         }); %>
       </li>
-
-      <%
-        const years = [];
-        for (let i = (new Date).getFullYear(); i >= 2013; i--) {
-          years.push(i);
-        }
-        years.forEach((year) => {
-      %>
-        <li>
-          <%-
-            externalLink(`${year} Scrobbles`, {
-              href: `https://www.last.fm/user/iBrianAnders/library/artists?from=${year}-01-01&rangetype=year`
-            });
-          %>
-        </li>
-      <% }); %>
     </ul>
   </div>
 </section>

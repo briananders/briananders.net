@@ -1,5 +1,23 @@
+const inView = require('../_modules/in-view');
+
 const yearTemplate = `
   <style>
+    a {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      text-decoration: none;
+      color: white;
+      border-radius: 3px;
+
+      transition: box-shadow 300ms ease, background-color 300ms ease;
+    }
+    a:hover {
+      box-shadow: -6px 0px 0px var(--palette--primary-grey), -12px 0px 0px var(--palette--primary-color-light);
+    }
+    a:focus {
+      background-color: var(--palette--secondary-grey);
+    }
+
     .bar {
       display: flex;
       width: var(--bar-width, 1%);
@@ -12,11 +30,16 @@ const yearTemplate = `
       overflow: hidden;
       border-radius: 3px;
       align-items: center;
+
+      transition: width 2s ease-in-out;
     }
 
     .bar slot {
       color: black;
       text-shadow: 0 1px 1px white;
+      position: absolute;
+      right: 0;
+      margin-right: 5px;
     }
 
     .bar-container {
@@ -36,13 +59,15 @@ const yearTemplate = `
     }
   </style>
 
-  <span slot="year">2000</span>
-  <span class="bar-container">
-    <slot>Value</slot>
-    <span class="bar">
+  <a href="" aria-label="" itemprop="url" rel="noopener" target="blank">
+    <span slot="year">2000</span>
+    <span class="bar-container">
       <slot>Value</slot>
+      <span class="bar">
+        <slot>Value</slot>
+      </span>
     </span>
-  </span>
+  </a>
 `;
 
 const attributes = ["year", "value", "maximum"];
@@ -70,39 +95,30 @@ class YearListing extends HTMLElement {
     }
     if (name === "year") {
       this.shadowRoot.querySelector(`[slot="${name}"]`).innerText = newValue;
+      this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/user/iBrianAnders/library/artists?from=${newValue}-01-01&rangetype=year`)
     }
-    if (['maximum', 'value'].includes(name)) {
-      const maximum = Number(this.getAttribute('maximum') || 1);
-      const value = Number(this.getAttribute('value') || 0);
-      this.animateTo(value / maximum * 100);
+    if (['year', 'value'].includes(name)) {
+      const year = this.getAttribute('year');
+      const value = this.getAttribute('value');
+      this.shadowRoot.querySelector('a').setAttribute('aria-label', `${value} scrobbles in the year ${year}`);
     }
   }
 
-  animateTo(newValue) {
-    const FPS = 60;
-    const frameSpeed = 1000 / FPS;
-    const stepSize = 1;
+  updateWidth() {
     const barElement = this.barElement;
-    const width = this.width;
+    const maximum = Number(this.getAttribute('maximum') || 1);
+    const value = Number(this.getAttribute('value') || 0);
 
-    let step = 0;
-
-    run();
-    function run() {
-      step++;
-      barElement.style.setProperty('--bar-width', width + (stepSize * step) + "%");
-
-      if (width + (stepSize * step) < newValue) {
-        setTimeout(run, frameSpeed);
-      } else {
-        this.width = newValue;
-      }
-    }
+    setTimeout(() => {
+      barElement.style.setProperty('--bar-width', (value / maximum * 100) + "%");
+    }, 1);
   }
 
-  // connectedCallback() {
-  //   console.log('connected');
-  // }
+  connectedCallback() {
+    inView(this.barElement, this.updateWidth.bind(this), {
+      rootMargin: '-70px 0px -20px 0px',
+    });
+  }
 
   // disconnectedCallback() {
   //   console.log('disconnected');

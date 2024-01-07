@@ -18,40 +18,19 @@ p {
   }
 }
 
-year-selector {
-  display: block;
-  min-height: 28px;
-  position: relative;
-}
-
-album-listing,
-artist-listing {
+.year-selector-container {
   @include sixHundred;
-  display: block;
-  border-radius: $s1;
-  margin-bottom: $s2;
-  box-sizing: border-box;
-  min-height: 116px;
-
-  &:last-of-type {
-    margin-bottom: $s6;
-  }
+  @include paragraph-margin;
 }
 
-album-listing {
-  min-height: 117px;
-}
-
-#yearly-scrobbles {
+#albums, #artists, #yearly-scrobbles {
   @include sixHundred;
 
   display: grid;
   gap: $s2;
 }
 
-year-listing {
-  display: grid;
-  grid-template-columns: 50px 1fr;
+#albums, #artists {
+  gap: $s5;
+  margin-bottom: $s10;
 }
-
-

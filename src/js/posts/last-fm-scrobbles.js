@@ -61,8 +61,8 @@ ready.document(() => {
         artistElement.innerText = artist.name;
       }
 
-      albumsElement.querySelector('.more').setAttribute('href', data.sources.album);
-      artistsElement.querySelector('.more').setAttribute('href', data.sources.artist);
+      document.querySelector('.more.albums').setAttribute('href', data.sources.album);
+      document.querySelector('.more.artists').setAttribute('href', data.sources.artist);
     });
   }
 

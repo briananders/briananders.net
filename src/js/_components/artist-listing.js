@@ -1,5 +1,4 @@
-const artistTemplate = document.createElement("artist-template");
-artistTemplate.innerHTML = `
+const artistTemplate = `
   <style>
     a {
       color: inherit;
@@ -7,6 +6,15 @@ artistTemplate.innerHTML = `
       display: grid;
       grid-template-columns: 90px 1fr;
       gap: 12px;
+      border-radius: 3px;
+
+      transition: box-shadow 300ms ease, background-color 300ms ease;
+    }
+    a:hover {
+      box-shadow: -3px 0px 0px var(--palette--primary-grey), -9px 0px 0px var(--palette--primary-color-light);
+    }
+    a:focus {
+      background-color: var(--palette--secondary-grey);
     }
     #bar {
       width: 0%;
@@ -46,7 +54,7 @@ class ArtistListing extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: "open" });
-    shadow.append(artistTemplate.cloneNode(true));
+    shadow.innerHTML = artistTemplate;
   }
 
   static get observedAttributes() {

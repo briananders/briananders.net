@@ -1,6 +1,11 @@
 const yearTemplate = document.createElement("year-template");
 yearTemplate.innerHTML = `
 <style>
+  div {
+    display: block;
+    min-height: 28px;
+    position: relative;
+  }
   slot {
     display: inline-block;
     border: 1px solid #f57f17;
