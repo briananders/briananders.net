@@ -26,7 +26,8 @@ const yearTemplate = `
       background: linear-gradient(to right, var(--palette--primary-color-dark), var(--palette--primary-color-light));
       position: absolute;
       left: 0;
-      top: 0;
+      top: 50%;
+      transform: translateY(-50%);
       overflow: hidden;
       border-radius: 3px;
       align-items: center;
@@ -62,9 +63,8 @@ const yearTemplate = `
   <a href="" aria-label="" itemprop="url" rel="noopener" target="blank">
     <span slot="year">2000</span>
     <span class="bar-container">
-      <slot>Value</slot>
       <span class="bar">
-        <slot>Value</slot>
+        <slot>0</slot>
       </span>
     </span>
   </a>
@@ -77,7 +77,7 @@ class YearListing extends HTMLElement {
     super();
     const shadow = this.attachShadow({ mode: "open" });
     shadow.innerHTML = yearTemplate;
-    this.width = 0;
+    this.value = 0;
 
     this.barElement = this.shadowRoot.querySelector('.bar');
   }
@@ -91,7 +91,7 @@ class YearListing extends HTMLElement {
 
     // console.log(name, oldValue, newValue);
     if (name === "value") {
-      [...this.shadowRoot.querySelectorAll(`slot`)].forEach((element) => { element.innerText = newValue; });
+      this.animateToValue(newValue);
     }
     if (name === "year") {
       this.shadowRoot.querySelector(`[slot="${name}"]`).innerText = newValue;
@@ -102,6 +102,36 @@ class YearListing extends HTMLElement {
       const value = this.getAttribute('value');
       this.shadowRoot.querySelector('a').setAttribute('aria-label', `${value} scrobbles in the year ${year}`);
     }
+  }
+
+  animateToValue(value) {
+    const oldValue = this.value;
+    const valueDiff = value - oldValue;
+
+    const duration = 2000;
+    const startTime = Date.now();
+
+    const slotElement = this.shadowRoot.querySelector('slot');
+
+    function formatNumber(num) {
+      const rounded = Math.round(num);
+      const thousands = Math.floor(rounded / 1000);
+      const digits = `000${Math.floor(rounded % 1000)}`;
+      return `${thousands},${digits.substring(digits.length - 3, digits.length)}`;
+    }
+
+    function run() {
+      const now = Date.now();
+      const runningValue = ((now - startTime) / duration) * valueDiff;
+      slotElement.innerHTML = formatNumber(runningValue + oldValue);
+
+      if (now <= (startTime + duration)) {
+        requestAnimationFrame(run);
+      } else {
+        slotElement.innerHTML = formatNumber(value);
+      }
+    }
+    run()
   }
 
   updateWidth() {
