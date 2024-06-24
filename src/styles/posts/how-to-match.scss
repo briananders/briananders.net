@@ -6,7 +6,7 @@ main.posts.how-to-match {
 
   .example-container {
     overflow: hidden;
-    @include font-size(3);
+    @include type--heading-4;
     border: 2px solid $palette--divider-color;
     margin-bottom: $s6;
   }

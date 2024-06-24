@@ -80,7 +80,7 @@ ul li {
   #score-board {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $s10;
+    grid-gap: $s12;
 
     @include mq($medium) {
       grid-template-columns: 1fr 1fr;
@@ -118,7 +118,7 @@ ul li {
     justify-content: space-between;
 
     @include mq($medium) {
-      width: calc(50% - #{$s5});
+      width: calc(50% - #{$s6});
     }
   }
 

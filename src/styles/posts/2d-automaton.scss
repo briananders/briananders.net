@@ -13,12 +13,12 @@ canvas {
 
 td {
   padding: $s4 $s4 0;
-  @include font-size(5);
+  @include type--heading-2;
   line-height: .7;
 
   @include mq-max(500px) {
     padding: $s2 $s2 0;
-    @include font-size(4);
+    @include type--heading-3;
     line-height: .7;
   }
 

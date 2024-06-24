@@ -5,10 +5,10 @@ main.home {
   @import "modules/posts-list";
   @import "posts/last-fm";
 
-  margin-top: $s10;
+  margin-top: $s12;
 
   .last-fm-module {
-    margin-top: $s5;
+    margin-top: $s6;
   }
 
   [data-card-id="google-store"] img {

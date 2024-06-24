@@ -1,7 +1,7 @@
 section.contributions {
   .deck {
     display: grid;
-    gap: $s10;
+    gap: $s12;
     @include sixHundred;
     margin: 0 auto;
   }
@@ -15,7 +15,7 @@ section.contributions {
       "title"
       "description"
       "links";
-    column-gap: $s10;
+    column-gap: $s12;
 
     @include mq($medium) {
       grid-template-columns: css-min(25%, 200px) 1fr;

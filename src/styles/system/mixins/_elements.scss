@@ -24,6 +24,7 @@
   ::-moz-selection {
     text-shadow: none;
     @include palette--base--inverted;
+    background: red;
   }
 }
 
@@ -38,7 +39,7 @@
 }
 
 @mixin input {
-  min-width: $s10;
+  min-width: $s12;
 }
 
 @mixin link-focus {
@@ -53,25 +54,12 @@
 @mixin link-hover {
   transition-property: color, background-color;
   position: relative;
+  transition-property: opacity;
+  transition-duration: $transition-speed;
 
-  &::after {
-    content: "";
-    position: absolute;
+  &:hover {
     border-radius: $border-radius;
-    left: -3px;
-    top: -3px;
-    width: calc(100% + 6px);
-    height: calc(100% + 6px);
-    opacity: 0;
-    transition-property: opacity;
-    transition-duration: $transition-speed;
-    z-index: 2;
-
-    box-shadow: 0 0 0 1px white, 0 0 0 4px $palette--primary-color-dark;
-  }
-
-  &:hover::after {
-    opacity: 1;
+    box-shadow: 0px 0px 0px 6px $palette--primary-grey, 0px 0px 0px 8px $palette--primary-color-light;
   }
 }
 
@@ -158,7 +146,7 @@
   padding: 0 $s2;
 
   @include mq($medium) {
-    padding: 0 $s5;
+    padding: 0 $s6;
   }
 }
 
@@ -166,7 +154,7 @@
   width: 100%;
   @include sixHundred;
   margin-bottom: $paragraph-bottom;
-  @include font-size(3);
+  @include type--body;
 
   &:last-child {
     margin-bottom: 0;
@@ -195,12 +183,12 @@
 }
 
 @mixin quotation {
-  padding: $s5 $s5;
+  padding: $s6 $s6;
   overflow: hidden;
   max-width: 500px;
   @include margin-center;
   margin-bottom: $s6;
-  @include font-size(3);
+  @include type--heading-4;
   background-color: transparent;
   border: 2px solid $palette--divider-color;;
   color: $palette--primary-white;
@@ -218,7 +206,7 @@
 }
 
 @mixin label {
-  @include font-size(3);
+  @include type--heading-4;
   padding: 0 $s3;
   @include type--regular-sans-serif;
 }

@@ -3,7 +3,7 @@
 @import "system/variables/viewports";
 
 $grid--gutter: percentage($s3/$large);
-$grid--column: percentage($s10/$large);
+$grid--column: percentage($s12/$large);
 $grid--start-break-point: $medium;
 $grid--copy-max-width: $s1 * 100; // 600px
 $grid--max-width: $s1 * 220; // 1320px

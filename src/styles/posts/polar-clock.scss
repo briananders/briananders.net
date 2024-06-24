@@ -93,5 +93,5 @@ svg.clock {
 
 
 .display-time {
-  @include font-size(5)
+  @include type--heading-2
 }

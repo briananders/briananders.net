@@ -57,7 +57,7 @@
       height: 100%;
       background: $palette--accent-color;
       color: $palette--primary-grey;
-      @include font-size(2);
+      @include type--heading-5;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,11 +143,11 @@ fieldset {
 
 input.letter {
   text-align: center;
-  width: $s10;
-  height: $s10;
-  line-height: $s10;
+  width: $s12;
+  height: $s12;
+  line-height: $s12;
   padding: 0;
-  font-size: $s6;
+  @include type--heading-1;
 
   &[data-state="wrong"] {
     @include wrong;

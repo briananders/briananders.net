@@ -1,6 +1,6 @@
 @import "modules/sticky-stacky";
 
-$nav-height: $s11;
+$nav-height: $s12;
 
 html {
   --nav-height: #{$nav-height};
@@ -103,7 +103,7 @@ nav.main {
     }
 
     @include mq($medium) {
-      right: $s5;
+      right: $s6;
     }
 
     #top-triangle {

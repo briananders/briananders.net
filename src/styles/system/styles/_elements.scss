@@ -34,7 +34,7 @@ body {
 p {
   @include paragraph;
 
-  a {
+  a:not(.button) {
     @include inline-link;
   }
 }
@@ -99,7 +99,7 @@ select {
   appearance: menulist;
   border-radius: $border-radius;
   background-color: $color--grey-50;
-  height: $s5 + $s1 / 2;
+  height: $s6 + $s1 / 2;
 
   @include button-select;
 
@@ -119,7 +119,7 @@ label {
   @include label;
 }
 
-button,
+button:not(.link),
 select {
   @include button-select;
 }

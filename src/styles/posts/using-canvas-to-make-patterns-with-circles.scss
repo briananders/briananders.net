@@ -30,8 +30,7 @@ main.posts.using-canvas-to-make-patterns-with-circles {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    @include margin-center;
 
     label {
       white-space: nowrap;

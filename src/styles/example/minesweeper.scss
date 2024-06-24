@@ -31,8 +31,7 @@
   .header-first-row,
   .header-second-row {
     transition-property: width, max-width;
-    margin-left: auto;
-    margin-right: auto;
+    @include margin-center;
 
     &[data-difficulty=beginner] {
       max-width: 400px;
@@ -59,7 +58,7 @@
 
   .header-second-row {
     justify-content: center;
-    margin: $s5 auto;
+    margin: $s6 auto;
   }
 
   .mine-sweeper-tile {
