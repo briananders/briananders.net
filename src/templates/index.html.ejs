@@ -58,7 +58,7 @@ scripts:
     <%
       const model = [
         {
-          title: "Google Store",
+          heading: "Google Store",
           image: "/images/about/google-store.svg",
           description: "Since 2018, I have been working on improving the user experience on the Google Hardware Store. My main areas of focus are: new product launches, product pages, accessibility, site performance, SEO, and frontend product quality.",
           links: [
@@ -68,7 +68,7 @@ scripts:
             }
           ]
         }, {
-          title: "Podcast: Bat Lessons",
+          heading: "Podcast: Bat Lessons",
           image: "/images/about/contributions/batlessons.webp",
           description: `My friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })} and I cohost a podcast together about Batman. It focuses on the context around the development of the characters, the history of the Batman universe, and the impact that our world had on it. Check it out!`,
           links: [
@@ -78,7 +78,7 @@ scripts:
             }
           ]
         }, {
-          title: "YouTube: Banders Drums",
+          heading: "YouTube: Banders Drums",
           image: "/images/drums/logo.svg",
           description: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
           links: [
@@ -92,9 +92,9 @@ scripts:
           ]
         },
       ]
-      model.forEach(({ description, image, title, links }) => {
+      model.forEach(({ description, image, heading, links }) => {
     %>
-        <%- partial('contributions-card', Object.assign(locals, { description, image, title, links })); %>
+        <%- partial('contributions-card', Object.assign(locals, { description, image, heading, links })); %>
       <% }); %>
     </div>
   </div>

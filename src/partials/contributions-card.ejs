@@ -1,9 +1,9 @@
 <%
-  const { description, image, title, links } = locals;
+  const { description, image, heading, links } = locals;
 %>
-<div class="card" data-card-id="<%- dasherize(title.toLowerCase()); %>">
+<div class="card" data-card-id="<%- dasherize(heading.toLowerCase()); %>">
   <%- lazyImage({ src: image }); %>
-  <h3><%- noWidows(title); %></h3>
+  <h3><%- noWidows(heading); %></h3>
   <p class="description"><%- noWidows(description); %></p>
   <div class="links">
     <% links.forEach(({ label, url, path, className='', dataVideoId }) => { %>
