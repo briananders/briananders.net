@@ -1,10 +1,10 @@
 <%
-  const { description, image, heading, links } = locals;
+  const { copyBlock, image, heading, links } = locals;
 %>
 <div class="card" data-card-id="<%- dasherize(heading.toLowerCase()); %>">
   <%- lazyImage({ src: image }); %>
   <h3><%- noWidows(heading); %></h3>
-  <p class="description"><%- noWidows(description); %></p>
+  <p class="description"><%- noWidows(copyBlock); %></p>
   <div class="links">
     <% links.forEach(({ label, url, path, className='', dataVideoId }) => { %>
       <% if (url) { %>

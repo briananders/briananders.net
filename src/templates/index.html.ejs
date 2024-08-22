@@ -1,6 +1,6 @@
 ---
 title: "Home"
-description: "Brian Anders is a Staff UX Engineer at Google"
+description: "Brian Anders is an Engineer Manager in the tech industry. I'm also a Youtuber, Podcaster, and Musician."
 priority: 1.0
 homepage: true
 pageClasses:
@@ -25,10 +25,10 @@ scripts:
       </h2>
     </header>
     <p>
-      <%- noWidows(`I am Brian Anders, a Staff UX Engineer at ${externalLink('Google', { href: 'https://google.com' })}. From 2013 to 2018, I worked on ${externalLink('nest.com', { href: 'https://web.archive.org/web/20190504202611/https://nest.com/' })} as a UX Engineer. Since 2018 I have been working on the ${externalLink('Google Store', { href: 'https://store.google.com' })}; building and enhancing the web experience.`); %>
+      <%- noWidows(`I am Brian Anders, an Engineer Manager in the tech industry. My specialty is in building enterprise level e-commerce websites.`); %>
     </p>
     <p>
-      <%- `Outside of work, I cohost a podcast about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my ${externalLink('YouTube channel', { href: locals.bandersDrums.youtube })}, called ${link('Banders Drums', { href: locals.bandersDrums.path })}.` %>
+      <%- `I cohost a podcast and YouTube channel about Batman with my friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })}, called ${externalLink('Bat Lessons', { href: locals.batLessons })}. I also record drum covers for my YouTube channel, ${link('Banders Drums', { href: locals.bandersDrums.youtube })}.` %>
     </p>
     <p>
       <%- noWidows(`I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.`); %>
@@ -53,37 +53,27 @@ scripts:
 
 <section class="contributions">
   <div class="content">
-    <h2><%- noWidows('Contributions to the internet.'); %></h2>
+    <h2><%- noWidows('Shows and other fun stuff'); %></h2>
     <div class="deck">
     <%
       const model = [
         {
-          heading: "Google Store",
-          image: "/images/about/google-store.svg",
-          description: "Since 2018, I have been working on improving the user experience on the Google Hardware Store. My main areas of focus are: new product launches, product pages, accessibility, site performance, SEO, and frontend product quality.",
-          links: [
-            {
-              label: "Google Store",
-              url: "https://store.google.com",
-            }
-          ]
-        }, {
-          heading: "Podcast: Bat Lessons",
+          heading: "Podcast & Youtube channel: Bat Lessons",
           image: "/images/about/contributions/batlessons.webp",
-          description: `My friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })} and I cohost a podcast together about Batman. It focuses on the context around the development of the characters, the history of the Batman universe, and the impact that our world had on it. Check it out!`,
+          copyBlock: `My friend ${externalLink('Alex Cash', { href: 'https://alex.cash' })} and I cohost a show about Batman. It focuses on the context around the development of the characters, the history of the Batman universe, and the impact that our world had on it.`,
           links: [
             {
-              label: "Podcast site",
+              label: "Bat Lessons website",
               url: locals.batLessons,
             }
           ]
         }, {
-          heading: "YouTube: Banders Drums",
-          image: "/images/drums/logo.svg",
-          description: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
+          heading: "YouTube channel: Banders Drums",
+          image: "/images/drums/logo.png",
+          copyBlock: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
           links: [
             {
-              label: "Main Site",
+              label: "Main Web Page",
               path: locals.bandersDrums.path,
             }, {
               label: "YouTube Channel",
@@ -92,9 +82,9 @@ scripts:
           ]
         },
       ]
-      model.forEach(({ description, image, heading, links }) => {
+      model.forEach(({ copyBlock, image, heading, links }) => {
     %>
-        <%- partial('contributions-card', Object.assign(locals, { description, image, heading, links })); %>
+        <%- partial('contributions-card', Object.assign(locals, { copyBlock, image, heading, links })); %>
       <% }); %>
     </div>
   </div>
