@@ -3,8 +3,9 @@ const windowResize = require('../_modules/window-resize');
 
 let canvasContext;
 let canvas;
-let circles = [];
+let playButton;
 
+const circles = [];
 const WIDTH = 1000;
 const numberOfCircles = 20;
 const tones = [
@@ -30,9 +31,8 @@ const tones = [
   1760.000, // A6
 ];
 
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-
+let AudioContext;
+let audioCtx;
 
 function ColorObject(position) {
   // rgb(205 72 0) dark
@@ -176,6 +176,8 @@ function draw() {
   drawCanvas();
 
   window.setTimeout(draw, 1000 / 240);
+
+  // document.querySelector('debug').innerText += audioCtx.state.toString();
 }
 
 function createCircle(position, velocity) {
@@ -215,15 +217,31 @@ function clear() {
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+function setUpEvents() {
+  playButton.addEventListener('click', () => {
+    AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
+    draw();
+    // audioCtx.resume().then(() => {
+      // console.log('Playback resumed successfully');
+    // }).catch(error => {
+      // document.querySelector('debug').innerText += `\n\n${error.toString()}`;
+    // });
+
+    playButton.style.display = 'none';
+  });
+}
+
 function initialize() {
   canvas = document.getElementById('canvas');
   canvasContext = canvas.getContext('2d');
+  playButton = document.getElementById('play');
 
   setCanvasDimensions();
 
   createCircles();
 
-  window.setTimeout(draw, 1000 / 60);
+  setUpEvents();
 }
 
 ready.all(initialize.bind(this));
