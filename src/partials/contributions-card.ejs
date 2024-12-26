@@ -3,8 +3,8 @@
 %>
 <div class="card" data-card-id="<%- dasherize(heading.toLowerCase()); %>">
   <%- lazyImage({ src: image }); %>
-  <h3><%- noWidows(heading); %></h3>
-  <p class="description"><%- noWidows(copyBlock); %></p>
+  <h3><%- heading; %></h3>
+  <p class="description"><%- copyBlock %></p>
   <div class="links">
     <% links.forEach(({ label, url, path, className='', dataVideoId }) => { %>
       <% if (url) { %>

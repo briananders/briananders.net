@@ -16,23 +16,17 @@ footer {
     @include orange-gradient;
   }
 
-  ul {
-    display: grid;
-    grid-gap: $s2;
-    position: relative;
-  }
-
-  li {
-    margin-bottom: $s1;
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-
   .copyright {
-    position: absolute;
-    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .links {
+    display: flex;
+    gap: $s2;
+    flex-wrap: wrap;
+    margin-top: $s4;
   }
 
   a {

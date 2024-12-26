@@ -8,6 +8,7 @@
   @include font-size;
   overflow-x: hidden;
   @include palette--base;
+  text-wrap: pretty;
 
   --palette--primary-white: #{$palette--primary-white};
   --palette--primary-grey: #{$palette--primary-grey};

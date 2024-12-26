@@ -22,6 +22,7 @@ module.exports = (dir) => {
     instagram,
     instagramHandle,
     lastfm: 'https://www.last.fm/user/iBrianAnders',
+    bluesky: 'https://bsky.app/profile/imbanders.bsky.social',
     twitterHandle,
     twitter,
     github: 'https://github.com/briananders',
