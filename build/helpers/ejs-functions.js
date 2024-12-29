@@ -63,7 +63,9 @@ module.exports = (dir, pageMappingData) => ({
   },
 
   noWidows(str) {
-    return str.replace(/\s([^\s]+)$/, '&nbsp;$1').replace(/_/g, ' ');
+    // replace the last space in a string with a &nbsp;
+    // any double underscores are replaced with regular spaces
+    return str.replace(/\s([^\s]+)$/, '&nbsp;$1').replace(/__/g, ' ');
   },
 
   code(block, locals = {}) {

@@ -1,0 +1,24 @@
+@import "system/utilities";
+
+$squareSize: 768;
+
+.canvas-container {
+  position: relative;
+
+  button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+canvas {
+  width: $squareSize + px;
+  height: $squareSize + px;
+  margin: auto;
+  border: 2px solid $palette--divider-color;
+  max-width: 90vw;
+  max-height: 90vw;
+  display: block;
+}
