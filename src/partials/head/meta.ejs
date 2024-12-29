@@ -23,7 +23,7 @@
 <!-- Schema.org markup for Google+ -->
 <meta itemprop="name"                              content="<%- locals.author %>" />
 <meta itemprop="description"                       content="<%- locals.description %>" />
-<meta itemprop="image"                             content="/images/favicon_base.png" />
+<meta itemprop="image"                             content="<%- metaImagePath({ pagePath: locals.path }); %>" />
 <link rel="canonical"                              href="<%- locals.domain %><%- locals.path %>" />
 
 <!-- Twitter Card data -->
@@ -33,13 +33,13 @@
 <meta name="twitter:creator"                       content="@<%- locals.twitterHandle %>" />
 <meta name="twitter:title"                         content="<%- locals.author %>" />
 <meta name="twitter:description"                   content="<%- locals.description %>" />
-<meta name="twitter:image"                         content="/images/favicon_base.png" />
+<meta name="twitter:image"                         content="<%- metaImagePath({ pagePath: locals.path }); %>" />
 
 <!-- Open Graph data -->
 <meta property="og:type"                           content="profile" />
 <meta property="og:url"                            content="/<%- locals.path %>" />
 <meta property="og:title"                          content="<%- locals.author %>" />
-<meta property="og:image"                          content="/images/favicon_base.png" />
+<meta property="og:image"                          content="<%- metaImagePath({ pagePath: locals.path }); %>" />
 <meta property="og:description"                    content="<%- locals.description %>" />
 <meta property="og:site_name"                      content="<%- locals.name %>" />
 

@@ -78,6 +78,22 @@ module.exports = (dir, pageMappingData) => ({
     `;
   },
 
+  metaImagePath({ pagePath } = {}) {
+    const src = path.join('/images/meta/', pagePath.slice(0,-1) + '.jpg');
+    if (!fs.existsSync(path.join(dir.src, src))) { // no file at source
+      return '/images/favicon_base.png';
+    }
+    return src;
+  },
+
+  metaImage({
+    pagePath, alt = 'Brian Anders Logo'
+  } = {}) {
+    const src = this.metaImagePath({ pagePath });
+    const dimensions = sizeOf(path.join(dir.package, src));
+    return `<img src="${src}" alt="${alt}" height="${dimensions.height}" width="${dimensions.width}" />`;
+  },
+
   img({
     src, alt = '', classes = [], width, height,
   } = {}) {
