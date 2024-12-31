@@ -64,6 +64,10 @@ scripts:
         <span></span>
       </li>
     </ul>
+  </div>
+</section>
+<section class="palette-combos">
+  <div class="container">
     <h2>Palette Combinations</h2>
     <ul>
       <li class="palette--base">@include palette--base</li>
@@ -208,53 +212,45 @@ scripts:
 <section class="links">
   <div class="container">
     <h2>Inline Link</h2>
-    <ul>
-      <li>
-        This is what an inline <%- inlineLink('inlineLink()', { href: 'javascript: void(0);' }); %> tag looks like
-      </li>
-    </ul>
+    <p>
+      This is what an inline <%- inlineLink('inlineLink()', { href: 'javascript: void(0);' }); %> tag looks like
+    </p>
     <h2>Block Link</h2>
-    <ul>
-      <li>
-        This is what a block link tag looks like.
-        <%- blockLink('blockLink()', { href: 'javascript: void(0);' }); %>
-      </li>
-    </ul>
+    <p>
+      This is what a block link tag looks like.
+      <%- blockLink('blockLink()', { href: 'javascript: void(0);' }); %>
+    </p>
     <h2>Button Link</h2>
-    <ul>
-      <li>
-        This is what a button link tag looks like.
-        <%- buttonLink('buttonLink()', { href: 'javascript: void(0);' }); %>
-      </li>
-    </ul>
+    <p>
+      This is what a button link tag looks like.
+      <%- buttonLink('buttonLink()', { href: 'javascript: void(0);' }); %>
+    </p>
     <h2>Card Link</h2>
-    <ul>
-      <li>
-        <%- cardLink(`<h3>cardLink()</h3><p>This is what a button link tag looks like.</p>`, { href: 'javascript: void(0);' }); %>
-      </li>
-    </ul>
+    <div class="p">
+      <%- cardLink(`<h3>cardLink()</h3><p>This is what a card link tag looks like. This is what a card link tag looks like. This is what a card link tag looks like.</p>`, { href: 'javascript: void(0);' }); %>
+    </div>
     <h2>Other</h2>
-    <ul>
-      <li>
-        Button element without any classes. <button>Random button</button>
-      </li>
-      <li>
-        Button element with <var>inline-link</var> class. <button class="inline-link">Inline Link</button>
-      </li>
-      <li>
-        Button element with <var>block-link</var> class. <button class="block-link">Block Link</button>
-      </li>
-      <li>
-        Button element with <var>button-link</var> class. <button class="button-link">Button Link</button>
-      </li>
-      <li>
-        Button element with <var>card-link</var> class.
-        <button class="card-link">
-          <h6>Card Link</h6>
-          <p>Paragraph</p>
-        </button>
-      </li>
-    </ul>
+    <p>
+      Button element without any classes. <button>Random button</button>
+    </p>
+    <p>
+      Button element with <var>inline-link</var> class. <button class="inline-link">Inline Link</button>
+    </p>
+    <p>
+      Button element with <var>block-link</var> class. <button class="block-link">Block Link&nbsp;<b>&gt;</b></button>
+    </p>
+    <p>
+      Button element with <var>button-link</var> class. <button class="button-link">Button Link</button>
+    </p>
+    <p>
+      Button element with <var>card-link</var> class.
+    </p>
+    <div class="p">
+      <button class="card-link">
+        <h6>Card Link</h6>
+        <p>This is what a card link tag looks like. This is what a card link tag looks like. This is what a card link tag looks like.</p>
+      </button>
+    </div>
   </div>
 </section>
 

@@ -4,15 +4,28 @@
   box-shadow: 0 0 12px black;
 }
 
-.palette {
+.palette,
+.palette-combos {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $s4;
+    justify-content: center;
+  }
 
   li {
-    span {
-      display: block;
-      width: 50px;
-      height: 50px;
-      @include ds-box-shadow;
-    }
+    margin-bottom: 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: $s1;
+  }
+
+  span {
+    display: block;
+    width: 50px;
+    height: 50px;
+    @include ds-box-shadow;
   }
 
   .primary-white span {

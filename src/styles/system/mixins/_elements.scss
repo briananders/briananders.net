@@ -65,7 +65,7 @@
   @include palette--base;
   border-radius: $border-radius;
   height: $s6 + $s1 / 2;
-  padding: 0 $s1;
+  padding: $s1/3 $s1 0;
   border: 1px solid $palette--divider-color;
 }
 
