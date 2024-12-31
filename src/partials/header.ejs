@@ -8,9 +8,9 @@
   <header class="main-header <%- (locals.pageClasses) ? locals.pageClasses.toString().replace(/,/g,' ') : '' %>">
     <h1 itemprop="headline" class="name content">
       <% if (locals.altTitle !== undefined) { %>
-        <%- locals.altTitle; %>
+        <%- noWidows(locals.altTitle); %>
       <% } else if (locals.title !== undefined) { %>
-        <%- locals.title; %>
+        <%- noWidows(locals.title); %>
       <% } %>
     </h1>
   </header>

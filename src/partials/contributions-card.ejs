@@ -3,7 +3,7 @@
 %>
 <div class="card" data-card-id="<%- dasherize(heading.toLowerCase()); %>">
   <%- lazyImage({ src: image }); %>
-  <h5><%- heading; %></h5>
+  <h3 class="h5"><%- noWidows(heading); %></h3>
   <p class="description"><%- copyBlock %></p>
   <div class="links">
     <% links.forEach(({ label, url, path, dataVideoId }) => { %>

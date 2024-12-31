@@ -21,7 +21,7 @@ scripts:
   <div class="content">
     <header>
       <h2>
-        Who am I?
+        <%- noWidows(`Who am I?`); %>
       </h2>
     </header>
     <p>
@@ -54,7 +54,9 @@ scripts:
 
 <section class="contributions">
   <div class="content">
-    <h2>Shows and other fun stuff</h2>
+    <h2>
+      <%- noWidows(`Shows and other fun stuff`); %>
+    </h2>
     <div class="deck">
     <%
       const model = [
@@ -102,7 +104,7 @@ scripts:
   <div class="content center">
     <header>
       <h2>
-        Recent posts.
+        <%- noWidows(`Recent posts.`); %>
       </h2>
     </header>
     <%- partial('posts-list', Object.assign(locals, { postCount: 6 })); %>
@@ -118,7 +120,7 @@ scripts:
   <div class="content">
     <header>
       <h2>
-        What I have been listening to.
+        <%- noWidows(`What I have been listening to.`); %>
       </h2>
       <p>
         Music is a big deal to me. I am always looking for my next favorite album. Last.fm is a tool that I use to track my listening habits. Here is some of the music that I’ve been listening to recently.
