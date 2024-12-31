@@ -1,36 +1,44 @@
 @import "system/variables/all";
 
 @mixin html {
+  mixin: html;
+
   min-height: 100%;
   font-size: 62.5%;
   position: relative;
   @include type--regular-serif;
-  @include font-size;
+  @include type--body;
   overflow-x: hidden;
   @include palette--base;
   text-wrap: pretty;
 
   --palette--primary-white: #{$palette--primary-white};
   --palette--primary-grey: #{$palette--primary-grey};
+  --palette--hover-grey: #{$palette--hover-grey};
   --palette--secondary-grey: #{$palette--secondary-grey};
   --palette--divider-color: #{$palette--divider-color};
   --palette--error: #{$palette--error};
   --palette--primary-color-dark: #{$palette--primary-color-dark};
   --palette--primary-color-light: #{$palette--primary-color-light};
   --palette--accent-color: #{$palette--accent-color};
+  --border-radius: #{$border-radius};
+  --transition-speed: #{$transition-speed};
+  --transition-timing: #{$transition-timing};
 }
 
 @mixin selection {
-  ::selection,
-  ::-moz-selection {
-    text-shadow: none;
-    @include palette--base--inverted;
-    background: red;
-  }
+  mixin: selection;
+
+  text-shadow: none;
+  background-color: $palette--primary-color-light;
+  color: $palette--primary-grey;
+  -webkit-text-fill-color: $palette--primary-grey;
 }
 
 @mixin section {
-  max-width: $grid--max-width;
+  mixin: section;
+
+  width: css-min($grid--max-width, 100%);
   @include margin-center;
   margin-bottom: $section-spacer;
 
@@ -39,109 +47,184 @@
   }
 }
 
-@mixin input {
-  min-width: $s12;
+@mixin checkbox {
+  mixin: checkbox;
+
+  cursor: pointer;
+  height: $s4;
+  width: $s4;
+  margin: unset;
+
+  @include link-focus;
 }
 
-@mixin link-focus {
-  transition-property: color, background-color;
+@mixin button-element { /* basic button */
+  mixin: button-element;
 
-  &:focus {
-    color: $palette--primary-white;
-    background-color: $color--grey-800 !important;
-  }
+  @include type--body;
+  @include palette--base;
+  border-radius: $border-radius;
+  height: $s6 + $s1 / 2;
+  padding: 0 $s1;
+  border: 1px solid $palette--divider-color;
+}
+
+@mixin input {
+  mixin: input;
+
+  @include type--body;
+  @include palette--base;
+
+  min-width: $s12;
+  border-radius: $border-radius;
+  height: $s6 + $s1 / 2;
+  padding: 0 $s1;
+  border: 1px solid $palette--secondary-grey;
+}
+
+@mixin input-range {
+  mixin: input-range;
+
+  height: $s6 + $s1 / 2;
+  cursor: pointer;
+
+  @include link-focus;
+}
+
+@mixin select {
+  mixin: select;
+
+  @include type--body;
+  @include palette--base;
+
+  appearance: menulist;
+  border-radius: $border-radius;
+  height: $s6 + $s1 / 2;
+  padding: 0 $s1;
+  border: 1px solid $palette--secondary-grey;
+  cursor: pointer;
+
+  @include link-focus;
+}
+
+@mixin link-base {
+  mixin: link-base;
+
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
 }
 
 @mixin link-hover {
-  transition-property: color, background-color;
-  position: relative;
-  transition-property: opacity;
-  transition-duration: $transition-speed;
+  mixin: link-hover;
+
+  transition-property: background-color;
 
   &:hover {
-    border-radius: $border-radius;
-    box-shadow: 0px 0px 0px 6px $palette--primary-grey, 0px 0px 0px 8px $palette--primary-color-light;
+    background-color: $palette--hover-grey;
+  }
+}
+
+@mixin link-focus {
+  mixin: link-focus;
+
+  &:focus {
+    box-shadow: 0px 0px 0px 2px $palette--primary-grey, 0px 0px 0px 4px $palette--secondary-grey;
   }
 }
 
 @mixin inline-link {
-  padding: 2px $s1 0px;
-  display: inline-block;
-  text-decoration: none;
-  position: relative;
+  mixin: inline-link;
 
-  &:not(.block) {
-    @include palette--primary;
-  }
+  @include link-base;
 
-  &::before {
-    content: '';
-    min-height: 48px;
-    min-width: 48px;
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
+  padding: 2px 0 0;
+  display: inline-flex;
+  color: $palette--primary-color-light;
+
+  @include link-hover;
+  @include link-focus;
+
+  &:hover {
+    @include link-base;
+    text-decoration: underline;
   }
 }
 
 @mixin block-link {
-  padding: 0 $s1;
-  display: inline-block;
-  text-decoration: none;
-  @include palette--base;
+  mixin: block-link;
 
-  &:focus {
-    background-color: $color--grey-800 !important;
+  @include link-base;
+
+  padding: 2px $s1 0;
+  margin-left: -$s1;
+  display: inline-flex;
+  color: $palette--primary-white;
+
+  @include link-hover;
+  @include link-focus;
+
+  b {
+    transition-property: transform;
+    padding-left: 0.2rem;
+    transform: scaleY(1.5) translateY(0.03rem);
+    color: $palette--primary-color-light;
+  }
+
+  &:hover b {
+    transform: scaleY(1.5) translateY(0.03rem) translateX(0.2rem);
   }
 }
 
-@mixin interactive {
-  cursor: pointer;
-  text-decoration: none;
-  @include interactive-outline;
-  transition-duration: $transition-speed;
-  transition-timing-function: $transition-timing;
+@mixin button-link {
+  mixin: button-link;
+
+  @include link-base;
+
+  @include type--bold-sans-serif;
+  @include text-center;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: $s2 $s6;
+  margin: $s2;
+  border-radius: $border-radius;
+
+  color: $palette--primary-white;
+  border: 2px solid $palette--divider-color;
+
   @include link-hover;
   @include link-focus;
 }
 
-@mixin interactive-outline {
-  outline-color: $palette--accent-color;
-}
+@mixin card-link {
+  mixin: card-link;
 
-@mixin interactive-border {
-  border: 2px solid $palette--divider-color;;
-}
+  @include link-base;
 
-@mixin button {
-  text-align: center;
-  display: inline-block;
-  padding: $s2 $s6;
-  margin: $s2;
+  display: grid;
   border-radius: $border-radius;
-  text-decoration: none;
-  font-family: $sans-serif;
-  font-weight: $bold;
-  transition-property: background-color;
-  color: $palette--primary-white;
-  border: 2px solid $palette--divider-color;
-  background-color: transparent;
 
-  &::before {
-    height: 0;
-  }
+  color: $palette--primary-white;
+  box-shadow: 0px 10px 90px 0px #111;
+  padding: $s2;
+
+  @include link-hover;
+  @include link-focus;
 }
 
 @mixin content-width {
+  mixin: content-width;
+
   max-width: $content-max-width;
   @include margin-center;
 }
 
 @mixin content {
+  mixin: content;
+
   @include content-width;
   position: relative;
   padding: 0 $s2;
@@ -152,6 +235,8 @@
 }
 
 @mixin paragraph {
+  mixin: paragraph;
+
   width: 100%;
   @include sixHundred;
   margin-bottom: $paragraph-bottom;
@@ -163,6 +248,8 @@
 }
 
 @mixin paragraph-margin {
+  mixin: paragraph-margin;
+
   &,
   &:last-child {
     margin-bottom: $paragraph-bottom;
@@ -170,28 +257,27 @@
 }
 
 @mixin citation {
+  mixin: citation;
+
   float: right;
 
-  &::before {
-    display: inline;
-    content: '-';
-  }
-
   a {
-    @include font-size;
+    @include type--body;
     text-decoration: none;
   }
 }
 
 @mixin quotation {
-  padding: $s6 $s6;
+  mixin: quotation;
+
+  @include margin-center;
+  @include paragraph-margin;
+
+  padding: $s4 $s4;
   overflow: hidden;
   max-width: 500px;
-  @include margin-center;
-  margin-bottom: $s6;
-  @include type--heading-4;
   background-color: transparent;
-  border: 2px solid $palette--divider-color;;
+  border: 2px solid $palette--divider-color;
   color: $palette--primary-white;
 
   p {
@@ -207,26 +293,30 @@
 }
 
 @mixin label {
-  @include type--heading-4;
+  mixin: label;
+
+  @include type--heading-6;
   padding: 0 $s3;
   @include type--regular-sans-serif;
 }
 
 @mixin list {
+  mixin: list;
+
   @include paragraph;
 }
 
 @mixin list-item {
+  mixin: list-item;
+
   margin-bottom: $s3;
   &:last-of-type {
     margin-bottom: 0;
   }
 }
 
-@mixin button-select {
-  @include font-size;
-}
-
 @mixin mega-button {
+  mixin: mega-button;
+
   padding: $s2 $s4;
 }

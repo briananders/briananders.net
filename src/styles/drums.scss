@@ -29,6 +29,7 @@ $aspectRatio: $height / $width;
       top: 0;
       width: 100%;
       height: 100%;
+      z-index: -1;
     }
   }
 
@@ -111,9 +112,9 @@ $aspectRatio: $height / $width;
       width: css-min(100%, 400px);
       @include margin-center;
     }
-  }
 
-  .yt-modal-trigger {
-    padding: $s2;
+    img {
+      margin-bottom: $s2;
+    }
   }
 }

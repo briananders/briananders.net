@@ -9,22 +9,19 @@
   margin-bottom: $s6;
   text-align: left;
 
-  h3 {
+  h5 {
     text-align: left;
   }
 
   figcaption {
-    @include type--heading-4;
     margin-bottom: $s2;
     flex-grow: 1;
+    text-align: left;
   }
 
   a {
     display: block;
     @include sixHundred;
-    padding: $s3;
-    border-radius: $border-radius;
-    border: 2px solid $palette--divider-color;;
     margin: 0 auto;
   }
 }

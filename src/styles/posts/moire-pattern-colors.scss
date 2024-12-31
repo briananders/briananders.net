@@ -101,6 +101,8 @@
 [id^="variant-"] {
   transform-origin: center center;
   transform: rotate(var(--rotation));
+
+  transition-duration: 0s;
 }
 
 #variant-red .line {

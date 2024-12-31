@@ -7,23 +7,32 @@ const artistTemplate = `
       grid-template-columns: 90px 1fr;
       gap: 12px;
       border-radius: 3px;
+      outline: none;
+      padding: 6px;
 
-      transition: box-shadow 300ms ease, background-color 300ms ease;
-    }
-    a:hover {
-      box-shadow: 0px 0px 0px 6px var(--palette--primary-grey), 0px 0px 0px 8px var(--palette--primary-color-light);
+      transition-duration: var(--transition-speed);
+      transition-timing-function: var(--transition-timing);
+
+      transition-property: box-shadow, background-color;
     }
     a:focus {
-      background-color: var(--palette--secondary-grey);
+      box-shadow: 0px 0px 0px 2px var(--palette--primary-grey), 0px 0px 0px 4px var(--palette--secondary-grey);
+    }
+    a:hover {
+      background-color: var(--palette--hover-grey);
     }
     #bar {
       width: 0%;
       max-width: 100%;
       height: 12px;
       border-radius: 3px;
-      background: linear-gradient(to left, #f57f17, #cd4800);
-      transition: width 300ms ease;
+      background: linear-gradient(to left, var(--palette--primary-color-light), var(--palette--primary-color-dark));
       margin-top: 6px;
+
+      transition-duration: var(--transition-speed);
+      transition-timing-function: var(--transition-timing);
+
+      transition-property: width;
     }
     img {
       display: block;
@@ -35,6 +44,10 @@ const artistTemplate = `
       margin-bottom: 12px;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
+    }
+    span.info {
+      padding-top: 6px;
+      display: block;
     }
   </style>
 

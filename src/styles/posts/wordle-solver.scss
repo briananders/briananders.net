@@ -31,7 +31,7 @@
 .board {
   overflow: hidden;
   padding: 0 $s1;
-  transition: height $transition-speed $transition-timing;
+  transition-property: height;
 }
 
 #options {
@@ -104,6 +104,7 @@ fieldset {
     padding: 0;
     height: $s4;
     position: relative;
+    margin-bottom: 0;
 
     &[for^="close"] {
       @include close;
@@ -115,7 +116,7 @@ fieldset {
       @include wrong;
     }
   }
-  input {
+  input[type=radio] {
     appearance: none;
     padding: 0;
     margin: 0;
@@ -142,12 +143,14 @@ fieldset {
 }
 
 input.letter {
-  text-align: center;
-  width: $s12;
-  height: $s12;
-  line-height: $s12;
-  padding: 0;
   @include type--heading-1;
+  text-align: center;
+  width: $s10;
+  height: $s10;
+  line-height: $s10;
+  min-width: 0;
+  padding: 0;
+  margin-bottom: 0;
 
   &[data-state="wrong"] {
     @include wrong;
@@ -169,8 +172,6 @@ toast-notification {
   opacity: 0;
   z-index: 10;
   transition-property: bottom, opacity;
-  transition-duration: $transition-speed;
-  transition-timing-function: $transition-timing;
 
   &.animate {
     opacity: 1;

@@ -19,8 +19,6 @@
 
     opacity: 1;
     transition-property: opacity;
-    transition-duration: $transition-speed;
-    transition-timing-function: $transition-timing;
   }
 
   &:hover {

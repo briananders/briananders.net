@@ -9,6 +9,9 @@
     grid-template-columns: 1fr;
     grid-gap: $s1 / 2;
     grid-gap: $s3;
+    border: none;
+    padding: $s1;
+    text-decoration: none;
 
     @include palette--base;
 
@@ -19,12 +22,12 @@
     @include link-hover;
     @include link-focus;
 
-    &:hover img {
-      transform: scale(1.12);
+    &:focus {
+      border: none;
+      box-shadow: 0 0 0 2px $palette--primary-grey, 0 0 0 4px $palette--secondary-grey;
     }
 
     .name {
-      @include type--heading-4;
       font-family: $sans-serif;
       font-weight: $bold;
     }
@@ -38,16 +41,12 @@
       height: $s2;
       margin-top: $s1;
       transition-property: background-color;
-      transition-duration: $transition-speed;
-      transition-timing-function: $transition-timing;
       @include orange-gradient;
     }
 
     img {
       width: 100px;
       height: 100px;
-      transform: scale(1);
-      transition: transform $transition-speed $transition-timing;
     }
   }
 

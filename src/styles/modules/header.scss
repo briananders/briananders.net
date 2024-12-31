@@ -4,18 +4,13 @@
 @import "modules/skip-nav";
 
 header.main-header {
-  @include font-size;
   @include palette--base;
-  margin-bottom: $s6;
-  margin-top: $s2;
-  padding: $s1 0;
+  margin-top: $s6;
+  @include margin-center;
 
-  .name {
-    margin: auto;
-
-    @include mq($medium) {
-      @include font-size(8);
-    }
+  h1.name {
+    @include type--title;
+    @include text-center;
   }
 }
 

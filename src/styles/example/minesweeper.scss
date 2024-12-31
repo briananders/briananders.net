@@ -58,7 +58,7 @@
 
   .header-second-row {
     justify-content: center;
-    margin: $s6 auto;
+    margin: $s6 auto $s4;
   }
 
   .mine-sweeper-tile {
@@ -139,7 +139,7 @@
     }
   }
 
-  .face-button {
+  #restart {
     transition: none;
     width: 52px;
     height: 52px;

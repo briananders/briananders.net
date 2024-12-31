@@ -24,6 +24,9 @@
   .secondary-grey span {
     background-color: $palette--secondary-grey;
   }
+  .hover-grey span {
+    background-color: $palette--hover-grey;
+  }
   .divider-color span {
     background-color: $palette--divider-color;
   }
@@ -61,7 +64,7 @@
 }
 
 .defaults {
-  div {
+  .container div {
     @include palette--base--inverted;
     @include ds-box-shadow;
     text-align: center;
@@ -83,7 +86,7 @@
 }
 
 .viewports {
-  div {
+  .container div {
     @include palette--base--inverted;
     @include ds-box-shadow;
     text-align: center;
@@ -117,11 +120,11 @@
 }
 
 .type {
-  .type--body {
-    @include type--body;
-  }
   .type--headings {
     @include type--headings;
+  }
+  .type--title {
+    @include type--title;
   }
   .type--heading-1 {
     @include type--heading-1;
@@ -141,11 +144,16 @@
   .type--heading-6 {
     @include type--heading-6;
   }
-  .type--heading-link {
-    @include type--heading-link;
+  .type--body {
+    @include type--body;
+  }
+  .type--body-small {
+    @include type--body-small;
+  }
+  .type--body-tiny {
+    @include type--body-tiny;
   }
   .italic {
-    @include type--body;
     @include italic;
   }
 }

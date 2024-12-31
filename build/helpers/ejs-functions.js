@@ -16,6 +16,13 @@ function squeakyClean(arr) {
   return arr;
 }
 
+function cleanUpString(str) {
+  str = str.toString();
+  str = str.replace(/^\s+/, '');
+  str = str.replace(/\s+$/, '');
+  return str.split(/\s/g).join(' ');
+}
+
 module.exports = (dir, pageMappingData) => ({
   partial(partialPath, data) {
     const newPath = path.join(dir.src, 'partials/', `${partialPath}.ejs`);
@@ -136,15 +143,41 @@ module.exports = (dir, pageMappingData) => ({
     if (!locals.href) {
       throw new Error('externalLink is missing href attribute');
     }
-    if(!/button/.test(locals.class)) {
-      locals.class = `${locals.class || ''} link`;
+    if (locals.class === undefined) locals.class = '';
+    if (locals.external || /^http/.test(locals.href)) {
+      locals = merge({ rel: 'noopener', target: 'blank' }, locals);
     }
-    return `<a itemprop="url"
-    ${Object.keys(locals).map((attr) => `${attr}="${locals[attr]}"`).join(' ')}>${str}</a>`;
+    switch (locals.type) {
+      case 'inline':
+        locals.class += ' inline-link';
+        break;
+      case 'block':
+        locals.class += ' block-link';
+        break;
+      case 'card':
+        locals.class += ' card-link';
+        break;
+      case 'button':
+        locals.class += ' button';
+        break;
+    }
+    return `<a itemprop="url" ${Object.keys(locals).map((attr) => `${attr}="${cleanUpString(locals[attr])}"`).join(' ')}>${str}</a>`;
   },
 
-  externalLink(str, locals) {
-    return this.link(str, merge({ rel: 'noopener', target: 'blank' }, locals));
+  inlineLink(str, locals) {
+    return this.link(str, merge({ type: 'inline' }, locals));
+  },
+
+  blockLink(str, locals) {
+    return `<span class="block-link-wrapper">${this.link(`${str}&nbsp;<b>&gt;</b>`, merge({ type: 'block' }, locals))}</span>`;
+  },
+
+  cardLink(str, locals) {
+    return this.link(str, merge({ type: 'card' }, locals));
+  },
+
+  buttonLink(str, locals) {
+    return this.link(str, merge({ type: 'button' }, locals));
   },
 
   getFileContents(src) {

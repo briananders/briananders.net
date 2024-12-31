@@ -1,5 +1,5 @@
 .code-container {
-  @include font-size;
+  @include type--body-small;
   @include sixHundred;
   margin: auto auto $s6;
   margin-bottom: $s6;
@@ -8,7 +8,7 @@
   position: relative;
   text-align: center;
   display: flex;
-  border: 2px solid $palette--divider-color;
+  border: 2px solid $palette--secondary-grey;
 
   &::before,
   &::after {

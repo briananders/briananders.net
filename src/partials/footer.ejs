@@ -2,19 +2,20 @@
 
 <%
   const date = new Date();
+  const thisYear = date.getFullYear();
   const contactLinks = [
-    { copy: 'Bat Lessons',  href: locals.batLessons          },
-    { copy: 'Banders Drums', href: locals.bandersDrums.path    },
-    { copy: 'Github',       href: locals.github              },
-    { copy: 'Instagram',    href: locals.instagram           },
-    { copy: 'Last.fm',      href: locals.lastfm              },
-    { copy: 'LinkedIn',     href: locals.linkedin            },
-    { copy: 'Mastodon',     href: locals.mastodon,           rel: 'me' },
-    { copy: 'Blue Sky',     href: locals.bluesky             },
-    { copy: 'Twitter',      href: locals.twitter             },
-    { copy: 'YouTube',      href: locals.bandersDrums.youtube },
+    { copy: 'Bat Lessons',   href: locals.batLessons,           },
+    { copy: 'Banders Drums', href: locals.bandersDrums.path,    },
+    { copy: 'Github',        href: locals.github,               },
+    { copy: 'Instagram',     href: locals.instagram,            },
+    { copy: 'Last.fm',       href: locals.lastfm,               },
+    { copy: 'LinkedIn',      href: locals.linkedin,             },
+    { copy: 'Mastodon',      href: locals.mastodon, rel: 'me',  },
+    { copy: 'Blue Sky',      href: locals.bluesky,              },
+    { copy: 'Twitter',       href: locals.twitter,              },
+    { copy: 'YouTube',       href: locals.bandersDrums.youtube, },
   ].map(item => {
-    return externalLink(item.copy, item);
+    return blockLink(item.copy, item);
   });
 %>
 
@@ -33,7 +34,7 @@
           'aria-label': 'Brian Anders home page',
         }); %>
       </span>
-      <span>&copy; <%- date.getFullYear(); %></span>
+      <span>&copy; <%- thisYear %></span>
     </div>
     <div class="links">
       <%- contactLinks.join(''); %>

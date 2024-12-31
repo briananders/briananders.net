@@ -18,7 +18,6 @@
     color: $palette--primary-white;
     background-color: darken($color: red, $amount: 15);
 
-    &:hover,
     &:focus {
       background-color: darken($color: red, $amount: 30)
     }

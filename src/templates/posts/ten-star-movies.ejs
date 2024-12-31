@@ -385,10 +385,10 @@ styles:
     const movie = sortedMovies[i];
 %>
 
-  <%- externalLink(`
+  <%- cardLink(`
     ${lazyImage({ src: movie.imgSrc, alt: `${movie.name} movie poster` })}
-    <h2 class="h3">${movie.name}</h2>
-    <p class="h4">(${movie.imdb.year})</p>
+    <h2 class="h6">${movie.name}</h2>
+    <p>(${movie.imdb.year})</p>
   `, {
     id: movie.name.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase(),
     class: 'movie block',

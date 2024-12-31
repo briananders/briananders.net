@@ -11,13 +11,18 @@ ul li {
   justify-content: center;
 
   .game-container {
+    @include margin-center;
     display: grid;
+    justify-content: center;
     grid-gap: $s2;
     margin-top: $s6;
+    width: css-min(100%, 360px);
 
     label {
-      padding: 0;
-      min-width: 120px;
+      @include type--body;
+      padding: 0 $s2;
+      width: 160px;
+      margin-bottom: unset;
     }
   }
 
@@ -56,7 +61,7 @@ ul li {
     grid-gap: $s2;
 
     button {
-      @include button;
+      @include button-link;
       height: 37px;
       padding: 0 $s2;
       margin: unset;
@@ -80,7 +85,7 @@ ul li {
   #score-board {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $s12;
+    grid-gap: $s6;
 
     @include mq($medium) {
       grid-template-columns: 1fr 1fr;
@@ -103,7 +108,7 @@ ul li {
     }
   }
   .score {
-    @include button;
+    @include button-link;
     min-width: 72px;
     text-align: center;
     margin-left: $s2;
@@ -116,6 +121,8 @@ ul li {
   #total {
     display: flex;
     justify-content: space-between;
+    padding-top: $s1;
+    border-top: $s1/3 solid;
 
     @include mq($medium) {
       width: calc(50% - #{$s6});

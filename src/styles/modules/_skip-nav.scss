@@ -1,4 +1,5 @@
 #skip-nav {
+  @include palette--base;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -8,10 +9,7 @@
   margin: auto;
   border-bottom-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
-
-  @include palette--base;
-  background-color: $palette--primary-grey;
-  color: $palette--primary-white;
+  box-shadow: 0 0 12px black;
 
   &[data-state=inactive] {
     top: -100%;
@@ -19,10 +17,5 @@
 
   &[data-state=active] {
     top: 0;
-  }
-
-  button {
-    padding: $s1 $s2;
-    border: none;
   }
 }

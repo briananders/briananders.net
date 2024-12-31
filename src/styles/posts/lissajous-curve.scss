@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 1;
     opacity: .1;
-    transition: opacity $transition-speed $transition-timing;
+    transition-property: opacity;
   }
 
   &:hover {

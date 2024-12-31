@@ -4,25 +4,21 @@ i {
   @include italic;
 }
 
-main {
-  @include margin-center;
-}
-
 section {
   @include section;
 }
 
 main {
+  @include margin-center;
   z-index: 1;
   position: relative;
-  transition-property: right;
+  transition-property: right, min-height;
   right: 0;
+  min-height: 100vh;
 }
 
 html {
   @include html;
-
-  @include selection;
 }
 
 body {
@@ -33,10 +29,6 @@ body {
 
 p {
   @include paragraph;
-
-  a:not(.button) {
-    @include inline-link;
-  }
 }
 
 h1,
@@ -46,11 +38,6 @@ h4,
 h5,
 h6 {
   @include type--headings;
-
-  a,
-  a:visited {
-    @include type--heading-link;
-  }
 }
 
 h1 {
@@ -95,20 +82,6 @@ strong {
   font-weight: $bold;
 }
 
-select {
-  appearance: menulist;
-  border-radius: $border-radius;
-  background-color: $color--grey-50;
-  height: $s6 + $s1 / 2;
-
-  @include button-select;
-
-  &:hover {
-    box-shadow: 0 0 0 #{$s1} $palette--primary-grey,
-    0 0 0 #{$s1 + 2px} $palette--primary-color-dark;
-  }
-}
-
 date {
   text-align: right;
   display: block;
@@ -117,11 +90,6 @@ date {
 
 label {
   @include label;
-}
-
-button:not(.link),
-select {
-  @include button-select;
 }
 
 list,
@@ -140,85 +108,81 @@ li {
   @include list-item;
 }
 
-a,
-input,
-button,
-textarea,
-select {
-  @include interactive-outline;
-  @include interactive;
+button {
+  font-family: unset;
+  font-size: unset;
+  line-height: unset;
+  margin: unset;
+  padding: unset;
+  border: unset;
+  cursor: pointer;
+
+  &:not(.button):not([class*="link"]) {
+    @include button-element;
+
+    @include link-focus;
+    @include link-hover;
+  }
 }
 
-input,
-button,
-textarea,
 select {
-  @include interactive-border;
+  @include select;
 }
 
-select,
+input[type=checkbox],
+input[type=radio] {
+  @include checkbox;
+}
+
 input[type=text],
 input[type=number] {
   @include input;
 }
 
-input[type=text],
-input[type=number] {
-  height: 33px;
-  @include font-size;
-  padding: 0 $s1;
+input[type=range] {
+  @include input-range;
 }
 
-input[type=checkbox] {
-  height: $s4;
-  width: $s4;
+input[type=checkbox].toggle {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: $s8;
+  height: $s3;
+  background-color: $palette--primary-white;
+  border-radius: $s2;
+  border: none;
 
   &:focus {
-    box-shadow: inset 0 0 0 3px $palette--primary-white;
-  };
+    box-shadow: none;
+    background-color: $palette--primary-white !important;
+  }
 
-  /* toggle in label designing */
-  &.toggle {
-    appearance: none;
-    position: relative;
-    display: inline-block;
-    width: $s8;
-    height: $s3;
-    background-color: $palette--primary-white;
+  /* After slide changes */
+  &::before {
+    content: '';
+    position: absolute;
+    width: $s4;
+    height: $s4;
     border-radius: $s2;
-    border: none;
+    background-color: $palette--accent-color;
+    top: -#{$s1 / 2};
+    left:-#{$s1 / 2};
+    transition: left $transition-speed, background-color $transition-speed;
+    box-shadow: 0 0 $s1 $color--grey-900;
+  }
+
+  /* Checkbox checked toggle label bg color */
+  &:checked {
+    background-color: $palette--accent-color;
+
+    /* Checkbox checked effect */
+    &::before {
+      left: calc(100% - #{$s4 - ($s1 / 2)});
+    }
 
     &:focus {
-      box-shadow: none;
-      background-color: $palette--primary-white !important;
-    }
-
-    /* After slide changes */
-    &::before {
-      content: '';
-      position: absolute;
-      width: $s4;
-      height: $s4;
-      border-radius: $s2;
-      background-color: $palette--accent-color;
-      top: -#{$s1 / 2};
-      left:-#{$s1 / 2};
-      transition: left $transition-speed, background-color $transition-speed;
-      box-shadow: 0 0 $s1 $color--grey-900;
-    }
-
-    /* Checkbox checked toggle label bg color */
-    &:checked {
-      background-color: $palette--accent-color;
-
-      /* Checkbox checked effect */
-      &::before {
-        left: calc(100% - #{$s4 - ($s1 / 2)});
-      }
-
-      &:focus {
-        background-color: $palette--accent-color !important;
-      }
+      background-color: $palette--accent-color !important;
     }
   }
 }

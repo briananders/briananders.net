@@ -31,7 +31,13 @@ footer {
   }
 
   a {
-    background-color: transparent !important;
-    padding: 0;
+
+    &.brand {
+      border: none !important;
+      padding: 0 !important;
+      display: flex !important;
+
+      @include link-focus;
+    }
   }
 }

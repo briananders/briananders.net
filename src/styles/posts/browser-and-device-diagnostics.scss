@@ -11,7 +11,7 @@
   #error {
     color: $palette--error;
     opacity: 0;
-    transition: opacity $transition-speed $transition-timing;
+    transition-property: opacity;
     font-family: $sans-serif;
     font-weight: $bold;
 
@@ -21,7 +21,7 @@
   }
 
   code {
-    @include font-size;
+    @include type--body-small;
     @include paragraph;
     border: 2px solid $palette--divider-color;
     display: block;

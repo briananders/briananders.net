@@ -4,10 +4,6 @@
   @include html;
 }
 
-.selection {
-  @include selection;
-}
-
 .section,
 .description {
   @include section;
@@ -30,15 +26,6 @@
 .content,
 .container {
   @include content;
-}
-
-.button {
-  @include button;
-  @include button-select;
-}
-
-.select {
-  @include button-select;
 }
 
 .error {
@@ -77,20 +64,6 @@
   }
 }
 
-.link,
-.inline-link {
-  @include inline-link;
-}
-
-.link.block,
-.block-link {
-  @include block-link;
-}
-
-.mega-button {
-  @include mega-button;
-}
-
 .video-container {
   width: 100%;
   height: 0;
@@ -103,4 +76,33 @@
     top: 0;
     left: 0;
   }
+}
+
+.block-link-wrapper {
+  display: block;
+}
+
+.select {
+  @include select;
+}
+
+.inline-link {
+  @include inline-link;
+}
+
+.block-link {
+  @include block-link;
+}
+
+.button,
+.button-link {
+  @include button-link;
+
+  &.mega-button {
+    @include mega-button;
+  }
+}
+
+.card-link {
+  @include card-link;
 }

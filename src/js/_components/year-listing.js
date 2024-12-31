@@ -8,14 +8,18 @@ const yearTemplate = `
       text-decoration: none;
       color: white;
       border-radius: 3px;
+      outline: none;
 
-      transition: box-shadow 300ms ease, background-color 300ms ease;
-    }
-    a:hover {
-      box-shadow: -6px 0px 0px var(--palette--primary-grey), -12px 0px 0px var(--palette--primary-color-light);
+      transition-duration: var(--transition-speed);
+      transition-timing-function: var(--transition-timing);
+
+      transition-property: background-color;
     }
     a:focus {
-      background-color: var(--palette--secondary-grey);
+      box-shadow: 0px 0px 0px 2px var(--palette--primary-grey), 0px 0px 0px 4px var(--palette--secondary-grey);
+    }
+    a:hover {
+      background-color: var(--palette--hover-grey);
     }
 
     .bar {
@@ -32,7 +36,10 @@ const yearTemplate = `
       border-radius: 3px;
       align-items: center;
 
-      transition: width 2s ease-in-out;
+      transition-duration: var(--transition-speed);
+      transition-timing-function: var(--transition-timing);
+
+      transition-property: width;
     }
 
     .bar slot {

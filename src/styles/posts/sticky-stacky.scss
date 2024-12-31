@@ -12,6 +12,8 @@
       padding: $s1 $s2;
       @include palette--header;
       text-align: center;
+
+      transition-duration: 0s;
     }
   }
 }
