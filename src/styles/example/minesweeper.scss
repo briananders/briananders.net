@@ -1,10 +1,10 @@
 @import "system/utilities";
 
-.minesweeper {
+section.minesweeper {
+  margin-bottom: 0;
+}
 
-  section {
-    margin-bottom: 0;
-  }
+.minesweeper {
 
   .blog-container {
     > * {
