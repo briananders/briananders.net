@@ -51,7 +51,7 @@ const artistTemplate = `
     }
   </style>
 
-  <a href="" itemprop="url" rel="noopener" target="blank">
+  <a href="#" itemprop="url" rel="noopener" target="blank">
     <img src="" alt="" />
     <span class="info">
       <slot>Loading...</slot>

@@ -50,7 +50,7 @@ const albumTemplate = `
     }
   </style>
 
-  <a href="" itemprop="url" rel="noopener" target="blank">
+  <a href="#" itemprop="url" rel="noopener" target="blank">
     <img src="" alt="" />
     <span class="info">
       <slot>Loading Album Name...</slot>
@@ -95,7 +95,7 @@ class AlbumListing extends HTMLElement {
       this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/music/${artistName.replace(/\s/g, '+')}/${albumName.replace(/\s/g, '+')}`);
 
       const imgElement = this.shadowRoot.querySelector('img');
-      imgElement.setAttribute('alt', albumName);
+      imgElement.setAttribute('alt', `${albumName} album cover`);
     }
     if (name === "img") {
       const imgElement = this.shadowRoot.querySelector('img');

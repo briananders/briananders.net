@@ -28,7 +28,7 @@ scripts:
 
 <div class="container">
   <div class="year-selector-container">
-    <year-selector id="year-selector" min="2013" max="2023" value="2023"></year-selector>
+    <year-selector id="year-selector" min="2013" max="2024" value="2024"></year-selector>
   </div>
 </div>
 
@@ -41,7 +41,7 @@ scripts:
       <% } %>
     </div>
     <div class="center">
-      <%- buttonLink("More", { href: "#", class: "more artists" }) %>
+      <%- buttonLink("More", { href: "#", class: "more artists", external: true }) %>
     </div>
   </div>
 </section>
@@ -55,7 +55,7 @@ scripts:
       <% } %>
     </div>
     <div class="center">
-      <%- buttonLink("More", { href: "#", class: "more albums" }) %>
+      <%- buttonLink("More", { href: "#", class: "more albums", external: true }) %>
     </div>
   </div>
 </section>
@@ -64,6 +64,7 @@ scripts:
   <div class="container">
     <h2>Yearly Scrobbles</h2>
     <div id="yearly-scrobbles">
+      <year-listing year=2024 value=24001 maximum=37568 ></year-listing>
       <year-listing year=2023 value=30567 maximum=37568 ></year-listing>
       <year-listing year=2022 value=37568 maximum=37568 ></year-listing>
       <year-listing year=2021 value=12942 maximum=37568 ></year-listing>
@@ -81,7 +82,7 @@ scripts:
 
 <section class="resources">
   <div class="container">
-    <h2>Resources</h2>
+    <h2>Additional Resources</h2>
 
     <ul>
       <li>
