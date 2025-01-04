@@ -102,7 +102,7 @@ class YearListing extends HTMLElement {
     }
     if (name === "year") {
       this.shadowRoot.querySelector(`[slot="${name}"]`).innerText = newValue;
-      this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/user/iBrianAnders/library/artists?from=${newValue}-01-01&rangetype=year`)
+      this.shadowRoot.querySelector('a').setAttribute('href', `https://www.last.fm/user/imbanders/library/artists?from=${newValue}-01-01&rangetype=year`)
     }
     if (['year', 'value'].includes(name)) {
       const year = this.getAttribute('year');

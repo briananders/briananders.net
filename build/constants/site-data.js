@@ -21,7 +21,7 @@ module.exports = (dir) => {
     domain: 'https://briananders.net/', // set domain
     instagram,
     instagramHandle,
-    lastfm: 'https://www.last.fm/user/iBrianAnders',
+    lastfm: 'https://www.last.fm/user/imbanders',
     bluesky: 'https://bsky.app/profile/imbanders.bsky.social',
     twitterHandle,
     twitter,
