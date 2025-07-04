@@ -93,5 +93,6 @@ svg.clock {
 
 
 .display-time {
-  @include type--heading-2
+  @include type--heading-2;
+  text-align: center;
 }

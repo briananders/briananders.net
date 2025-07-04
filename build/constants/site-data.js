@@ -2,38 +2,39 @@ module.exports = (dir) => {
   const pkg = require(`${dir.root}package.json`);
   const production = require(`${dir.build}helpers/production`);
 
-  const instagramHandle = 'imbanders';
-  const instagram = `https://instagram.com/${instagramHandle}`;
-  const mastodonHandle = 'banders';
-  const mastodon = `https://mastodon.social/@${mastodonHandle}`;
-  const twitterHandle = 'imbanders';
-  const twitter = `https://twitter.com/${twitterHandle}`;
-  const cdYTHandle = 'bandersdrums';
-  const cdYT = `https://www.youtube.com/@${cdYTHandle}`;
+  const handles = {
+    instagram: 'imbanders',
+    mastodon: 'banders',
+    twitter: 'imbanders',
+    drumYoutube: 'bandersdrums',
+    lastfm: 'imbanders',
+    bluesky: 'imbanders.bsky.social',
+    github: 'briananders',
+    linkedin: 'andersbrian',
+  };
+
+  const URLs = {
+    instagram: `https://instagram.com/${handles.instagram}`,
+    mastodon: `https://mastodon.social/@${handles.mastodon}`,
+    twitter: `https://twitter.com/${handles.twitter}`,
+    drumYoutube: `https://www.youtube.com/@${handles.drumYoutube}`,
+    lastfm: `https://www.last.fm/user/${handles.lastfm}`,
+    bluesky: `https://bsky.app/profile/${handles.bluesky}`,
+    github: `https://github.com/${handles.github}`,
+    linkedin: `https://www.linkedin.com/in/${handles.linkedin}`,
+    batLessons: 'https://batlessons.com',
+    bandersDrums: '/drums',
+  };
+
 
   return {
     devBuild: !production,
     version: pkg.version,
     name: 'Brian Anders',
-    description: "Brian Anders is an Engineer Manager in the tech industry. I'm also a Youtuber, Podcaster, and Musician.",
-    author: 'Brian Anders',
-    contact: twitter,
+    description: "Brian Anders is an Engineer Manager in the tech industry. Also a youtuber, podcaster, and musician. He's just an average guy.",
+    contact: URLs.twitter,
     domain: 'https://briananders.net/', // set domain
-    instagram,
-    instagramHandle,
-    lastfm: 'https://www.last.fm/user/imbanders',
-    bluesky: 'https://bsky.app/profile/imbanders.bsky.social',
-    twitterHandle,
-    twitter,
-    github: 'https://github.com/briananders',
-    linkedin: 'https://www.linkedin.com/in/andersbrian/',
-    mastodonHandle,
-    mastodon,
-    bandersDrums: {
-      youtubeHandle: cdYTHandle,
-      youtube: cdYT,
-      path: '/drums',
-    },
-    batLessons: 'https://batlessons.com',
+    URLs,
+    handles,
   };
 };

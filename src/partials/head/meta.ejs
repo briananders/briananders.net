@@ -18,10 +18,10 @@
 
 <meta name="keywords"                              content="Brian, Anders, Brian Anders" />
 <meta name="description"                           content="<%- locals.description %>" />
-<meta name="author"                                content="<%- locals.author %>" />
+<meta name="author"                                content="<%- locals.name %>" />
 
 <!-- Schema.org markup for Google+ -->
-<meta itemprop="name"                              content="<%- locals.author %>" />
+<meta itemprop="name"                              content="<%- locals.name %>" />
 <meta itemprop="description"                       content="<%- locals.description %>" />
 <meta itemprop="image"                             content="/images/favicon_base.png" />
 <link rel="canonical"                              href="<%- locals.domain %><%- locals.path %>" />
@@ -29,16 +29,16 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card"                          content="summary" />
 <meta name="twitter:url"                           content="<%- locals.domain %><%- locals.path %>" />
-<meta name="twitter:site"                          content="@<%- locals.twitterHandle %>" />
-<meta name="twitter:creator"                       content="@<%- locals.twitterHandle %>" />
-<meta name="twitter:title"                         content="<%- locals.author %>" />
+<meta name="twitter:site"                          content="@<%- locals.handles.twitter %>" />
+<meta name="twitter:creator"                       content="@<%- locals.handles.twitter %>" />
+<meta name="twitter:title"                         content="<%- locals.name %>" />
 <meta name="twitter:description"                   content="<%- locals.description %>" />
 <meta name="twitter:image"                         content="/images/favicon_base.png" />
 
 <!-- Open Graph data -->
 <meta property="og:type"                           content="profile" />
 <meta property="og:url"                            content="/<%- locals.path %>" />
-<meta property="og:title"                          content="<%- locals.author %>" />
+<meta property="og:title"                          content="<%- locals.name %>" />
 <meta property="og:image"                          content="/images/favicon_base.png" />
 <meta property="og:description"                    content="<%- locals.description %>" />
 <meta property="og:site_name"                      content="<%- locals.name %>" />
@@ -49,15 +49,15 @@
 <link rel="apple-touch-icon"                       href="/images/favicon_144.png" />
 <link rel="apple-touch-icon-precomposed"           href="/images/favicon_144.png" />
 
-<meta itemprop="copyrightHolder"                   content="<%- locals.author %>"/>
+<meta itemprop="copyrightHolder"                   content="<%- locals.name %>"/>
 <meta itemprop="copyrightYear"                     content="<%- new Date().getFullYear(); %>"/>
 <meta itemprop="isFamilyFriendly"                  content="true"/>
 
-<meta itemprop="author"                            content="<%- locals.author %>"/>
+<meta itemprop="author"                            content="<%- locals.name %>"/>
 <% if (locals.date) { %>
   <meta itemprop="datePublished"                     content="<%- `${locals.date.getFullYear()}-${('00' + (locals.date.getMonth() + 1)).slice(-2)}-${('00' + locals.date.getDate()).slice(-2)}` %>"/>
 <% } %>
-<meta itemprop="publisher"                         content="<%- locals.author %>"/>
+<meta itemprop="publisher"                         content="<%- locals.name %>"/>
 
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />

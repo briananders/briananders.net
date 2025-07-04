@@ -1,5 +1,8 @@
 const artistTemplate = `
   <style>
+    a.no-image {
+      grid-template-columns: 1fr;
+    }
     a {
       color: inherit;
       text-decoration: none;
@@ -38,6 +41,9 @@ const artistTemplate = `
       display: block;
       width: 90px;
     }
+    a.no-image img {
+      display: none;
+    }
     slot {
       font-size: 24px;
       display: block;
@@ -51,8 +57,8 @@ const artistTemplate = `
     }
   </style>
 
-  <a href="#" itemprop="url" rel="noopener" target="blank">
-    <img src="" alt="" />
+  <a href="#" itemprop="url" rel="noopener" target="blank" class="no-image">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="" />
     <span class="info">
       <slot>Loading...</slot>
       <div><span slot="count">00</span> Plays</div>
@@ -94,6 +100,7 @@ class ArtistListing extends HTMLElement {
     if (name === "img") {
       const imgElement = this.shadowRoot.querySelector('img');
       imgElement.setAttribute('src', newValue);
+      this.shadowRoot.querySelector('a').classList.remove('no-image');
     }
   }
 

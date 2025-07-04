@@ -2,6 +2,12 @@ const itemApi = require('../_modules/last-fm/item-api');
 const ready = require('../_modules/document-ready');
 
 ready.document(() => {
+  require('../_components/album-listing').init();
+  require('../_components/artist-listing').init();
+
+  const moreAlbumsLink = document.querySelector('.more.albums').setAttribute('href', data.sources.album);
+  const moreArtistsLink = document.querySelector('.more.artists').setAttribute('href', data.sources.artist);
+
   itemApi.init({
     count: 10,
     description: true,

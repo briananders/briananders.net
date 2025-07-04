@@ -4,16 +4,16 @@
   const date = new Date();
   const thisYear = date.getFullYear();
   const contactLinks = [
-    { copy: 'Bat Lessons',   href: locals.batLessons,           },
-    { copy: 'Banders Drums', href: locals.bandersDrums.path,    },
-    { copy: 'Github',        href: locals.github,               },
-    { copy: 'Instagram',     href: locals.instagram,            },
-    { copy: 'Last.fm',       href: locals.lastfm,               },
-    { copy: 'LinkedIn',      href: locals.linkedin,             },
-    { copy: 'Mastodon',      href: locals.mastodon, rel: 'me',  },
-    { copy: 'Blue Sky',      href: locals.bluesky,              },
-    { copy: 'Twitter',       href: locals.twitter,              },
-    { copy: 'YouTube',       href: locals.bandersDrums.youtube, },
+    { copy: 'Bat Lessons',   href: locals.URLs.batLessons,                },
+    { copy: 'Banders Drums', href: locals.URLs.bandersDrums,         },
+    { copy: 'Github',        href: locals.URLs.github,               },
+    { copy: 'Instagram',     href: locals.URLs.instagram,            },
+    { copy: 'Last.fm',       href: locals.URLs.lastfm,               },
+    { copy: 'LinkedIn',      href: locals.URLs.linkedin,             },
+    { copy: 'Mastodon',      href: locals.URLs.mastodon, rel: 'me',  },
+    { copy: 'Blue Sky',      href: locals.URLs.bluesky,              },
+    { copy: 'Twitter',       href: locals.URLs.twitter,              },
+    { copy: 'YouTube',       href: locals.URLs.drumYoutube,          },
   ].map(item => {
     return blockLink(item.copy, item);
   });

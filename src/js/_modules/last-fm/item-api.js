@@ -30,9 +30,17 @@ module.exports = {
     function render() {
       const url = getURL();
       const data = cache[url];
+      const max = Math.max(...data.map((item) => Number(item.playcount)));
+      data.forEach((item) => {
+        item.max = max;
+      });
       const handlebarsData = { ...opts, items: data };
+      let temp = template.artist;
+      if (data[0].artist) {
+        temp = template.album;
+      }
+      const compiledHandlebars = handlebars.compile(temp);
 
-      const compiledHandlebars = handlebars.compile(template);
       const outputHTML = compiledHandlebars(handlebarsData);
       containerElement.innerHTML = outputHTML;
 

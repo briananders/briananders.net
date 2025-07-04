@@ -44,10 +44,10 @@ scripts:
   <div class="container social-profiles">
     <%-
       [
-        { copy: 'Instagram',    handle:locals.instagramHandle,           href: locals.instagram           },
-        { copy: 'Mastodon',     handle:locals.mastodonHandle,            href: locals.mastodon            },
-        { copy: 'Twitter',      handle:locals.twitterHandle,             href: locals.twitter             },
-        { copy: 'YouTube',      handle:locals.bandersDrums.youtubeHandle, href: locals.bandersDrums.youtube },
+        { copy: 'Instagram',  handle:locals.handles.instagram,    href: locals.URLs.instagram    },
+        { copy: 'Mastodon',   handle:locals.handles.mastodon,     href: locals.URLs.mastodon     },
+        { copy: 'Twitter',    handle:locals.handles.twitter,      href: locals.URLs.twitter      },
+        { copy: 'YouTube',    handle:locals.handles.drumYoutube,  href: locals.URLs.drumYoutube  },
       ].map(({copy, handle, href}) => {
         const src = `/images/drums/${copy.toLowerCase()}-icon.svg`;
         return cardLink(`

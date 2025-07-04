@@ -3,17 +3,22 @@
 @import "modules/sticky-stacky";
 
 .sticky-container {
+  width: 100%;
 
   .sticky-stacky {
     width: 100%;
 
     &.default-styles {
+      @include palette--header;
       width: 100%;
       padding: $s1 $s2;
-      @include palette--header;
-      text-align: center;
 
       transition-duration: 0s;
+
+      span {
+        display: block;
+        @include sixHundred;
+      }
     }
   }
 }

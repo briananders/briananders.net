@@ -51,7 +51,7 @@ const albumTemplate = `
   </style>
 
   <a href="#" itemprop="url" rel="noopener" target="blank">
-    <img src="" alt="" />
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="" />
     <span class="info">
       <slot>Loading Album Name...</slot>
       <div slot="artist">Loading Artist Name...</div>

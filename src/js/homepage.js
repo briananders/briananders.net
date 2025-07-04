@@ -2,6 +2,9 @@ const itemApi = require('./_modules/last-fm/item-api');
 const ready = require('./_modules/document-ready');
 
 ready.document(() => {
+  require('./_components/album-listing').init();
+  require('./_components/artist-listing').init();
+
   itemApi.init({
     count: 4,
     description: false,

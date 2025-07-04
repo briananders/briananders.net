@@ -11,7 +11,6 @@ $frame-height: $sprite-height / $y-max;
 #frame-container {
   width: round($frame-width);
   height: round($frame-height);
-  margin: auto;
   border-radius: 100%;
 
   @for $frame from 0 to ($y-max * $x-max) {

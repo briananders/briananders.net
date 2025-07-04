@@ -1,6 +1,6 @@
 ---
 title: "Home"
-description: "Brian Anders is an Engineer Manager in the tech industry. I'm also a Youtuber, Podcaster, and Musician."
+description: "Brian Anders is an Engineer Manager in the tech industry. I'm also a youtuber, podcaster, and musician."
 priority: 1.0
 homepage: true
 pageClasses:
@@ -28,7 +28,7 @@ scripts:
       I am Brian Anders, an Engineer Manager in the tech industry. My specialty is in building enterprise level e-commerce websites.
     </p>
     <p>
-      I cohost a podcast and YouTube channel about Batman with my friend <%- inlineLink('Alex Cash', { href: 'https://alex.cash' }) %>, called <%- inlineLink('Bat Lessons', { href: locals.batLessons }) %>. I also record drum covers for my YouTube channel, <%- inlineLink('Banders Drums', { href: locals.bandersDrums.youtube }) %>.
+      I cohost a podcast and YouTube channel about Batman with my friend <%- inlineLink('Alex Cash', { href: 'https://alex.cash' }) %>, called <%- inlineLink('Bat Lessons', { href: locals.URLs.batLessons }) %>. I also record drum covers for my YouTube channel, <%- inlineLink('Banders Drums', { href: locals.URLs.drumYoutube }) %>.
     </p>
     <p>
       I have a strong passion for music.  In my free time, I listen to a lot of music, play some other instruments, and try to keep up with a lot of different podcasts.
@@ -36,14 +36,14 @@ scripts:
     <p>
       You can find me on the internet in some other places.
       <% const contactLinks = [
-          { copy: 'Github',    href: locals.github,              },
-          { copy: 'Instagram', href: locals.instagram,           },
-          { copy: 'Last.fm',   href: locals.lastfm,              },
-          { copy: 'LinkedIn',  href: locals.linkedin,            },
-          { copy: 'Mastodon',  href: locals.mastodon, rel: 'me', },
-          { copy: 'Blue Sky',  href: locals.bluesky,             },
-          { copy: 'Twitter',   href: locals.twitter,             },
-          { copy: 'YouTube',   href: locals.bandersDrums.youtube },
+          { copy: 'Github',    href: locals.URLs.github,              },
+          { copy: 'Instagram', href: locals.URLs.instagram,           },
+          { copy: 'Last.fm',   href: locals.URLs.lastfm,              },
+          { copy: 'LinkedIn',  href: locals.URLs.linkedin,            },
+          { copy: 'Mastodon',  href: locals.URLs.mastodon, rel: 'me', },
+          { copy: 'Blue Sky',  href: locals.URLs.bluesky,             },
+          { copy: 'Twitter',   href: locals.URLs.twitter,             },
+          { copy: 'YouTube',   href: locals.URLs.drumYoutube          },
         ].map(item => inlineLink(item.copy, item));
       %>
       <%- contactLinks.join(', '); %>.
@@ -67,20 +67,20 @@ scripts:
           links: [
             {
               label: "Bat Lessons website",
-              url: locals.batLessons,
+              url: locals.URLs.batLessons,
             }
           ]
         }, {
           heading: "YouTube channel: Banders Drums",
-          image: "/images/drums/logo.png",
+          image: "/images/drums/logo.webp",
           copyBlock: "I have a YouTube channel where I post recordings of me playing drum covers. I plan to compose my own music someday.",
           links: [
             {
               label: "Main Web Page",
-              path: locals.bandersDrums.path,
+              path: locals.URLs.bandersDrums,
             }, {
               label: "YouTube Channel",
-              url: locals.bandersDrums.youtube,
+              url: locals.URLs.drumYoutube,
             }
           ]
         },
@@ -129,7 +129,7 @@ scripts:
     <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin />
     <div class="last-fm-module p" data-type="albums" src="/images/posts/last-fm/default.webp">
       <% for (let i = 0; i < 4; i++) { %>
-        <%- defaultLastFMModule(); %>
+        <album-listing></album-listing>
       <% } %>
     </div>
     <div class="center">

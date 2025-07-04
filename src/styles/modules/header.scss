@@ -10,7 +10,6 @@ header.main-header {
 
   h1.name {
     @include type--title;
-    @include text-center;
   }
 }
 

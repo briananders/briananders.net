@@ -296,6 +296,7 @@
   mixin: label;
 
   @include type--heading-6;
+  width: unset;
   padding: 0 $s3;
   @include type--regular-sans-serif;
 }
