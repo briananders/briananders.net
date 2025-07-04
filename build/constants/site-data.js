@@ -18,7 +18,7 @@ module.exports = (dir) => {
     description: "Brian Anders is an Engineer Manager in the tech industry. I'm also a Youtuber, Podcaster, and Musician.",
     author: 'Brian Anders',
     contact: twitter,
-    domain: 'https://briananders.net/', // set domain
+    domain: 'https://briananders.com/', // set domain
     instagram,
     instagramHandle,
     lastfm: 'https://www.last.fm/user/imbanders',

@@ -1,8 +1,8 @@
 {
-  "name": "briananders.net",
+  "name": "briananders.com",
   "version": "1.1.0",
   "description": "",
-  "homepage": "https://briananders.net",
+  "homepage": "https://briananders.com",
   "scripts": {
     "build": "NODE_ENV=production node index.js",
     "clean": "rm -rf node_modules tmp dist && npm cache clean --force",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/briananders/briananders.net.git"
+    "url": "git+https://github.com/briananders/briananders.com.git"
   },
   "keywords": [
     "node.js",

@@ -19,7 +19,7 @@ const awsCreds = {
 const s3 = new AWS.S3(awsCreds);
 const cloudfront = new AWS.CloudFront(awsCreds);
 
-const bucketName = (production) ? 'www.briananders.net' : 'staging.briananders.net';
+const bucketName = (production) ? 'www.briananders.com' : 'staging.briananders.com';
 
 const getContentType = (fileName) => {
   const extn = path.extname(fileName);
@@ -213,5 +213,5 @@ getS3Objects().then((data) => {
     invalidateCloudFront();
   }
 
-  console.log('Run `blc https://briananders.net -ro` to check for broken links');
+  console.log('Run `blc https://briananders.com -ro` to check for broken links');
 });
