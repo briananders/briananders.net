@@ -1,4 +1,4 @@
-# briananders.net
+# briananders.com
 My personal site
 
 ## Installation steps

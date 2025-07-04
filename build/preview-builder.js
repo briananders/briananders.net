@@ -55,7 +55,7 @@ module.exports = (configs) => {
 
   function update(filePath) {
     if (filePath.includes('.DS_Store')) return;
-    log(`${timestamp.stamp()} ${`File modified: ${filePath.split('briananders.net')[1]}`.yellow}`);
+    log(`${timestamp.stamp()} ${`File modified: ${filePath.split('briananders.com')[1]}`.yellow}`);
 
     const extn = path.extname(filePath);
 
@@ -93,7 +93,7 @@ module.exports = (configs) => {
 
   function buildChanged(filePath) {
     if (filePath.includes('.DS_Store')) return;
-    log(`${timestamp.stamp()} ${`Build file modified: ${filePath.split('briananders.net')[1]}`.bold.red}`);
+    log(`${timestamp.stamp()} ${`Build file modified: ${filePath.split('briananders.com')[1]}`.bold.red}`);
     process.exit();
   }
 

@@ -18,7 +18,7 @@ module.exports = function YoutubeModal({ triggerScope } = { triggerScope: '.yt-m
 
   const IFRAME_CONFIG = {
     srcPrepend: 'https://www.youtube.com/embed/',
-    srcAppend: '&origin=https://briananders.net&autoplay=1&rel=0',
+    srcAppend: '&origin=https://briananders.com&autoplay=1&rel=0',
     width: '560',
     height: '315',
   };
